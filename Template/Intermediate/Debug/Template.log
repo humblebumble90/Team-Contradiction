@@ -1,0 +1,512 @@
+﻿  CollisionManager.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(9,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(10,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(20,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(59,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(60,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(61,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(62,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(178,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(188,19): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(195,19): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(198,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\CollisionManager.cpp(200,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  DisplayObject.cpp
+  EndScene.cpp
+  FontManager.cpp
+  Game.cpp
+  GameObject.cpp
+  Label.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Label.cpp(16,15): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Label.cpp(17,16): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Label.cpp(28,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Label.cpp(29,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Label.cpp(54,15): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Label.cpp(55,16): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Label.cpp(75,15): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Label.cpp(76,16): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  main.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\main.cpp(28,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Mine.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Mine.cpp(11,15): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Mine.cpp(12,16): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Mine.cpp(24,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Mine.cpp(25,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Planet.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Planet.cpp(11,15): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Planet.cpp(12,16): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Planet.cpp(24,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Planet.cpp(25,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  PlayScene.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(36,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(38,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(214,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(310,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(312,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(354,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(356,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(371,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(373,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(382,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(384,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(570,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(572,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(585,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(587,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(600,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(602,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(838,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\PlayScene.cpp(839,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Scene.cpp
+  ship.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\ship.cpp(16,15): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\ship.cpp(17,16): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\ship.cpp(33,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\ship.cpp(34,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\ship.cpp(153,16): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  StartScene.cpp
+  Target.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Target.cpp(10,15): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Target.cpp(11,16): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Target.cpp(24,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Target.cpp(25,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Tile.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Tile.cpp(18,15): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Tile.cpp(19,16): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Tile.cpp(46,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Tile.cpp(47,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Tile.cpp(173,11): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Util.cpp
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(227,15): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(228,15): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(244,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(276,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(277,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(278,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(279,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(284,59): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(284,52): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(284,45): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(284,36): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(290,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(291,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(292,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(293,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(296,24): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(297,24): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(310,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(311,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(312,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(313,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(318,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(332,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(332,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(333,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(333,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(334,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(334,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(335,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(335,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(339,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(339,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(340,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(340,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(341,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(341,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(342,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(342,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(346,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(346,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(347,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(347,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(348,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(348,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(349,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(349,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(353,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(353,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(354,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(354,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(355,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(355,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(356,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(356,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(360,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(360,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(361,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(361,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(362,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(362,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(363,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(363,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(364,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(364,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(365,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(365,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(366,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(366,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(367,57): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(367,43): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(394,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(395,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(400,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(410,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\src\Util.cpp(419,19): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Template.vcxproj -> C:\Users\Tom\Desktop\COMP397\COMP397-W2020-Lesson4A\bin\Debug\Template.exe
