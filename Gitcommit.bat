@@ -89,7 +89,7 @@ goto end
 cls
 set /p "stop=Continue?(y for yes. if yes input anything else)?"
 if %stop% == y (goto start) 
-else (exit)
+exit
 
 :push
 git pull origin master
