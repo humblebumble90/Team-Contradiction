@@ -46,7 +46,8 @@ cls
 set /p "reason=Enter your reason for this commit:"
 git add .
 git commit -m "%reason%"
-git push origin master
+set /p "branch=Which branch do you want to push to?"
+git push origin %branch%
 pause
 goto end
 
@@ -88,7 +89,7 @@ goto end
 cls
 set /p "stop=Continue?(y for yes. if yes input anything else)?"
 if %stop% == y (goto start) 
-else (stop)
+else (exit)
 
 :push
 git pull origin master
