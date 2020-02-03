@@ -8,7 +8,7 @@ pause
 :start
 cls
 echo you are in %cd%
-%git branch%
+git branch
 echo -----------------------
 echo  init - 1
 echo  init pull - 2
@@ -38,6 +38,7 @@ git checkout -b %branch%
 set /p "pull=Where do you want to pull from?"
 git pull origin %pull%
 git commit -m "Created a new branch from %pull%"
+git push origin %branch%
 
 
 :commit
