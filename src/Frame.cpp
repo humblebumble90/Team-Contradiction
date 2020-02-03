@@ -46,3 +46,16 @@ std::vector<Weapon> Frame::GetWeapons()
 	}
 	return Weapons;
 }
+
+Weapon Frame::GetWeapon(int i)
+{
+	std::vector<Weapon> Weapons;
+	for (std::vector<ShipComponent> sc : build)
+	{
+		for (Weapon w : sc)
+		{
+			Weapons.push_back(w);
+		}
+	}
+	return Weapons[i];
+}

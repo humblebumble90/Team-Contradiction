@@ -6,7 +6,7 @@
 class ZigzagAI : public AI
 {
 public:
-	ZigzagAI(float transform[2]);
+	ZigzagAI(glm::vec2 transform);
 	~ZigzagAI();
 	void PrimaryFunction() override;
 private:

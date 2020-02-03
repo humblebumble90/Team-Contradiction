@@ -6,6 +6,6 @@
 class RamAI : public PlayerLockAI
 {
 public:
-	RamAI(float transform[2]);
+	RamAI(glm::vec2 transform);
 	~RamAI();
 };

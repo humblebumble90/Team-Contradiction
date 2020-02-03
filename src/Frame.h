@@ -17,6 +17,7 @@ public:
 	Enemy* GetEParent();
 	Player* GetPParent();
 	std::vector<Weapon> GetWeapons();
+	Weapon GetWeapon(int i);
 private:
 	int gridSize;
 	std::vector<std::vector<ShipComponent>> build;

@@ -36,7 +36,7 @@ Frame Enemy::GetFrame()
 
 void Enemy::Move()
 {
-	transform += aI->GetSpeed;
+	transform += aI->GetSpeed();
 }
 
 void Enemy::draw()
