@@ -20,6 +20,7 @@ echo  pull - 7
 echo  create branch - 8
 echo  switch branch - 9
 echo  push - 10 
+echo  merge - 11
 echo -----------------------
 set /p "set=What do you want to do(input the corrisponding number)?"
 if %set%== 1 (goto init)
@@ -32,8 +33,17 @@ if %set%== 7 (goto pull)
 if %set%== 8 (goto createB)
 if %set%== 9 (goto switch)
 if %set%== 10 (goto push)
+if %set%== 11 (goto merge)
 pause
 goto end
+
+:merge
+echo The highlighted green text is where you are right now
+git branch
+set /p "merge=Which branch do you want to merge from?"
+git merge %merge%
+pause
+goto start
 
 :switch
 git branch
@@ -50,7 +60,7 @@ set /p "pull=Where do you want to pull from?"
 git pull origin %pull%
 git commit -m "Created a new branch from %pull%"
 git push origin %branch%
-goto end
+goto start
 
 
 :commit
@@ -59,23 +69,25 @@ set /p "reason=Enter your reason for this commit:"
 git add .
 git commit -m "%reason%"
 pause
-goto end
+goto push
 
 
 :push
 set /p "branch=Which branch do you want to push to?"
 git push origin %branch%
 pause
-goto end
+goto start
 
 :force
 cls
+echo DO THIS ONLY IF YOU REALLY NEED TO
 set /p "reason=Enter your reason for this forced commit:"
 git add .
 git commit -m "%reason%"
-git push -f origin master
+set /p "branch=Which branch do you want to do this to?"
+git push -f origin %branch%
 pause
-goto end
+goto start
 
 :init
 set /p "origin=What is your origin?"
@@ -86,7 +98,7 @@ git commit -m "first commit"
 git push -u origin master
 echo finished setup
 pause
-goto end
+goto start
 
 :initpull
 set /p "origin=What is your origin?"
@@ -95,13 +107,13 @@ git remote add origin %origin%
 git pull origin master
 echo finished updating local repository
 pause 
-goto end
+goto start
 
 :fetch
 git pull origin master
 echo finished updating local repository
 pause
-goto end
+goto start
 
 :end 
 cls
@@ -112,7 +124,7 @@ exit
 :pull
 git pull origin master
 pause
-goto end
+goto start
 
 :login
 cls 
@@ -120,4 +132,4 @@ set /p "username=What is your username?"
 set /p "password=What is your password?"
 git config --global user.email "%username%"
 git config --global user.password "%password%"
-goto end
+goto start
