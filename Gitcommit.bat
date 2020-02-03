@@ -18,6 +18,8 @@ echo  update repository - 5
 echo  set global account - 6
 echo  pull - 7
 echo  create branch - 8
+echo  switch branch - 9
+echo  push -10 
 echo -----------------------
 set /p "set=What do you want to do(input the corrisponding number)?"
 if %set%== 1 (goto init)
@@ -26,10 +28,19 @@ if %set%== 3 (goto commit)
 if %set%== 4 (goto force)
 if %set%== 5 (goto fetch)
 if %set%== 6 (goto login)
-if %set%== 7 (goto push)
+if %set%== 7 (goto pull)
 if %set%== 8 (goto createB)
+if %set%== 9 (goto switch)
+if %set%== 10 (goto push)
 pause
 goto end
+
+:switch
+git branch
+set /p "set=Which branch do you want to switch to?"
+git checkout %set%
+pause
+goto start
 
 
 :createB
@@ -39,6 +50,7 @@ set /p "pull=Where do you want to pull from?"
 git pull origin %pull%
 git commit -m "Created a new branch from %pull%"
 git push origin %branch%
+goto end
 
 
 :commit
@@ -46,7 +58,12 @@ cls
 set /p "reason=Enter your reason for this commit:"
 git add .
 git commit -m "%reason%"
-set /p "branch=Which branch do you want to push to?"
+pause
+goto end
+
+
+:push
+set /p "Which branch do you want to push to?"
 git push origin %branch%
 pause
 goto end
@@ -77,7 +94,8 @@ git init
 git remote add origin %origin%
 git pull origin master
 echo finished updating local repository
-pause goto end
+pause 
+goto end
 
 :fetch
 git pull origin master
@@ -91,7 +109,7 @@ set /p "stop=Continue?(y for yes. if yes input anything else)?"
 if %stop% == y (goto start) 
 exit
 
-:push
+:pull
 git pull origin master
 pause
 goto end
