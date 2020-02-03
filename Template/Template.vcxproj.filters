@@ -150,9 +150,6 @@
     <ClCompile Include="..\src\ZigzagAI.cpp">
       <Filter>Source Files\AIs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Josh%27sStuff\src\PlayerShip.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -268,9 +265,6 @@
     </ClInclude>
     <ClInclude Include="..\src\ZigzagAI.h">
       <Filter>Header Files\AIs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Josh%27sStuff\src\PlayerShip.h">
-      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

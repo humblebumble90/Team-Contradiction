@@ -2,14 +2,14 @@
 BasicBody::BasicBody(){}
 BasicBody::~BasicBody(){}
 
-void BasicBody::Damage()
+void BasicBody::Damage(int i)
 {
 	if (parent.GetParentType == "Enemy")
 	{
-		parent.GetEParent().Damage();
+		parent.GetEParent()->Damage(i);
 	}
 	else //parent.GetParentType should always equal "Player" at this point
 	{
-		parent.GetPParent().Damage();
+		parent.GetPParent()->Damage(i);
 	}
 }

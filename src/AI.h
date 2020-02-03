@@ -6,11 +6,10 @@
 class AI {
 public:
 	AI();
-	AI(Enemy parentRef);
 	virtual ~AI();
 	virtual void PrimaryFunction();
-	virtual float GetSpeed(int i);
+	glm::vec2 GetSpeed();
 protected:
 	Enemy parent;
-	float speed[2] = { 0, 0 };
+	glm::vec2 speed;
 };

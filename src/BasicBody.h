@@ -8,5 +8,5 @@ class BasicBody : public ShipComponent
 public:
 	BasicBody();
 	~BasicBody();
-	void Damage();
+	void Damage(int i);
 };

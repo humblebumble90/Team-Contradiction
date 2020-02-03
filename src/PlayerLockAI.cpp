@@ -11,7 +11,7 @@ PlayerLockAI::PlayerLockAI(Enemy enemyParent, float bSpeed)
 	//Get target
 	float tX = TheGame.Instance().GetCurrentScene().GetPlayerLocation().x;
 	float tY = TheGame.Instance().GetCurrentScene().GetPlayerLocation().y;
-	float xDif = abs(parent.GetTransform(0) - tX), yDif = abs(parent.GetTransform(1) - tY);
+	float xDif = abs(parent.GetTransform().x - tX), yDif = abs(parent.GetTransform().y - tY);
 	bool xIsCloser = xDif > yDif;
 	switch (xIsCloser)
 	{
@@ -24,8 +24,8 @@ PlayerLockAI::PlayerLockAI(Enemy enemyParent, float bSpeed)
 		speed[0] = xDif / yDif * baseSpeed;
 		break;
 	}
-	speed[0] = parent.GetTransform(0) > tX ? -speed[0] : speed[0];
-	speed[1] = parent.GetTransform(1) > tY ? -speed[1] : speed[1];
+	speed[0] = parent.GetTransform().x > tX ? -speed[0] : speed[0];
+	speed[1] = parent.GetTransform().y > tY ? -speed[1] : speed[1];
 }
 
 PlayerLockAI::~PlayerLockAI(){}

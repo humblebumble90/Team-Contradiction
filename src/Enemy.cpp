@@ -2,29 +2,31 @@
 
 Enemy::Enemy(){/*DANGER! Do not use!*/ }
 
-Enemy::Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, float targetTransform[2])
+Enemy::Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform)
 {
 	frame = enemyFrame;
 	frame.Initialize(this);
 	health = enemyHealth;
 	aI = enemyAI;
-	transform[0] = targetTransform[0];
-	transform[1] = targetTransform[1];
+	transform = targetTransform;
 }
 
 Enemy::~Enemy()
 {
 }
 
-void Enemy::Damage()
+void Enemy::Damage(int i)
 {
+	health -= i;
+	if (health <= 0)
+	{
+		//kill self
+	}
 }
 
-float Enemy::GetTransform(int i)
+glm::vec2 Enemy::GetTransform()
 {
-	if (i==1 || i ==0)
-		return transform[i];
-	return NULL;
+	return transform;
 }
 
 Frame Enemy::GetFrame()
@@ -34,8 +36,7 @@ Frame Enemy::GetFrame()
 
 void Enemy::Move()
 {
-	transform[0] += aI->GetSpeed(0);
-	transform[1] += aI->GetSpeed(1);
+	transform += aI->GetSpeed;
 }
 
 void Enemy::draw()

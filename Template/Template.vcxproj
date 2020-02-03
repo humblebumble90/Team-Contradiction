@@ -156,7 +156,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Josh%27sStuff\src\PlayerShip.cpp" />
     <ClCompile Include="..\include\IMGUI\imgui.cpp" />
     <ClCompile Include="..\include\IMGUI\imgui_demo.cpp" />
     <ClCompile Include="..\include\IMGUI\imgui_draw.cpp" />
@@ -194,7 +193,6 @@
     <ClCompile Include="..\src\ZigzagAI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Josh%27sStuff\src\PlayerShip.h" />
     <ClInclude Include="..\include\IMGUI\imconfig.h" />
     <ClInclude Include="..\include\IMGUI\imgui.h" />
     <ClInclude Include="..\include\IMGUI\imgui_internal.h" />

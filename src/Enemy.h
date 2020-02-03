@@ -10,10 +10,10 @@ class Enemy : public GameObject
 {
 public:
 	Enemy();
-	Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, float targetTransform[2]);
+	Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform);
 	~Enemy();
-	void Damage();
-	float GetTransform(int i);
+	void Damage(int i);
+	glm::vec2 GetTransform();
 	Frame GetFrame();
 	void Move();
 #pragma region From GameObject
@@ -25,5 +25,5 @@ private:
 	Frame frame;
 	int health;
 	AI* aI;
-	float transform[2] = { 0,0 };
+	glm::vec2 transform;
 };
