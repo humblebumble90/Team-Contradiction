@@ -19,7 +19,7 @@ echo  set global account - 6
 echo  pull - 7
 echo  create branch - 8
 echo  switch branch - 9
-echo  push -10 
+echo  push - 10 
 echo -----------------------
 set /p "set=What do you want to do(input the corrisponding number)?"
 if %set%== 1 (goto init)
@@ -63,7 +63,7 @@ goto end
 
 
 :push
-set /p "Which branch do you want to push to?"
+set /p "branch=Which branch do you want to push to?"
 git push origin %branch%
 pause
 goto end
