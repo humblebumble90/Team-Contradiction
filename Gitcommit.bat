@@ -8,6 +8,7 @@ pause
 :start
 cls
 echo you are in %cd%
+%git branch%
 echo -----------------------
 echo  init - 1
 echo  init pull - 2
@@ -16,6 +17,7 @@ echo  force commit - 4
 echo  update repository - 5
 echo  set global account - 6
 echo  pull - 7
+echo  create branch - 8
 echo -----------------------
 set /p "set=What do you want to do(input the corrisponding number)?"
 if %set%== 1 (goto init)
@@ -25,8 +27,18 @@ if %set%== 4 (goto force)
 if %set%== 5 (goto fetch)
 if %set%== 6 (goto login)
 if %set%== 7 (goto push)
+if %set%== 8 (goto createB)
 pause
 goto end
+
+
+:createB
+set /p "branch=What would your branch name be?"
+git checkout -b %branch%
+set /p "pull=Where do you want to pull from?"
+git pull origin %pull%
+git commit -m "Created a new branch from %pull%"
+
 
 :commit
 cls
