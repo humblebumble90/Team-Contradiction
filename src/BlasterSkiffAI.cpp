@@ -6,7 +6,7 @@
 
 BlasterSkiffAI::BlasterSkiffAI(glm::vec2 transform)
 {
-	parent = Enemy(Frame(10, //Enemy is ?px by ?px
+	parent = Enemy(Frame(10, //Enemy is ?px by ?px ---tweak this later
 #pragma region Frame Construction
 		{
 			{Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(), Blank(), Blank(), Blank()},

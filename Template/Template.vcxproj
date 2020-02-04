@@ -170,6 +170,7 @@
     <ClCompile Include="..\src\EndScene.cpp" />
     <ClCompile Include="..\src\Enemy.cpp" />
     <ClCompile Include="..\src\EnemyMissileAI.cpp" />
+    <ClCompile Include="..\src\FirebrandAI.cpp" />
     <ClCompile Include="..\src\FlyOntoScreenAI.cpp" />
     <ClCompile Include="..\src\PlayerLockAI.cpp" />
     <ClCompile Include="..\src\FontManager.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="..\src\EndScene.h" />
     <ClInclude Include="..\src\Enemy.h" />
     <ClInclude Include="..\src\EnemyMissileAI.h" />
+    <ClInclude Include="..\src\FirebrandAI.h" />
     <ClInclude Include="..\src\FlyOntoScreenAI.h" />
     <ClInclude Include="..\src\PlayerLockAI.h" />
     <ClInclude Include="..\src\FontManager.h" />

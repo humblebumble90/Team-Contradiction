@@ -16,16 +16,16 @@ PlayerLockAI::PlayerLockAI(Enemy enemyParent, float bSpeed)
 	switch (xIsCloser)
 	{
 	case true:
-		speed[0] = baseSpeed;
-		speed[1] = yDif / xDif * baseSpeed;
+		speed.x = baseSpeed;
+		speed.y = yDif / xDif * baseSpeed;
 		break;
 	case false:
-		speed[1] = baseSpeed;
-		speed[0] = xDif / yDif * baseSpeed;
+		speed.y = baseSpeed;
+		speed.x = xDif / yDif * baseSpeed;
 		break;
 	}
-	speed[0] = parent.GetTransform().x > tX ? -speed[0] : speed[0];
-	speed[1] = parent.GetTransform().y > tY ? -speed[1] : speed[1];
+	speed.x = parent.GetTransform().x > tX ? -speed.x : speed.x;
+	speed.y = parent.GetTransform().y > tY ? -speed.y : speed.y;
 }
 
 PlayerLockAI::~PlayerLockAI(){}
