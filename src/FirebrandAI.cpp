@@ -90,10 +90,10 @@ void FirebrandAI::SecondaryFunction()
 	{
 		//Get target
 		moveTarget = TheGame.Instance().GetCurrentScene().GetPlayerLocation().y;
-		speed.y = parent.GetTransform().y > moveTarget ? -baseSpeed : baseSpeed;
+		speed.y = parent.getPosition().y > moveTarget ? -baseSpeed : baseSpeed;
 		hasTarget = true;
 	}
-	else if ((speed.y <= 0 && parent.GetTransform().y <= moveTarget) || (speed.y > 0 && parent.GetTransform().y >= moveTarget))
+	else if ((speed.y <= 0 && parent.getPosition().y <= moveTarget) || (speed.y > 0 && parent.getPosition().y >= moveTarget))
 	{
 		if (speed.y != 0)
 		{

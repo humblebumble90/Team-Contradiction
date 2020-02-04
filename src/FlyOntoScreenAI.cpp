@@ -10,8 +10,8 @@ void FlyOntoScreenAI::PrimaryFunction()
 {
 	if (!atTarget)
 	{
-		parent.GetTransform() += entrySpeed;
-		if (parent.GetTransform() == target) {
+		parent.setPosition(parent.getPosition() + entrySpeed);
+		if (parent.getPosition() == target) {
 			atTarget = true;
 		}
 	}

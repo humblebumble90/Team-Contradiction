@@ -39,7 +39,7 @@ BlasterSkiffAI::~BlasterSkiffAI()
 void BlasterSkiffAI::SecondaryFunction()
 {
 	//Change Movement Direction
-	if (parent.GetTransform().y == topBouncePoint || parent.GetTransform().y == bottomBouncePoint)
+	if (parent.getPosition().y == topBouncePoint || parent.getPosition().y == bottomBouncePoint)
 	{
 		speed.y = -speed.y;
 	}
@@ -60,7 +60,7 @@ void BlasterSkiffAI::SecondaryFunction()
 	}
 
 	//Spawn Enemies
-	if (parent.GetTransform().y == topBouncePoint + (bottomBouncePoint - topBouncePoint) / 2)
+	if (parent.getPosition().y == topBouncePoint + (bottomBouncePoint - topBouncePoint) / 2)
 	{
 		TheGame.GetInstance().Instantiate(RamAI, glm::vec2{ TheGame.GetInstance().OffScreenRight, TheGame.GetInstance().OffScreenTop});
 	}

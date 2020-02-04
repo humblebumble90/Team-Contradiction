@@ -8,7 +8,7 @@ Enemy::Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTra
 	frame.Initialize(this);
 	health = enemyHealth;
 	aI = enemyAI;
-	transform = targetTransform;
+	setPosition(targetTransform);
 }
 
 Enemy::~Enemy()
@@ -24,11 +24,6 @@ void Enemy::Damage(int i)
 	}
 }
 
-glm::vec2 Enemy::GetTransform()
-{
-	return transform;
-}
-
 Frame Enemy::GetFrame()
 {
 	return frame;
@@ -36,7 +31,7 @@ Frame Enemy::GetFrame()
 
 void Enemy::Move()
 {
-	transform += aI->GetSpeed();
+	setPosition(getPosition() + aI->GetSpeed());
 }
 
 void Enemy::draw()
