@@ -104,7 +104,8 @@ goto start
 set /p "origin=What is your origin?"
 git init
 git remote add origin %origin%
-git pull origin master
+set /p "branch=What is the branch you want to pull from?"
+git pull origin %branch%
 echo finished updating local repository
 pause 
 goto start
