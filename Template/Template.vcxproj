@@ -166,6 +166,7 @@
     <ClCompile Include="..\src\Blank.cpp" />
     <ClCompile Include="..\src\BlasterSkiffAI.cpp" />
     <ClCompile Include="..\src\CannonBargeAI.cpp" />
+    <ClCompile Include="..\src\CannonlordAI.cpp" />
     <ClCompile Include="..\src\CollisionManager.cpp" />
     <ClCompile Include="..\src\DisplayObject.cpp" />
     <ClCompile Include="..\src\EndScene.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="..\src\Blank.h" />
     <ClInclude Include="..\src\BlasterSkiffAI.h" />
     <ClInclude Include="..\src\CannonBargeAI.h" />
+    <ClInclude Include="..\src\CannonlordAI.h" />
     <ClInclude Include="..\src\CollisionManager.h" />
     <ClInclude Include="..\src\Config.h" />
     <ClInclude Include="..\src\DisplayObject.h" />
