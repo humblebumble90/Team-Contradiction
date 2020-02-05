@@ -123,7 +123,8 @@ if %stop% == y (goto start)
 exit
 
 :pull
-git pull origin master
+set /p "branch=What branch do you want to pull from?"
+git pull origin %branch%
 pause
 goto start
 
