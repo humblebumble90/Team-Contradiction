@@ -171,6 +171,9 @@
     <ClCompile Include="..\src\CannonlordAI.cpp">
       <Filter>Source Files\AIs</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\DeathcageAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -306,6 +309,9 @@
       <Filter>Header Files\AIs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\CannonlordAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DeathcageAI.h">
       <Filter>Header Files\AIs</Filter>
     </ClInclude>
   </ItemGroup>
