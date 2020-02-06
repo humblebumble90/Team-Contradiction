@@ -4,7 +4,7 @@
 
 CannonlordAI::CannonlordAI(glm::vec2 transform)
 {
-	parent = Enemy(Frame(10, //Enemy is ?px by ?px ---tweak this later
+	parent = Enemy(Frame(50, //Enemy is 450px by 300px
 	#pragma region Frame Construction
 		{
 			{Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank()},

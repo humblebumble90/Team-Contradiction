@@ -4,7 +4,7 @@
 
 FireBargeAI::FireBargeAI(glm::vec2 transform)
 {
-	parent = Enemy(Frame(10, //Enemy is ?px by ?px ---tweak this later
+	parent = Enemy(Frame(50, //Enemy is 300px by 300px
 #pragma region Frame Construction
 		{
 			{Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank()},

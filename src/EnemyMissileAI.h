@@ -6,6 +6,6 @@
 class EnemyMissileAI : public PlayerLockAI
 {
 public:
-	EnemyMissileAI(float transform[2]);
+	EnemyMissileAI(glm::vec2 transform);
 	~EnemyMissileAI();
 };
