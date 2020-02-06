@@ -39,6 +39,10 @@ private:
 	std::vector<AI*> enemies;
 	Player* player;
 	//std::vector<ObjectType*> playerWeapons;
+	//Background
+
+	//Timers
+	int ramRushTimerDelay = 180, ramRushTimer = 900, bossDelayTimer = 60, bossDelayTimerReset = 60;
 };
 
 #endif
@@ -47,4 +51,7 @@ Josh's notes
 
 - Scrolling should be a bool in Scene. While true, the screen scrolls. It's protected with a getter, meaning that scenes can turn on/off scrolling
 - Defeat() should be a public method in scene, which brings the player to the defeat scene
+
+
+
 */

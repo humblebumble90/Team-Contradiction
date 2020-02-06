@@ -11,10 +11,34 @@ Level3::~Level3()
 
 void Level3::draw()
 {
+	//Background
+	//UI
+
+	player->draw();
+	//Player Weapons
+	for (AI* a : enemies) {
+		a->GetParent().draw();
+	}
 }
 
 void Level3::update()
 {
+	if (ramRushTimerDelay > 0) {
+		--ramRushTimerDelay;
+	}
+	else if (ramRushTimer > 0) {
+		--ramRushTimer;
+	}
+	else if (bossDelayTimer > 0) {
+		--bossDelayTimer;
+		if (bossDelayTimer <= 0) {
+			Boss1();
+		}
+	}
+	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 12 == 0) {
+		glm::vec2 transform /* = (something to grab random numbers)*/;
+		//enemies.push_back(RamAI(transform)); ---Wants me to use the new keyword. I don't want to use said keyword
+	}
 }
 
 void Level3::clean()
