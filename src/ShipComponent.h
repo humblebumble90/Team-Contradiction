@@ -10,6 +10,7 @@ public:
 	virtual ~ShipComponent();
 	glm::vec2 getPosition();
 	void setID(int x, int y);
+	Frame getParent();
 protected:
 	Frame parent;
 private:

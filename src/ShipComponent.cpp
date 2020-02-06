@@ -24,3 +24,8 @@ void ShipComponent::setID(int x, int y)
 		iD = { x, y };
 	}
 }
+
+Frame ShipComponent::getParent()
+{
+	return parent;
+}
