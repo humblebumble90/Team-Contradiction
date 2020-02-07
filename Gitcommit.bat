@@ -3,7 +3,6 @@ echo Press enter to continue without opening
 set /p "folder=Which folder are you trying to open?"
 cd %folder%
 cls
-echo MAKE SURE YOU PULL BEFORE YOU COMMIT SO YOU DONT NEED TO FORCE COMMIT
 pause
 :start
 cls
@@ -73,6 +72,7 @@ goto push
 
 
 :push
+git branch
 set /p "branch=Which branch do you want to push to?"
 git push origin %branch%
 pause
@@ -111,7 +111,8 @@ pause
 goto start
 
 :fetch
-git pull origin master
+set /p "branch=What is the branch you want to pull from?"
+git pull origin %branch%
 echo finished updating local repository
 pause
 goto start
