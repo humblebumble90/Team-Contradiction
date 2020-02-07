@@ -6,7 +6,7 @@
 
 FirebrandAI::FirebrandAI(glm::vec2 transform)
 {
-	parent = Enemy(Frame(10, //Enemy is ?px by ?px ---tweak this later
+	parent = Enemy(Frame(10, //Enemy is 400px by 600px
 #pragma region Frame Construction
 		{
 			{MissileLauncher(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Blank(), Blank()},

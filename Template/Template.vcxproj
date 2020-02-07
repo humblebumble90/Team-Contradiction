@@ -176,6 +176,7 @@
     <ClCompile Include="..\src\FireBargeAI.cpp" />
     <ClCompile Include="..\src\FirebrandAI.cpp" />
     <ClCompile Include="..\src\FlyOntoScreenAI.cpp" />
+    <ClCompile Include="..\src\Level3.cpp" />
     <ClCompile Include="..\src\MissileBargeAI.cpp" />
     <ClCompile Include="..\src\PlayerLockAI.cpp" />
     <ClCompile Include="..\src\FontManager.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="..\src\FireBargeAI.h" />
     <ClInclude Include="..\src\FirebrandAI.h" />
     <ClInclude Include="..\src\FlyOntoScreenAI.h" />
+    <ClInclude Include="..\src\Level3.h" />
     <ClInclude Include="..\src\MissileBargeAI.h" />
     <ClInclude Include="..\src\PlayerLockAI.h" />
     <ClInclude Include="..\src\FontManager.h" />

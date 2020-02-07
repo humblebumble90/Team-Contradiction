@@ -2,7 +2,7 @@
 #include "BasicBody.h"
 ZigzagAI::ZigzagAI(glm::vec2 transform)
 {
-	parent = Enemy(Frame(10, //Enemy is 30px by 30px
+	parent = Enemy(Frame(16.666667, //Enemy is 50px by 50px
 		#pragma region Frame Construction
 		{
 			{BasicBody(), BasicBody(), BasicBody()},
