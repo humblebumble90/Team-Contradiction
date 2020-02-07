@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Game.h"
 
 Enemy::Enemy(){/*DANGER! Do not use!*/ }
 
@@ -20,7 +21,7 @@ void Enemy::Damage(int i)
 	health -= i;
 	if (health <= 0)
 	{
-		//kill self
+		TheGame::DestroyEnemy(this);
 	}
 }
 

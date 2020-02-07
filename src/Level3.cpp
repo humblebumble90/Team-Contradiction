@@ -1,4 +1,5 @@
 #include "Level3.h"
+#include "Config.h"
 
 Level3::Level3(Player* thePlayer)
 {
@@ -36,8 +37,14 @@ void Level3::update()
 		}
 	}
 	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 12 == 0) {
-		glm::vec2 transform /* = (something to grab random numbers)*/;
-		//enemies.push_back(RamAI(transform)); ---Wants me to use the new keyword. I don't want to use said keyword
+		int coor1 = rand() % 2;
+		int coor1Decider = rand() % 2;
+		coor1Decider = coor1Decider = 0 ? Config::SCREEN_WIDTH : Config::SCREEN_HEIGHT;
+		coor1 = coor1 == 0 ? coor1 : coor1Decider;
+		int coor2Max = coor1Decider == Config::SCREEN_WIDTH ? Config::SCREEN_HEIGHT : Config::SCREEN_WIDTH;
+		int coor2 = rand() % (coor2Max + 1);
+		glm::vec2 transform = coor1Decider == Config::SCREEN_WIDTH ? glm::vec2{coor1, coor2} : glm::vec2{coor2, coor1};
+		enemies.push_back(new RamAI(transform));
 	}
 }
 
