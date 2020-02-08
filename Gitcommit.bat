@@ -20,6 +20,7 @@ echo  create branch - 8
 echo  switch branch - 9
 echo  push - 10 
 echo  merge - 11
+echo  reset - 12
 echo -----------------------
 set /p "set=What do you want to do(input the corrisponding number)?"
 if %set%== 1 (goto init)
@@ -33,8 +34,15 @@ if %set%== 8 (goto createB)
 if %set%== 9 (goto switch)
 if %set%== 10 (goto push)
 if %set%== 11 (goto merge)
+if %set%== 12 (goto reset)
 pause
 goto end
+
+
+:reset
+echo Resetting the changes from last add
+git reset
+pause
 
 :merge
 echo The highlighted green text is where you are right now
