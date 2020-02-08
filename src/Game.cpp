@@ -5,6 +5,7 @@
 #include "TileComparators.h"
 #include <iomanip>
 #include "PlayerShip.h"
+#include "LevelScene.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -162,6 +163,10 @@ void Game::changeSceneState(SceneState newState)
 void Game::quit()
 {
 	m_bRunning = false;
+}
+
+void Game::destroyEnemy(Enemy* enemy) {
+	((LevelScene*)m_currentScene)->DestroyEnemy(enemy);
 }
 
 void Game::render()

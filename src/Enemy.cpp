@@ -27,7 +27,7 @@ void Enemy::Damage(int i)
 	health -= i;
 	if (health <= 0)
 	{
-		TheGame::DestroyEnemy(this);
+		TheGame::Instance()->destroyEnemy(this);
 	}
 }
 

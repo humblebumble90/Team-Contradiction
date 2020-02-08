@@ -11,6 +11,7 @@ public:
 	LevelScene();
 	virtual ~LevelScene();
 	void update() override;
+	void DestroyEnemy(Enemy* enemy);
 protected:
 	bool scrolling = true;
 	#pragma region Game Objects

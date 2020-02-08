@@ -26,3 +26,13 @@ void LevelScene::update()
 	}
 	#pragma endregion
 }
+
+void LevelScene::DestroyEnemy(Enemy* enemy)
+{
+	for (int i = 0; i < enemies.size; ++i) {
+		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent().GetFrame().GetEParent() == enemy) {
+			enemies.erase(enemies.begin()+(i-1));
+			break;
+		}
+	}
+}
