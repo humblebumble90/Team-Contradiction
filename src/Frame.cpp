@@ -79,3 +79,8 @@ int Frame::GridHeight() //Width and Height might be backwards
 {
 	return build.size;
 }
+
+std::vector<std::vector<ShipComponent>> Frame::GetBuild()
+{
+	return build;
+}

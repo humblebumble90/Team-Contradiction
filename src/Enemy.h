@@ -14,7 +14,6 @@ public:
 	~Enemy();
 	void Damage(int i);
 	Frame GetFrame();
-	void Move();
 #pragma region From GameObject
 	void draw() override;
 	void update() override;
@@ -25,4 +24,5 @@ private:
 	int health;
 	AI* aI;
 	std::string name;
+	void Move();
 };

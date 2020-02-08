@@ -19,6 +19,7 @@ public:
 	std::vector<Weapon> GetWeapons();
 	Weapon GetWeapon(int i);
 	int getGridSize(), GridWidth(), GridHeight();
+	std::vector<std::vector<ShipComponent>> GetBuild();
 private:
 	int gridSize;
 	std::vector<std::vector<ShipComponent>> build;
