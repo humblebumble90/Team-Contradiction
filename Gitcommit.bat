@@ -2,8 +2,6 @@
 echo Press enter to continue without opening
 set /p "folder=Which folder are you trying to open?"
 cd %folder%
-cls
-pause
 :start
 cls
 echo you are in %cd%
@@ -43,6 +41,7 @@ goto end
 echo Resetting the changes from last add
 git reset
 pause
+goto start
 
 :merge
 echo The highlighted green text is where you are right now
