@@ -68,6 +68,8 @@ public:
 	void changeSceneState(SceneState newState);
 	void quit();
 
+	void destroyEnemy(Enemy* enemy);
+
 private:
 	Game();
 	~Game();

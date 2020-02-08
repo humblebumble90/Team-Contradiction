@@ -13,9 +13,7 @@ public:
 	Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform);
 	~Enemy();
 	void Damage(int i);
-	glm::vec2 GetTransform();
 	Frame GetFrame();
-	void Move();
 #pragma region From GameObject
 	void draw() override;
 	void update() override;
@@ -25,5 +23,6 @@ private:
 	Frame frame;
 	int health;
 	AI* aI;
-	glm::vec2 transform;
+	std::string name;
+	void Move();
 };

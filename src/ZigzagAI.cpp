@@ -1,8 +1,8 @@
 #include "ZigzagAI.h"
 #include "BasicBody.h"
-ZigzagAI::ZigzagAI(float transform[2])
+ZigzagAI::ZigzagAI(glm::vec2 transform)
 {
-	parent = Enemy(Frame(10, //Enemy is 30px by 30px
+	parent = Enemy(Frame(16.666667, //Enemy is 50px by 50px
 		#pragma region Frame Construction
 		{
 			{BasicBody(), BasicBody(), BasicBody()},
@@ -11,7 +11,7 @@ ZigzagAI::ZigzagAI(float transform[2])
 		}
 		#pragma endregion
 		), 1, this, transform);
-	speed[0] = speed[1] = 0.075f; //Tweak this number later
+	speed.x = speed.y = 0.075f; //Tweak this number later
 }
 
 ZigzagAI::~ZigzagAI()
@@ -25,7 +25,7 @@ void ZigzagAI::PrimaryFunction()
 		--bounceTimer;
 		if (bounceTimer <= 0)
 		{
-			speed[1] = -speed[1];
+			speed.y = -speed.y;
 			for (Weapon w : parent.GetFrame().GetWeapons())
 			{
 				w.Fire();

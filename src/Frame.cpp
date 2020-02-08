@@ -4,6 +4,11 @@ Frame::Frame(int size, std::vector<std::vector<ShipComponent>> buildLayout)
 {
 	gridSize = size;
 	build = buildLayout;
+	for (int z = 0; z < build.size; ++z) {
+		for (int y = 0; y < build[z].size; ++y) {
+			build[z][y].setID(z, y);
+		}
+	}
 }
 Frame::~Frame() {}
 
@@ -45,4 +50,37 @@ std::vector<Weapon> Frame::GetWeapons()
 		}
 	}
 	return Weapons;
+}
+
+Weapon Frame::GetWeapon(int i)
+{
+	std::vector<Weapon> Weapons;
+	for (std::vector<ShipComponent> sc : build)
+	{
+		for (Weapon w : sc)
+		{
+			Weapons.push_back(w);
+		}
+	}
+	return Weapons[i];
+}
+
+int Frame::getGridSize()
+{
+	return gridSize;
+}
+
+int Frame::GridWidth() //Width and Height might be backwards
+{
+	return build[0].size;
+}
+
+int Frame::GridHeight() //Width and Height might be backwards
+{
+	return build.size;
+}
+
+std::vector<std::vector<ShipComponent>> Frame::GetBuild()
+{
+	return build;
 }

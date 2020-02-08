@@ -150,6 +150,36 @@
     <ClCompile Include="..\src\ZigzagAI.cpp">
       <Filter>Source Files\AIs</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\FlyOntoScreenAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\BlasterSkiffAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FirebrandAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FireBargeAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MissileBargeAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CannonBargeAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CannonlordAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DeathcageAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Level3.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\LevelScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -265,6 +295,36 @@
     </ClInclude>
     <ClInclude Include="..\src\ZigzagAI.h">
       <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FlyOntoScreenAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\BlasterSkiffAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FirebrandAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FireBargeAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MissileBargeAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CannonBargeAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CannonlordAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DeathcageAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Level3.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\LevelScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

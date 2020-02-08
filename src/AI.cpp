@@ -13,3 +13,8 @@ glm::vec2 AI::GetSpeed()
 {
 	return speed;
 }
+
+Enemy AI::GetParent()
+{
+	return parent;
+}

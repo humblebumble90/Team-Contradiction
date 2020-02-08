@@ -8,6 +8,7 @@
 #include "GameObject.h"
 #include <GLM/gtx/norm.hpp>
 #include "SoundManager.h"
+#include "ShipComponent.h"
 
 class CollisionManager
 {
@@ -24,6 +25,8 @@ public:
 
 	static int circleAABBsquaredDistance(glm::vec2 circleCentre, int circleRadius, glm::vec2 boxStart, int boxWidth, int boxHeight);
 	static bool circleAABBCheck(GameObject* object1, GameObject* object2);
+	
+	static bool shipComponentCheck(ShipComponent comp1, ShipComponent comp2);
 
 private:
 	CollisionManager();

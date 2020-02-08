@@ -8,7 +8,8 @@ public:
 	AI();
 	virtual ~AI();
 	virtual void PrimaryFunction();
-	glm::vec2 GetSpeed();
+	virtual glm::vec2 GetSpeed();
+	Enemy GetParent();
 protected:
 	Enemy parent;
 	glm::vec2 speed;
