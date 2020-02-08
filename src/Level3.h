@@ -2,7 +2,7 @@
 #ifndef __LEVEL3__
 #define __LEVEL3__
 
-#include "Scene.h"
+#include "LevelScene.h"
 
 // Game Objects
 /*Boss 0 - Ram Rush*/					#include "RamAI.h"
@@ -14,7 +14,7 @@
 /*Boss 4 - Cannonlord*/					#include "CannonlordAI.h"
 /*Boss 5 - Deathcage (last boss)*/		#include "DeathcageAI.h"
 
-class Level3 : public Scene
+class Level3 : public LevelScene
 {
 public:
 	Level3(Player* thePlayer);
@@ -35,12 +35,6 @@ public:
 	void Boss5(); //Changes music, then spawns Deathcage
 	void Victory(); //Switches the scene to the VictoryScreen
 private:
-	// GameObjects
-	std::vector<AI*> enemies;
-	Player* player;
-	//std::vector<ObjectType*> playerWeapons;
-	//Background
-
 	//Timers
 	int ramRushTimerDelay = 180, ramRushTimer = 900, bossDelayTimer = 60, bossDelayTimerReset = 60;
 };

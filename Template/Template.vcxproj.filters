@@ -177,6 +177,9 @@
     <ClCompile Include="..\src\Level3.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\LevelScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -318,6 +321,9 @@
       <Filter>Header Files\AIs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Level3.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\LevelScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>

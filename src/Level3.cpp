@@ -36,7 +36,8 @@ void Level3::update()
 			Boss1();
 		}
 	}
-	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 12 == 0) {
+	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 12 == 0)
+	{
 		int coor1 = rand() % 2;
 		int coor1Decider = rand() % 2;
 		coor1Decider = coor1Decider = 0 ? Config::SCREEN_WIDTH : Config::SCREEN_HEIGHT;
