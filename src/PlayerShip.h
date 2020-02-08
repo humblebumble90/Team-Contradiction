@@ -35,4 +35,4 @@ private:
 };
 
 
-#endif /* defined (__Player__) */
+#endif /* defined (__PlayerShip__) */
