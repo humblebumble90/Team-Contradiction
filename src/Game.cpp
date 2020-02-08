@@ -169,6 +169,11 @@ void Game::destroyEnemy(Enemy* enemy) {
 	((LevelScene*)m_currentScene)->DestroyEnemy(enemy);
 }
 
+glm::vec2 Game::getPlayerPosition()
+{
+	return ((LevelScene*)m_currentScene)->getPlayerPosition();
+}
+
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw colour

@@ -9,8 +9,8 @@ PlayerLockAI::PlayerLockAI(Enemy enemyParent, float bSpeed)
 	baseSpeed = bSpeed;
 
 	//Get target
-	float tX = TheGame::Instance().GetCurrentScene().GetPlayerLocation().x;
-	float tY = TheGame::Instance().GetCurrentScene().GetPlayerLocation().y;
+	float tX = TheGame::Instance()->getPlayerPosition().x;
+	float tY = TheGame::Instance()->getPlayerPosition().y;
 	float xDif = abs(parent.getPosition().x - tX), yDif = abs(parent.getPosition().y - tY);
 	bool xIsCloser = xDif > yDif;
 	switch (xIsCloser)

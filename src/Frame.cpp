@@ -18,7 +18,7 @@ void Frame::Initialize(Enemy* parent)
 	parentType = "Enemy";
 }
 
-void Frame::Initialize(Player* parent)
+void Frame::Initialize(PlayerShip* parent)
 {
 	pParent = parent;
 	parentType = "Player";
@@ -34,7 +34,7 @@ Enemy* Frame::GetEParent()
 	return eParent;
 }
 
-Player* Frame::GetPParent()
+PlayerShip* Frame::GetPParent()
 {
 	return pParent;
 }

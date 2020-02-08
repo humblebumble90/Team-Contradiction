@@ -2,7 +2,7 @@
 #include "Config.h"
 #include "SoundManager.h"
 
-Level3::Level3(Player* thePlayer)
+Level3::Level3(PlayerShip* thePlayer)
 {
 	player = thePlayer;
 	TheSoundManager::Instance()->load("../Assets/audio/RamRushTemporary.ogg", "RamRush", SOUND_MUSIC);

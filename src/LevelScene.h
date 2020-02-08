@@ -3,7 +3,7 @@
 #define __LEVELSCENE__
 #include "Scene.h"
 #include "AI.h"
-#include "Player.h"
+#include "PlayerShip.h"
 
 class LevelScene : public Scene
 {
@@ -12,11 +12,13 @@ public:
 	virtual ~LevelScene();
 	void update() override;
 	void DestroyEnemy(Enemy* enemy);
+	void GameOver();
+	glm::vec2 getPlayerPosition();
 protected:
 	bool scrolling = true;
 	#pragma region Game Objects
 	std::vector<AI*> enemies;
-	Player* player;
+	PlayerShip* player;
 	//std::vector<ObjectType*> playerWeapons;
 	//Background
 	#pragma endregion

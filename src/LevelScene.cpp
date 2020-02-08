@@ -36,3 +36,12 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 		}
 	}
 }
+
+void LevelScene::GameOver()
+{
+}
+
+glm::vec2 LevelScene::getPlayerPosition()
+{
+	return player->getPosition();
+}

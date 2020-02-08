@@ -17,7 +17,7 @@
 class Level3 : public LevelScene
 {
 public:
-	Level3(Player* thePlayer);
+	Level3(PlayerShip* thePlayer);
 	~Level3();
 
 	// Inherited via Scene
@@ -40,12 +40,3 @@ private:
 };
 
 #endif
-/*
-Josh's notes
-
-- Scrolling should be a bool in Scene. While true, the screen scrolls. It's protected with a getter, meaning that scenes can turn on/off scrolling
-- Defeat() should be a public method in scene, which brings the player to the defeat scene
-
-
-
-*/

@@ -69,6 +69,7 @@ public:
 	void quit();
 
 	void destroyEnemy(Enemy* enemy);
+	glm::vec2 getPlayerPosition();
 
 private:
 	Game();
