@@ -1,9 +1,15 @@
 #include "Level3.h"
 #include "Config.h"
+#include "SoundManager.h"
 
 Level3::Level3(Player* thePlayer)
 {
 	player = thePlayer;
+	TheSoundManager::Instance()->load("../Assets/audio/RamRushTemporary.ogg", "RamRush", SOUND_MUSIC);
+	TheSoundManager::Instance()->load("../Assets/audio/BossRush1Temporary.ogg", "BossRush1", SOUND_MUSIC);
+	TheSoundManager::Instance()->load("../Assets/audio/BossRush2Temporary.ogg", "BossRush2", SOUND_MUSIC);
+	TheSoundManager::Instance()->load("../Assets/audio/FinalBossTemporary.ogg", "FinalBoss", SOUND_MUSIC);
+	TheSoundManager::Instance()->playMusic("RamRush", 0);
 }
 
 Level3::~Level3()
@@ -63,6 +69,7 @@ void Level3::start()
 
 void Level3::Boss1()
 {
+	TheSoundManager::Instance()->playMusic("BossRush1", 999);
 }
 
 void Level3::Boss2()
@@ -71,6 +78,7 @@ void Level3::Boss2()
 
 void Level3::Boss3()
 {
+	TheSoundManager::Instance()->playMusic("BossRush2", 999);
 }
 
 void Level3::Boss4()
@@ -79,8 +87,10 @@ void Level3::Boss4()
 
 void Level3::Boss5()
 {
+	TheSoundManager::Instance()->playMusic("FinalBoss", 999);
 }
 
 void Level3::Victory()
 {
+	//This will need to play victory music. Currently, it does not
 }
