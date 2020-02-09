@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\MissileLauncher.cpp" />
     <ClCompile Include="..\src\PlayerShip.cpp" />
     <ClCompile Include="..\include\IMGUI\imgui.cpp" />
     <ClCompile Include="..\include\IMGUI\imgui_demo.cpp" />
@@ -201,9 +202,12 @@
     <ClCompile Include="..\src\TextureManager.cpp" />
     <ClCompile Include="..\src\Tile.cpp" />
     <ClCompile Include="..\src\Util.cpp" />
+    <ClCompile Include="..\src\Weapon.cpp" />
+    <ClCompile Include="..\src\WeaponMissile.cpp" />
     <ClCompile Include="..\src\ZigzagAI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\MissileLauncher.h" />
     <ClInclude Include="..\src\PlayerShip.h" />
     <ClInclude Include="..\include\IMGUI\imconfig.h" />
     <ClInclude Include="..\include\IMGUI\imgui.h" />
@@ -252,6 +256,8 @@
     <ClInclude Include="..\src\Tile.h" />
     <ClInclude Include="..\src\TileComparators.h" />
     <ClInclude Include="..\src\Util.h" />
+    <ClInclude Include="..\src\Weapon.h" />
+    <ClInclude Include="..\src\WeaponMissile.h" />
     <ClInclude Include="..\src\ZigzagAI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
