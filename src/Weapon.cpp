@@ -11,3 +11,7 @@ Weapon::~Weapon()
 {
 
 }
+
+void Weapon::Fire()
+{
+}

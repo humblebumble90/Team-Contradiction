@@ -1,5 +1,6 @@
 #include "ZigzagAI.h"
 #include "BasicBody.h"
+#include "MissileLauncher.h"
 ZigzagAI::ZigzagAI(glm::vec2 transform)
 {
 	parent = Enemy(Frame(16.666667, //Enemy is 50px by 50px

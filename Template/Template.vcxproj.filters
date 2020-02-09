@@ -192,6 +192,12 @@
     <ClCompile Include="..\src\MissileLauncher.cpp">
       <Filter>Source Files\ShipComponents</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Cannon.cpp">
+      <Filter>Source Files\ShipComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Flamethrower.cpp">
+      <Filter>Source Files\ShipComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -348,6 +354,12 @@
       <Filter>Header Files\ShipComponents</Filter>
     </ClInclude>
     <ClInclude Include="..\src\MissileLauncher.h">
+      <Filter>Header Files\ShipComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Cannon.h">
+      <Filter>Header Files\ShipComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Flamethrower.h">
       <Filter>Header Files\ShipComponents</Filter>
     </ClInclude>
   </ItemGroup>

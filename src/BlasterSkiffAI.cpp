@@ -3,6 +3,7 @@
 #include "IndesBody.h"
 #include "Blank.h"
 #include "Game.h"
+#include "MissileLauncher.h"
 
 BlasterSkiffAI::BlasterSkiffAI(glm::vec2 transform)
 {
@@ -62,6 +63,6 @@ void BlasterSkiffAI::SecondaryFunction()
 	//Spawn Enemies
 	if (parent.getPosition().y == topBouncePoint + (bottomBouncePoint - topBouncePoint) / 2)
 	{
-		TheGame.GetInstance().Instantiate(RamAI, glm::vec2{ TheGame.GetInstance().OffScreenRight, TheGame.GetInstance().OffScreenTop});
+		//TheGame::Instance() TODO: Add this back
 	}
 }

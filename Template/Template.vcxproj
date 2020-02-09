@@ -156,6 +156,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Cannon.cpp" />
+    <ClCompile Include="..\src\Flamethrower.cpp" />
     <ClCompile Include="..\src\MissileLauncher.cpp" />
     <ClCompile Include="..\src\PlayerShip.cpp" />
     <ClCompile Include="..\include\IMGUI\imgui.cpp" />
@@ -207,6 +209,8 @@
     <ClCompile Include="..\src\ZigzagAI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Cannon.h" />
+    <ClInclude Include="..\src\Flamethrower.h" />
     <ClInclude Include="..\src\MissileLauncher.h" />
     <ClInclude Include="..\src\PlayerShip.h" />
     <ClInclude Include="..\include\IMGUI\imconfig.h" />

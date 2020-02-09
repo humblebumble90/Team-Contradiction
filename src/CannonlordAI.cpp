@@ -1,6 +1,7 @@
 #include "CannonlordAI.h"
 #include "Blank.h"
 #include "BasicBody.h"
+#include "Cannon.h"
 
 CannonlordAI::CannonlordAI(glm::vec2 transform)
 {
@@ -30,9 +31,9 @@ void CannonlordAI::SecondaryFunction()
 	--attackCooldown;
 	if (attackCooldown <= 0)
 	{
-		for (Cannon c : parent.GetFrame().GetWeapons())
+		for (Weapon w : parent.GetFrame().GetWeapons())
 		{
-			c.Fire();
+			w.Fire();
 		}
 	}
 #pragma endregion

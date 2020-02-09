@@ -3,6 +3,9 @@
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "Game.h"
+#include "Flamethrower.h"
+#include "Cannon.h"
+#include "MissileLauncher.h"
 
 FirebrandAI::FirebrandAI(glm::vec2 transform)
 {
@@ -28,9 +31,11 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 	speed.y = baseSpeed; //Tweak this number later
 
 	//Fire Flamethrowers
-	for (Flamethrower f : parent.GetFrame().GetWeapons())
+	for (Weapon w : parent.GetFrame().GetWeapons())
 	{
-		f.Fire();
+		if (typeid(w) == typeid(Flamethrower)) {
+			w.Fire();
+		}
 	}
 }
 
@@ -52,9 +57,11 @@ void FirebrandAI::SecondaryFunction()
 	if (missileCooldown <= 0)
 	{
 		missileCooldown = missileCooldownReset;
-		for (MissileLauncher m : parent.GetFrame().GetWeapons())
+		for (Weapon w : parent.GetFrame().GetWeapons())
 		{
-			m.Fire();
+			if (typeid(w) == typeid(MissileLauncher)) {
+				w.Fire();
+			}
 		}
 	}
 #pragma endregion
@@ -109,9 +116,11 @@ void FirebrandAI::SecondaryFunction()
 		else if (cannonCooldown <= 0)
 		{
 			cannonCooldown = cannonCooldownReset;
-			for (Cannon c : parent.GetFrame().GetWeapons())
+			for (Weapon w : parent.GetFrame().GetWeapons())
 			{
-				c.Fire();
+				if (typeid(w) == typeid(Cannon)) {
+					w.Fire();
+				}
 			}
 			hasTarget = false;
 			--ramCounter;

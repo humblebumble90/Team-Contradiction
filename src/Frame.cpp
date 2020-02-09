@@ -44,9 +44,13 @@ std::vector<Weapon> Frame::GetWeapons()
 	std::vector<Weapon> Weapons;
 	for(std::vector<ShipComponent> sc : build)
 	{
-		for (Weapon w : sc)
+		for (ShipComponent s : sc)
 		{
-			Weapons.push_back(w);
+			if (typeid(s) == typeid(Weapon)) {
+				ShipComponent* a = &s;
+				Weapon* w = (Weapon*)a;
+				Weapons.push_back(*w);
+			}
 		}
 	}
 	return Weapons;
@@ -54,15 +58,7 @@ std::vector<Weapon> Frame::GetWeapons()
 
 Weapon Frame::GetWeapon(int i)
 {
-	std::vector<Weapon> Weapons;
-	for (std::vector<ShipComponent> sc : build)
-	{
-		for (Weapon w : sc)
-		{
-			Weapons.push_back(w);
-		}
-	}
-	return Weapons[i];
+	return GetWeapons()[i];
 }
 
 int Frame::getGridSize()

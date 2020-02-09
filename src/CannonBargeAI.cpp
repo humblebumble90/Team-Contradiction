@@ -1,6 +1,7 @@
 #include "CannonBargeAI.h"
 #include "Blank.h"
 #include "BasicBody.h"
+#include "Cannon.h"
 
 CannonBargeAI::CannonBargeAI(glm::vec2 transform)
 {

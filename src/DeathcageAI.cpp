@@ -1,6 +1,8 @@
 #include "DeathcageAI.h"
 #include "Blank.h"
 #include "BasicBody.h"
+#include "Flamethrower.h"
+#include "Cannon.h"
 
 DeathcageAI::DeathcageAI(glm::vec2 transform)
 {
@@ -31,10 +33,12 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 		this, transform);
 
 #pragma region Assocate Cannons
-	std::vector<Cannon> Cannons;
-	for (Cannon c : parent.GetFrame().GetWeapons())
+	std::vector<Weapon> Cannons;
+	for (Weapon w : parent.GetFrame().GetWeapons())
 	{
-		Cannons.push_back(c);
+		if (typeid(w) == typeid(Cannon)) {
+			Cannons.push_back(w);
+		}
 	}
 	for (int z = 0; z <= cannonMaximum; ++z)
 	{
@@ -47,9 +51,11 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 	}
 #pragma endregion
 	//Fire Flamethrowers
-	for (Flamethrower f : parent.GetFrame().GetWeapons())
+	for (Weapon w : parent.GetFrame().GetWeapons())
 	{
-		f.Fire();
+		if (typeid(w) == typeid(Flamethrower)) {
+			w.Fire();
+		}
 	}
 }
 

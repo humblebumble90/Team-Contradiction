@@ -4,6 +4,7 @@
 
 #include "DisplayObject.h"
 #include "TextureManager.h"
+#include "ShipComponent.h"
 
 //This is the base class for every weapon type that holds the method to instantiate them.
 class Weapon : public ShipComponent
@@ -13,9 +14,8 @@ public:
 	Weapon();
 	~Weapon();
 
-
 	//Method that fires the weapon
-	virtual void Fire() = 0;
+	virtual void Fire();
 
 };
 

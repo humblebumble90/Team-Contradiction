@@ -1,6 +1,7 @@
 #include "MissileBargeAI.h"
 #include "Blank.h"
 #include "BasicBody.h"
+#include "MissileLauncher.h"
 
 MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 {

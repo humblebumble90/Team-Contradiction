@@ -30,6 +30,8 @@ public:
 
 	// remove anything that needs to be deleted
 	void clean() override;
+
+	void Damage(int i);
 private:
 
 };

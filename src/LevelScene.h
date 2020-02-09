@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "AI.h"
 #include "PlayerShip.h"
+#include "WeaponMissile.h"
 
 class LevelScene : public Scene
 {
@@ -19,7 +20,7 @@ protected:
 	#pragma region Game Objects
 	std::vector<AI*> enemies;
 	PlayerShip* player;
-	//std::vector<ObjectType*> playerWeapons;
+	std::vector<WeaponMissile*> playerWeapons;
 	//Background
 	#pragma endregion
 	#pragma region Spawn Timers

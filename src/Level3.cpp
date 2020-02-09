@@ -22,7 +22,9 @@ void Level3::draw()
 	//UI
 
 	player->draw();
-	//Player Weapons
+	for (WeaponMissile* wm : playerWeapons) {
+		wm->draw();
+	}
 	for (AI* a : enemies) {
 		a->GetParent().draw();
 	}

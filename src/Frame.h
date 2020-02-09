@@ -5,6 +5,7 @@
 #include <vector>
 #include "Enemy.h"
 #include "PlayerShip.h"
+#include "Weapon.h"
 class Frame {
 public:
 	Frame();

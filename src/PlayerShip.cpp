@@ -55,5 +55,9 @@ void PlayerShip::clean()
 {
 }
 
+void PlayerShip::Damage(int i)
+{
+}
+
 
 

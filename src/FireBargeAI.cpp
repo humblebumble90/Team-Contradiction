@@ -1,6 +1,7 @@
 #include "FireBargeAI.h"
 #include "Blank.h"
 #include "BasicBody.h"
+#include "Flamethrower.h"
 
 FireBargeAI::FireBargeAI(glm::vec2 transform)
 {
@@ -20,9 +21,9 @@ FireBargeAI::FireBargeAI(glm::vec2 transform)
 	speed.y = -baseSpeed; //Tweak this number later
 
 	//Fire Flamethrowers
-	for (Flamethrower f : parent.GetFrame().GetWeapons())
+	for (Weapon w : parent.GetFrame().GetWeapons())
 	{
-		f.Fire();
+		w.Fire();
 	}
 }
 
