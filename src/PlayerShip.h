@@ -34,6 +34,11 @@ public:
 
 	// remove anything that needs to be deleted
 	void clean() override;
+
+	//Invincibility
+	bool getInvincibility();
+	bool inv;
+	void invincible();
 private:
 	int endInvincibleTime;
 	int playerHealth;
@@ -41,8 +46,6 @@ private:
 	Frame frame;
 	std::string name;
 	LevelScene* m_pLevelScene;
-	void invincible();
-	bool inv;
 };
 
 

@@ -6,12 +6,14 @@
 PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/plane.png", "player", TheGame::Instance()->getRenderer());
-	setPosition(glm::vec2(0, 430.0f));
+	setPosition(targetTransform);
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("player");
 	setWidth(size.x);
 	setHeight(size.y);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
+	frame = playerFrame;
+	frame.Initialize(this);
 }
 PlayerShip::~PlayerShip()
 {
@@ -31,16 +33,19 @@ void PlayerShip::Damage(int i)
 		{
 			this->playerHealth -= i;
 			playerLives -= 1;
-			playerHealth = 1;
+			playerHealth += 1;
 			invincible();
 		}
 	}
+}
+bool PlayerShip::getInvincibility()
+{
+	return inv;
 }
 void PlayerShip::invincible()
 {
 	this->setPosition(glm::vec2(Config::SCREEN_WIDTH*0.2f,Config::SCREEN_HEIGHT * 0.5f));
 	inv = true;
-	setType(NONE);//Change type to avoid collided with other objects
 	endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
 
 }
@@ -81,7 +86,6 @@ void PlayerShip::update()
 {
 	if (inv && endInvincibleTime <= SDL_GetTicks())
 	{
-		setType(PLAYER);//return type to allow colliding with other objects.
 		inv = false;
 	}
 }

@@ -21,7 +21,7 @@ bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* objec
 
 	//if (glm::distance(P1, P2) < halfHeights) {
 
-	if (CollisionManager::squaredDistance(P1, P2) < (halfHeights * halfHeights) && object1->getType == PLAYER) {
+	if (CollisionManager::squaredDistance(P1, P2) < (halfHeights * halfHeights)) {
 		if (!object2->getIsColliding()) {
 
 			object2->setIsColliding(true);
@@ -37,7 +37,7 @@ bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* objec
 				break;
 			case ENEMY:
 				std::cout << "Collision with enemy!" << std::endl;
-				object1->clean();
+				object1->~GameObject;
 			default:
 				//std::cout << "Collision with unknown type!" << std::endl;
 				break;

@@ -14,7 +14,15 @@ LevelScene::~LevelScene()
 void LevelScene::update()
 {
 	++time;
-	CollisionManager::squaredRadiusCheck(player, enemy);
+#pragma region Player Collision invinciblity
+	playerBody.getParent = player->GetFrame().GetPParent();
+	enemyFire.getParent = enemy->GetFrame().GetEParent();
+	if (CollisionManager::shipComponentCheck(playerBody, enemyFire)&& !(player->getInvincibility()))
+	{
+		player->Damage(1);
+
+	}
+#pragma endregion
 	#pragma region Spawn Enemies
 	if (time == ramSpawnTimer[ramIteration])
 	{

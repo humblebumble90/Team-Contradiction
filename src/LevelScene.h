@@ -5,6 +5,7 @@
 #include "AI.h"
 #include "PlayerShip.h"
 #include "WeaponMissile.h"
+#include "ShipComponent.h"
 
 class LevelScene : public Scene
 {
@@ -20,8 +21,10 @@ protected:
 	#pragma region Game Objects
 	std::vector<AI*> enemies;
 	PlayerShip* player;
-	Enemy* enemy; // Added enemy memory pointer to detects its  collision.
+	Enemy* enemy;
 	std::vector<WeaponMissile*> playerWeapons;
+	ShipComponent playerBody;
+	ShipComponent enemyFire;
 	//Background
 	#pragma endregion
 	#pragma region Spawn Timers
