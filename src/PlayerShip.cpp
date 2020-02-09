@@ -22,12 +22,17 @@ void PlayerShip::Damage(int i)
 {
 	if (playerHealth >= 1)
 	{
-		this->playerHealth -= i;
-		playerLives -= 1;
-		if (playerHealth <= 0)
+		if (playerLives <= 0)
 		{
-			this->playerLives -= 1;
+			m_pLevelScene->GameOver();
+		}
+		else
+
+		{
+			this->playerHealth -= i;
+			playerLives -= 1;
 			playerHealth = 1;
+			invincible();
 		}
 	}
 }
@@ -35,6 +40,7 @@ void PlayerShip::invincible()
 {
 	this->setPosition(glm::vec2(Config::SCREEN_WIDTH*0.2f,Config::SCREEN_HEIGHT * 0.5f));
 	inv = true;
+	setType(NONE);//Change type to avoid collided with other objects
 	endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
 
 }
@@ -73,13 +79,10 @@ void PlayerShip::draw()
 
 void PlayerShip::update()
 {
-	if (inv && endInvincibleTime < SDL_GetTicks())
+	if (inv && endInvincibleTime <= SDL_GetTicks())
 	{
+		setType(PLAYER);//return type to allow colliding with other objects.
 		inv = false;
-	}
-	if (playerLives <= 0)
-	{
-		m_pLevelScene->GameOver();
 	}
 }
 

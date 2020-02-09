@@ -21,7 +21,7 @@ bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* objec
 
 	//if (glm::distance(P1, P2) < halfHeights) {
 
-	if (CollisionManager::squaredDistance(P1, P2) < (halfHeights * halfHeights)) {
+	if (CollisionManager::squaredDistance(P1, P2) < (halfHeights * halfHeights) && object1->getType == PLAYER) {
 		if (!object2->getIsColliding()) {
 
 			object2->setIsColliding(true);
