@@ -180,8 +180,8 @@
     <ClCompile Include="..\src\LevelScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Josh%27sStuff\src\PlayerShip.cpp">
-      <Filter>Game Objects</Filter>
+    <ClCompile Include="..\src\PlayerShip.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,8 +329,8 @@
     <ClInclude Include="..\src\LevelScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Josh%27sStuff\src\PlayerShip.h">
-      <Filter>Game Objects</Filter>
+    <ClInclude Include="..\src\PlayerShip.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
