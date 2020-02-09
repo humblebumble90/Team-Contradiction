@@ -43,9 +43,9 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 	for (int z = 0; z <= cannonMaximum; ++z)
 	{
 		topCannons.push_back(Cannons[z]);
-		bottomCannons.push_back(Cannons[Cannons.size - 1 - z]);
+		bottomCannons.push_back(Cannons[Cannons.size() - 1 - z]);
 	}
-	for (int z = topCannons.size; z < Cannons.size - bottomCannons.size; ++z)
+	for (int z = topCannons.size; z < Cannons.size - bottomCannons.size(); ++z)
 	{
 		centerCannons.push_back(Cannons[z]);
 	}

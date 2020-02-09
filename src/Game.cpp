@@ -228,16 +228,16 @@ void Game::handleEvents()
 					m_bRunning = false;
 					break;
 				case SDLK_w:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedY + m_pPlayerShip->getPosition);
+					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedY() + m_pPlayerShip->getPosition());
 					break;
 				case SDLK_s:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMinSpeedY + m_pPlayerShip->getPosition);
+					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMinSpeedY() + m_pPlayerShip->getPosition());
 					break;
 				case SDLK_a:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerminSpeedX + m_pPlayerShip->getPosition);
+					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerminSpeedX() + m_pPlayerShip->getPosition());
 					break;
 				case SDLK_d:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedX + m_pPlayerShip->getPosition);
+					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedX() + m_pPlayerShip->getPosition());
 					break;
 			}
 			break;

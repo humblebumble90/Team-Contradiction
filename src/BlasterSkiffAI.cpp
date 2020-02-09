@@ -52,7 +52,7 @@ void BlasterSkiffAI::SecondaryFunction()
 		{
 			parent.GetFrame().GetWeapon(firingIteration);
 			++firingIteration;
-			if (parent.GetFrame().GetWeapons().size == firingIteration)
+			if (parent.GetFrame().GetWeapons().size() == firingIteration)
 			{
 				firingIteration = 0;
 			}
