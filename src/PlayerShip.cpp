@@ -1,6 +1,8 @@
 #pragma once
 #include "PlayerShip.h"
 #include "Game.h"
+#include <iostream>
+
 PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/plane.png", "player", TheGame::Instance()->getRenderer());
@@ -31,13 +33,16 @@ void PlayerShip::Damage(int i)
 }
 void PlayerShip::invincible()
 {
-	std::cout << "Invincible" << std::endl;
+	this->setPosition(glm::vec2(Config::SCREEN_WIDTH*0.2f,Config::SCREEN_HEIGHT * 0.5f));
+	inv = true;
+	endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
 
 }
 
 
 Frame PlayerShip::GetFrame()
 {
+	return frame;
 }
 
 glm::vec2 PlayerShip::getPlayerMaxSpeedX()
@@ -68,6 +73,10 @@ void PlayerShip::draw()
 
 void PlayerShip::update()
 {
+	if (inv && endInvincibleTime < SDL_GetTicks())
+	{
+		inv = false;
+	}
 	if (playerLives <= 0)
 	{
 		m_pLevelScene->GameOver();
