@@ -1,7 +1,6 @@
 #pragma once
 #ifndef __INDESBODY__
 #define __INDESBODY__
-#endif
 #include "ShipComponent.h"
 class IndesBody : public ShipComponent
 {
@@ -12,3 +11,4 @@ public:
 private:
 	bool isProjectile;
 };
+#endif

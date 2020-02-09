@@ -6,12 +6,12 @@ ZigzagAI::ZigzagAI(glm::vec2 transform)
 		#pragma region Frame Construction
 		{
 			{BasicBody(), BasicBody(), BasicBody()},
-			{MissileLauncher(), BasicBody(), BasicBody()},
-			{BasicBody(), BasicBody(), BasicBody()}
+			{BasicBody(), BasicBody(), BasicBody()},
+			{MissileLauncher(), BasicBody(), BasicBody()}
 		}
 		#pragma endregion
 		), 1, this, transform);
-	speed.x = speed.y = 0.075f; //Tweak this number later
+	speed.x = speed.y = -0.075f; //Tweak this number later
 }
 
 ZigzagAI::~ZigzagAI()

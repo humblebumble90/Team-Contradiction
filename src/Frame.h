@@ -1,7 +1,6 @@
 #pragma once
 #ifndef __FRAME__
 #define __FRAME__
-#endif
 #include "ShipComponent.h"
 #include <vector>
 #include "Enemy.h"
@@ -27,3 +26,4 @@ private:
 	PlayerShip* pParent;
 	std::string parentType;
 };
+#endif

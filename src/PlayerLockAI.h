@@ -1,7 +1,6 @@
 #pragma once
 #ifndef __PLAYERLOCK__
 #define __PLAYERLOCK__
-#endif
 #include "AI.h"
 class PlayerLockAI : public AI
 {
@@ -12,3 +11,4 @@ public:
 private:
 	float baseSpeed;
 };
+#endif

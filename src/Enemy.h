@@ -1,7 +1,6 @@
 #pragma once
 #ifndef __ENEMY__
 #define __ENEMY__
-#endif
 #include "Frame.h"
 #include "GameObject.h"
 #include "AI.h"
@@ -26,3 +25,4 @@ private:
 	std::string name;
 	void Move();
 };
+#endif

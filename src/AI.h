@@ -1,7 +1,6 @@
 #pragma once
 #ifndef __AI__
 #define __AI__
-#endif
 #include "Enemy.h"
 class AI {
 public:
@@ -14,3 +13,4 @@ protected:
 	Enemy parent;
 	glm::vec2 speed;
 };
+#endif
