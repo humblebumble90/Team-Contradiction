@@ -23,7 +23,7 @@
 
 // Scenes
 #include "StartScene.h"
-#include "PlayScene.h"
+#include "Level1Scene.h"
 #include "EndScene.h"
 
 class Game
@@ -33,7 +33,7 @@ public:
 
 	static Game* Instance()
 	{
-		if (s_pInstance == 0)
+		if (s_pInstance == nullptr)
 		{
 			s_pInstance = new Game();
 			return s_pInstance;
@@ -53,8 +53,6 @@ public:
 	void handleEvents();
 	void clean();
 
-	PlayerShip* getPlayerShip();
-
 	// a function to access the private running variable
 	bool running() { return m_bRunning; }
 
@@ -68,16 +66,12 @@ public:
 	void changeSceneState(SceneState newState);
 	void quit();
 
-	void destroyEnemy(Enemy* enemy);
-	glm::vec2 getPlayerPosition();
-
 private:
 	Game();
 	~Game();
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-	PlayerShip* m_pPlayerShip;
 
 	int m_currentFrame;
 
@@ -91,6 +85,7 @@ private:
 
 	Uint32 m_frames;
 
+	// Scene Data Members
 	Scene* m_currentScene;
 	SceneState m_currentSceneState;
 };
@@ -99,110 +94,3 @@ typedef Game TheGame;
 
 #endif /* defined (__Game__) */
 
-/*
-Josh's Frame Sketchboard:
-
-W = Generic Weapon
-F = Flamethrower
-C = Cannon
-M = Missile
-B = Body
-I = Indestructible Body
-E = Blank (Empty)
-
-Player:
-B	B	W	E
-B	B	B	W
-B	B	W	E
-
-Enemy 1:
-B
-
-Enemy 2:
-B	B	B
-M	B	B
-B	B	B
-
-Enemy 3:
-
-Enemy 4:
-
-Enemy 5:
-
-Enemy 6:
-
-Boss 1:
-
-Boss 2 (Multistage):
-
-NOTE: All Level 3 bosses use identical size-scaling
-Level 3 Boss 1: Blaster Skiff
-E	M	M	I	E	E	E	E
-E	M	M	I	E	E	E	E
-E	M	M	I	I	E	E	E
-E	M	M	I	I	E	E	E
-E	M	M	I	I	I	E	E
-E	M	M	I	I	I	E	E
-E	M	M	I	I	I	I	E
-B	I	I	I	I	I	I	I
-B	I	I	I	I	I	I	I
-E	M	M	I	I	I	E	E
-E	M	M	I	I	I	I	E
-E	M	M	I	I	E	E	E
-E	M	M	I	I	E	E	E
-E	M	M	I	E	E	E	E
-E	M	M	I	E	E	E	E
-
-Level 3 Boss 2: Firebrand
-M	F	F	F	F	F	E	E
-M	B	B	B	B	B	B	E
-F	B	B	B	B	B	B	E
-C	B	B	B	B	B	B	E
-C	B	B	B	B	B	B	B
-C	B	B	B	B	B	B	B
-C	B	B	B	B	B	B	B
-C	B	B	B	B	B	B	B
-C	B	B	B	B	B	B	E
-F	B	B	B	B	B	B	E
-M	B	B	B	B	B	B	E
-M	F	F	F	F	F	E	E
-
-Level 3 Boss 3: Triple Barge
-E	W	W	W	W	E
-W	B	B	B	B	W
-W	B	B	B	B	W
-W	B	B	B	B	W
-W	B	B	B	B	W
-E	W	W	W	W	E
-
-Level 3 Boss 4: Cannonlord
-E	C	B	B	C	B	B	C	E
-C	B	B	B	B	B	B	B	C
-B	B	B	B	B	B	B	B	B
-B	B	B	B	B	B	B	B	B
-C	B	B	B	B	B	B	B	C
-E	C	B	B	C	B	B	C	E
-
-Level 3 Boss 5 (Final Boss): Deathcage
-NOTE: Deathcage is as tall as the screen
-NOTE 2: Deathcage's body expands off to the right, but since that part of its body is unhittable, its frame is remaining this size to save on memory
-I	B	B	B	B	B	B	B	B	B	B	B	B	B	I	E	I
-M	C	C	M	C	C	M	C	C	M	C	C	M	C	B	I	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	M	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	M	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	M	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	M	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-E	E	E	E	E	E	E	E	E	E	E	E	E	E	C	B	I
-M	C	C	M	C	C	M	C	C	M	C	C	M	C	B	I	I
-I	B	B	B	B	B	B	B	B	B	B	B	B	B	I	E	I
-
-*/

@@ -2,10 +2,7 @@
 #include <ctime>
 #include "GLM/gtx/string_cast.hpp"
 #include <algorithm>
-#include "TileComparators.h"
 #include <iomanip>
-#include "PlayerShip.h"
-#include "LevelScene.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -43,13 +40,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
 		// if window creation successful create our renderer
-		if (m_pWindow != 0)
+		if (m_pWindow != nullptr)
 		{
 			std::cout << "window creation success" << std::endl;
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 
-			if (m_pRenderer != 0) // render init success
+			if (m_pRenderer != nullptr) // render init success
 			{
 				std::cout << "renderer creation success" << std::endl;
 				SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
@@ -125,7 +122,8 @@ Uint32 Game::getFrames()
 void Game::changeSceneState(SceneState newState)
 {
 	if (newState != m_currentSceneState) {
-		
+
+		// if this is not the first time we're rendering a new scene
 		if (m_currentSceneState != SceneState::NO_SCENE) 
 		{
 			m_currentScene->clean();
@@ -144,8 +142,8 @@ void Game::changeSceneState(SceneState newState)
 			m_currentScene = new StartScene();
 			std::cout << "start scene activated" << std::endl;
 			break;
-		case SceneState::PLAY_SCENE:
-			m_currentScene = new PlayScene();
+		case SceneState::LEVEL1_SCENE:
+			m_currentScene = new Level1Scene();
 			std::cout << "play scene activated" << std::endl;
 			break;
 		case SceneState::END_SCENE:
@@ -163,15 +161,6 @@ void Game::changeSceneState(SceneState newState)
 void Game::quit()
 {
 	m_bRunning = false;
-}
-
-void Game::destroyEnemy(Enemy* enemy) {
-	((LevelScene*)m_currentScene)->DestroyEnemy(enemy);
-}
-
-glm::vec2 Game::getPlayerPosition()
-{
-	return ((LevelScene*)m_currentScene)->getPlayerPosition();
 }
 
 void Game::render()
@@ -204,17 +193,13 @@ void Game::clean()
 
 	
 }
-PlayerShip * Game::getPlayerShip()
-{
-	return m_pPlayerShip;
-}
 
 void Game::handleEvents()
 {
 	m_currentScene->handleEvents();
 
 	SDL_Event event;
-	if (SDL_PollEvent(&event))
+	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
@@ -226,18 +211,6 @@ void Game::handleEvents()
 			{
 				case SDLK_ESCAPE:
 					m_bRunning = false;
-					break;
-				case SDLK_w:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedY + m_pPlayerShip->getPosition);
-					break;
-				case SDLK_s:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMinSpeedY + m_pPlayerShip->getPosition);
-					break;
-				case SDLK_a:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerminSpeedX + m_pPlayerShip->getPosition);
-					break;
-				case SDLK_d:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedX + m_pPlayerShip->getPosition);
 					break;
 			}
 			break;
