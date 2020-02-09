@@ -20,6 +20,7 @@ protected:
 	#pragma region Game Objects
 	std::vector<AI*> enemies;
 	PlayerShip* player;
+	Enemy* enemy; // Added enemy memory pointer to detects its  collision.
 	std::vector<WeaponMissile*> playerWeapons;
 	//Background
 	#pragma endregion

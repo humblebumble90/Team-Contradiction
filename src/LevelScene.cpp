@@ -14,6 +14,7 @@ LevelScene::~LevelScene()
 void LevelScene::update()
 {
 	++time;
+	CollisionManager::squaredRadiusCheck(player, enemy);
 	#pragma region Spawn Enemies
 	if (time == ramSpawnTimer[ramIteration])
 	{
@@ -30,7 +31,7 @@ void LevelScene::update()
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
 {
-	for (int i = 0; i < enemies.size; ++i) {
+	for (int i = 0; i < enemies.size(); ++i) {
 		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent().GetFrame().GetEParent() == enemy) {
 			enemies.erase(enemies.begin()+(i-1));
 			break;
