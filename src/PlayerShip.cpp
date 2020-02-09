@@ -1,8 +1,7 @@
 #pragma once
 #include "PlayerShip.h"
 #include "Game.h"
-
-PlayerShip::PlayerShip()
+PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/plane.png", "player", TheGame::Instance()->getRenderer());
 	setPosition(glm::vec2(0, 430.0f));
@@ -17,7 +16,27 @@ PlayerShip::~PlayerShip()
 	;
 }
 
-void PlayerShip::Start()
+void PlayerShip::Damage(int i)
+{
+	if (playerHealth >= 1)
+	{
+		this->playerHealth -= i;
+		playerLives -= 1;
+		if (playerHealth <= 0)
+		{
+			this->playerLives -= 1;
+			playerHealth = 1;
+		}
+	}
+}
+void PlayerShip::invincible()
+{
+	std::cout << "Invincible" << std::endl;
+
+}
+
+
+Frame PlayerShip::GetFrame()
 {
 }
 
@@ -49,14 +68,15 @@ void PlayerShip::draw()
 
 void PlayerShip::update()
 {
+	if (playerLives <= 0)
+	{
+		m_pLevelScene->GameOver();
+	}
 }
 
 void PlayerShip::clean()
 {
-}
-
-void PlayerShip::Damage(int i)
-{
+	Damage(1);
 }
 
 

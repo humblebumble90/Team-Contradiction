@@ -1,6 +1,7 @@
 #include "LevelScene.h"
 #include "RamAI.h"
 #include "ZigzagAI.h"
+#include "Game.h"
 
 LevelScene::LevelScene()
 {
@@ -39,6 +40,7 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 
 void LevelScene::GameOver()
 {
+	TheGame::Instance()->changeSceneState(SceneState::END_SCENE);
 }
 
 glm::vec2 LevelScene::getPlayerPosition()

@@ -4,14 +4,18 @@
 
 #include "GameObject.h"
 #include "TextureManager.h"
+#include "Frame.h"
+#include "LevelScene.h"
+#include <iostream>
+#include <experimental/coroutine>
 
 class PlayerShip : public GameObject {
 public:
-	PlayerShip();
+	PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform);
 	~PlayerShip();
 
-	//Initialization
-	void Start();
+	void Damage(int i);
+	Frame GetFrame();
 
 	glm::vec2 getPlayerMaxSpeedX();
 	glm::vec2 maxSpeedX;
@@ -30,10 +34,13 @@ public:
 
 	// remove anything that needs to be deleted
 	void clean() override;
-
-	void Damage(int i);
 private:
-
+	int playerHealth;
+	int playerLives;
+	Frame frame;
+	std::string name;
+	LevelScene* m_pLevelScene;
+	void invincible();
 };
 
 
