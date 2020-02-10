@@ -281,7 +281,7 @@ bool CollisionManager::shipComponentCheck(ShipComponent comp1, ShipComponent com
 {
 	glm::vec2 comp1Pos = comp1.getPosition() - glm::vec2{ comp1.getParent().getGridSize(), comp1.getParent().getGridSize() },
 			  comp2Pos = comp2.getPosition() - glm::vec2{ comp2.getParent().getGridSize(), comp2.getParent().getGridSize() };
-	#pragma region Josh's Four-Point Collision
+	#pragma region FourPointCollision
 	return
 		comp2Pos.x - comp1Pos.x < comp1.getParent().getGridSize(),
 		comp2Pos.x + comp2.getParent().getGridSize()>comp1Pos.x,

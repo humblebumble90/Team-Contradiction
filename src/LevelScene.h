@@ -34,7 +34,5 @@ protected:
 	std::vector<int> ramSpawnTimer, zigzagSpawnTimer;
 	std::vector<glm::vec2> ramSpawnLocation, zigzagSpawnLocation;
 	#pragma endregion
-
-private:
 };
 #endif

@@ -2,6 +2,7 @@
 #ifndef __SHIPCOMPONENT__
 #define __SHIPCOMPONENT__
 #include "Frame.h"
+#include "glm/vec2.hpp"
 class ShipComponent
 {
 public:
@@ -13,6 +14,6 @@ public:
 protected:
 	Frame parent;
 private:
-	glm::vec2 iD = { -1, -1 };
+	glm::vec2 iD = { -1,-1 };//glm::vec2(-1, -1);
 };
 #endif

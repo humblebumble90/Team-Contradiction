@@ -2,6 +2,7 @@
 #ifndef __AI__
 #define __AI__
 #include "Enemy.h"
+#include "glm/vec2.hpp"
 class AI {
 public:
 	AI();
