@@ -15,6 +15,7 @@ public:
 	void DestroyEnemy(Enemy* enemy);
 	void GameOver();
 	glm::vec2 getPlayerPosition();
+	void spawnEnemy(AI enemyAI);
 protected:
 	bool scrolling = true;
 	#pragma region Game Objects

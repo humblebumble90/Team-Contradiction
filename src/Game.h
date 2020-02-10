@@ -70,6 +70,7 @@ public:
 
 	void destroyEnemy(Enemy* enemy);
 	glm::vec2 getPlayerPosition();
+	void spawnEnemy(AI enemyAI);
 
 private:
 	Game();

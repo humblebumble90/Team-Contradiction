@@ -174,6 +174,11 @@ glm::vec2 Game::getPlayerPosition()
 	return ((LevelScene*)m_currentScene)->getPlayerPosition();
 }
 
+void Game::spawnEnemy(AI enemyAI)
+{
+	((LevelScene*)m_currentScene)->spawnEnemy(enemyAI);
+}
+
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw colour
@@ -228,16 +233,16 @@ void Game::handleEvents()
 					m_bRunning = false;
 					break;
 				case SDLK_w:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedY + m_pPlayerShip->getPosition);
+					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedY() + m_pPlayerShip->getPosition());
 					break;
 				case SDLK_s:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMinSpeedY + m_pPlayerShip->getPosition);
+					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMinSpeedY() + m_pPlayerShip->getPosition());
 					break;
 				case SDLK_a:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerminSpeedX + m_pPlayerShip->getPosition);
+					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerminSpeedX() + m_pPlayerShip->getPosition());
 					break;
 				case SDLK_d:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedX + m_pPlayerShip->getPosition);
+					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedX() + m_pPlayerShip->getPosition());
 					break;
 			}
 			break;

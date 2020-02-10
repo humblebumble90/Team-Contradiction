@@ -6,7 +6,7 @@ Enemy::Enemy(){/*DANGER! Do not use!*/ }
 Enemy::Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform)
 {
 	name = typeid(enemyAI).name();
-	name = name.substr(0, name.length - 2);
+	name = name.substr(0, name.length() - 2);
 	frame = enemyFrame;
 	frame.Initialize(this);
 	health = enemyHealth;
