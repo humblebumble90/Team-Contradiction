@@ -13,6 +13,24 @@ LevelScene::~LevelScene()
 void LevelScene::update()
 {
 	++time;
+#pragma region Player Collision and invinciblity
+	if (!(player->getInvincibility()))
+	{
+		//for (Enemy* enemy : m_pEnemy)
+		//{
+		//	CollisionManager::squaredRadiusCheck(player, enemy);
+		//}
+		if (typeid(playerComponent) == typeid(BasicBody)
+			&& typeid(enemyComponent) == typeid(BasicBody) || typeid(enemyComponent) == typeid(IndesBody))
+		{
+			CollisionManager::shipComponentCheck(playerComponent, enemyComponent);
+		}
+	}
+	if (CollisionManager::shipComponentCheck(playerComponent, enemyComponent) == true)
+	{
+		player->Damage(1);
+	}
+#pragma endregion
 	#pragma region Spawn Enemies
 	if (time == ramSpawnTimer[ramIteration])
 	{

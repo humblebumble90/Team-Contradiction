@@ -5,6 +5,9 @@
 #include "AI.h"
 #include "PlayerShip.h"
 #include "WeaponMissile.h"
+#include "BasicBody.h"
+#include "IndesBody.h"
+#include "CollisionManager.h"
 
 class LevelScene : public Scene
 {
@@ -22,6 +25,8 @@ protected:
 	std::vector<AI*> enemies;
 	PlayerShip* player;
 	std::vector<WeaponMissile*> playerWeapons;
+	ShipComponent playerComponent;
+	ShipComponent enemyComponent;
 	//Background
 	#pragma endregion
 	#pragma region Spawn Timers
