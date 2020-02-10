@@ -1,4 +1,6 @@
 #include "ShipComponent.h"
+#include "glm/vec2.hpp"
+#include "Frame.h"
 
 ShipComponent::ShipComponent()
 {

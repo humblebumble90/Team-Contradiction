@@ -1,13 +1,10 @@
 #pragma once
 #ifndef __LEVELSCENE__
 #define __LEVELSCENE__
-#include "Scene.h"
-#include "AI.h"
+
+
 #include "PlayerShip.h"
 #include "WeaponMissile.h"
-#include "BasicBody.h"
-#include "IndesBody.h"
-#include "CollisionManager.h"
 
 class LevelScene : public Scene
 {

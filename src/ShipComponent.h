@@ -1,8 +1,6 @@
 #pragma once
 #ifndef __SHIPCOMPONENT__
 #define __SHIPCOMPONENT__
-#include "Frame.h"
-#include "glm/vec2.hpp"
 class ShipComponent
 {
 public:

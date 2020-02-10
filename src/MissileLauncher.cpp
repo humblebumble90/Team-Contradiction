@@ -1,5 +1,4 @@
 #include "MissileLauncher.h"
-#include "Game.h"
 #include "WeaponMissile.h"
 
 MissileLauncher::MissileLauncher()

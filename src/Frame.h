@@ -1,11 +1,8 @@
 #pragma once
 #ifndef __FRAME__
 #define __FRAME__
-#include "ShipComponent.h"
-#include <vector>
-#include "Enemy.h"
 #include "PlayerShip.h"
-#include "Weapon.h"
+#include "Enemy.h"
 class Frame {
 public:
 	Frame();

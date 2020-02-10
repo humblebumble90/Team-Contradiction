@@ -1,6 +1,9 @@
 #include "LevelScene.h"
 #include "RamAI.h"
 #include "ZigzagAI.h"
+#include "BasicBody.h"
+#include "IndesBody.h"
+#include "CollisionManager.h"
 
 LevelScene::LevelScene()
 {

@@ -1,6 +1,7 @@
 #include "EnemyMissileAI.h"
-#include "IndesBody.h"
 #include "Game.h"
+#include "Frame.h"
+#include "IndesBody.h"
 
 EnemyMissileAI::EnemyMissileAI(glm::vec2 transform)
 {

@@ -4,16 +4,6 @@
 
 #include "LevelScene.h"
 
-// Game Objects
-/*Boss 0 - Ram Rush*/					#include "RamAI.h"
-/*Boss 1 - Blaster Skiff*/				#include "BlasterSkiffAI.h"
-/*Boss 2 - Firebrand*/					#include "FirebrandAI.h"
-/*Boss 3 - Triple Barge (Cannon)*/		#include "CannonBargeAI.h"
-/*Boss 3 - Triple Barge (Missile)*/		#include "MissileBargeAI.h"
-/*Boss 3 - Triple Barge (Flamethrower)*/#include "FireBargeAI.h"
-/*Boss 4 - Cannonlord*/					#include "CannonlordAI.h"
-/*Boss 5 - Deathcage (last boss)*/		#include "DeathcageAI.h"
-
 class Level3 : public LevelScene
 {
 public:
