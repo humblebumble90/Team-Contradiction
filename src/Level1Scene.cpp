@@ -15,19 +15,19 @@ void Level1Scene::draw()
 {
 	m_pIsland->draw();
 	
-	m_pPlane->draw();
+	m_pShip->draw();
 }
 
 void Level1Scene::update()
 {
-	m_pPlane->update();
+	m_pShip->update();
 	//m_pPlane->setVelocity(m_pPlane->getVelocity() * 0.97f);
 	// plane moving with mouse motion
 	//m_pPlane->setPosition(glm::vec2(m_mousePosition.x, m_pPlane->getPosition().y));
 
 	//CollisionManager::AABBCheck(m_pPlane, m_pIsland);
 
-	CollisionManager::squaredRadiusCheck(m_pPlane, m_pIsland);
+	CollisionManager::squaredRadiusCheck(m_pShip, m_pIsland);
 
 }
 
@@ -88,16 +88,16 @@ void Level1Scene::handleEvents()
 
 				/************************************************************************/
 			case SDLK_w:
-				
+				m_pShip->move(UP);
 				break;
 			case SDLK_s:
-				
+				m_pShip->move(DOWN);
 				break;
 			case SDLK_a:
-				m_pPlane->move(LEFT);
+				m_pShip->move(LEFT);
 				break;
 			case SDLK_d:
-				m_pPlane->move(RIGHT);
+				m_pShip->move(RIGHT);
 				break;
 			}
 			
@@ -114,10 +114,10 @@ void Level1Scene::handleEvents()
 				break;
 
 			case SDLK_a:
-				m_pPlane->setIsMoving(false);
+				
 				break;
 			case SDLK_d:
-				m_pPlane->setIsMoving(false);
+				
 				break;
 			}
 			
@@ -130,8 +130,8 @@ void Level1Scene::handleEvents()
 
 void Level1Scene::start()
 {
-	m_pPlane = new Plane(); // instantiates Plane
-	addChild(m_pPlane);
+	m_pShip = new PlayerShip(); // instantiates Plane
+	addChild(m_pShip);
 
 	m_pIsland = new Island(); // instantiates Island
 	addChild(m_pIsland);

@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Plane.h"
 #include "Island.h"
+#include "PlayerShip.h"
 
 class Level1Scene : public Scene
 {
@@ -23,7 +24,7 @@ public:
 
 private:
 	// game objects
-	Plane* m_pPlane;
+	PlayerShip* m_pShip;
 	Island* m_pIsland;
 
 
