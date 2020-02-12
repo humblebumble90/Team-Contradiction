@@ -8,15 +8,15 @@ FireBargeAI::FireBargeAI(glm::vec2 transform)
 	parent = Enemy(Frame(50, //Enemy is 300px by 300px
 #pragma region Frame Construction
 		{
-			{Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank()},
-			{Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower()},
-			{Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower()},
-			{Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower()},
-			{Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower()},
-			{Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank()}
-		}
+			Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank(),
+			Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
+			Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
+			Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
+			Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
+			Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank()
+		},
 	#pragma endregion
-	), 20, //Will tweak if it proves to be too much or too little
+	6, 6), 20, //Will tweak if it proves to be too much or too little
 		this, transform);
 	speed.y = -baseSpeed; //Tweak this number later
 

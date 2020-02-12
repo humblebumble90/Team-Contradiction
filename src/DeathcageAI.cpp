@@ -9,27 +9,27 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 	parent = Enemy(Frame(50, //Enemy is 800px by 900px - NOTE: Deathcage is the height of the screen
 #pragma region Frame Construction
 		{
-			{BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Blank()},
-			{Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), BasicBody(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Flamethrower(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Flamethrower(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Flamethrower(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Flamethrower(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody()},
-			{Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), BasicBody(), BasicBody()},
-			{BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Blank()}
-		}
+			BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Blank(),
+			Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), BasicBody(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Flamethrower(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Flamethrower(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Flamethrower(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Flamethrower(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Blank(), Cannon(), BasicBody(),
+			Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), Cannon(), Flamethrower(), Cannon(), BasicBody(), BasicBody(),
+			BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Blank()
+		},
 #pragma endregion
-	), 100, //Will tweak if 100 health proves to be too much or too little
+	16, 18), 100, //Will tweak if 100 health proves to be too much or too little
 		this, transform);
 
 #pragma region Assocate Cannons

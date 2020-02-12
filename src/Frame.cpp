@@ -1,13 +1,15 @@
 #include "Frame.h"
 #include "Weapon.h"
 Frame::Frame(){/*DANGER! Do not use!*/ }
-Frame::Frame(int size, std::vector<std::vector<ShipComponent>> buildLayout)
+Frame::Frame(int size, std::vector<ShipComponent> buildLayout, int width, int height)
 {
+	gridWidth = width;
+	gridHeight = height;
 	gridSize = size;
 	build = buildLayout;
-	for (int z = 0; z < build.size(); ++z) {
-		for (int y = 0; y < build[z].size(); ++y) {
-			build[z][y].setID(z, y);
+	for (int z = 0; z < gridWidth; ++z) {
+		for (int y = 0; y < build.size(); y+=gridWidth) {
+			build[y].setID(z, (y-z)/gridWidth);
 		}
 	}
 }
@@ -43,13 +45,10 @@ PlayerShip* Frame::GetPParent()
 std::vector<Weapon> Frame::GetWeapons()
 {
 	std::vector<Weapon> Weapons;
-	for(std::vector<ShipComponent> sc : build)
+	for (ShipComponent s : build)
 	{
-		for (ShipComponent s : sc)
-		{
-			if (typeid(s) == typeid(Weapon)) {
-				Weapons.push_back(*(Weapon*)& s);
-			}
+		if (typeid(s) == typeid(Weapon)) {
+			Weapons.push_back(*(Weapon*)& s);
 		}
 	}
 	return Weapons;
@@ -67,15 +66,15 @@ int Frame::getGridSize()
 
 int Frame::GridWidth() //Width and Height might be backwards
 {
-	return build[0].size();
+	return gridWidth;
 }
 
 int Frame::GridHeight() //Width and Height might be backwards
 {
-	return build.size();
+	return gridHeight;
 }
 
-std::vector<std::vector<ShipComponent>> Frame::GetBuild()
+std::vector<ShipComponent> Frame::GetBuild()
 {
 	return build;
 }

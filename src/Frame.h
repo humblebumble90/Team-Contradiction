@@ -9,7 +9,7 @@ public:
 	friend class ShipComponent;
 	friend class Weapon;
 	Frame();
-	Frame(int size, std::vector<std::vector<ShipComponent>> buildLayout);
+	Frame(int size, std::vector<ShipComponent> buildLayout, int width, int height);
 	~Frame();
 	void Initialize(Enemy* parent);
 	void Initialize(PlayerShip* parent);
@@ -19,10 +19,10 @@ public:
 	std::vector<Weapon> GetWeapons();
 	Weapon GetWeapon(int i);
 	int getGridSize(), GridWidth(), GridHeight();
-	std::vector<std::vector<ShipComponent>> GetBuild();
+	std::vector<ShipComponent> GetBuild();
 private:
-	int gridSize;
-	std::vector<std::vector<ShipComponent>> build;
+	int gridSize, gridWidth, gridHeight;
+	std::vector<ShipComponent> build = std::vector<ShipComponent>();
 	Enemy* eParent;
 	PlayerShip* pParent;
 	std::string parentType;
