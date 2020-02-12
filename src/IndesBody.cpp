@@ -5,14 +5,14 @@ IndesBody::IndesBody(bool projectile)
 	isProjectile = projectile;
 }
 IndesBody::~IndesBody(){}
-void IndesBody::Damage(ShipComponent* collision)
+void IndesBody::Damage(ShipComponent collision)
 {
 	if (isProjectile)
 	{
 		try
 		{
-			IndesBody* indesCol = (IndesBody*) collision;
-			if (indesCol->isProjectile)
+			IndesBody indesCol = (IndesBody) &collision;
+			if (indesCol.isProjectile)
 			{
 				return;
 			}

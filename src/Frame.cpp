@@ -48,9 +48,7 @@ std::vector<Weapon> Frame::GetWeapons()
 		for (ShipComponent s : sc)
 		{
 			if (typeid(s) == typeid(Weapon)) {
-				ShipComponent* a = &s;
-				Weapon* w = (Weapon*)a;
-				Weapons.push_back(*w);
+				Weapons.push_back(*(Weapon*)& s);
 			}
 		}
 	}
