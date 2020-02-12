@@ -64,7 +64,7 @@ void LevelScene::GameOver()
 
 glm::vec2 LevelScene::getPlayerPosition()
 {
-	return player->getPosition();
+	return ((GameObject*)player)->getPosition();
 }
 
 void LevelScene::spawnEnemy(AI enemyAI)

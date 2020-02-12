@@ -2,6 +2,7 @@
 #include "PlayerShip.h"
 #include "Game.h"
 #include <iostream>
+#include "Frame.h"
 
 PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform)
 {

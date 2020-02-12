@@ -1,5 +1,7 @@
 #include "Enemy.h"
 #include "Game.h"
+#include "AI.h"
+#include "Frame.h"
 
 Enemy::Enemy(){/*DANGER! Do not use!*/ }
 

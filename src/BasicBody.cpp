@@ -1,4 +1,6 @@
 #include "BasicBody.h"
+#include "Enemy.h"
+#include "PlayerShip.h"
 BasicBody::BasicBody(){}
 BasicBody::~BasicBody(){}
 

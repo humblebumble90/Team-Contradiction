@@ -1,10 +1,12 @@
 #pragma once
 #ifndef __FRAME__
 #define __FRAME__
-#include "PlayerShip.h"
-#include "Enemy.h"
+#include "DisplayObject.h"
+#include "Weapon.h"
 class Frame {
 public:
+	friend class Enemy;
+	friend class PlayerShip;
 	Frame();
 	Frame(int size, std::vector<std::vector<ShipComponent>> buildLayout);
 	~Frame();

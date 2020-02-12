@@ -2,7 +2,6 @@
 #ifndef __LEVELSCENE__
 #define __LEVELSCENE__
 
-
 #include "PlayerShip.h"
 #include "WeaponMissile.h"
 
