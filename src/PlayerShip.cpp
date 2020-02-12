@@ -3,6 +3,7 @@
 #include "Game.h"
 #include <iostream>
 #include "Frame.h"
+#include "LevelScene.h"
 
 PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform)
 {

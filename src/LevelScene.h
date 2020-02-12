@@ -4,6 +4,7 @@
 
 #include "PlayerShip.h"
 #include "WeaponMissile.h"
+#include "AI.h"
 
 class LevelScene : public Scene
 {
