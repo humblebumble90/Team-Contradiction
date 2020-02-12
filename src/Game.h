@@ -29,7 +29,7 @@
 class Game
 {
 public:
-	
+	friend class AI;
 
 	static Game* Instance()
 	{

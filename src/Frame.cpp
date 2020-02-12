@@ -1,4 +1,5 @@
 #include "Frame.h"
+#include "Weapon.h"
 Frame::Frame(){/*DANGER! Do not use!*/ }
 Frame::Frame(int size, std::vector<std::vector<ShipComponent>> buildLayout)
 {

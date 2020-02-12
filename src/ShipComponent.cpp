@@ -1,4 +1,6 @@
 #include "ShipComponent.h"
+#include "Enemy.h"
+#include "PlayerShip.h"
 ShipComponent::ShipComponent()
 {
 }

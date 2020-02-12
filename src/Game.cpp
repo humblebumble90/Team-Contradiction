@@ -6,6 +6,7 @@
 #include <iomanip>
 #include "PlayerShip.h"
 #include "LevelScene.h"
+#include "AI.h"
 
 
 Game* Game::s_pInstance = 0;

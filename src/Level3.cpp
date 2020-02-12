@@ -34,8 +34,8 @@ void Level3::draw()
 	for (WeaponMissile* wm : playerWeapons) {
 		wm->draw();
 	}
-	for (AI* a : enemies) {
-		a->GetParent().draw();
+	for (AI* ai : enemies) {
+		ai->GetParent().draw();
 	}
 }
 

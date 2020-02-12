@@ -6,7 +6,16 @@
 
 class Level3 : public LevelScene
 {
-public:
+public:/*
+	friend class RamAI;
+	friend class BlasterSkiffAI;
+	friend class FirebrandAI;
+	friend class CannonBargeAI;
+	friend class MissileBargeAI;
+	friend class FireBargeAI;
+	friend class CannonlordAI;
+	friend class DeathcageAI;
+	friend class AI;*/
 	Level3(PlayerShip* thePlayer);
 	~Level3();
 

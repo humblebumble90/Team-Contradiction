@@ -2,12 +2,12 @@
 #ifndef __ENEMY__
 #define __ENEMY__
 #include "GameObject.h"
+#include "Frame.h"
 //To instantiate an enemy, instantiate that enemy's AI and give it coordinates. The AI's constructor will start a chain reaction that spawns said enemy
 class Enemy : public GameObject
 {
 public:
 	friend class AI;
-	friend class Frame;
 	Enemy();
 	Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform);
 	~Enemy();

@@ -3,13 +3,14 @@
 #define __PlayerShip__
 
 #include "TextureManager.h"
-#include "LevelScene.h"
 #include <iostream>
 #include <experimental/coroutine>
+#include "GameObject.h"
 
 class PlayerShip : public GameObject {
 public:
 	friend class Frame;
+	friend class LevelScene;
 	PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform);
 	~PlayerShip();
 

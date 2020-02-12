@@ -2,11 +2,12 @@
 #ifndef __FRAME__
 #define __FRAME__
 #include "DisplayObject.h"
-#include "Weapon.h"
 class Frame {
 public:
 	friend class Enemy;
 	friend class PlayerShip;
+	friend class ShipComponent;
+	friend class Weapon;
 	Frame();
 	Frame(int size, std::vector<std::vector<ShipComponent>> buildLayout);
 	~Frame();
