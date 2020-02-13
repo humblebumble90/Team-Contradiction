@@ -26,6 +26,10 @@
 #include "PlayScene.h"
 #include "EndScene.h"
 
+//Game Objects
+#include "PlayerShip.h"
+#include "Enemy.h"
+
 class Game
 {
 public:

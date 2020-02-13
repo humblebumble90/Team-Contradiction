@@ -1,9 +1,5 @@
 #include "ShipComponent.h"
-#include "Enemy.h"
-#include "PlayerShip.h"
-ShipComponent::ShipComponent()
-{
-}
+ShipComponent::ShipComponent() = default;
 
 ShipComponent::~ShipComponent()
 {
@@ -11,22 +7,27 @@ ShipComponent::~ShipComponent()
 
 glm::vec2 ShipComponent::getPosition()
 {
-	glm::vec2 parentPosition = parent.GetParentType() == "Player" ? parent.GetPParent()->getPosition() : parent.GetEParent()->getPosition();
+	glm::vec2 parentPosition = parent->getParent()->getPosition();
 	return {
-		parentPosition.x + ((iD.x - (parent.GridWidth() - 1) / 2) * parent.getGridSize()),
-		parentPosition.y + ((iD.y - (parent.GridHeight() - 1) / 2) * parent.getGridSize())
+		parentPosition.x + ((iD.x - (parent->GridWidth() - 1) / 2) * parent->getGridSize()),
+		parentPosition.y + ((iD.y - (parent->GridHeight() - 1) / 2) * parent->getGridSize())
 	};
 }
 
-void ShipComponent::setID(int x, int y)
+void ShipComponent::setID(glm::vec2 id)
 {
-	if (iD == glm::vec2{ -1, -1 })
+	if (iD.x == -1 && iD.y == -1)
 	{
-		iD = { x, y };
+		iD = id;
 	}
 }
 
-Frame ShipComponent::getParent()
+Frame* ShipComponent::getParent()
 {
 	return parent;
+}
+
+void ShipComponent::setParent(Frame* frame)
+{
+	parent = frame;
 }

@@ -5,18 +5,19 @@
 
 MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 {
+	std::vector<ShipComponent> build =
+	#pragma region Frame Construction
+	{
+		Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank(),
+		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
+		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
+		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
+		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
+		Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank()
+	};
+	#pragma endregion
 	parent = Enemy(Frame(50, //Enemy is 300px by 300px
-#pragma region Frame Construction
-		{
-			Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank(),
-			MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-			MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-			MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-			MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-			Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank()
-		},
-#pragma endregion
-	6, 6), 20, //Will tweak if it proves to be too much or too little
+	build, 6, 6), 20, //Will tweak if it proves to be too much or too little
 		this, transform);
 	speed.y = -0.1;
 }

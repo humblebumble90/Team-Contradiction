@@ -1,45 +1,27 @@
 #include "Frame.h"
 #include "Weapon.h"
-Frame::Frame(){/*DANGER! Do not use!*/ }
-Frame::Frame(int size, std::vector<ShipComponent> buildLayout, int width, int height)
+Frame::Frame() = default;//DANGER! Do not use!
+
+Frame::Frame(int size, std::vector<ShipComponent>& buildLayout, int width, int height) : gridWidth(width), gridHeight(height), gridSize(size), build(buildLayout)
 {
-	gridWidth = width;
-	gridHeight = height;
-	gridSize = size;
-	build = buildLayout;
 	for (int z = 0; z < gridWidth; ++z) {
-		for (int y = 0; y < build.size(); y+=gridWidth) {
-			build[y].setID(z, (y-z)/gridWidth);
+		for (int y = z; y < build.size(); y += gridWidth) {
+			build[y].setID(glm::vec2(z, (y - z) / gridWidth));
+			build[y].setParent(this);
 		}
 	}
 }
+
 Frame::~Frame() {}
 
-void Frame::Initialize(Enemy* parent)
+void Frame::Initialize(DisplayObject* Parent)
 {
-	eParent = parent;
-	parentType = "Enemy";
+	parent = Parent;
 }
 
-void Frame::Initialize(PlayerShip* parent)
+DisplayObject* Frame::getParent()
 {
-	pParent = parent;
-	parentType = "Player";
-}
-
-std::string Frame::GetParentType()
-{
-	return parentType;
-}
-
-Enemy* Frame::GetEParent()
-{
-	return eParent;
-}
-
-PlayerShip* Frame::GetPParent()
-{
-	return pParent;
+	return parent;
 }
 
 std::vector<Weapon> Frame::GetWeapons()

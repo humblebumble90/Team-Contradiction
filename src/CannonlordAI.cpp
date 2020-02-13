@@ -5,18 +5,19 @@
 
 CannonlordAI::CannonlordAI(glm::vec2 transform)
 {
-	parent = Enemy(Frame(50, //Enemy is 450px by 300px
+	std::vector<ShipComponent> build =
 	#pragma region Frame Construction
-		{
-			Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank(),
-			Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
-			BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
-			BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
-			Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
-			Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank()
-		},
-#pragma endregion
-	9, 6), 50, //Will tweak if 50 health proves to be too much or too little
+	{
+		Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank(),
+		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
+		BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
+		BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
+		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
+		Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank()
+	};
+	#pragma endregion
+	parent = Enemy(Frame(50, //Enemy is 450px by 300px
+	build, 9, 6), 50, //Will tweak if 50 health proves to be too much or too little
 		this, transform);
 	speed.x = -baseSpeed;
 }

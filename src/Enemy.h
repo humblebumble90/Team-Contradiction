@@ -1,17 +1,16 @@
 #pragma once
 #ifndef __ENEMY__
 #define __ENEMY__
-#include "GameObject.h"
 #include "Frame.h"
 //To instantiate an enemy, instantiate that enemy's AI and give it coordinates. The AI's constructor will start a chain reaction that spawns said enemy
-class Enemy : public GameObject
+class Enemy : public DisplayObject
 {
 public:
 	friend class AI;
 	Enemy();
 	Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform);
 	~Enemy();
-	void Damage(int i);
+	void Damage(int i) override;
 	Frame GetFrame();
 #pragma region From GameObject
 	void draw() override;

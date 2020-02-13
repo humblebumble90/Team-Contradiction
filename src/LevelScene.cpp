@@ -51,7 +51,7 @@ void LevelScene::update()
 void LevelScene::DestroyEnemy(Enemy* enemy)
 {
 	for (int i = 0; i < enemies.size(); ++i) {
-		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent().GetFrame().GetEParent() == enemy) {
+		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent().GetFrame().getParent() == enemy) {
 			enemies.erase(enemies.begin()+(i-1));
 			break;
 		}

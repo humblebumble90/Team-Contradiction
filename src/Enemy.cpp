@@ -20,8 +20,7 @@ Enemy::Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTra
 
 Enemy::~Enemy()
 {
-	TheTextureManager::Instance()->draw("enemy", getPosition().x, getPosition().y, frame.getGridSize()*frame.GridWidth(), frame.getGridSize() * frame.GridHeight(),
-		TheGame::Instance()->getRenderer());
+
 }
 
 void Enemy::Damage(int i)
@@ -45,6 +44,8 @@ void Enemy::Move()
 
 void Enemy::draw()
 {
+	TheTextureManager::Instance()->draw("enemy", getPosition().x, getPosition().y, frame.getGridSize() * frame.GridWidth(), frame.getGridSize() * frame.GridHeight(),
+		TheGame::Instance()->getRenderer());
 }
 
 void Enemy::update()

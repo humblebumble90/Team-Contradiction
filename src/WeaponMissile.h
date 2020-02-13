@@ -2,7 +2,6 @@
 #ifndef __WEAPONMISSILE__
 #define __WEAPONMISSILE__
 
-#include "DisplayObject.h"
 #include "Weapon.h"
 #include "TextureManager.h"
 #include "SoundManager.h"

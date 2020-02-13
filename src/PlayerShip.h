@@ -5,10 +5,9 @@
 #include "TextureManager.h"
 #include <iostream>
 #include <experimental/coroutine>
-#include "GameObject.h"
 #include "Frame.h"
 
-class PlayerShip : public GameObject {
+class PlayerShip : public DisplayObject {
 public:
 	friend class LevelScene;
 	PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform);
