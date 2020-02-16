@@ -2,7 +2,6 @@
 #include <ctime>
 #include "GLM/gtx/string_cast.hpp"
 #include <algorithm>
-#include "TileComparators.h"
 #include <iomanip>
 #include "PlayerShip.h"
 #include "LevelScene.h"

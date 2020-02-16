@@ -1,17 +1,21 @@
 #include "Player.h"
 #include "Game.h"
+#include "Move.h"
 
 Player::Player()
 {
-	TheTextureManager::Instance()->load("../Assets/textures/plane.png", "player", TheGame::Instance()->getRenderer());
-	setPosition(glm::vec2(0, 430.0f));
+	TheTextureManager::Instance()->load("../Assets/textures/plane.png",
+		"player", TheGame::Instance()->getRenderer());
 
+	// measure size by querying the texture
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("player");
 	setWidth(size.x);
 	setHeight(size.y);
+
+	setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5f, 435.0f));
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
-	
+	setVelocity(glm::vec2(0.0f, 0.0f));
 }
 
 Player::~Player()
@@ -20,62 +24,48 @@ Player::~Player()
 
 void Player::draw()
 {
-	TheTextureManager::Instance()->draw("player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(), true);
+	int xComponent = getPosition().x;
+	int yComponent = getPosition().y;
+
+	TheTextureManager::Instance()->draw("player", xComponent, yComponent,
+		TheGame::Instance()->getRenderer(), 0, 255, true);
 }
 
 void Player::update()
 {
-	Move();
+	
 }
 
 void Player::clean()
 {
 }
 
-void Player::Move()
+bool Player::getIsMoving()
 {
-	SDL_Event e;
-	if (SDL_PollEvent(&e))
+	return m_isMoving;
+}
+
+void Player::move(Move newMove)
+{
+	switch (newMove)
 	{
-		if (e.type == SDL_KEYDOWN)
-		{
-			switch (e.key.keysym.sym)
-			{
-			case SDLK_w:
-				setVelocity(glm::vec2(0, -5.0f));
-				setPosition(getPosition() + getVelocity());
-				break;
-			case SDLK_UP:
-				setVelocity(glm::vec2(0, -5.0f));
-				setPosition(getPosition() + getVelocity());
-				break;
-			case SDLK_s:
-				setVelocity(glm::vec2(0, 5.0f));
-				setPosition(getPosition() + getVelocity());
-				break;
-			case SDLK_DOWN:
-				setVelocity(glm::vec2(0, 5.0f));
-				setPosition(getPosition() + getVelocity());
-				break;
-			case SDLK_a:
-				setVelocity(glm::vec2(5.0f,0));
-				setPosition(getPosition() + getVelocity());
-				break;
-			case SDLK_LEFT:
-				setVelocity(glm::vec2(5.0f, 0));
-				setPosition(getPosition() + getVelocity());
-				break;
-			case SDLK_d:
-				setVelocity(glm::vec2(-5.0f, 0));
-				setPosition(getPosition() + getVelocity());
-				break;
-			case SDLK_RIGHT:
-				setVelocity(glm::vec2(-5.0f, 0));
-				setPosition(getPosition() + getVelocity());
-				break;
-			default:
-				break;
-			}
-		}
+	case Move::RIGHT:
+		setVelocity(glm::vec2(1.0f * m_maxSpeed, 0.0f));
+		break;
+	case Move::LEFT:
+		setVelocity(glm::vec2(-1.0f * m_maxSpeed, 0.0f));
+		break;
+	case Move::UP:
+		break;
 	}
+}
+
+void Player::setIsMoving(bool newMove)
+{
+	m_isMoving;
+}
+
+void Player::m_checkBounds()
+{
+	
 }

@@ -4,25 +4,23 @@
 
 #include "GameObject.h"
 #include "TextureManager.h"
+#include "Move.h"
 
 class Player : public GameObject {
 public:
 	Player();
 	~Player();
-
-	// Draw the object
 	void draw() override;
-
-	// Update the object
 	void update() override;
-
-	// remove anything that needs to be deleted
 	void clean() override;
-
-	//Movement
-	void Move() override;
+	bool getIsMoving();
+	void move(Move newMove);
+	void setIsMoving(bool newMove);
 private:
-
+	bool m_isMoving;
+	float m_maxSpeed;
+	void  m_checkBounds();
+	
 };
 
 
