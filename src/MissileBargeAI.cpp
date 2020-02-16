@@ -19,7 +19,7 @@ MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 	parent = Enemy(Frame(50, //Enemy is 300px by 300px
 	build, 6, 6), 20, //Will tweak if it proves to be too much or too little
 		this, transform);
-	speed.y = -0.1;
+	speed.y = -0.1f;
 }
 
 MissileBargeAI::~MissileBargeAI()

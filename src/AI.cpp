@@ -1,4 +1,5 @@
 #include "AI.h"
+#include "ShipComponent.h"
 
 AI::AI(){/*DANGER! Do not use!*/ }
 
