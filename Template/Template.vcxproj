@@ -160,6 +160,7 @@
     <ClCompile Include="..\src\Cannon.cpp" />
     <ClCompile Include="..\src\Flamethrower.cpp" />
     <ClCompile Include="..\src\Level1.cpp" />
+    <ClCompile Include="..\src\Map.cpp" />
     <ClCompile Include="..\src\MissileLauncher.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
     <ClCompile Include="..\src\PlayerShip.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="..\src\Flamethrower.h" />
     <ClInclude Include="..\src\GameObjectType.h" />
     <ClInclude Include="..\src\Level1.h" />
+    <ClInclude Include="..\src\Map.h" />
     <ClInclude Include="..\src\MissileLauncher.h" />
     <ClInclude Include="..\src\Move.h" />
     <ClInclude Include="..\src\Player.h" />

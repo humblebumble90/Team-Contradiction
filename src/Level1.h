@@ -1,19 +1,22 @@
 #pragma once
-#ifndef __LEVEL1__
-#define __LEVEL1__
+#ifndef  __LEVEL1__
+#define  __LEVEL1__
+#include "LevelScene.h"
+#include "Map.h"
 
-#include "Scene.h"
-
-class Level1Scene : public Scene
+class Level1 : public LevelScene
 {
 public:
-	Level1Scene();
-	~Level1Scene();
-	
-	virtual void draw() override;
-	virtual void update() override;
-	virtual void clean() override;
-	virtual void handleEvents() override;
-	virtual void start() override;
+
+	Level1();
+	~Level1();
+
+	void draw() override;
+	void clean() override;
+	void handleEvents() override;
+	void start() override;
+	void update() override;
+private:
+	Map* m_pMap;
 };
-#endif 
+#endif /* defined __LEVEL1__ */

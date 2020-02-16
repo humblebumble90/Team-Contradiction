@@ -4,8 +4,11 @@
 #include <iostream>
 #include "Frame.h"
 #include "LevelScene.h"
+#include "BasicBody.h"
+#include "MissileLauncher.h"
+#include "Blank.h"
 
-PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform)
+PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/player.png", "player", TheGame::Instance()->getRenderer());
 	setPosition(targetTransform);
@@ -14,7 +17,17 @@ PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm
 	setHeight(size.y);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
-	frame = playerFrame;
+
+	std::vector<ShipComponent> build =
+#pragma region Frame Construction
+	{
+		BasicBody(),BasicBody(),MissileLauncher(),Blank(),
+		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
+		BasicBody(),BasicBody(),MissileLauncher(),Blank()
+	};
+#pragma endregion
+	frame = Frame(5, //Enemy is 300px by 300px
+		build, 15, 10); //Will tweak if it proves to be too much or too little
 	frame.Initialize(this);
 }
 PlayerShip::~PlayerShip()
@@ -96,6 +109,5 @@ void PlayerShip::clean()
 {
 	Damage(1);
 }
-
 
 

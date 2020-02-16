@@ -10,7 +10,7 @@
 class PlayerShip : public DisplayObject {
 public:
 	friend class LevelScene;
-	PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform);
+	PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform);
 	~PlayerShip();
 
 	void Damage(int i);
