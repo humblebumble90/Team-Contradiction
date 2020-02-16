@@ -20,7 +20,6 @@ public:
 
 private:
 	Label* m_pStartLabel;
-	Label* m_pInstructionsLabel;
 };
 
 #endif /* defined (__START_SCENE__) */
