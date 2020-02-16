@@ -47,10 +47,7 @@ void StartScene::handleEvents()
 				TheGame::Instance()->quit();
 				break;
 			case SDLK_1:
-				TheGame::Instance()->changeSceneState(SceneState::PLAY_SCENE);
-				break;
-			case SDLK_2:
-				TheGame::Instance()->changeSceneState(SceneState::END_SCENE);
+				TheGame::Instance()->changeSceneState(SceneState::LEVEL1SCENE);
 				break;
 			}
 			break;
@@ -67,4 +64,5 @@ void StartScene::start()
 	m_pStartLabel = new Label("START SCENE", "Dock51", 80, blue, glm::vec2(400.0f, 40.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
+
 }
