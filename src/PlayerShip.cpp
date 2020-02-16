@@ -11,6 +11,7 @@
 PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/player.png", "player", TheGame::Instance()->getRenderer());
+	std::cout << targetTransform.x << std::endl;
 	setPosition(targetTransform);
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("player");
 	setWidth(size.x);
@@ -29,6 +30,7 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 	frame = Frame(5, //Enemy is 300px by 300px
 		build, 15, 10); //Will tweak if it proves to be too much or too little
 	frame.Initialize(this);
+	std::cout << "PlayerShip is instantiated!" << std::endl;
 }
 PlayerShip::~PlayerShip()
 {
@@ -94,7 +96,7 @@ glm::vec2 PlayerShip::getPlayerMinSpeedY()
 void PlayerShip::draw()
 {
 	TheTextureManager::Instance()->draw
-	("player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(), true);
+	("player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(),0,255, true);
 }
 
 void PlayerShip::update()
@@ -103,6 +105,7 @@ void PlayerShip::update()
 	{
 		inv = false;
 	}
+	
 }
 
 void PlayerShip::clean()

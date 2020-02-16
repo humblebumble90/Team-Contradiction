@@ -82,7 +82,6 @@ private:
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-	PlayerShip* m_pPlayerShip;
 
 	int m_currentFrame;
 

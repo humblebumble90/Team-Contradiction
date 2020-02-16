@@ -206,7 +206,7 @@ void Game::clean()
 }
 PlayerShip * Game::getPlayerShip()
 {
-	return m_pPlayerShip;
+	return ((LevelScene*)m_currentScene)->getPlayerShip();
 }
 
 void Game::handleEvents()
@@ -228,16 +228,16 @@ void Game::handleEvents()
 					m_bRunning = false;
 					break;
 				case SDLK_w:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedY() + m_pPlayerShip->getPosition());
+					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedY() + getPlayerShip()->getPosition());
 					break;
 				case SDLK_s:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMinSpeedY() + m_pPlayerShip->getPosition());
+					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMinSpeedY() + getPlayerShip()->getPosition());
 					break;
 				case SDLK_a:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerminSpeedX() + m_pPlayerShip->getPosition());
+					getPlayerShip()->setPosition(getPlayerShip()->getPlayerminSpeedX() + getPlayerShip()->getPosition());
 					break;
 				case SDLK_d:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedX() + m_pPlayerShip->getPosition());
+					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedX() + getPlayerShip()->getPosition());
 					break;
 			}
 			break;

@@ -102,8 +102,8 @@ Level1::~Level1()
 
 void Level1::draw()
 {
+	//m_pMap->draw();
 	player->draw();
-	m_pMap->draw();
 }
 
 void Level1::clean()
@@ -116,9 +116,4 @@ void Level1::handleEvents()
 
 void Level1::start()
 {
-}
-
-void Level1::update()
-{
-	m_pMap->update();
 }
