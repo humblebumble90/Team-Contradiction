@@ -1,3 +1,1 @@
-# COMP397-W2020-Lesson4A
-
-## Demo for Web Game Programming for Game Students @ Centennial
+# GAME3001 - S2019 - Lesson 6 - Repo for Pathfinding

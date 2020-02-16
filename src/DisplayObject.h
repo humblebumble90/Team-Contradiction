@@ -21,6 +21,8 @@ public:
 	Scene* getParent();
 	void setParent(Scene* parent);
 
+	virtual void Damage(int i);
+
 private:
 	Scene* m_pParentScene;
 };

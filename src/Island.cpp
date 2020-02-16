@@ -6,18 +6,16 @@ Island::Island()
 	TheTextureManager::Instance()->load("../Assets/textures/island.png",
 		"island", TheGame::Instance()->getRenderer());
 
-	// measure size by querying the texture
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("island");
 	setWidth(size.x);
 	setHeight(size.y);
-
-	setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5f, 435.0f));
+	setVelocity(glm::vec2(0, 5));
+	_reset();
 	setIsColliding(false);
 	setType(GameObjectType::ISLAND);
-	//setVelocity(glm::vec2(0.0f, 0.0f));
 
-	TheSoundManager::Instance()->load("../Assets/audio/yay.ogg", "yay", SOUND_SFX);
-
+	TheSoundManager::Instance()->load("../Assets/audio/yay.ogg", 
+		"yay", sound_type::SOUND_SFX);
 }
 
 Island::~Island()
@@ -28,15 +26,38 @@ void Island::draw()
 {
 	int xComponent = getPosition().x;
 	int yComponent = getPosition().y;
-
 	TheTextureManager::Instance()->draw("island", xComponent, yComponent,
-		TheGame::Instance()->getRenderer(), 0, 255, true);
+		TheGame::Instance()->getRenderer(), true);
 }
 
 void Island::update()
 {
+	_move();
+	_checkBounds();
 }
 
 void Island::clean()
 {
+}
+
+void Island::_move()
+{
+	glm::vec2 newPosition = getPosition() + getVelocity();
+	setPosition(newPosition);
+}
+
+void Island::_checkBounds()
+{
+	if (getPosition().y > 480 + getHeight()) {
+		_reset();
+	}
+}
+
+void Island::_reset()
+{
+	setIsColliding(false);
+	int halfWidth = getWidth() * 0.5;
+	int xComponent = rand() % (640 - getWidth()) + halfWidth + 1;
+	int yComponent = -getHeight();
+	setPosition(glm::vec2(xComponent, yComponent));
 }

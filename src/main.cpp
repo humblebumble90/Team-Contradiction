@@ -23,7 +23,6 @@
 
 #include "TextureManager.h"
 #include "Game.h"
-#include "Config.h"
 
 const int FPS = 60;
 const int DELAY_TIME = 1000.0f / FPS;
@@ -39,19 +38,16 @@ int main(int argc, char * args[])
 	freopen("CON", "w", stdout);
 
 
-	TheGame::Instance()->init("Mail Pilot", 100, 100, Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT, false);
+	TheGame::Instance()->init("Hello World", 100, 100, 800, 600, false);
 
-	// The main Game Loop
 	while (TheGame::Instance()->running())
 	{
 		frameStart = SDL_GetTicks();
 
-		// LifeCycle functions of the Game Class
 		TheGame::Instance()->handleEvents();
 		TheGame::Instance()->update();
 		TheGame::Instance()->render();
 
-		// Frame Limiter
 		frameTime = SDL_GetTicks() - frameStart;
 		if (frameTime< DELAY_TIME)
 		{

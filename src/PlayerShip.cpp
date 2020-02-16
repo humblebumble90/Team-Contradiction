@@ -1,81 +1,101 @@
-#include "Game.h"
+#pragma once
 #include "PlayerShip.h"
+#include "Game.h"
+#include <iostream>
+#include "Frame.h"
+#include "LevelScene.h"
 
-PlayerShip::PlayerShip()
+PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform)
 {
-	TheTextureManager::Instance()->load("../Assets/textures/plane.png",
-		"player", TheGame::Instance()->getRenderer());
-
-	// measure size by querying the texture
+	TheTextureManager::Instance()->load("../Assets/textures/player.png", "player", TheGame::Instance()->getRenderer());
+	setPosition(targetTransform);
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("player");
 	setWidth(size.x);
 	setHeight(size.y);
-
-	setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5f, 435.0f));
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
-	setVelocity(glm::vec2(0.0f, 0.0f));
-	m_speedMultiplier = 2;
+	frame = playerFrame;
+	frame.Initialize(this);
 }
-
 PlayerShip::~PlayerShip()
 {
+	;
+}
+
+void PlayerShip::Damage(int i)
+{
+	if (playerHealth >= 1)
+	{
+		if (playerLives <= 0)
+		{
+			m_pLevelScene->GameOver();
+		}
+		else
+
+		{
+			this->playerHealth -= i;
+			playerLives -= 1;
+			playerHealth += 1;
+			invincible();
+		}
+	}
+}
+bool PlayerShip::getInvincibility()
+{
+	return inv;
+}
+void PlayerShip::invincible()
+{
+	this->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.2f, Config::SCREEN_HEIGHT * 0.5f));
+	inv = true;
+	endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
+
+}
+
+
+Frame PlayerShip::GetFrame()
+{
+	return frame;
+}
+
+glm::vec2 PlayerShip::getPlayerMaxSpeedX()
+{
+	return maxSpeedX = glm::vec2(2.0f, 0);
+}
+
+glm::vec2 PlayerShip::getPlayerminSpeedX()
+{
+	return minSpeedX = glm::vec2(-2.0f, 0);
+}
+
+glm::vec2 PlayerShip::getPlayerMaxSpeedY()
+{
+	return maxSpeedY = glm::vec2(0, -2.0f);
+}
+
+glm::vec2 PlayerShip::getPlayerMinSpeedY()
+{
+	return minSpeedY = glm::vec2(0, 2.0f);
 }
 
 void PlayerShip::draw()
 {
-	int xComponent = getPosition().x;
-	int yComponent = getPosition().y;
-
-	TheTextureManager::Instance()->draw("player", xComponent, yComponent,
-		TheGame::Instance()->getRenderer(), 0, 255, true);
+	TheTextureManager::Instance()->draw
+	("player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(), true);
 }
 
 void PlayerShip::update()
 {
-	checkBounds();
+	if (inv == true && endInvincibleTime <= SDL_GetTicks())
+	{
+		inv = false;
+	}
 }
 
 void PlayerShip::clean()
 {
+	Damage(1);
 }
 
-void PlayerShip::move(Move newMove)
-{
-	auto position = getPosition();
-	switch (newMove)
-	{
-	case RIGHT:
-		//adds an x position
-		setPosition(glm::vec2(position.x + m_speedMultiplier, position.y));
-		std::cout << "Pressed RIGHT" << std::endl;
-		break;
-	case LEFT:
-		setPosition(glm::vec2(position.x - m_speedMultiplier, position.y));
-		std::cout << "Pressed LEFT" << std::endl;
-		break;
-	case UP:
-		setPosition(glm::vec2(position.x, position.y - m_speedMultiplier));
-		std::cout << "Pressed UP" << std::endl;
-		break;
-	case DOWN:
-		setPosition(glm::vec2(position.x, position.y + m_speedMultiplier));
-		std::cout << "Pressed DOWN" << std::endl;
-		break;
-	}
-}
 
-void PlayerShip::checkBounds()
-{
-	// check right bounds
-	if (getPosition().x >= Config::SCREEN_WIDTH - getWidth() * 0.5f)
-	{
-		setPosition(glm::vec2(Config::SCREEN_WIDTH - getWidth() * 0.5f, getPosition().y));
-	}
 
-	// check left bounds
-	if (getPosition().x <= getWidth() * 0.5f)
-	{
-		setPosition(glm::vec2(getWidth() * 0.5f, getPosition().y));
-	}
-}
