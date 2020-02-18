@@ -18,7 +18,7 @@ FireBargeAI::FireBargeAI(glm::vec2 transform)
 	#pragma endregion
 	parent = new Enemy(new Frame(50, //Enemy is 300px by 300px
 	build, 6, 6), 20, //Will tweak if it proves to be too much or too little
-		this, transform);
+		this, transform, "FireBarge");
 	speed.y = -baseSpeed; //Tweak this number later
 
 	//Fire Flamethrowers

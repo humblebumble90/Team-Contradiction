@@ -30,7 +30,7 @@ BlasterSkiffAI::BlasterSkiffAI(glm::vec2 transform)
 	#pragma endregion
 	parent = new Enemy(new Frame(50, //Enemy is 800px by 400px
 	build, 8, 16), 50, //Will tweak if 50 health proves to be too much or too little
-	this, transform);
+	this, transform, "BlasterSkiff");
 	speed.y = 0.05f; //Tweak this number later
 }
 

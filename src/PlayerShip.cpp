@@ -75,22 +75,22 @@ Frame PlayerShip::GetFrame()
 
 glm::vec2 PlayerShip::getPlayerMaxSpeedX()
 {
-	return maxSpeedX = glm::vec2(2.0f, 0);
+	return maxSpeedX = glm::vec2(5.0f, 0);
 }
 
 glm::vec2 PlayerShip::getPlayerminSpeedX()
 {
-	return minSpeedX = glm::vec2(-2.0f, 0);
+	return minSpeedX = glm::vec2(-5.0f, 0);
 }
 
 glm::vec2 PlayerShip::getPlayerMaxSpeedY()
 {
-	return maxSpeedY = glm::vec2(0, -2.0f);
+	return maxSpeedY = glm::vec2(0, -5.0f);
 }
 
 glm::vec2 PlayerShip::getPlayerMinSpeedY()
 {
-	return minSpeedY = glm::vec2(0, 2.0f);
+	return minSpeedY = glm::vec2(0, 5.0f);
 }
 
 void PlayerShip::draw()

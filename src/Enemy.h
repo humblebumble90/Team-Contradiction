@@ -8,7 +8,7 @@ class Enemy : public DisplayObject
 public:
 	friend class AI;
 	Enemy();
-	Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform);
+	Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform, std::string enemyName);
 	~Enemy();
 	void Damage(int i) override;
 	Frame* GetFrame();

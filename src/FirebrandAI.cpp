@@ -28,7 +28,7 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 	#pragma endregion
 	parent = new Enemy(new Frame(10, //Enemy is 400px by 600px
 	build, 8, 12), 50, //Will tweak if 50 health proves to be too much or too little
-		this, transform);
+		this, transform, "Firebrand");
 	speed.y = baseSpeed; //Tweak this number later
 
 	//Fire Flamethrowers

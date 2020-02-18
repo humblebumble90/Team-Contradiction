@@ -12,7 +12,7 @@ ZigzagAI::ZigzagAI(glm::vec2 transform)
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(16.666667, //Enemy is 50px by 50px
-	build,3,3), 1, this, transform);
+	build,3,3), 1, this, transform, "Zigzag");
 	speed.x = speed.y = -0.075f; //Tweak this number later
 }
 

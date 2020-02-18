@@ -18,7 +18,7 @@ CannonlordAI::CannonlordAI(glm::vec2 transform)
 	#pragma endregion
 	parent = new Enemy(new Frame(50, //Enemy is 450px by 300px
 	build, 9, 6), 50, //Will tweak if 50 health proves to be too much or too little
-		this, transform);
+		this, transform, "Cannonlord");
 	speed.x = -baseSpeed;
 }
 
