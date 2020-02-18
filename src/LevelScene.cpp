@@ -17,8 +17,15 @@ void LevelScene::update()
 {
 	
 	++time;
+	spawnedEnemy = false;
 	player->update();
 	m_pMap->update();
+	for (AI* a : enemies) {
+		a->GetParent()->update();
+	}
+	for (DisplayObject* d : playerWeapons) {
+		d->update();
+	}
 	#pragma region Player Collision and invinciblity
 	if (!(player->getInvincibility()))
 	{
@@ -61,13 +68,12 @@ void LevelScene::update()
 	#pragma region Spawn Enemies
 	if (time == ramSpawnTimer[ramIteration])
 	{
-		std::cout << "Danger! Ram!" << std::endl;
-		enemies.push_back(new RamAI(ramSpawnLocation[ramIteration]));
+		spawnEnemy(new RamAI(ramSpawnLocation[ramIteration]));
 		++ramIteration;
 	}
 	if (time == zigzagSpawnTimer[zigzagIteration])
 	{
-		enemies.push_back(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
+		spawnEnemy(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
 		++zigzagIteration;
 	}
 	#pragma endregion
@@ -109,7 +115,10 @@ glm::vec2 LevelScene::getPlayerPosition()
 	return ((GameObject*)player)->getPosition();
 }
 
-void LevelScene::spawnEnemy(AI enemyAI)
+void LevelScene::spawnEnemy(AI* enemyAI)
 {
-	enemies.push_back(&enemyAI);
+	if (spawnedEnemy == false) {
+		spawnedEnemy = true;
+		enemies.push_back(enemyAI);
+	}
 }

@@ -7,7 +7,6 @@ PlayerLockAI::PlayerLockAI(Enemy* enemyParent, float bSpeed)
 {
 	parent = enemyParent;
 	baseSpeed = bSpeed;
-
 	//Get target
 	float tX = TheGame::Instance()->getPlayerPosition().x;
 	float tY = TheGame::Instance()->getPlayerPosition().y;

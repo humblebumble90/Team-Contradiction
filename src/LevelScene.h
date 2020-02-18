@@ -17,10 +17,10 @@ public:
 	void DestroyEnemy(Enemy* enemy);
 	void GameOver();
 	glm::vec2 getPlayerPosition();
-	void spawnEnemy(AI enemyAI);
+	void spawnEnemy(AI* enemyAI);
 	PlayerShip* getPlayerShip();
 protected:
-	bool scrolling = true;
+	bool scrolling = true, spawnedEnemy=false;
 	#pragma region Game Objects
 	std::vector<AI*> enemies;
 	PlayerShip* player;

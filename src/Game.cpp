@@ -169,7 +169,7 @@ glm::vec2 Game::getPlayerPosition()
 	return ((LevelScene*)m_currentScene)->getPlayerPosition();
 }
 
-void Game::spawnEnemy(AI enemyAI)
+void Game::spawnEnemy(AI* enemyAI)
 {
 	((LevelScene*)m_currentScene)->spawnEnemy(enemyAI);
 }
