@@ -10,7 +10,6 @@ public:
 	Level1();
 	~Level1();
 
-	void draw() override;
 	void clean() override;
 	void handleEvents() override;
 	void start() override;

@@ -19,8 +19,7 @@ void LevelScene::update()
 	++time;
 	player->update();
 	m_pMap->update();
-	std::cout << "updating..." << std::endl;
-#pragma region Player Collision and invinciblity
+	#pragma region Player Collision and invinciblity
 	if (!(player->getInvincibility()))
 	{
 		//for (Enemy* enemy : m_pEnemy)
@@ -34,7 +33,7 @@ void LevelScene::update()
 			{
 				for (AI* a : enemies)
 				{
-					for (ShipComponent c : a->GetParent().GetFrame().GetBuild())
+					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
 					{
 						if (typeid(c) == typeid(BasicBody) || typeid(c) == typeid(IndesBody))
 						{
@@ -62,6 +61,7 @@ void LevelScene::update()
 	#pragma region Spawn Enemies
 	if (time == ramSpawnTimer[ramIteration])
 	{
+		std::cout << "Danger! Ram!" << std::endl;
 		enemies.push_back(new RamAI(ramSpawnLocation[ramIteration]));
 		++ramIteration;
 	}
@@ -71,16 +71,24 @@ void LevelScene::update()
 		++zigzagIteration;
 	}
 	#pragma endregion
-	for(AI* e: enemies)
-	{
-		e->GetParent().draw();
+}
+
+void LevelScene::draw()
+{
+	m_pMap->draw();
+	player->draw();
+	for (AI* a : enemies) {
+		a->GetParent()->draw();
+	}
+	for (DisplayObject* d : playerWeapons) {
+		d->draw();
 	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
 {
 	for (int i = 0; i < enemies.size(); ++i) {
-		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent().GetFrame().getParent() == enemy) {
+		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
 			enemies.erase(enemies.begin()+(i-1));
 			break;
 		}

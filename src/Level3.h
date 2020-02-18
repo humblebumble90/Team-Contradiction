@@ -20,11 +20,10 @@ public:/*
 	~Level3();
 
 	// Inherited via Scene
-	virtual void draw() override;
-	virtual void update() override;
-	virtual void clean() override;
-	virtual void handleEvents() override;
-	virtual void start() override;
+	void update() override;
+	void clean() override;
+	void handleEvents() override;
+	void start() override;
 
 	// Specific to Level 3
 	void Boss1(); //Ends the Ram Rush, changes the music, then spawns Blaster Skiff

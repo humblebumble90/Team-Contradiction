@@ -16,7 +16,7 @@ CannonBargeAI::CannonBargeAI(glm::vec2 transform)
 		Blank(), Cannon(), Cannon(),Cannon(),Cannon(), Blank()
 	};
 	#pragma endregion
-	parent = Enemy(Frame(50, //Enemy is 300px by 300px
+	parent = new Enemy(new Frame(50, //Enemy is 300px by 300px
 	build, 6, 6), 20, //Will tweak if it proves to be too much or too little
 		this, transform);
 }
@@ -36,7 +36,7 @@ void CannonBargeAI::SecondaryFunction()
 	if (attackCooldown <= 0)
 	{
 		attackCooldown = attackCooldownReset;
-		for (Weapon w : parent.GetFrame().GetWeapons())
+		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
 			w.Fire();
 		}

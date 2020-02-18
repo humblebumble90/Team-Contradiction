@@ -6,7 +6,7 @@ class PlayerLockAI : public AI
 {
 public:
 	PlayerLockAI();
-	PlayerLockAI(Enemy enemyParent, float bSpeed);
+	PlayerLockAI(Enemy* enemyParent, float bSpeed);
 	~PlayerLockAI();
 private:
 	float baseSpeed;

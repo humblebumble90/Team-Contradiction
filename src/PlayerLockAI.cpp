@@ -3,7 +3,7 @@
 
 PlayerLockAI::PlayerLockAI(){/*DANGER! Do not use!*/ }
 
-PlayerLockAI::PlayerLockAI(Enemy enemyParent, float bSpeed)
+PlayerLockAI::PlayerLockAI(Enemy* enemyParent, float bSpeed)
 {
 	parent = enemyParent;
 	baseSpeed = bSpeed;
@@ -11,7 +11,7 @@ PlayerLockAI::PlayerLockAI(Enemy enemyParent, float bSpeed)
 	//Get target
 	float tX = TheGame::Instance()->getPlayerPosition().x;
 	float tY = TheGame::Instance()->getPlayerPosition().y;
-	float xDif = abs(parent.getPosition().x - tX), yDif = abs(parent.getPosition().y - tY);
+	float xDif = abs(parent->getPosition().x - tX), yDif = abs(parent->getPosition().y - tY);
 	bool xIsCloser = xDif > yDif;
 	switch (xIsCloser)
 	{
@@ -24,8 +24,8 @@ PlayerLockAI::PlayerLockAI(Enemy enemyParent, float bSpeed)
 		speed.x = xDif / yDif * baseSpeed;
 		break;
 	}
-	speed.x = parent.getPosition().x > tX ? -speed.x : speed.x;
-	speed.y = parent.getPosition().y > tY ? -speed.y : speed.y;
+	speed.x = parent->getPosition().x > tX ? -speed.x : speed.x;
+	speed.y = parent->getPosition().y > tY ? -speed.y : speed.y;
 }
 
 PlayerLockAI::~PlayerLockAI(){}

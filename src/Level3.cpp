@@ -25,20 +25,6 @@ Level3::~Level3()
 {
 }
 
-void Level3::draw()
-{
-	//Background
-	//UI
-
-	player->draw();
-	for (WeaponMissile* wm : playerWeapons) {
-		wm->draw();
-	}
-	for (AI* ai : enemies) {
-		ai->GetParent().draw();
-	}
-}
-
 void Level3::update()
 {
 	if (ramRushTimerDelay > 0) {

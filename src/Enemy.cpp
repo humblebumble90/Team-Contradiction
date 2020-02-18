@@ -5,12 +5,12 @@
 
 Enemy::Enemy(){/*DANGER! Do not use!*/ }
 
-Enemy::Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform)
+Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform)
 {
 	name = typeid(enemyAI).name();
 	name = name.substr(0, name.length() - 2);
 	frame = enemyFrame;
-	frame.Initialize(this);
+	frame->Initialize(this);
 	health = enemyHealth;
 	aI = enemyAI;
 	setPosition(targetTransform);
@@ -32,7 +32,7 @@ void Enemy::Damage(int i)
 	}
 }
 
-Frame Enemy::GetFrame()
+Frame* Enemy::GetFrame()
 {
 	return frame;
 }
@@ -44,7 +44,7 @@ void Enemy::Move()
 
 void Enemy::draw()
 {
-	TheTextureManager::Instance()->draw("enemy", getPosition().x, getPosition().y, frame.getGridSize() * frame.GridWidth(), frame.getGridSize() * frame.GridHeight(),
+	TheTextureManager::Instance()->draw("enemy", getPosition().x, getPosition().y, frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
 		TheGame::Instance()->getRenderer());
 }
 

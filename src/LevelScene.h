@@ -13,6 +13,7 @@ public:
 	LevelScene();
 	virtual ~LevelScene();
 	void update() override;
+	void draw() override;
 	void DestroyEnemy(Enemy* enemy);
 	void GameOver();
 	glm::vec2 getPlayerPosition();

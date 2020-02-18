@@ -11,7 +11,7 @@ ZigzagAI::ZigzagAI(glm::vec2 transform)
 		MissileLauncher(), BasicBody(), BasicBody()
 	};
 	#pragma endregion
-	parent = Enemy(Frame(16.666667, //Enemy is 50px by 50px
+	parent = new Enemy(new Frame(16.666667, //Enemy is 50px by 50px
 	build,3,3), 1, this, transform);
 	speed.x = speed.y = -0.075f; //Tweak this number later
 }
@@ -28,7 +28,7 @@ void ZigzagAI::PrimaryFunction()
 		if (bounceTimer <= 0)
 		{
 			speed.y = -speed.y;
-			for (Weapon w : parent.GetFrame().GetWeapons())
+			for (Weapon w : parent->GetFrame()->GetWeapons())
 			{
 				w.Fire();
 			}

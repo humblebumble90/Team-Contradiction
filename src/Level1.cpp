@@ -100,12 +100,6 @@ Level1::~Level1()
 {
 }
 
-void Level1::draw()
-{
-	//m_pMap->draw();
-	player->draw();
-}
-
 void Level1::clean()
 {
 }

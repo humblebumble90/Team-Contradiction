@@ -8,17 +8,17 @@ class Enemy : public DisplayObject
 public:
 	friend class AI;
 	Enemy();
-	Enemy(Frame enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform);
+	Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform);
 	~Enemy();
 	void Damage(int i) override;
-	Frame GetFrame();
+	Frame* GetFrame();
 #pragma region From GameObject
 	void draw() override;
 	void update() override;
 	void clean() override;
 #pragma endregion
 private:
-	Frame frame;
+	Frame* frame;
 	int health;
 	AI* aI;
 	std::string name;

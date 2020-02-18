@@ -16,7 +16,7 @@ CannonlordAI::CannonlordAI(glm::vec2 transform)
 		Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank()
 	};
 	#pragma endregion
-	parent = Enemy(Frame(50, //Enemy is 450px by 300px
+	parent = new Enemy(new Frame(50, //Enemy is 450px by 300px
 	build, 9, 6), 50, //Will tweak if 50 health proves to be too much or too little
 		this, transform);
 	speed.x = -baseSpeed;
@@ -32,7 +32,7 @@ void CannonlordAI::SecondaryFunction()
 	--attackCooldown;
 	if (attackCooldown <= 0)
 	{
-		for (Weapon w : parent.GetFrame().GetWeapons())
+		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
 			w.Fire();
 		}

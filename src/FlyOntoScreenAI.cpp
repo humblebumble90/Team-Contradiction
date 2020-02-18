@@ -10,8 +10,8 @@ void FlyOntoScreenAI::PrimaryFunction()
 {
 	if (!atTarget)
 	{
-		parent.setPosition(parent.getPosition() + entrySpeed);
-		if (parent.getPosition() == target) {
+		parent->setPosition(parent->getPosition() + entrySpeed);
+		if (parent->getPosition() == target) {
 			atTarget = true;
 		}
 	}
