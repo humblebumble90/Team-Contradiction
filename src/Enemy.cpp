@@ -46,8 +46,9 @@ void Enemy::Move()
 
 void Enemy::draw()
 {
-	TheTextureManager::Instance()->draw("enemy", getPosition().x, getPosition().y, frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
+	TheTextureManager::Instance()->draw(name, getPosition().x, getPosition().y, frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
 		TheGame::Instance()->getRenderer());
+	//std::cout << name << std::endl;
 }
 
 void Enemy::update()
