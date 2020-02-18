@@ -12,7 +12,7 @@ Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTr
 	setPosition(targetTransform);
 	TheTextureManager::Instance()->load("../Assets/textures/"+name+".png",
 		name, TheGame::Instance()->getRenderer());
-	std::cout << aI->GetSpeed().x << std::endl;
+	//std::cout << enemyAI->GetParent() << std::endl;
 }
 
 Enemy::~Enemy()
