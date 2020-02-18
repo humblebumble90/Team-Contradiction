@@ -1,12 +1,13 @@
 #include "Level1.h"
 #include "Map.h"
+#include "Config.h"
 
 Level1::Level1()
 {
 	int second = 60;
-	glm::vec2 bottom = glm::vec2(1650, 850);
-	glm::vec2 middle = glm::vec2(1650, 450);
-	glm::vec2 top = glm::vec2(1650, 50);
+	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 50, Config::SCREEN_HEIGHT + 50);
+	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 50, Config::SCREEN_HEIGHT/2 + 50);
+	glm::vec2 top = glm::vec2(Config::SCREEN_WIDTH + 50, 50);
 	ramSpawnTimer =
 	{
 		10 * second,
@@ -92,7 +93,7 @@ Level1::Level1()
 		bottom,
 	};
 
-	player = new PlayerShip(1, 3, glm::vec2(0, 0));
+	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT/2));
 	m_pMap = new Map();
 }
 
