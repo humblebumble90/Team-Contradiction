@@ -4,18 +4,33 @@
 #include <iostream>
 #include "Frame.h"
 #include "LevelScene.h"
+#include "BasicBody.h"
+#include "MissileLauncher.h"
+#include "Blank.h"
 
-PlayerShip::PlayerShip(Frame playerFrame, int playerHealth, int playerLives, glm::vec2 targetTransform)
+PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/player.png", "player", TheGame::Instance()->getRenderer());
+	std::cout << targetTransform.x << std::endl;
 	setPosition(targetTransform);
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("player");
 	setWidth(size.x);
 	setHeight(size.y);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
-	frame = playerFrame;
+
+	std::vector<ShipComponent> build =
+#pragma region Frame Construction
+	{
+		BasicBody(),BasicBody(),MissileLauncher(),Blank(),
+		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
+		BasicBody(),BasicBody(),MissileLauncher(),Blank()
+	};
+#pragma endregion
+	frame = Frame(5, //Enemy is 300px by 300px
+		build, 15, 10); //Will tweak if it proves to be too much or too little
 	frame.Initialize(this);
+	std::cout << "PlayerShip is instantiated!" << std::endl;
 }
 PlayerShip::~PlayerShip()
 {
@@ -81,7 +96,7 @@ glm::vec2 PlayerShip::getPlayerMinSpeedY()
 void PlayerShip::draw()
 {
 	TheTextureManager::Instance()->draw
-	("player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(), true);
+	("player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(),0,255, true);
 }
 
 void PlayerShip::update()
@@ -90,12 +105,12 @@ void PlayerShip::update()
 	{
 		inv = false;
 	}
+	
 }
 
 void PlayerShip::clean()
 {
 	Damage(1);
 }
-
 
 

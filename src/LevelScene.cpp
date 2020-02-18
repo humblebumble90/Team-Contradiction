@@ -15,7 +15,11 @@ LevelScene::~LevelScene()
 
 void LevelScene::update()
 {
+	
 	++time;
+	player->update();
+	m_pMap->update();
+	std::cout << "updating..." << std::endl;
 #pragma region Player Collision and invinciblity
 	if (!(player->getInvincibility()))
 	{
@@ -23,15 +27,36 @@ void LevelScene::update()
 		//{
 		//	CollisionManager::squaredRadiusCheck(player, enemy);
 		//}
-		if (typeid(playerComponent) == typeid(BasicBody)
-			&& typeid(enemyComponent) == typeid(BasicBody) || typeid(enemyComponent) == typeid(IndesBody))
+
+		for (ShipComponent s : player->GetFrame().GetBuild())
 		{
-			CollisionManager::shipComponentCheck(playerComponent, enemyComponent);
+			if (typeid(s) == typeid(BasicBody))
+			{
+				for (AI* a : enemies)
+				{
+					for (ShipComponent c : a->GetParent().GetFrame().GetBuild())
+					{
+						if (typeid(c) == typeid(BasicBody) || typeid(c) == typeid(IndesBody))
+						{
+							if (CollisionManager::shipComponentCheck(s, c))
+							{
+								((BasicBody&)s).Damage(1);
+
+								if (typeid(c) == typeid(BasicBody))
+								{
+									((BasicBody&)c).Damage(1);
+								}
+								else
+								{
+									((IndesBody&)c).Damage(s);
+								}
+							}
+
+						}
+					}
+				}
+			}
 		}
-	}
-	if (CollisionManager::shipComponentCheck(playerComponent, enemyComponent) == true)
-	{
-		player->Damage(1);
 	}
 #pragma endregion
 	#pragma region Spawn Enemies
@@ -46,6 +71,10 @@ void LevelScene::update()
 		++zigzagIteration;
 	}
 	#pragma endregion
+	for(AI* e: enemies)
+	{
+		e->GetParent().draw();
+	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
@@ -56,6 +85,11 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 			break;
 		}
 	}
+}
+
+PlayerShip* LevelScene::getPlayerShip()
+{
+	return player;
 }
 
 void LevelScene::GameOver()

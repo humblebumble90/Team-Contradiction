@@ -3,7 +3,6 @@
 #include <ctime>
 #include "GLM/gtx/string_cast.hpp"
 #include <algorithm>
-#include "TileComparators.h"
 #include <iomanip>
 
 StartScene::StartScene()
@@ -18,7 +17,6 @@ StartScene::~StartScene()
 void StartScene::draw()
 {
 	m_pStartLabel->draw();
-	m_pInstructionsLabel->draw();
 }
 
 void StartScene::update()
@@ -28,7 +26,6 @@ void StartScene::update()
 void StartScene::clean()
 {
 	delete m_pStartLabel;
-	delete m_pInstructionsLabel;
 	removeAllChildren();
 }
 
@@ -49,10 +46,7 @@ void StartScene::handleEvents()
 				TheGame::Instance()->quit();
 				break;
 			case SDLK_1:
-				TheGame::Instance()->changeSceneState(SceneState::PLAY_SCENE);
-				break;
-			case SDLK_2:
-				TheGame::Instance()->changeSceneState(SceneState::END_SCENE);
+				TheGame::Instance()->changeSceneState(SceneState::LEVEL1_SCENE);
 				break;
 			}
 			break;
@@ -70,7 +64,4 @@ void StartScene::start()
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
-	m_pInstructionsLabel = new Label("Press 1 to Play", "Dock51", 40, blue, glm::vec2(400.0f, 120.0f));
-	m_pInstructionsLabel->setParent(this);
-	addChild(m_pInstructionsLabel);
 }

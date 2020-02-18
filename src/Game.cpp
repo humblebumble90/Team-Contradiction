@@ -2,11 +2,11 @@
 #include <ctime>
 #include "GLM/gtx/string_cast.hpp"
 #include <algorithm>
-#include "TileComparators.h"
 #include <iomanip>
 #include "PlayerShip.h"
 #include "LevelScene.h"
 #include "AI.h"
+#include "Level1.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -145,18 +145,12 @@ void Game::changeSceneState(SceneState newState)
 			m_currentScene = new StartScene();
 			std::cout << "start scene activated" << std::endl;
 			break;
-		case SceneState::PLAY_SCENE:
-			m_currentScene = new PlayScene();
+		case SceneState::LEVEL1_SCENE:
+			m_currentScene = new Level1();
 			std::cout << "play scene activated" << std::endl;
 			break;
-		case SceneState::END_SCENE:
-			m_currentScene = new EndScene();
-			std::cout << "end scene activated" << std::endl;
-			break;
-		default:
-			std::cout << "default case activated" << std::endl;
-			break;
 		}
+		
 	}
 	
 }
@@ -212,7 +206,7 @@ void Game::clean()
 }
 PlayerShip * Game::getPlayerShip()
 {
-	return m_pPlayerShip;
+	return ((LevelScene*)m_currentScene)->getPlayerShip();
 }
 
 void Game::handleEvents()
@@ -234,16 +228,16 @@ void Game::handleEvents()
 					m_bRunning = false;
 					break;
 				case SDLK_w:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedY() + m_pPlayerShip->getPosition());
+					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedY() + getPlayerShip()->getPosition());
 					break;
 				case SDLK_s:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMinSpeedY() + m_pPlayerShip->getPosition());
+					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMinSpeedY() + getPlayerShip()->getPosition());
 					break;
 				case SDLK_a:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerminSpeedX() + m_pPlayerShip->getPosition());
+					getPlayerShip()->setPosition(getPlayerShip()->getPlayerminSpeedX() + getPlayerShip()->getPosition());
 					break;
 				case SDLK_d:
-					m_pPlayerShip->setPosition(m_pPlayerShip->getPlayerMaxSpeedX() + m_pPlayerShip->getPosition());
+					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedX() + getPlayerShip()->getPosition());
 					break;
 			}
 			break;

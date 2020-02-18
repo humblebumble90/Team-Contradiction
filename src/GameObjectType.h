@@ -14,6 +14,7 @@ enum GameObjectType {
 	PLANET,
 	MINE,
 	TILE,
+	START_BUTTON,
 	NUM_OF_TYPES
 };
 
