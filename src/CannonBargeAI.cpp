@@ -41,4 +41,5 @@ void CannonBargeAI::SecondaryFunction()
 			w.Fire();
 		}
 	}
+	//currently, this does not rotate whatsoever
 }
