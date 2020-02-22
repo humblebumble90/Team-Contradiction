@@ -5,9 +5,11 @@
 Level1::Level1()
 {
 	int second = 60;
-	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT + 50);
-	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT/2 + 50);
-	glm::vec2 top = glm::vec2(Config::SCREEN_WIDTH + 25, 50);
+	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT + 25);
+	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT/2 + 25);
+	glm::vec2 top = glm::vec2(Config::SCREEN_WIDTH + 25, 25);
+	glm::vec2 centerTop = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT / 4 + 25);
+	glm::vec2 centerBot = glm::vec2(Config::SCREEN_WIDTH + 25, 3*Config::SCREEN_HEIGHT / 4 + 25);
 	ramSpawnTimer =
 	{
 		10 * second,
@@ -73,24 +75,24 @@ Level1::Level1()
 	};
 	zigzagSpawnLocation =
 	{
-		top,
+		centerTop,
 		middle,
-		bottom,
-		top,
+		centerBot,
+		centerTop,
 		middle,
-		bottom,
-		top,
+		centerBot,
+		centerTop,
 		middle,
-		bottom,
-		top,
+		centerBot,
+		centerTop,
 		middle,
-		bottom,
-		top,
+		centerBot,
+		centerTop,
 		middle,
-		bottom,
-		top,
+		centerBot,
+		centerTop,
 		middle,
-		bottom,
+		centerBot,
 	};
 
 	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT/2));
