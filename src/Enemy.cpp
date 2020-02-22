@@ -10,7 +10,7 @@ Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTr
 	frame(enemyFrame), health(enemyHealth), aI(enemyAI), name(enemyName)
 {
 	if (name == "EnemyMissile" || name == "Ram") {
-		(((PlayerLockAI*)aI)->Initialize(this, 0.075f, targetTransform));
+		(((PlayerLockAI*)aI)->Initialize(this, 10.00f, targetTransform));
 	}
 	frame->Initialize(this);
 	setPosition(targetTransform);
@@ -41,7 +41,7 @@ Frame* Enemy::GetFrame()
 void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
-	//std::cout << aI->GetSpeed().x << std::endl;
+	//std::cout << getPosition().x << std::endl;
 }
 
 void Enemy::draw()
