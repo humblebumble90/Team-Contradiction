@@ -14,7 +14,7 @@ public:
 	PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform);
 	~PlayerShip();
 
-	void Damage(int i);
+	void Damage(int i) override;
 	Frame GetFrame();
 
 	glm::vec2 getPlayerMaxSpeedX();
