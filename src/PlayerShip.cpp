@@ -8,7 +8,7 @@
 #include "MissileLauncher.h"
 #include "Blank.h"
 
-PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform)
+PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform) :m_isMoving(false), m_maxSpeed(5.0f)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/player.png", "player", TheGame::Instance()->getRenderer());
 	std::cout << targetTransform.x << std::endl;
@@ -100,8 +100,51 @@ void PlayerShip::draw()
 	("player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(),0,255, true);
 }
 
+void PlayerShip::move(Move newMove)
+{
+	if (m_isMoving)
+	{
+		switch (newMove)
+		{
+		case RIGHT:
+			setVelocity(glm::vec2(1.0f * m_maxSpeed, getVelocity().y));
+			break;
+		case LEFT:
+			setVelocity(glm::vec2(-1.0f * m_maxSpeed, getVelocity().y));
+			break;
+		case UP:
+			setVelocity(glm::vec2(getVelocity().x, -1.0f * m_maxSpeed));
+			break;
+		case DOWN:
+			setVelocity(glm::vec2(getVelocity().x, 1.0f * m_maxSpeed));
+			break;
+		}
+	}
+}
+
+bool PlayerShip::getIsMoving()
+{
+	return m_isMoving;
+}
+
+void PlayerShip::setIsMoving(bool newState)
+{
+	m_isMoving = newState;
+}
+
+
 void PlayerShip::update()
 {
+	auto currentPosition = getPosition();
+	auto currentVelocity = getVelocity();
+
+	setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
+
+
+	auto deltax = currentPosition.x + currentVelocity.x;
+	auto deltay = currentPosition.y + currentVelocity.y;
+	setPosition(glm::vec2(deltax, deltay));
+	
 	if (inv == true && endInvincibleTime <= SDL_GetTicks())
 	{
 		inv = false;

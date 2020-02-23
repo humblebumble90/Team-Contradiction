@@ -222,29 +222,51 @@ void Game::handleEvents()
 			m_bRunning = false;
 			break;
 		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym) 
+			switch (event.key.keysym.sym)
 			{
-				case SDLK_ESCAPE:
-					m_bRunning = false;
-					break;
-				case SDLK_w:
-					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedY() + getPlayerShip()->getPosition());
-					break;
-				case SDLK_s:
-					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMinSpeedY() + getPlayerShip()->getPosition());
-					break;
-				case SDLK_a:
-					getPlayerShip()->setPosition(getPlayerShip()->getPlayerminSpeedX() + getPlayerShip()->getPosition());
-					break;
-				case SDLK_d:
-					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedX() + getPlayerShip()->getPosition());
-					break;
-					// The below code throws a Debug Assertion Failed Error
-				/*case SDLK_f:
-					getPlayerShip()->GetFrame().GetWeapon(0).Fire();
-					break;*/
+			case SDLK_ESCAPE:
+				m_bRunning = false;
+				break;
+			case SDLK_w:
+				getPlayerShip()->setIsMoving(true);
+				getPlayerShip()->move(UP);
+				break;
+			case SDLK_s:
+				getPlayerShip()->setIsMoving(true);
+				getPlayerShip()->move(DOWN);
+				break;
+			case SDLK_a:
+				getPlayerShip()->setIsMoving(true);
+				getPlayerShip()->move(LEFT);
+				break;
+			case SDLK_d:
+				getPlayerShip()->setIsMoving(true);
+				getPlayerShip()->move(RIGHT);
+				break;
+				// The below code throws a Debug Assertion Failed Error
+			/*case SDLK_f:
+				getPlayerShip()->GetFrame().GetWeapon(0).Fire();
+				break;*/
 			}
 			break;
+		case SDL_KEYUP:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_w:
+				getPlayerShip()->setIsMoving(false);
+				break;
+
+			case SDLK_s:
+				getPlayerShip()->setIsMoving(false);
+				break;
+
+			case SDLK_a:
+				getPlayerShip()->setIsMoving(false);
+				break;
+			case SDLK_d:
+				getPlayerShip()->setIsMoving(false);
+				break;
+			}
 		default:
 			break;
 		}
