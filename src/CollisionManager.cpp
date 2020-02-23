@@ -279,16 +279,18 @@ bool CollisionManager::circleAABBCheck(GameObject* object1, GameObject* object2)
 
 bool CollisionManager::shipComponentCheck(ShipComponent comp1, ShipComponent comp2)
 {
-	glm::vec2 comp1Pos = comp1.getPosition() - glm::vec2{ comp1.getParent()->getGridSize(), comp1.getParent()->getGridSize() },
-			  comp2Pos = comp2.getPosition() - glm::vec2{ comp2.getParent()->getGridSize(), comp2.getParent()->getGridSize() };
-	#pragma region FourPointCollision
-	return
-		comp2Pos.x - comp1Pos.x < comp1.getParent()->getGridSize(),
-		comp2Pos.x + comp2.getParent()->getGridSize()>comp1Pos.x,
-		comp2Pos.y - comp1Pos.y < comp1.getParent()->getGridSize(),
-		comp2Pos.y + comp2.getParent()->getGridSize()>comp1Pos.y;
-	#pragma endregion
-
+	if (comp2.getPosition().x) {
+		glm::vec2 comp1Pos = comp1.getPosition() - glm::vec2{ comp1.getParent()->getGridSize(), comp1.getParent()->getGridSize() },
+			comp2Pos = comp2.getPosition() - glm::vec2{ comp2.getParent()->getGridSize(), comp2.getParent()->getGridSize() };
+#pragma region FourPointCollision
+		return
+			comp2Pos.x - comp1Pos.x < comp1.getParent()->getGridSize(),
+			comp2Pos.x + comp2.getParent()->getGridSize()>comp1Pos.x,
+			comp2Pos.y - comp1Pos.y < comp1.getParent()->getGridSize(),
+			comp2Pos.y + comp2.getParent()->getGridSize()>comp1Pos.y;
+#pragma endregion
+	}
+	return false;
 }
 
 

@@ -42,7 +42,7 @@ void LevelScene::update()
 				{
 					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
 					{
-						if ((c.getName() == "BasicBody" || c.getName() == "IndesBody") && c.getParent()->getParent()->getName() != "")
+						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
 						{
 							if (CollisionManager::shipComponentCheck(s, c))
 							{
