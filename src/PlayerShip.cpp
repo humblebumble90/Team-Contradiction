@@ -8,14 +8,10 @@
 #include "MissileLauncher.h"
 #include "Blank.h"
 
-PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform) :m_isMoving(false), m_maxSpeed(5.0f)
+PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform) :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/player.png", "player", TheGame::Instance()->getRenderer());
-	std::cout << targetTransform.x << std::endl;
 	setPosition(targetTransform);
-	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("player");
-	setWidth(size.x);
-	setHeight(size.y);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
 
@@ -33,6 +29,7 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 	name = "Player";
 	std::cout << "PlayerShip is instantiated!" << std::endl;
 }
+
 PlayerShip::~PlayerShip()
 {
 	;
@@ -44,7 +41,7 @@ void PlayerShip::Damage(int i)
 	{
 		if (playerLives <= 0)
 		{
-			m_pLevelScene->GameOver();
+			Game::Instance()->changeSceneState(END_SCENE);
 		}
 		else
 
@@ -64,6 +61,7 @@ void PlayerShip::invincible()
 {
 	this->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.2f, Config::SCREEN_HEIGHT * 0.5f));
 	inv = true;
+	TextureManager::Instance()->setAlpha("player", m_alpha * 0.5);
 	endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
 
 }
@@ -73,27 +71,6 @@ Frame PlayerShip::GetFrame()
 {
 	return frame;
 }
-
-glm::vec2 PlayerShip::getPlayerMaxSpeedX()
-{
-	return maxSpeedX = glm::vec2(5.0f, 0);
-}
-
-glm::vec2 PlayerShip::getPlayerminSpeedX()
-{
-	return minSpeedX = glm::vec2(-5.0f, 0);
-}
-
-glm::vec2 PlayerShip::getPlayerMaxSpeedY()
-{
-	return maxSpeedY = glm::vec2(0, -5.0f);
-}
-
-glm::vec2 PlayerShip::getPlayerMinSpeedY()
-{
-	return minSpeedY = glm::vec2(0, 5.0f);
-}
-
 void PlayerShip::draw()
 {
 	TheTextureManager::Instance()->draw
@@ -142,19 +119,19 @@ void PlayerShip::update()
 	{
 		if (currentVelocity.x < 0)
 		{
-			currentVelocity.x += 1.0f;
+			currentVelocity.x *= 0.95f;
 		}
 		else if (currentVelocity.x > 0)
 		{
-			currentVelocity.x -= 1.0f;
+			currentVelocity.x *= 0.95f;
 		}
 		if (currentVelocity.y < 0)
 		{
-			currentVelocity.y += 1.0f;
+			currentVelocity.y *= 0.95f;
 		}
-		else if (currentVelocity.y > 0)
+		else if (currentVelocity.y >= 0)
 		{
-			currentVelocity.y -= 1.0f;
+			currentVelocity.y *= 0.95f;
 		}
 	}
 
@@ -168,6 +145,7 @@ void PlayerShip::update()
 	if (inv == true && endInvincibleTime <= SDL_GetTicks())
 	{
 		inv = false;
+		TextureManager::Instance()->setAlpha("player", m_alpha);
 	}
 	
 }

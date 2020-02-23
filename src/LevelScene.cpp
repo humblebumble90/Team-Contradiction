@@ -38,6 +38,7 @@ void LevelScene::update()
 		{
 			if (s.getName() == "BasicBody")
 			{
+				//std::cout << s.getPosition().x << std::endl;
 				for (AI* a : enemies)
 				{
 					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
