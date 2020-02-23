@@ -6,6 +6,7 @@
 #include <iostream>
 #include <experimental/coroutine>
 #include "Frame.h"
+#include "Move.h"
 
 class PlayerShip : public DisplayObject {
 public:
@@ -38,7 +39,15 @@ public:
 	bool getInvincibility();
 	bool inv = false;
 	void invincible();
+
+	//Moving
+	void move(Move newMove);
+	//getters and setters
+	bool getIsMoving();
+	void setIsMoving(bool newState);
 private:
+	float m_maxSpeed;
+	bool m_isMoving;
 	int endInvincibleTime;
 	int playerHealth;
 	int playerLives;
