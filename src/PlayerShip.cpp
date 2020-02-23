@@ -138,6 +138,26 @@ void PlayerShip::update()
 	auto currentPosition = getPosition();
 	auto currentVelocity = getVelocity();
 
+	if (m_isMoving == false)
+	{
+		if (currentVelocity.x < 0)
+		{
+			currentVelocity.x += 1.0f;
+		}
+		else if (currentVelocity.x > 0)
+		{
+			currentVelocity.x -= 1.0f;
+		}
+		if (currentVelocity.y < 0)
+		{
+			currentVelocity.y += 1.0f;
+		}
+		else if (currentVelocity.y > 0)
+		{
+			currentVelocity.y -= 1.0f;
+		}
+	}
+
 	setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
 
 
