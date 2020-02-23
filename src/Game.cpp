@@ -228,19 +228,41 @@ void Game::handleEvents()
 					m_bRunning = false;
 					break;
 				case SDLK_w:
-					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedY() + getPlayerShip()->getPosition());
+					getPlayerShip()->setIsMoving(true);
+					getPlayerShip()->move(UP);
 					break;
 				case SDLK_s:
-					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMinSpeedY() + getPlayerShip()->getPosition());
+					getPlayerShip()->setIsMoving(true);
+					getPlayerShip()->move(DOWN);
 					break;
 				case SDLK_a:
-					getPlayerShip()->setPosition(getPlayerShip()->getPlayerminSpeedX() + getPlayerShip()->getPosition());
+					getPlayerShip()->setIsMoving(true);
+					getPlayerShip()->move(LEFT);
 					break;
 				case SDLK_d:
-					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedX() + getPlayerShip()->getPosition());
+					getPlayerShip()->setIsMoving(true);
+					getPlayerShip()->move(RIGHT);
 					break;
 			}
 			break;
+		case SDL_KEYUP:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_w:
+				getPlayerShip()->setIsMoving(false);
+				break;
+
+			case SDLK_s:
+				getPlayerShip()->setIsMoving(false);
+				break;
+
+			case SDLK_a:
+				getPlayerShip()->setIsMoving(false);
+				break;
+			case SDLK_d:
+				getPlayerShip()->setIsMoving(false);
+				break;
+			}
 		default:
 			break;
 		}

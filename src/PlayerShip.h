@@ -6,6 +6,7 @@
 #include <iostream>
 #include <experimental/coroutine>
 #include "Frame.h"
+#include "Move.h"
 
 class PlayerShip : public DisplayObject {
 public:
@@ -16,14 +17,6 @@ public:
 	void Damage(int i);
 	Frame GetFrame();
 
-	glm::vec2 getPlayerMaxSpeedX();
-	glm::vec2 maxSpeedX;
-	glm::vec2 getPlayerminSpeedX();
-	glm::vec2 minSpeedX;
-	glm::vec2 getPlayerMaxSpeedY();
-	glm::vec2 maxSpeedY;
-	glm::vec2 getPlayerMinSpeedY();
-	glm::vec2 minSpeedY;
 
 	// Draw the object
 	void draw() override;
@@ -38,7 +31,16 @@ public:
 	bool getInvincibility();
 	bool inv = false;
 	void invincible();
+
+
+	//Moving
+	void move(Move newMove);
+	//getters and setters
+	bool getIsMoving();
+	void setIsMoving(bool newState);
 private:
+	float m_maxSpeed;
+	bool m_isMoving;
 	int endInvincibleTime;
 	int playerHealth;
 	int playerLives;
