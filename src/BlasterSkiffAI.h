@@ -10,7 +10,7 @@ public:
 	~BlasterSkiffAI();
 	void SecondaryFunction() override;
 private:
-	float topBouncePoint, bottomBouncePoint; //set these numbers via testing
+	float topBouncePoint, bottomBouncePoint, spawnPoint; //set these numbers via testing
 	int firingCooldown = 10, firingCooldownReset = 10, firingIteration = 0;
 };
 

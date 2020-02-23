@@ -37,7 +37,7 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 	std::vector<Weapon> Cannons;
 	for (Weapon w : parent->GetFrame()->GetWeapons())
 	{
-		if (typeid(w) == typeid(Cannon)) {
+		if (w.getName()=="Cannon") {
 			Cannons.push_back(w);
 		}
 	}
@@ -54,7 +54,7 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 	//Fire Flamethrowers
 	for (Weapon w : parent->GetFrame()->GetWeapons())
 	{
-		if (typeid(w) == typeid(Flamethrower)) {
+		if (w.getName()=="Flamethrower") {
 			w.Fire();
 		}
 	}

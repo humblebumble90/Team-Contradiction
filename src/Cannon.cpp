@@ -2,6 +2,7 @@
 
 Cannon::Cannon()
 {
+	name = "Cannon";
 }
 
 Cannon::~Cannon()

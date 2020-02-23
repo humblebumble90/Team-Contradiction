@@ -1,3 +1,6 @@
 #include "Blank.h"
-Blank::Blank(){}
+Blank::Blank()
+{
+	name = "Blank";
+}
 Blank::~Blank(){}

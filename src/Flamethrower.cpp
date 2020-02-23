@@ -2,6 +2,7 @@
 
 Flamethrower::Flamethrower()
 {
+	name = "Flamethrower";
 }
 
 Flamethrower::~Flamethrower()

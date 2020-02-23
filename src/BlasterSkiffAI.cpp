@@ -4,6 +4,7 @@
 #include "Blank.h"
 #include "Game.h"
 #include "MissileLauncher.h"
+#include "RamAI.h"
 
 BlasterSkiffAI::BlasterSkiffAI(glm::vec2 transform)
 {
@@ -51,7 +52,7 @@ void BlasterSkiffAI::SecondaryFunction()
 		--firingCooldown;
 		if (firingCooldown <= 0)
 		{
-			parent->GetFrame()->GetWeapon(firingIteration);
+			parent->GetFrame()->GetWeapon(firingIteration).Fire();
 			++firingIteration;
 			if (parent->GetFrame()->GetWeapons().size() == firingIteration)
 			{
@@ -64,6 +65,7 @@ void BlasterSkiffAI::SecondaryFunction()
 	//Spawn Enemies
 	if (parent->getPosition().y == topBouncePoint + (bottomBouncePoint - topBouncePoint) / 2)
 	{
-		//TheGame::Instance() TODO: Add this back
+		TheGame::Instance()->spawnEnemy(new RamAI(glm::vec2(Config::SCREEN_WIDTH + 25, spawnPoint)));
+		spawnPoint = -spawnPoint;
 	}
 }

@@ -36,19 +36,19 @@ void LevelScene::update()
 
 		for (ShipComponent s : player->GetFrame().GetBuild())
 		{
-			if (typeid(s) == typeid(BasicBody))
+			if (s.getName() == "BasicBody")
 			{
 				for (AI* a : enemies)
 				{
 					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
 					{
-						if (typeid(c) == typeid(BasicBody) || typeid(c) == typeid(IndesBody))
+						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
 						{
 							if (CollisionManager::shipComponentCheck(s, c))
 							{
 								((BasicBody&)s).Damage(1);
 
-								if (typeid(c) == typeid(BasicBody))
+								if (c.getName() == "BasicBody")
 								{
 									((BasicBody&)c).Damage(1);
 								}

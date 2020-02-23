@@ -31,3 +31,8 @@ void ShipComponent::setParent(Frame* frame)
 {
 	parent = frame;
 }
+
+std::string ShipComponent::getName()
+{
+	return name;
+}

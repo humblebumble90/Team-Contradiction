@@ -2,7 +2,7 @@
 
 MissileLauncher::MissileLauncher()
 {
-
+	name = "MissileLauncher";
 }
 
 MissileLauncher::~MissileLauncher()

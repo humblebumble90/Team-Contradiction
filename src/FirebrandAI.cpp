@@ -34,7 +34,7 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 	//Fire Flamethrowers
 	for (Weapon w : parent->GetFrame()->GetWeapons())
 	{
-		if (typeid(w) == typeid(Flamethrower)) {
+		if (w.getName()=="Flamethrower") {
 			w.Fire();
 		}
 	}
@@ -60,7 +60,7 @@ void FirebrandAI::SecondaryFunction()
 		missileCooldown = missileCooldownReset;
 		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
-			if (typeid(w) == typeid(MissileLauncher)) {
+			if (w.getName()=="MissileLauncher") {
 				w.Fire();
 			}
 		}
@@ -119,7 +119,7 @@ void FirebrandAI::SecondaryFunction()
 			cannonCooldown = cannonCooldownReset;
 			for (Weapon w : parent->GetFrame()->GetWeapons())
 			{
-				if (typeid(w) == typeid(Cannon)) {
+				if (w.getName()=="Cannon") {
 					w.Fire();
 				}
 			}

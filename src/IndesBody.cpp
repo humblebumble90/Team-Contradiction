@@ -3,6 +3,7 @@
 IndesBody::IndesBody(bool projectile)
 {
 	isProjectile = projectile;
+	name = "IndesBody";
 }
 IndesBody::~IndesBody(){}
 void IndesBody::Damage(ShipComponent collision)
