@@ -27,14 +27,14 @@ void LevelScene::update()
 		d->update();
 	}
 	#pragma region Player Collision and invinciblity
-	if (!(player->getInvincibility()))
+	if (player->getInvincibility() == false)
 	{
 		//for (Enemy* enemy : m_pEnemy)
 		//{
 		//	CollisionManager::squaredRadiusCheck(player, enemy);
 		//}
 
-		for (ShipComponent s : player->GetFrame().GetBuild())
+		for (ShipComponent s : player->GetFrame()->GetBuild())
 		{
 			if (s.getName() == "BasicBody")
 			{
@@ -45,9 +45,16 @@ void LevelScene::update()
 					{
 						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
 						{
+							//std::cout << s.getName() << std::endl;
+							//std::cout << s.getPosition().x << std::endl;
+							//std::cout << s.getPosition().y << std::endl;
+							//std::cout << c.getName() << std::endl;
+							//std::cout << c.getPosition().x << std::endl;
+							//std::cout << c.getPosition().y << std::endl;
 							if (CollisionManager::shipComponentCheck(s, c))
 							{
-								((BasicBody&)s).Damage(1);
+								player->Damage(1);
+								player->invincible();
 
 								if (c.getName() == "BasicBody")
 								{

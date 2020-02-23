@@ -15,7 +15,7 @@ public:
 	~PlayerShip();
 
 	void Damage(int i) override;
-	Frame GetFrame();
+	Frame* GetFrame();
 
 	// Draw the object
 	void draw() override;
@@ -28,7 +28,7 @@ public:
 
 	//Invincibility
 	bool getInvincibility();
-	bool inv = false;
+	bool inv;
 	void invincible();
 
 	//Moving
@@ -36,6 +36,7 @@ public:
 	//getters and setters
 	bool getIsMoving();
 	void setIsMoving(bool newState);
+	Frame* frame;
 private:
 	Uint8 m_alpha;
 	float m_maxSpeed;
@@ -43,7 +44,6 @@ private:
 	int endInvincibleTime;
 	int playerHealth;
 	int playerLives;
-	Frame frame;
 	std::string name;
 };
 

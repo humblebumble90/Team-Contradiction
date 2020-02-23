@@ -96,9 +96,7 @@ Level1::Level1()
 	};
 
 	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT/2));
-	player->setParent(this);
 	m_pMap = new Map();
-	std::cout << player->getParent()<<std::endl;
 }
 
 Level1::~Level1()
