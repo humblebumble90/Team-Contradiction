@@ -7,8 +7,9 @@
 Enemy::Enemy(){/*DANGER! Do not use!*/ }
 
 Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform, std::string enemyName):
-	frame(enemyFrame), health(enemyHealth), aI(enemyAI), name(enemyName)
+	frame(enemyFrame), health(enemyHealth), aI(enemyAI)
 {
+	name = enemyName;
 	if (name == "EnemyMissile" || name == "Ram") {
 		(((PlayerLockAI*)aI)->Initialize(this, 10.00f, targetTransform));
 	}
@@ -40,10 +41,9 @@ Frame* Enemy::GetFrame()
 void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
-	if (getPosition().x + (GetFrame()->GridWidth() * GetFrame()->getGridSize() / 2) <=0) {
+	/*if (getPosition().x - (GetFrame()->GridWidth() * GetFrame()->getGridSize() / 2) <=0) {
 		TheGame::Instance()->destroyEnemy(this);
-	}
-	//std::cout << getPosition().x << std::endl;
+	}*/ //Add this back in when you figure out how to fix it
 }
 
 void Enemy::draw()

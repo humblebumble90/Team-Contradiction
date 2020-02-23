@@ -104,3 +104,8 @@ void GameObject::setAcceleration(glm::vec2 newAcceleration)
 {
 	m_acceleration = newAcceleration;
 }
+
+std::string GameObject::getName()
+{
+	return name;
+}

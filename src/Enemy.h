@@ -21,7 +21,6 @@ private:
 	Frame* frame;
 	int health;
 	AI* aI;
-	std::string name;
 	void Move();
 };
 #endif

@@ -29,7 +29,7 @@ std::vector<Weapon> Frame::GetWeapons()
 	std::vector<Weapon> Weapons;
 	for (ShipComponent s : build)
 	{
-		if (typeid(s) == typeid(Weapon)) {
+		if (s.getName()=="Flamethrower" || s.getName() == "Cannon" || s.getName() == "MissileLauncher") {
 			Weapons.push_back(*(Weapon*)& s);
 		}
 	}

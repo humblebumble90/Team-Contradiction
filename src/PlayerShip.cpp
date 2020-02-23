@@ -30,6 +30,7 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 	frame = Frame(5, //Enemy is 300px by 300px
 		build, 15, 10); //Will tweak if it proves to be too much or too little
 	frame.Initialize(this);
+	name = "Player";
 	std::cout << "PlayerShip is instantiated!" << std::endl;
 }
 PlayerShip::~PlayerShip()

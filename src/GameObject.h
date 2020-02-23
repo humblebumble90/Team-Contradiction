@@ -45,6 +45,11 @@ public:
 	void setState(SteeringState newState);
 	void setAcceleration(glm::vec2 newAcceleration);
 
+	std::string getName();
+
+protected:
+	std::string name;
+
 private:
 	// transform variables
 	glm::vec2 m_position;
