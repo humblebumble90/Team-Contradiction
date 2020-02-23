@@ -43,7 +43,7 @@ void Enemy::Move()
 	setPosition(getPosition() + aI->GetSpeed());
 	/*if (getPosition().x - (GetFrame()->GridWidth() * GetFrame()->getGridSize() / 2) <=0) {
 		TheGame::Instance()->destroyEnemy(this);
-	}*/ //Add this back in when you figure out how to fix it
+	}*/
 }
 
 void Enemy::draw()
