@@ -3,7 +3,16 @@
 
 WeaponMissile::WeaponMissile()
 {
+	TheTextureManager::Instance()->load("../Assets/textures/ship3.png", "ship3", TheGame::Instance()->getRenderer());
+	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("ship3");
 
+	setWidth(size.x);
+	setHeight(size.y);
+	setPosition(glm::vec2(0.0f, 0.0f));
+	setIsColliding(false);
+	setType(GameObjectType::WEAPON_MISSILE);
+	setVelocity(glm::vec2(0.0f, 0.0f));
+	SetSpeed(50.0f);
 }
 
 WeaponMissile::~WeaponMissile()
@@ -12,13 +21,14 @@ WeaponMissile::~WeaponMissile()
 
 void WeaponMissile::draw()
 {
-	/*TheTextureManager::Instance()->load(weaponPath, weaponName, TheGame::Instance()->getRenderer());
-	SetSpeed(250.0f);
 
-	glm::vec2 size = TheTextureManager::Instance()->getTextureSize(weaponName);
-	setWidth(size.x);
-	setHeight(size.y);*/
+	int xComponent = getPosition().x;
+	int yComponent = getPosition().y;
+
+	TheTextureManager::Instance()->draw("ship3", xComponent, yComponent,
+		TheGame::Instance()->getRenderer(), 0, 255, true);
 }
+
 
 void WeaponMissile::update()
 {
@@ -40,5 +50,5 @@ void WeaponMissile::SetSpeed(float speed)
 
 void WeaponMissile::Move()
 {
-	setVelocity(glm::vec2(70.0f * GetSpeed(), 0.0f));
+	setVelocity(glm::vec2(1.0f * GetSpeed(), 0.0f));
 }

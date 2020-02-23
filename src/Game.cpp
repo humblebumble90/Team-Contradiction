@@ -239,6 +239,10 @@ void Game::handleEvents()
 				case SDLK_d:
 					getPlayerShip()->setPosition(getPlayerShip()->getPlayerMaxSpeedX() + getPlayerShip()->getPosition());
 					break;
+					// The below code throws a Debug Assertion Failed Error
+				/*case SDLK_f:
+					getPlayerShip()->GetFrame().GetWeapon(0).Fire();
+					break;*/
 			}
 			break;
 		default:

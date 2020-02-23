@@ -15,6 +15,7 @@ enum GameObjectType {
 	MINE,
 	TILE,
 	START_BUTTON,
+	WEAPON_MISSILE,
 	NUM_OF_TYPES
 };
 
