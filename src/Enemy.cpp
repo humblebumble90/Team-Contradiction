@@ -41,9 +41,9 @@ Frame* Enemy::GetFrame()
 void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
-	/*if (getPosition().x - (GetFrame()->GridWidth() * GetFrame()->getGridSize() / 2) <=0) {
+	if (getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <=0) {
 		TheGame::Instance()->destroyEnemy(this);
-	}*/
+	}
 }
 
 void Enemy::draw()
