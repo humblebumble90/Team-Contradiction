@@ -16,7 +16,6 @@ Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTr
 	setPosition(targetTransform);
 	TheTextureManager::Instance()->load("../Assets/textures/"+name+".png",
 		name, TheGame::Instance()->getRenderer());
-	//std::cout << enemyAI->GetSpeed().x << std::endl;
 }
 
 Enemy::~Enemy()
@@ -41,6 +40,9 @@ Frame* Enemy::GetFrame()
 void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
+	if (getPosition().x + (GetFrame()->GridWidth() * GetFrame()->getGridSize() / 2) <=0) {
+		TheGame::Instance()->destroyEnemy(this);
+	}
 	//std::cout << getPosition().x << std::endl;
 }
 
