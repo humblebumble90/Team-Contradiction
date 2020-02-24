@@ -284,9 +284,9 @@ bool CollisionManager::shipComponentCheck(ShipComponent comp1, ShipComponent com
 				  comp2Pos = comp2.getPosition() - glm::vec2{ comp2.getParent()->getGridSize(), comp2.getParent()->getGridSize() };
 #pragma region FourPointCollision
 		return
-			comp2Pos.x - comp1Pos.x							<	comp1.getParent()->getGridSize(),
-			comp2Pos.x + comp2.getParent()->getGridSize()	>	comp1Pos.x,
-			comp2Pos.y - comp1Pos.y							<	comp1.getParent()->getGridSize(),
+			comp2Pos.x - comp1Pos.x							<	comp1.getParent()->getGridSize() &&
+			comp2Pos.x + comp2.getParent()->getGridSize()	>	comp1Pos.x &&
+			comp2Pos.y - comp1Pos.y							<	comp1.getParent()->getGridSize() &&
 			comp2Pos.y + comp2.getParent()->getGridSize()	>	comp1Pos.y;
 #pragma endregion
 	}
