@@ -15,16 +15,7 @@ public:
 	~PlayerShip();
 
 	void Damage(int i) override;
-	Frame GetFrame();
-
-	glm::vec2 getPlayerMaxSpeedX();
-	glm::vec2 maxSpeedX;
-	glm::vec2 getPlayerminSpeedX();
-	glm::vec2 minSpeedX;
-	glm::vec2 getPlayerMaxSpeedY();
-	glm::vec2 maxSpeedY;
-	glm::vec2 getPlayerMinSpeedY();
-	glm::vec2 minSpeedY;
+	Frame* GetFrame();
 
 	// Draw the object
 	void draw() override;
@@ -37,7 +28,7 @@ public:
 
 	//Invincibility
 	bool getInvincibility();
-	bool inv = false;
+	bool inv;
 	void invincible();
 
 	//Moving
@@ -45,15 +36,15 @@ public:
 	//getters and setters
 	bool getIsMoving();
 	void setIsMoving(bool newState);
+	Frame* frame;
 private:
+	Uint8 m_alpha;
 	float m_maxSpeed;
 	bool m_isMoving;
 	int endInvincibleTime;
 	int playerHealth;
 	int playerLives;
-	Frame frame;
 	std::string name;
-	LevelScene* m_pLevelScene;
 };
 
 
