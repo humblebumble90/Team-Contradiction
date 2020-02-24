@@ -290,6 +290,12 @@ bool CollisionManager::shipComponentCheck(ShipComponent comp1, ShipComponent com
 			comp2Pos.y + comp2.getParent()->getGridSize()	>	comp1Pos.y;
 #pragma endregion
 	}
+
+	//if(glm::abs(comp1.getPosition().x - comp2.getPosition().x) < comp1.getParent()->getGridSize() &&
+	//	glm::abs(comp1.getPosition().y - comp2.getPosition().y) < comp1.getParent()->getGridSize())
+	//{
+	//	return true;
+	//}
 	return false;
 }
 

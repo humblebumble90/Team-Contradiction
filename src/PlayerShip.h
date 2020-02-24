@@ -36,6 +36,7 @@ public:
 	//getters and setters
 	bool getIsMoving();
 	void setIsMoving(bool newState);
+	void m_checkBounds();
 	Frame* frame;
 private:
 	Uint8 m_alpha;

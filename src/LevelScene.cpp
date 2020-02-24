@@ -45,17 +45,15 @@ void LevelScene::update()
 					{
 						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
 						{
-							//std::cout << s.getName() << std::endl;
-							//std::cout << s.getPosition().x << std::endl;
-							//std::cout << s.getPosition().y << std::endl;
-							//std::cout << c.getName() << std::endl;
-							//std::cout << c.getPosition().x << std::endl;
-							//std::cout << c.getPosition().y << std::endl;
 							if (CollisionManager::shipComponentCheck(s, c))
 							{
 								player->Damage(1);
-								player->invincible();
-
+								std::cout << "Player shipComponent: " << s.getName() << std::endl;
+								std::cout << s.getPosition().x << std::endl;
+								std::cout << s.getPosition().y << std::endl;
+								std::cout << "EnemyShipComponent: " << c.getName() << std::endl;
+								std::cout << c.getPosition().x << std::endl;
+								std::cout << c.getPosition().y << std::endl;
 								if (c.getName() == "BasicBody")
 								{
 									((BasicBody&)c).Damage(1);

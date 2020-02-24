@@ -13,6 +13,9 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/player.png", "Player", TheGame::Instance()->getRenderer());
+	glm::vec2 size = TextureManager::Instance()->getTextureSize("Player");
+	setWidth(size.x);
+	setHeight(size.y);
 	setPosition(targetTransform);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
@@ -50,20 +53,21 @@ void PlayerShip::Damage(int i)
 {
 	if (m_playerHealth >= 1 && m_playerLives > 0)
 	{
+		invincible();
 		m_playerHealth -= i;
-		std::cout << "Player damaged!\n";
-		std::cout << "PlayerHealth: " << m_playerHealth << std::endl;
+		//std::cout << "Player damaged!\n";
+		//std::cout << "PlayerHealth: " << m_playerHealth << std::endl;
 		m_playerLives -= 1;
-		std::cout << "Player life decreases for 1!";
-		std::cout << "Player life : "<< m_playerLives << std::endl;
+		//std::cout << "Player life decreases for 1\n!";
+		//std::cout << "Player life : "<< m_playerLives << std::endl;
 		m_playerHealth += 1;
-		std::cout << "Player life restored by a decreased life: " << m_playerHealth << std::endl;
+		//std::cout << "Player health restored by a decreased life: " << m_playerHealth << std::endl;
 	}
 		else if(m_playerLives <= 0)
 		{
-			std::cout << "Player Health: " << m_playerHealth << std::endl;
-			std::cout << "Player Lives: " << m_playerLives << std::endl;
-			std::cout << "Player died!" << std::endl;
+			//std::cout << "Player Health: " << m_playerHealth << std::endl;
+			//std::cout << "Player Lives: " << m_playerLives << std::endl;
+			//std::cout << "Player died!" << std::endl;
 			//Game::Instance()->changeSceneState(END_SCENE);
 		}
 }
@@ -123,9 +127,39 @@ void PlayerShip::setIsMoving(bool newState)
 	m_isMoving = newState;
 }
 
+void PlayerShip::m_checkBounds()
+{
+	// check right bounds
+	if (getPosition().x >= Config::SCREEN_WIDTH - getWidth() * 0.5f)
+	{
+		setPosition(glm::vec2(Config::SCREEN_WIDTH - getWidth() * 0.5f, getPosition().y));
+	}
+
+	// check left bounds
+	if (getPosition().x <= getWidth() * 0.5f)
+	{
+		setPosition(glm::vec2(getWidth() * 0.5f, getPosition().y));
+	}
+
+	// check top bounds
+	if (getPosition().y >= Config::SCREEN_HEIGHT - getHeight() * 0.5f)
+	{
+		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT - getHeight() * 0.5f));
+	}
+
+	// check bottom bounds
+	if (getPosition().y <= getHeight() * 0.5f)
+	{
+		setPosition(glm::vec2(getPosition().x, getHeight() * 0.5f));
+	}
+
+}
+
 
 void PlayerShip::update()
 {
+	m_checkBounds();
+	
 	auto currentPosition = getPosition();
 	auto currentVelocity = getVelocity();
 

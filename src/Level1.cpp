@@ -95,8 +95,9 @@ Level1::Level1()
 		centerBot,
 	};
 
-	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT/2));
+	player = new PlayerShip(1, 3, glm::vec2(Config::SCREEN_WIDTH*0.2f, Config::SCREEN_HEIGHT/2));
 	m_pMap = new Map();
+	std::cout << "Level1 map is intantiated!\n";
 }
 
 Level1::~Level1()
