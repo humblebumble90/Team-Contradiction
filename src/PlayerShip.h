@@ -42,8 +42,8 @@ private:
 	float m_maxSpeed;
 	bool m_isMoving;
 	int endInvincibleTime;
-	int playerHealth;
-	int playerLives;
+	int m_playerHealth;
+	int m_playerLives;
 	std::string name;
 };
 

@@ -33,7 +33,7 @@ void LevelScene::update()
 		//{
 		//	CollisionManager::squaredRadiusCheck(player, enemy);
 		//}
-
+		
 		for (ShipComponent s : player->GetFrame()->GetBuild())
 		{
 			if (s.getName() == "BasicBody")

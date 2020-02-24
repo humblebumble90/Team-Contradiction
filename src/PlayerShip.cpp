@@ -16,6 +16,8 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 	setPosition(targetTransform);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
+	m_playerHealth = playerHealth;
+	m_playerLives = playerLives;
 
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
@@ -28,8 +30,8 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 	frame = new Frame(5, //Enemy is 300px by 300px
 		build, 15, 10); //Will tweak if it proves to be too much or too little
 	frame->Initialize(this);
-	std::cout << "PlayerHealth: " << playerHealth << std::endl;
-	std::cout << "Player Lives: " << playerLives << std::endl;
+	std::cout << "PlayerHealth: " << m_playerHealth << std::endl;
+	std::cout << "Player Lives: " << m_playerLives << std::endl;
 	std::cout << "PlayerShip is instantiated!" << std::endl;
 	std::cout <<"Player:s memory address: "<< this << std::endl;
 	std::cout << "Frame's memory address: " << frame << std::endl;
@@ -46,20 +48,21 @@ PlayerShip::~PlayerShip()
 
 void PlayerShip::Damage(int i)
 {
-	if (playerHealth >= 1 && playerLives >= 0)
+	if (m_playerHealth >= 1 && m_playerLives > 0)
 	{
-		playerHealth -= i;
+		m_playerHealth -= i;
 		std::cout << "Player damaged!\n";
-		std::cout << "PlayerHealth: " << playerHealth << std::endl;
-		playerLives -= 1;
+		std::cout << "PlayerHealth: " << m_playerHealth << std::endl;
+		m_playerLives -= 1;
 		std::cout << "Player life decreases for 1!";
-		playerHealth += 1;
-		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
+		std::cout << "Player life : "<< m_playerLives << std::endl;
+		m_playerHealth += 1;
+		std::cout << "Player life restored by a decreased life: " << m_playerHealth << std::endl;
 	}
-		else if(playerLives <= 0)
+		else if(m_playerLives <= 0)
 		{
-			std::cout << "Player Health: " << playerHealth << std::endl;
-			std::cout << "Player Lives: " << playerLives << std::endl;
+			std::cout << "Player Health: " << m_playerHealth << std::endl;
+			std::cout << "Player Lives: " << m_playerLives << std::endl;
 			std::cout << "Player died!" << std::endl;
 			//Game::Instance()->changeSceneState(END_SCENE);
 		}
@@ -70,8 +73,8 @@ bool PlayerShip::getInvincibility()
 }
 void PlayerShip::invincible()
 {
-	std::cout << "Invincibled!\n";
 	inv = true;
+	std::cout << "Invincibled!\n";
 	m_alpha *= 0.5f;
 	endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
 
@@ -157,7 +160,7 @@ void PlayerShip::update()
 	{
 		std::cout << "invincible finished!\n";
 		inv = false;
-		TextureManager::Instance()->setAlpha("player", m_alpha);
+		m_alpha = 255;
 	}
 	
 }
