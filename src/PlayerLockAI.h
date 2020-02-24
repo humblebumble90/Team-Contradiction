@@ -6,11 +6,9 @@ class PlayerLockAI : public AI
 {
 public:
 	PlayerLockAI();
-	PlayerLockAI(Enemy* enemyParent, float bSpeed, glm::vec2 targetTransform);
 	~PlayerLockAI();
-	void Initialize(Enemy* enemyParent, float bSpeed, glm::vec2 targetTransform);
-private:
+	void Initialize();
+protected:
 	float baseSpeed;
-	void setup(Enemy* enemyParent, float bSpeed, glm::vec2 targetTransform);
 };
 #endif

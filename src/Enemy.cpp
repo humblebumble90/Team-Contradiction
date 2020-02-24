@@ -10,9 +10,9 @@ Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTr
 	frame(enemyFrame), health(enemyHealth), aI(enemyAI)
 {
 	name = enemyName;
-	if (name == "EnemyMissile" || name == "Ram") {
+	/*if (name == "EnemyMissile" || name == "Ram") {
 		(((PlayerLockAI*)aI)->Initialize(this, 10.00f, targetTransform));
-	}
+	}*/
 	frame->Initialize(this);
 	setPosition(targetTransform);
 	TheTextureManager::Instance()->load("../Assets/textures/"+name+".png",
@@ -41,7 +41,7 @@ Frame* Enemy::GetFrame()
 void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
-	if (getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <=0) {
+	if (getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <= 0) {
 		TheGame::Instance()->destroyEnemy(this);
 	}
 }

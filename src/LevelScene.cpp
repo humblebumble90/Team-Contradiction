@@ -51,7 +51,7 @@ void LevelScene::update()
 							//std::cout << c.getName() << std::endl;
 							//std::cout << c.getPosition().x << std::endl;
 							//std::cout << c.getPosition().y << std::endl;
-							if (CollisionManager::shipComponentCheck(s, c))
+							/*if (CollisionManager::shipComponentCheck(s, c))
 							{
 								player->Damage(1);
 								player->invincible();
@@ -64,7 +64,7 @@ void LevelScene::update()
 								{
 									((IndesBody&)c).Damage(s);
 								}
-							}
+							}*/
 
 						}
 					}
@@ -84,7 +84,7 @@ void LevelScene::update()
 	if (zigzagIteration < zigzagSpawnTimer.size()) {
 		if (time == zigzagSpawnTimer[zigzagIteration])
 		{
-			ZigzagAI z = ZigzagAI(zigzagSpawnLocation[zigzagIteration]);
+			spawnEnemy(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
 			++zigzagIteration;
 		}
 	}
@@ -130,6 +130,7 @@ glm::vec2 LevelScene::getPlayerPosition()
 void LevelScene::spawnEnemy(AI* enemyAI)
 {
 	if (spawnedEnemy == false) {
+		//std::cout << enemyAI << std::endl;
 		spawnedEnemy = true;
 		enemies.push_back(enemyAI);
 	}
