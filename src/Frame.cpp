@@ -29,6 +29,7 @@ std::vector<Weapon> Frame::GetWeapons()
 	std::vector<Weapon> Weapons;
 	for (ShipComponent s : build)
 	{
+		//ShipComponent* m_s = &s;
 		if (s.getName()=="Flamethrower" || s.getName() == "Cannon" || s.getName() == "MissileLauncher") {
 			Weapons.push_back(*(Weapon*)& s);
 		}

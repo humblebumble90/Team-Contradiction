@@ -7,6 +7,6 @@ class Cannon : public Weapon {
 public:
 	Cannon();
 	~Cannon();
-	void Fire() override;
+	void Fire();
 };
 #endif

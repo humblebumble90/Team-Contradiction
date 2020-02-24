@@ -51,7 +51,7 @@ void LevelScene::update()
 							//std::cout << c.getName() << std::endl;
 							//std::cout << c.getPosition().x << std::endl;
 							//std::cout << c.getPosition().y << std::endl;
-							/*if (CollisionManager::shipComponentCheck(s, c))
+							if (CollisionManager::shipComponentCheck(s, c))
 							{
 								player->Damage(1);
 								player->invincible();
@@ -64,7 +64,7 @@ void LevelScene::update()
 								{
 									((IndesBody&)c).Damage(s);
 								}
-							}*/
+							}
 
 						}
 					}

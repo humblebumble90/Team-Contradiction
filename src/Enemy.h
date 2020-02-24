@@ -22,6 +22,5 @@ private:
 	int health;
 	AI* aI;
 	void Move();
-	bool initializedPlayerLock = false;
 };
 #endif

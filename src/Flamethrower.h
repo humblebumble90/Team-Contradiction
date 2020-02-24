@@ -7,6 +7,6 @@ class Flamethrower : public Weapon
 public:
 	Flamethrower();
 	~Flamethrower();
-	void Fire() override;
+	void Fire();
 };
 #endif

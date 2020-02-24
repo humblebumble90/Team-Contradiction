@@ -13,7 +13,7 @@ public:
 	~Weapon();
 
 	//Method that fires the weapon
-	virtual void Fire();
+	void Fire();
 
 };
 

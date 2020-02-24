@@ -12,7 +12,7 @@ public:
 	~MissileLauncher();
 
 
-	void Fire() override;
+	void Fire();
 
 private:
 	WeaponMissile* m_pWeaponMissile;

@@ -28,6 +28,7 @@ void ZigzagAI::PrimaryFunction()
 		if (bounceTimer <= 0)
 		{
 			speed.y = -speed.y;
+			//std::cout << parent->GetFrame()->GetWeapons().size() << std::endl;
 			for (Weapon w : parent->GetFrame()->GetWeapons())
 			{
 				w.Fire();
