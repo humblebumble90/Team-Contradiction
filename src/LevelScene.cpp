@@ -74,15 +74,19 @@ void LevelScene::update()
 	}
 #pragma endregion
 	#pragma region Spawn Enemies
-	if (time == ramSpawnTimer[ramIteration])
-	{
-		spawnEnemy(new RamAI(ramSpawnLocation[ramIteration]));
-		++ramIteration;
+	if (ramIteration < ramSpawnTimer.size()) {
+		if (time == ramSpawnTimer[ramIteration])
+		{
+			spawnEnemy(new RamAI(ramSpawnLocation[ramIteration]));
+			++ramIteration;
+		}
 	}
-	if (time == zigzagSpawnTimer[zigzagIteration])
-	{
-		spawnEnemy(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
-		++zigzagIteration;
+	if (zigzagIteration < zigzagSpawnTimer.size()) {
+		if (time == zigzagSpawnTimer[zigzagIteration])
+		{
+			ZigzagAI z = ZigzagAI(zigzagSpawnLocation[zigzagIteration]);
+			++zigzagIteration;
+		}
 	}
 	#pragma endregion
 }

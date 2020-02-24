@@ -19,7 +19,7 @@ void MissileLauncher::Fire()
 		m_pWeaponMissile->draw();
 	}
 	else {
-		TheGame::Instance()->spawnEnemy(new EnemyMissileAI(getPosition()));
+		EnemyMissileAI e = EnemyMissileAI(getPosition());
 	}
 }
 
