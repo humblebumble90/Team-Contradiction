@@ -65,7 +65,6 @@ void PlayerShip::invincible()
 
 }
 
-
 Frame PlayerShip::GetFrame()
 {
 	return frame;
@@ -107,7 +106,7 @@ void PlayerShip::update()
 
 void PlayerShip::clean()
 {
-	Damage(1);
+	
 }
 
 

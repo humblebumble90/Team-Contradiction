@@ -11,11 +11,13 @@ LevelScene::LevelScene()
 
 LevelScene::~LevelScene()
 {
+	
 }
 
 void LevelScene::update()
 {
 	++time;
+	std::cout << "Time: " << time << std::endl;
 #pragma region Player Collision and invinciblity
 	if (!(player->getInvincibility()))
 	{

@@ -195,9 +195,6 @@
     <ClCompile Include="..\src\Level1.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Player.cpp">
-      <Filter>Game Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Map.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
@@ -355,9 +352,6 @@
     </ClInclude>
     <ClInclude Include="..\src\Level1.h">
       <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Player.h">
-      <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\GameObjectType.h">
       <Filter>Enum</Filter>
