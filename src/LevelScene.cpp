@@ -1,6 +1,8 @@
 #include "LevelScene.h"
 #include "RamAI.h"
 #include "ZigzagAI.h"
+#include "CannoneerAI.h"
+#include "GuardianAI.h"
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "CollisionManager.h"
@@ -86,6 +88,20 @@ void LevelScene::update()
 		{
 			spawnEnemy(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
 			++zigzagIteration;
+		}
+	}
+	if (cannoneerIteration < cannoneerSpawnTimer.size()) {
+		if (time == cannoneerSpawnTimer[cannoneerIteration])
+		{
+			spawnEnemy(new CannoneerAI(cannoneerSpawnLocation[cannoneerIteration]));
+			++cannoneerIteration;
+		}
+	}
+	if (guardianIteration < guardianSpawnTimer.size()) {
+		if (time == guardianSpawnTimer[guardianIteration])
+		{
+			spawnEnemy(new GuardianAI(guardianSpawnLocation[guardianIteration]));
+			++guardianIteration;
 		}
 	}
 	#pragma endregion

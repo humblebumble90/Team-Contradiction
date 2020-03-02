@@ -29,9 +29,9 @@ protected:
 	Map* m_pMap;
 	#pragma endregion
 	#pragma region Spawn Timers
-	int time = 0, ramIteration = 0, zigzagIteration = 0;
-	std::vector<int> ramSpawnTimer, zigzagSpawnTimer;
-	std::vector<glm::vec2> ramSpawnLocation, zigzagSpawnLocation;
+	int time = 0, ramIteration = 0, zigzagIteration = 0, cannoneerIteration = 0, guardianIteration = 0;
+	std::vector<int> ramSpawnTimer, zigzagSpawnTimer, cannoneerSpawnTimer, guardianSpawnTimer;
+	std::vector<glm::vec2> ramSpawnLocation, zigzagSpawnLocation, cannoneerSpawnLocation, guardianSpawnLocation;
 	#pragma endregion
 };
 #endif

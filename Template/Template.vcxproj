@@ -160,6 +160,7 @@
     <ClCompile Include="..\src\Cannon.cpp" />
     <ClCompile Include="..\src\CannoneerAI.cpp" />
     <ClCompile Include="..\src\Flamethrower.cpp" />
+    <ClCompile Include="..\src\GuardianAI.cpp" />
     <ClCompile Include="..\src\Level1.cpp" />
     <ClCompile Include="..\src\Map.cpp" />
     <ClCompile Include="..\src\MissileLauncher.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="..\src\CannoneerAI.h" />
     <ClInclude Include="..\src\Flamethrower.h" />
     <ClInclude Include="..\src\GameObjectType.h" />
+    <ClInclude Include="..\src\GuardianAI.h" />
     <ClInclude Include="..\src\Level1.h" />
     <ClInclude Include="..\src\Map.h" />
     <ClInclude Include="..\src\MissileLauncher.h" />
