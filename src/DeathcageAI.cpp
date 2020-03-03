@@ -3,6 +3,7 @@
 #include "BasicBody.h"
 #include "Flamethrower.h"
 #include "Cannon.h"
+#include "Config.h"
 
 DeathcageAI::DeathcageAI(glm::vec2 transform)
 {
@@ -29,7 +30,7 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 		BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(50, //Enemy is 800px by 900px - NOTE: Deathcage is the height of the screen
+	parent = new Enemy(new Frame(40, //Enemy is 640px by 720px - NOTE: Deathcage is the height of the screen
 	build, 16, 18), 100, //Will tweak if 100 health proves to be too much or too little
 		this, transform, "Deathcage");
 
@@ -58,6 +59,9 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 			w.Fire();
 		}
 	}
+
+	target = glm::vec2(Config::SCREEN_HEIGHT/2, parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2);
+	entrySpeed = glm::vec2(-10, 0);
 }
 
 DeathcageAI::~DeathcageAI()

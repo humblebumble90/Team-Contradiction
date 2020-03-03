@@ -113,7 +113,7 @@ void Level3::Boss4()
 void Level3::Boss5()
 {
 	TheSoundManager::Instance()->playMusic("FinalBoss", 999);
-	//spawnEnemy(new DeathcageAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
+	spawnEnemy(new DeathcageAI(glm::vec2(Config::SCREEN_WIDTH + 320, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Victory()
