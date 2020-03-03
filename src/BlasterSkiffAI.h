@@ -3,7 +3,7 @@
 #define __BLASTERSKIFF__
 #include "FlyOntoScreenAI.h"
 
-class BlasterSkiffAI : FlyOntoScreenAI
+class BlasterSkiffAI : public FlyOntoScreenAI
 {
 public:
 	BlasterSkiffAI(glm::vec2 transform);

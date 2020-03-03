@@ -2,7 +2,7 @@
 #ifndef __FIREBARGE__
 #define __FIREBARGE__
 #include "FlyOntoScreenAI.h"
-class FireBargeAI : FlyOntoScreenAI
+class FireBargeAI : public FlyOntoScreenAI
 {
 public:
 	FireBargeAI(glm::vec2 transform);

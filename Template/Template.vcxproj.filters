@@ -214,7 +214,7 @@
       <Filter>Source Files\AIs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\RainAI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AIs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

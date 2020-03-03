@@ -27,6 +27,7 @@ Level3::~Level3()
 
 void Level3::update()
 {
+#pragma region Ram Rush
 	if (ramRushTimerDelay > 0) {
 		--ramRushTimerDelay;
 	}
@@ -47,8 +48,29 @@ void Level3::update()
 		coor1 = coor1 == 0 ? coor1 : coor1Decider;
 		int coor2Max = coor1Decider == Config::SCREEN_WIDTH ? Config::SCREEN_HEIGHT : Config::SCREEN_WIDTH;
 		int coor2 = rand() % (coor2Max + 1);
-		glm::vec2 transform = coor1Decider == Config::SCREEN_WIDTH ? glm::vec2{coor1, coor2} : glm::vec2{coor2, coor1};
+		glm::vec2 transform = coor1Decider == Config::SCREEN_WIDTH ? glm::vec2{ coor1, coor2 } : glm::vec2{ coor2, coor1 };
 		enemies.push_back(new RamAI(transform));
+	}
+#pragma endregion
+	if (bossDelayTimer <= 0 && enemies.size() == 0) {
+		switch (bossIteration) {
+		case 1:
+			Boss2();
+			break;
+		case 2:
+			Boss3();
+			break;
+		case 3:
+			Boss4();
+			break;
+		case 4:
+			Boss5();
+			break;
+		case 5:
+			Victory();
+			break;
+		}
+		++bossIteration;
 	}
 }
 
@@ -67,6 +89,7 @@ void Level3::start()
 void Level3::Boss1()
 {
 	TheSoundManager::Instance()->playMusic("BossRush1", 999);
+	spawnEnemy(new BlasterSkiffAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss2()

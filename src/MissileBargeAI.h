@@ -2,7 +2,7 @@
 #ifndef __MISSILEBARGE__
 #define __MISSILEBARGE__
 #include "FlyOntoScreenAI.h"
-class MissileBargeAI : FlyOntoScreenAI
+class MissileBargeAI : public FlyOntoScreenAI
 {
 public:
 	MissileBargeAI(glm::vec2 transform);

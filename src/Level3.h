@@ -34,7 +34,7 @@ public:/*
 	void Victory(); //Switches the scene to the VictoryScreen
 private:
 	//Timers
-	int ramRushTimerDelay = 180, ramRushTimer = 900, bossDelayTimer = 60, bossDelayTimerReset = 60;
+	int ramRushTimerDelay = 180, ramRushTimer = 900, bossDelayTimer = 60, bossDelayTimerReset = 60, bossIteration = 0;
 };
 
 #endif

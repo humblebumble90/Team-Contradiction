@@ -3,7 +3,7 @@
 #define __RAIN__
 #include "FlyOntoScreenAI.h"
 
-class RainAI : FlyOntoScreenAI
+class RainAI : public FlyOntoScreenAI
 {
 public:
 	RainAI(glm::vec2 transform);

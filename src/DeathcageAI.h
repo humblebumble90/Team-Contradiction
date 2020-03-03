@@ -3,7 +3,7 @@
 #define __DEATHCAGE__
 #include "FlyOntoScreenAI.h"
 #include "Weapon.h"
-class DeathcageAI : FlyOntoScreenAI
+class DeathcageAI : public FlyOntoScreenAI
 {
 public:
 	DeathcageAI(glm::vec2 transform);
