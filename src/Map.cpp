@@ -3,12 +3,7 @@
 
 Map::Map()
 {
-	TheTextureManager::Instance()->load("../Assets/textures/map.jpg",
-		"map", TheGame::Instance()->getRenderer());
-
-	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("map");
-	setWidth(size.x);
-	setHeight(size.y);
+	changeTexture("map");
 	setVelocity(glm::vec2(-5, 0));
 	_reset();
 	setIsColliding(false);
@@ -23,7 +18,7 @@ void Map::draw()
 {
 	int xComponent = getPosition().x;
 	int yComponent = getPosition().y;
-	TheTextureManager::Instance()->draw("map", xComponent, yComponent,
+	TheTextureManager::Instance()->draw(id, xComponent, yComponent,
 		TheGame::Instance()->getRenderer());
 }
 

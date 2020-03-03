@@ -2,10 +2,9 @@
 #ifndef __MAP__
 #define __MAP__
 
-#include "GameObject.h"
-#include "TextureManager.h"
+#include "DisplayObject.h"
 
-class Map : public GameObject {
+class Map : public DisplayObject {
 public:
 	// Constructor / Destructor
 	Map();

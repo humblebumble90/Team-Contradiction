@@ -96,9 +96,6 @@
     <ClCompile Include="..\src\StartScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\PlayScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\EndScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -255,9 +252,6 @@
       <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\StartScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\PlayScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\src\EndScene.h">

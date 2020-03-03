@@ -4,6 +4,7 @@
 
 Level1::Level1()
 {
+	loadTexture();
 	int second = 60;
 	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT + 25);
 	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT/2 + 25);
@@ -113,4 +114,10 @@ void Level1::handleEvents()
 
 void Level1::start()
 {
+}
+
+void Level1::loadAllTexture()
+{
+	loadTexture("../Assets/textures/player.png", "Player");
+	loadTexture("../Assets/textures/map.jpg", "map");
 }

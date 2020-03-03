@@ -9,6 +9,7 @@
 #include "GameObject.h"
 
 #include "SceneState.h"
+#include "SoundManager.h"
 
 class Scene : public GameObject
 {
@@ -27,6 +28,8 @@ public:
 	void addChild(DisplayObject* child);
 	void removeAllChildren();
 	int numberOfChildren();
+	void loadTexture(std::string path, std::string id);
+	void loadSound(std::string path, std::string id, sound_type type);
 
 private:
 	std::vector<DisplayObject*> m_displayList;

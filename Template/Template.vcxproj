@@ -195,7 +195,6 @@
     <ClCompile Include="..\src\IndesBody.cpp" />
     <ClCompile Include="..\src\Label.cpp" />
     <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\PlayScene.cpp" />
     <ClCompile Include="..\src\RamAI.cpp" />
     <ClCompile Include="..\src\Scene.cpp" />
     <ClCompile Include="..\src\ShipComponent.cpp" />
@@ -252,7 +251,6 @@
     <ClInclude Include="..\src\GameObject.h" />
     <ClInclude Include="..\src\IndesBody.h" />
     <ClInclude Include="..\src\Label.h" />
-    <ClInclude Include="..\src\PlayScene.h" />
     <ClInclude Include="..\src\RamAI.h" />
     <ClInclude Include="..\src\Scene.h" />
     <ClInclude Include="..\src\ShipComponent.h" />
