@@ -22,8 +22,11 @@ void LevelScene::update()
 	spawnedEnemy = false;
 	player->update();
 	m_pMap->update();
-	for (AI* a : enemies) {
-		a->GetParent()->update();
+	//for (AI* a : enemies) {
+		//a->GetParent()->update();
+	//}
+	for (int z = 0; z < enemies.size(); ++z) {
+		enemies[z]->GetParent()->update();
 	}
 	for (DisplayObject* d : playerWeapons) {
 		d->update();
