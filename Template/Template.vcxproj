@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\BlastAI.cpp" />
     <ClCompile Include="..\src\Button.cpp" />
     <ClCompile Include="..\src\Cannon.cpp" />
     <ClCompile Include="..\src\CannoneerAI.cpp" />
@@ -212,6 +213,7 @@
     <ClCompile Include="..\src\ZigzagAI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\BlastAI.h" />
     <ClInclude Include="..\src\Button.h" />
     <ClInclude Include="..\src\Cannon.h" />
     <ClInclude Include="..\src\CannoneerAI.h" />

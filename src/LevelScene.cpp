@@ -4,6 +4,7 @@
 #include "CannoneerAI.h"
 #include "GuardianAI.h"
 #include "DiagonAI.h"
+#include "BlastAI.h"
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "CollisionManager.h"
@@ -110,6 +111,13 @@ void LevelScene::update()
 		{
 			spawnEnemy(new DiagonAI(diagonSpawnLocation[diagonIteration]));
 			++diagonIteration;
+		}
+	}
+	if (blastIteration < blastSpawnTimer.size()) {
+		if (time == blastSpawnTimer[blastIteration])
+		{
+			spawnEnemy(new BlastAI(blastSpawnLocation[blastIteration]));
+			++blastIteration;
 		}
 	}
 	#pragma endregion
