@@ -7,6 +7,7 @@
 #include "LevelScene.h"
 #include "AI.h"
 #include "Level1.h"
+#include "Level3.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -148,6 +149,11 @@ void Game::changeSceneState(SceneState newState)
 		case SceneState::LEVEL1_SCENE:
 			m_currentScene = new Level1();
 			std::cout << "play scene activated" << std::endl;
+			break;
+		case SceneState::LEVEL3_SCENE:
+			PlayerShip* player = getPlayerShip();
+			m_currentScene = new Level3(player);
+			std::cout << "boss rush activated" << std::endl;
 			break;
 		}
 		
