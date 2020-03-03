@@ -15,23 +15,7 @@ DiagonAI::DiagonAI(glm::vec2 transform)
 #pragma endregion
 	parent = new Enemy(new Frame(16.666667, //Enemy is 50px by 50px
 		build, 3, 3), 1, this, transform, "Diagon");
-	float tX = Config::SCREEN_WIDTH/2;
-	float tY = Config::SCREEN_HEIGHT/2;
-	float xDif = abs(parent->getPosition().x - tX), yDif = abs(parent->getPosition().y - tY);
-	bool xIsCloser = xDif > yDif;
-	switch (xIsCloser)
-	{
-	case true:
-		speed.x = baseSpeed;
-		speed.y = yDif / xDif * baseSpeed;
-		break;
-	case false:
-		speed.y = baseSpeed;
-		speed.x = xDif / yDif * baseSpeed;
-		break;
-	}
-	speed.x = parent->getPosition().x > tX ? -speed.x : speed.x;
-	speed.y = parent->getPosition().y > tY ? -speed.y : speed.y;
+	Initialize(glm::vec2(Config::SCREEN_WIDTH / 2, Config::SCREEN_HEIGHT / 2));
 }
 
 DiagonAI::~DiagonAI()

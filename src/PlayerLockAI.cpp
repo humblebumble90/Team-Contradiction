@@ -7,10 +7,19 @@ PlayerLockAI::~PlayerLockAI(){}
 
 void PlayerLockAI::Initialize()
 {
+	setSpeed(TheGame::Instance()->getPlayerPosition());
+}
 
+void PlayerLockAI::Initialize(glm::vec2 target)
+{
+	setSpeed(target);
+}
+
+void PlayerLockAI::setSpeed(glm::vec2 target)
+{
 	//Get target
-	float tX = TheGame::Instance()->getPlayerPosition().x;
-	float tY = TheGame::Instance()->getPlayerPosition().y;
+	float tX = target.x;
+	float tY = target.y;
 	float xDif = abs(GetParent()->getPosition().x - tX), yDif = abs(GetParent()->getPosition().y - tY);
 	bool xIsCloser = xDif > yDif;
 	switch (xIsCloser)
