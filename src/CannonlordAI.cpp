@@ -16,10 +16,11 @@ CannonlordAI::CannonlordAI(glm::vec2 transform)
 		Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(50, //Enemy is 450px by 300px
+	parent = new Enemy(new Frame(40, //Enemy is 360px by 240px
 	build, 9, 6), 50, //Will tweak if 50 health proves to be too much or too little
 		this, transform, "Cannonlord");
 	speed.x = -baseSpeed;
+	target = glm::vec2(Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT / 2);
 }
 
 CannonlordAI::~CannonlordAI()
