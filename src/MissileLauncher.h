@@ -13,6 +13,7 @@ public:
 
 
 	void Fire();
+	void Fire(glm::vec2 trajectory);
 
 private:
 	WeaponMissile* m_pWeaponMissile;
