@@ -10,6 +10,12 @@
 
 LevelScene::LevelScene()
 {
+	loadAllTextures();
+}
+
+void LevelScene::loadAllTextures()
+{
+	loadTexture()
 }
 
 LevelScene::~LevelScene()

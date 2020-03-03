@@ -4,7 +4,7 @@
 
 Level1::Level1()
 {
-	loadTexture();
+	loadAllTexture();
 	int second = 60;
 	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT + 25);
 	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT/2 + 25);

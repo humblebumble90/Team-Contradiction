@@ -9,14 +9,12 @@ Enemy::Enemy(){/*DANGER! Do not use!*/ }
 Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTransform, std::string enemyName):
 	frame(enemyFrame), health(enemyHealth), aI(enemyAI)
 {
-	name = enemyName;
 	/*if (name == "EnemyMissile" || name == "Ram") {
 		(((PlayerLockAI*)aI)->Initialize(this, 10.00f, targetTransform));
 	}*/
 	frame->Initialize(this);
 	setPosition(targetTransform);
-	TheTextureManager::Instance()->load("../Assets/textures/"+name+".png",
-		name, TheGame::Instance()->getRenderer());
+	changeTexture(enemyName);
 }
 
 Enemy::~Enemy()

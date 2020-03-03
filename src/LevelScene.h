@@ -16,6 +16,7 @@ public:
 	void draw() override;
 	void DestroyEnemy(Enemy* enemy);
 	void GameOver();
+	void loadAllTextures();
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
 	PlayerShip* getPlayerShip();
