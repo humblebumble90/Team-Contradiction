@@ -2,6 +2,7 @@
 #include "Blank.h"
 #include "BasicBody.h"
 #include "Flamethrower.h"
+#include "Config.h"
 
 FireBargeAI::FireBargeAI(glm::vec2 transform)
 {
@@ -16,7 +17,7 @@ FireBargeAI::FireBargeAI(glm::vec2 transform)
 		Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(50, //Enemy is 300px by 300px
+	parent = new Enemy(new Frame(40, //Enemy is 240px by 240px
 	build, 6, 6), 20, //Will tweak if it proves to be too much or too little
 		this, transform, "FireBarge");
 	speed.y = -baseSpeed; //Tweak this number later
@@ -26,6 +27,12 @@ FireBargeAI::FireBargeAI(glm::vec2 transform)
 	{
 		w.Fire();
 	}
+
+	topLimit = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridHeight() / 2;
+	bottomLimit = Config::SCREEN_HEIGHT - bottomLimit;
+	leftLimit = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2;
+	rightLimit = Config::SCREEN_WIDTH - leftLimit;
+	target = glm::vec2(rightLimit, Config::SCREEN_HEIGHT / 2);
 }
 
 FireBargeAI::~FireBargeAI()
