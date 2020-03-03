@@ -3,6 +3,7 @@
 #include "ZigzagAI.h"
 #include "CannoneerAI.h"
 #include "GuardianAI.h"
+#include "DiagonAI.h"
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "CollisionManager.h"
@@ -22,9 +23,6 @@ void LevelScene::update()
 	spawnedEnemy = false;
 	player->update();
 	m_pMap->update();
-	//for (AI* a : enemies) {
-		//a->GetParent()->update();
-	//}
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
@@ -105,6 +103,13 @@ void LevelScene::update()
 		{
 			spawnEnemy(new GuardianAI(guardianSpawnLocation[guardianIteration]));
 			++guardianIteration;
+		}
+	}
+	if (diagonIteration < diagonSpawnTimer.size()) {
+		if (time == diagonSpawnTimer[diagonIteration])
+		{
+			spawnEnemy(new DiagonAI(diagonSpawnLocation[diagonIteration]));
+			++diagonIteration;
 		}
 	}
 	#pragma endregion

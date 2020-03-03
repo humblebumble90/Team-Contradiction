@@ -1,4 +1,5 @@
 #include "IndesBody.h"
+#include "Game.h"
 
 IndesBody::IndesBody(bool projectile)
 {
@@ -19,6 +20,6 @@ void IndesBody::Damage(ShipComponent collision)
 			}
 		}
 		catch (_exception){}
-		//Destroy this object
+		Game::Instance()->destroyEnemy((Enemy*)getParent()->getParent());
 	}
 }
