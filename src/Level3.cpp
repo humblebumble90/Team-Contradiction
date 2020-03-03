@@ -100,9 +100,9 @@ void Level3::Boss2()
 void Level3::Boss3()
 {
 	TheSoundManager::Instance()->playMusic("BossRush2", 999);
-	//spawnEnemy(new CannonBargeAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
-	//spawnEnemy(new MissileBargeAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
-	//spawnEnemy(new FireBargeAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
+	spawnEnemy(new CannonBargeAI(glm::vec2(Config::SCREEN_WIDTH + 120, Config::SCREEN_HEIGHT / 2)));
+	spawnEnemy(new MissileBargeAI(glm::vec2(Config::SCREEN_WIDTH + 400, Config::SCREEN_HEIGHT / 2)));
+	spawnEnemy(new FireBargeAI(glm::vec2(Config::SCREEN_WIDTH + 680, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss4()
