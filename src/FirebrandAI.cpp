@@ -26,7 +26,7 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 		MissileLauncher(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Blank(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(10, //Enemy is 400px by 600px
+	parent = new Enemy(new Frame(40, //Enemy is 320px by 480px
 	build, 8, 12), 50, //Will tweak if 50 health proves to be too much or too little
 		this, transform, "Firebrand");
 	speed.y = baseSpeed; //Tweak this number later
@@ -38,6 +38,8 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 			w.Fire();
 		}
 	}
+
+	target = glm::vec2(1000, Config::SCREEN_HEIGHT/2);
 }
 
 FirebrandAI::~FirebrandAI()

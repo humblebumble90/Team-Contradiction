@@ -94,20 +94,26 @@ void Level3::Boss1()
 
 void Level3::Boss2()
 {
+	spawnEnemy(new FirebrandAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss3()
 {
 	TheSoundManager::Instance()->playMusic("BossRush2", 999);
+	//spawnEnemy(new CannonBargeAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
+	//spawnEnemy(new MissileBargeAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
+	//spawnEnemy(new FireBargeAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss4()
 {
+	//spawnEnemy(new CannonlordAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss5()
 {
 	TheSoundManager::Instance()->playMusic("FinalBoss", 999);
+	//spawnEnemy(new DeathcageAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Victory()

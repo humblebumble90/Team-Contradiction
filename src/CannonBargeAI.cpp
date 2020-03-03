@@ -38,8 +38,7 @@ void CannonBargeAI::SecondaryFunction()
 		attackCooldown = attackCooldownReset;
 		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
-			w.Fire();
+			((Cannon*)&w)->Fire();
 		}
 	}
-	//currently, this does not rotate whatsoever
 }
