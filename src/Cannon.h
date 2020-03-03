@@ -8,5 +8,6 @@ public:
 	Cannon();
 	~Cannon();
 	void Fire();
+	void Fire(glm::vec2 direction);
 };
 #endif
