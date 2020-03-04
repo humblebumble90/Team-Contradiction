@@ -13,13 +13,9 @@ LevelScene::LevelScene()
 	loadAllTextures();
 }
 
-void LevelScene::loadAllTextures()
-{
-	loadTexture()
-}
-
 LevelScene::~LevelScene()
 {
+	//load the texture with loadTexture() with params path and id respectively
 }
 
 void LevelScene::update()
