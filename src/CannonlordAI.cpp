@@ -87,3 +87,8 @@ void CannonlordAI::SecondaryFunction()
 	#pragma endregion
 
 }
+
+double CannonlordAI::getRotation()
+{
+	return rotation;
+}

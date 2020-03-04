@@ -3,6 +3,7 @@
 #include "AI.h"
 #include "Frame.h"
 #include "PlayerLockAI.h"
+#include "CannonlordAI.h"
 
 Enemy::Enemy(){/*DANGER! Do not use!*/ }
 
@@ -38,6 +39,11 @@ Frame* Enemy::GetFrame()
 	return frame;
 }
 
+AI* Enemy::getAI()
+{
+	return aI;
+}
+
 void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
@@ -48,8 +54,14 @@ void Enemy::Move()
 
 void Enemy::draw()
 {
-	TheTextureManager::Instance()->draw(name, getPosition().x, getPosition().y, frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
-		TheGame::Instance()->getRenderer());
+	if (name == "Cannonlord") {
+		TheTextureManager::Instance()->draw(name, getPosition().x, getPosition().y, frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
+			TheGame::Instance()->getRenderer(), ((CannonlordAI*)aI)->getRotation(), 255, SDL_FLIP_NONE);
+	}
+	else {
+		TheTextureManager::Instance()->draw(name, getPosition().x, getPosition().y, frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
+			TheGame::Instance()->getRenderer());
+	}
 	//std::cout << name << std::endl;
 }
 

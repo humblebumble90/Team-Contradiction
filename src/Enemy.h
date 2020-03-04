@@ -12,6 +12,7 @@ public:
 	~Enemy();
 	void Damage(int i) override;
 	Frame* GetFrame();
+	AI* getAI();
 #pragma region From GameObject
 	void draw() override;
 	void update() override;
