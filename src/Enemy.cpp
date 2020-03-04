@@ -18,6 +18,8 @@ Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTr
 	setPosition(targetTransform);
 	TheTextureManager::Instance()->load("../Assets/textures/"+name+".png",
 		name, TheGame::Instance()->getRenderer());
+	TheTextureManager::Instance()->load("../Assets/textures/" + name + "Hit.png",
+		name+"Hit", TheGame::Instance()->getRenderer());
 }
 
 Enemy::~Enemy()
@@ -31,6 +33,9 @@ void Enemy::Damage(int i)
 	if (health <= 0)
 	{
 		TheGame::Instance()->destroyEnemy(this);
+	}
+	else {
+		hitTimer = hitTimerReset;
 	}
 }
 
@@ -54,12 +59,13 @@ void Enemy::Move()
 
 void Enemy::draw()
 {
+	std::string s = hitTimer > 0 ? name + "Hit" : name;
 	if (name == "Cannonlord") {
-		TheTextureManager::Instance()->draw(name, getPosition().x - (frame->getGridSize() * frame->GridWidth() / 2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2), frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
+		TheTextureManager::Instance()->draw(s, getPosition().x - (frame->getGridSize() * frame->GridWidth() / 2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2), frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
 			TheGame::Instance()->getRenderer(), ((CannonlordAI*)aI)->getRotation(), 255, SDL_FLIP_NONE);
 	}
 	else {
-		TheTextureManager::Instance()->draw(name, getPosition().x-(frame->getGridSize()*frame->GridWidth()/2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2), frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
+		TheTextureManager::Instance()->draw(s, getPosition().x-(frame->getGridSize()*frame->GridWidth()/2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2), frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
 			TheGame::Instance()->getRenderer());
 	}
 	//std::cout << name << std::endl;
@@ -69,6 +75,9 @@ void Enemy::update()
 {
 	Move();
 	aI->PrimaryFunction();
+	if (hitTimer > 0) {
+		--hitTimer;
+	}
 }
 
 void Enemy::clean()

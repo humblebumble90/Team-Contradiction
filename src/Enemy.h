@@ -20,7 +20,7 @@ public:
 #pragma endregion
 private:
 	Frame* frame;
-	int health;
+	int health, hitTimer = 0, hitTimerReset = 10;
 	AI* aI;
 	void Move();
 };
