@@ -9,6 +9,6 @@ public:
 	~FireBargeAI();
 	void SecondaryFunction() override;
 private:
-	float baseSpeed = 12.00f, topLimit, leftLimit, bottomLimit, rightLimit;
+	float baseSpeed = 10.00f, topLimit, leftLimit, bottomLimit, rightLimit;
 };
 #endif

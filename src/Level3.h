@@ -31,6 +31,8 @@ public:/*
 	void Boss4(); //Spawns Cannonlord
 	void Boss5(); //Changes music, then spawns Deathcage
 	void Victory(); //Switches the scene to the VictoryScreen
+
+	void CheatCode();
 private:
 	//Timers
 	int ramRushTimerDelay = 180, ramRushTimer = 1800, bossDelayTimer = 60, bossDelayTimerReset = 60, bossIteration = 0;

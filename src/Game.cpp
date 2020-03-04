@@ -251,9 +251,10 @@ void Game::handleEvents()
 				getPlayerShip()->move(RIGHT);
 				break;
 				// The below code throws a Debug Assertion Failed Error
-			/*case SDLK_f:
-				getPlayerShip()->GetFrame().GetWeapon(0).Fire();
-				break;*/
+			case SDLK_f:
+				((Level3*)m_currentScene)->CheatCode(); //WARNING: For testing Level 3 only! Remove this when testing ends!
+				//getPlayerShip()->GetFrame().GetWeapon(0).Fire();
+				break;
 			}
 			break;
 		case SDL_KEYUP:

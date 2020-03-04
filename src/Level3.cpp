@@ -105,7 +105,7 @@ void Level3::Boss3()
 
 void Level3::Boss4()
 {
-	//spawnEnemy(new CannonlordAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
+	spawnEnemy(new CannonlordAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss5()
@@ -117,4 +117,9 @@ void Level3::Boss5()
 void Level3::Victory()
 {
 	//This will need to play victory music. Currently, it does not
+}
+
+void Level3::CheatCode()
+{
+	enemies.clear();
 }

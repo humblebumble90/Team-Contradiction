@@ -52,7 +52,7 @@ AI* Enemy::getAI()
 void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
-	if (getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <= 0) {
+	if (health <=1 && getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <= 0) {
 		TheGame::Instance()->destroyEnemy(this);
 	}
 }

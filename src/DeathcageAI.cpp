@@ -60,7 +60,7 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 		}
 	}
 
-	target = glm::vec2(Config::SCREEN_HEIGHT/2, parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2);
+	target = glm::vec2(parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2, Config::SCREEN_HEIGHT / 2);
 	entrySpeed = glm::vec2(-10, 0);
 }
 
