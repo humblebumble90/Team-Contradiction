@@ -19,7 +19,6 @@ LevelScene::~LevelScene()
 
 void LevelScene::update()
 {
-	
 	++time;
 	spawnedEnemy = false;
 	player->update();

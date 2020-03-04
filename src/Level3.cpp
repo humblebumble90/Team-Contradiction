@@ -13,7 +13,9 @@
 
 Level3::Level3(PlayerShip* thePlayer)
 {
-	player = thePlayer;
+	m_pMap = new Map();
+	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
+	//player = thePlayer;
 	TheSoundManager::Instance()->load("../Assets/audio/RamRushTemporary.ogg", "RamRush", SOUND_MUSIC);
 	TheSoundManager::Instance()->load("../Assets/audio/BossRush1Temporary.ogg", "BossRush1", SOUND_MUSIC);
 	TheSoundManager::Instance()->load("../Assets/audio/BossRush2Temporary.ogg", "BossRush2", SOUND_MUSIC);
@@ -25,7 +27,11 @@ Level3::~Level3()
 {
 }
 
-void Level3::update()
+void Level3::clean()
+{
+}
+
+void Level3::handleEvents()
 {
 #pragma region Ram Rush
 	if (ramRushTimerDelay > 0) {
@@ -40,7 +46,7 @@ void Level3::update()
 			Boss1();
 		}
 	}
-	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 12 == 0)
+	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 30 == 0)
 	{
 		int coor1 = rand() % 2;
 		int coor1Decider = rand() % 2;
@@ -72,14 +78,6 @@ void Level3::update()
 		}
 		++bossIteration;
 	}
-}
-
-void Level3::clean()
-{
-}
-
-void Level3::handleEvents()
-{
 }
 
 void Level3::start()

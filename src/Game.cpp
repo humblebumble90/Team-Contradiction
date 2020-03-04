@@ -192,6 +192,7 @@ void Game::render()
 void Game::update()
 {
 	m_currentScene->update();
+	m_currentScene->handleEvents();
 }
 
 void Game::clean()
