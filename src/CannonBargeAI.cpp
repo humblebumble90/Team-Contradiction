@@ -42,16 +42,16 @@ void CannonBargeAI::SecondaryFunction()
 		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
 			if (z < 4) {
-				((Cannon*)& w)->Fire(glm::vec2(0 + 90 / rotation, -1 + 90 / rotation));
+				((Cannon*)& w)->Fire(glm::vec2(0 + rotation / 90, -1 + rotation / 90));
 			}
 			else if (z > 11) {
-				((Cannon*)& w)->Fire(glm::vec2(0 - 90 / rotation, 1 - 90 / rotation));
+				((Cannon*)& w)->Fire(glm::vec2(0 - rotation / 90, 1 - rotation / 90));
 			}
 			else if (z % 2 == 0) {
-				((Cannon*)& w)->Fire(glm::vec2(-1 + 90 / rotation, 0 - 90 / rotation));
+				((Cannon*)& w)->Fire(glm::vec2(-1 + rotation / 90, 0 - rotation / 90));
 			}
 			else {
-				((Cannon*)& w)->Fire(glm::vec2(1 + 90 / rotation, 0 + 90 / rotation));
+				((Cannon*)& w)->Fire(glm::vec2(1 + rotation / 90, 0 + rotation / 90));
 			}
 			++z;
 		}

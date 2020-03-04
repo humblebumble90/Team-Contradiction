@@ -33,9 +33,43 @@ void CannonlordAI::SecondaryFunction()
 	--attackCooldown;
 	if (attackCooldown <= 0)
 	{
+		int z = 0;
 		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
+			//DANGER! Rotation MAY be backwards (needs testing) [it shouldn't be backwards, but just in case...]
+			if (
+				(positiveRotation >=0 && positiveRotation < 90 && z < 3) ||
+				(positiveRotation >= 90 && positiveRotation < 180 && z % 2 == 1 && z >=3 && z <= 6) ||
+				(positiveRotation >= 180 && positiveRotation < 270 && z > 6) ||
+				(positiveRotation >= 270 && positiveRotation < 360 && z % 2 == 0 && z >= 3 && z <= 6)
+				)//Fire up
+			{
+				((Cannon*)& w)->Fire(glm::vec2(0 + rotation / 90, -1 + rotation / 90));
+			}
+			else if (
+				(positiveRotation >= 0 && positiveRotation < 90 && z > 6) ||
+				(positiveRotation >= 90 && positiveRotation < 180 && z % 2 == 0 && z >= 3 && z <= 6) ||
+				(positiveRotation >= 180 && positiveRotation < 270 && z < 3) ||
+				(positiveRotation >= 270 && positiveRotation < 360 && z % 2 == 1 && z >= 3 && z <= 6)
+				) //Fire down
+			{
+				((Cannon*)& w)->Fire(glm::vec2(0 - rotation / 90, 1 - rotation / 90));
+			}
+			else if (
+				(positiveRotation >= 0 && positiveRotation < 90 && z % 2 == 1) ||
+				(positiveRotation >= 90 && positiveRotation < 180 && z > 6) ||
+				(positiveRotation >= 180 && positiveRotation < 270 && z % 1 == 0) ||
+				(positiveRotation >= 270 && positiveRotation < 360 && z < 3)
+				) //Fire left
+			{
+				((Cannon*)& w)->Fire(glm::vec2(-1 + rotation / 90, 0 - rotation / 90));
+			}
+			else //Fire right
+			{
+				((Cannon*)& w)->Fire(glm::vec2(1 + rotation / 90, 0 + rotation / 90));
+			}
 			w.Fire();
+			++z;
 		}
 	}
 #pragma endregion
@@ -44,6 +78,7 @@ void CannonlordAI::SecondaryFunction()
 	{
 		--rotationTimer;
 		rotation = rotationValues[rotationIteration] > 0 ? rotation + rotationFactor : rotation - rotationFactor;
+		positiveRotation = rotation < 0 ? 360 - rotation : rotation;
 		if (rotationTimer == 0)
 		{
 			rotationTimer = rotationTimerReset;
