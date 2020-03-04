@@ -79,9 +79,8 @@ void CannonlordAI::SecondaryFunction()
 		--rotationTimer;
 		rotation = rotationValues[rotationIteration] > 0 ? rotation + rotationFactor : rotation - rotationFactor;
 		positiveRotation = rotation < 0 ? 360 - rotation : rotation;
-		if (rotationTimer == 0)
+		if (rotationTimer <= 0)
 		{
-			rotationTimer = rotationTimerReset;
 			int i = rotation < 0 ? rotation + 360 : rotation;
 			switch (i)
 			{
@@ -89,29 +88,35 @@ void CannonlordAI::SecondaryFunction()
 				speed = { -baseSpeed, 0 };
 				break;
 			case 90:
-				speed = { 0, baseSpeed };
+				speed = { 0, -baseSpeed };
 				break;
 			case 180:
 				speed = { baseSpeed, 0 };
 				break;
 			case 270:
-				speed = { 0, -baseSpeed };
+				speed = { 0, baseSpeed };
 				break;
 			}
 			++rotationIteration;
-			movementTimer = movementTimerReset;
+			if (rotationIteration == rotationValues.size()) {
+				rotationIteration = 0;
+			}
+			movementTimer = speed.x == 0 ? movementTimerResetY : movementTimerResetX;
 		}
 	}
 	else if (movementTimer <= 0 && rotationTimer <= 0 && speed.x != speed.y)
 	{
 		if (rotationValues[rotationIteration] == 0)
 		{
-			movementTimer = movementTimerReset;
+			movementTimer = speed.x == 0 ? movementTimerResetY : movementTimerResetX;
 			++rotationIteration;
+			if (rotationIteration == rotationValues.size()) {
+				rotationIteration = 0;
+			}
 		}
 		else
 		{
-			speed = { 0, 0 };
+			speed = glm::vec2(0, 0);
 			rotationTimer = rotationTimerReset;
 		}
 	}
