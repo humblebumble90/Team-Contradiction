@@ -66,7 +66,7 @@ void CannonlordAI::SecondaryFunction()
 			}
 			else //Fire right
 			{
-				((Cannon*)& w)->Fire(glm::vec2(1 + rotation / 90, 0 + rotation / 90));
+				((Cannon*)& w)->Fire(glm::vec2(1 - rotation / 90, 0 + rotation / 90));
 			}
 			w.Fire();
 			++z;

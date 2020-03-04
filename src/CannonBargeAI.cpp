@@ -51,7 +51,7 @@ void CannonBargeAI::SecondaryFunction()
 				((Cannon*)& w)->Fire(glm::vec2(-1 + rotation / 90, 0 - rotation / 90));
 			}
 			else {
-				((Cannon*)& w)->Fire(glm::vec2(1 + rotation / 90, 0 + rotation / 90));
+				((Cannon*)& w)->Fire(glm::vec2(1 - rotation / 90, 0 + rotation / 90));
 			}
 			++z;
 		}
