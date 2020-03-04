@@ -92,6 +92,7 @@ void Level3::Boss1()
 
 void Level3::Boss2()
 {
+	TheSoundManager::Instance()->playMusic("BossRush1", 999);
 	spawnEnemy(new FirebrandAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
@@ -105,6 +106,7 @@ void Level3::Boss3()
 
 void Level3::Boss4()
 {
+	TheSoundManager::Instance()->playMusic("BossRush2", 999);
 	spawnEnemy(new CannonlordAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 

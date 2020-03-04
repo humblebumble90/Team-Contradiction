@@ -9,9 +9,9 @@ public:
 	~FirebrandAI();
 	void SecondaryFunction() override;
 private:
-	bool hasTarget = true;
-	int ramCounter = 3, ramCounterReset = 3, ramCooldown = 0, ramCooldownReset = 100/*Subject to tesing*/, missileCooldown = 25, missileCooldownReset = 25;
-	int cannonCooldown = 100, cannonCooldownReset = 100;
-	float moveTarget, baseSpeed = 10.00f;
+	bool hasTarget = false;
+	int ramCounter = 3, ramCounterReset = 3, ramCooldown = 0, ramCooldownReset = 55/*Subject to tesing*/, missileCooldown = 30, missileCooldownReset = 30;
+	int cannonCooldown = 60, cannonCooldownReset = 60;
+	float moveTarget, baseSpeed = 5.00f;
 };
 #endif

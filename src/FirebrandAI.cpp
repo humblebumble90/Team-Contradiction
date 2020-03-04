@@ -50,20 +50,22 @@ void FirebrandAI::SecondaryFunction()
 {
 	#pragma region Cooldowns - Turn these into coroutines
 	#pragma region Cannons
-	if (cannonCooldown > 0)
+	if (cannonCooldown > 0 && ramCooldown == 0)
 	{
 		--cannonCooldown;
 	}
 #pragma endregion
 	#pragma region Missiles
-	--missileCooldown;
-	if (missileCooldown <= 0)
-	{
-		missileCooldown = missileCooldownReset;
-		for (Weapon w : parent->GetFrame()->GetWeapons())
+	if (ramCooldown == 0) {
+		--missileCooldown;
+		if (missileCooldown <= 0)
 		{
-			if (w.getName()=="MissileLauncher") {
-				w.Fire();
+			missileCooldown = missileCooldownReset;
+			for (Weapon w : parent->GetFrame()->GetWeapons())
+			{
+				if (w.getName() == "MissileLauncher") {
+					w.Fire();
+				}
 			}
 		}
 	}
@@ -114,7 +116,7 @@ void FirebrandAI::SecondaryFunction()
 		{
 			ramCounter = ramCounterReset;
 			ramCooldown = ramCooldownReset;
-			speed.x = -baseSpeed;
+			speed.x = -baseSpeed*3;
 		}
 		else if (cannonCooldown <= 0)
 		{
@@ -128,5 +130,8 @@ void FirebrandAI::SecondaryFunction()
 			hasTarget = false;
 			--ramCounter;
 		}
+	}
+	else if (speed.y == 0) {
+		speed.y = parent->getPosition().y > moveTarget ? -baseSpeed : baseSpeed;
 	}
 }
