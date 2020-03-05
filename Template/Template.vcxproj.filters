@@ -216,6 +216,9 @@
     <ClCompile Include="..\src\RainAI.cpp">
       <Filter>Source Files\AIs</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\PlayerWeapon.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -397,6 +400,9 @@
     </ClInclude>
     <ClInclude Include="..\src\RainAI.h">
       <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PlayerWeapon.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
