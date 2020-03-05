@@ -1,6 +1,7 @@
 #include "MissileLauncher.h"
 #include "Game.h"
 #include "EnemyMissileAI.h"
+#include "WeaponMissile.h"
 
 MissileLauncher::MissileLauncher()
 {
@@ -13,8 +14,6 @@ MissileLauncher::~MissileLauncher()
 
 void MissileLauncher::Fire()
 {
-	//TODO: Add a Cooldown, and a method of firing it
-
 	if (getParent()->getParent()->getName() == "Player") {
 		TheGame::Instance()->spawnPlayerWeapon(new WeaponMissile(getPosition(), glm::vec2(10, 0)));
 	}

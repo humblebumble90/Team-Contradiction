@@ -16,6 +16,6 @@ public:
 	void Move();
 protected:
 	glm::vec2 speed;
-	Frame frame;
+	Frame* frame;
 };
 #endif // !__PLAYERWEAPON__
