@@ -165,11 +165,11 @@ void LevelScene::draw()
 {
 	m_pMap->draw();
 	player->draw();
-	for (AI* a : enemies) {
-		a->GetParent()->draw();
-	}
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
+	}
+	for (AI* a : enemies) {
+		a->GetParent()->draw();
 	}
 }
 
