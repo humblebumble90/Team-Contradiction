@@ -171,6 +171,11 @@ void Game::destroyEnemy(Enemy* enemy) {
 	((LevelScene*)m_currentScene)->DestroyEnemy(enemy);
 }
 
+void Game::destroyWeapon(PlayerWeapon* weapon)
+{
+	((LevelScene*)m_currentScene)->DestroyWeapon(weapon);
+}
+
 glm::vec2 Game::getPlayerPosition()
 {
 	return ((LevelScene*)m_currentScene)->getPlayerPosition();
@@ -199,9 +204,9 @@ void Game::update()
 {
 	m_currentScene->update();
 	m_currentScene->handleEvents();
-	for (int i : firingCooldown) {
-		if (i > 0) {
-			--i;
+	for (int z = 0; z < 3; ++z) {
+		if (firingCooldown[z] > 0) {
+			--firingCooldown[z];
 		}
 	}
 }

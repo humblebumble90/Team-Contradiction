@@ -18,6 +18,7 @@ void PlayerWeapon::draw()
 
 void PlayerWeapon::update()
 {
+	Move();
 }
 
 void PlayerWeapon::clean()
@@ -27,6 +28,9 @@ void PlayerWeapon::clean()
 void PlayerWeapon::Move()
 {
 	setPosition(glm::vec2(getPosition().x + speed.x, getPosition().y + speed.y));
+	if (getPosition().x + ((frame->GridWidth() * getFrame()->getGridSize()) / 2) > Config::SCREEN_WIDTH) {
+		TheGame::Instance()->destroyWeapon(this);
+	}
 }
 
 Frame* PlayerWeapon::getFrame()

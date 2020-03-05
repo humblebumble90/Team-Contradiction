@@ -182,6 +182,15 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 		}
 	}
 }
+void LevelScene::DestroyWeapon(PlayerWeapon* weapon)
+{
+	for (int i = 0; i < playerWeapons.size(); ++i) {
+		if (playerWeapons[i]->getFrame()->getParent() == weapon) {
+			playerWeapons.erase(playerWeapons.begin() + i);
+			break;
+		}
+	}
+}
 
 PlayerShip* LevelScene::getPlayerShip()
 {

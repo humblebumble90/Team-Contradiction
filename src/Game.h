@@ -74,6 +74,7 @@ public:
 	void quit();
 
 	void destroyEnemy(Enemy* enemy);
+	void destroyWeapon(PlayerWeapon* weapon);
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
 	void spawnPlayerWeapon(PlayerWeapon* pw);
@@ -101,7 +102,7 @@ private:
 	SceneState m_currentSceneState;
 
 	int firingCooldown[3] = { 0,0,0 };
-	int firingCooldownReset[3] = { 50,50,50 };
+	int firingCooldownReset[3] = { 20,20,20 };
 };
 
 typedef Game TheGame;

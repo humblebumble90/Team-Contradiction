@@ -15,6 +15,7 @@ public:
 	void update() override;
 	void draw() override;
 	void DestroyEnemy(Enemy* enemy);
+	void DestroyWeapon(PlayerWeapon* weapon);
 	void GameOver();
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
