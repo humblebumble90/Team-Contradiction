@@ -28,3 +28,8 @@ void PlayerWeapon::Move()
 {
 	setPosition(glm::vec2(getPosition().x + speed.x, getPosition().y + speed.y));
 }
+
+Frame* PlayerWeapon::getFrame()
+{
+	return frame;
+}

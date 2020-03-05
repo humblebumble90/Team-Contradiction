@@ -76,6 +76,46 @@ void LevelScene::update()
 		}
 	}
 #pragma endregion
+	#pragma region Player Weapon Collision
+	for (PlayerWeapon* p : playerWeapons) {
+		for (ShipComponent s : p->getFrame()->GetBuild())
+		{
+			if (s.getName() == "BasicBody" || s.getName() == "IndesBody")
+			{
+				for (AI* a : enemies)
+				{
+					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
+					{
+						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
+						{
+							if (CollisionManager::shipComponentCheck(s, c))
+							{
+								if (s.getName() == "BasicBody")
+								{
+									((BasicBody&)s).Damage(1);
+								}
+								else
+								{
+									((IndesBody&)s).Damage(c);
+								}
+
+								if (c.getName() == "BasicBody")
+								{
+									((BasicBody&)c).Damage(1);
+								}
+								else
+								{
+									((IndesBody&)c).Damage(s);
+								}
+							}
+
+						}
+					}
+				}
+			}
+		}
+	}
+#pragma endregion
 	#pragma region Spawn Enemies
 	if (ramIteration < ramSpawnTimer.size()) {
 		if (time == ramSpawnTimer[ramIteration])

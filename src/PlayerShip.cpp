@@ -16,16 +16,25 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 	setPosition(targetTransform);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
+	this->playerLives = playerLives;
+	this->playerHealth = playerHealth;
 
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
 	{
-		BasicBody(),BasicBody(),MissileLauncher(),Blank(),
-		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
-		BasicBody(),BasicBody(),MissileLauncher(),Blank()
+		Blank(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		BasicBody(), BasicBody(), Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
+		BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),
+		BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
+		Blank(), BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),
+		Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),
+		Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
+		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank()
 	};
 #pragma endregion
-	frame = new Frame(5, //Enemy is 300px by 300px
+	frame = new Frame(5, //Enemy is 150px by 100px
 		build, 15, 10); //Will tweak if it proves to be too much or too little
 	frame->Initialize(this);
 	std::cout << "PlayerHealth: " << playerHealth << std::endl;

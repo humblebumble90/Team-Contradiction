@@ -14,6 +14,7 @@ public:
 	void clean() override;
 
 	void Move();
+	Frame* getFrame();
 protected:
 	glm::vec2 speed;
 	Frame* frame;

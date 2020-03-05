@@ -15,7 +15,20 @@ MissileLauncher::~MissileLauncher()
 void MissileLauncher::Fire()
 {
 	if (getParent()->getParent()->getName() == "Player") {
-		TheGame::Instance()->spawnPlayerWeapon(new WeaponMissile(getPosition(), glm::vec2(10, 0)));
+		glm::vec2 s;
+		int i = getID().y;
+		switch (i) {
+		case 2:
+			s = glm::vec2(5, -5);
+			break;
+		case 4:
+			s = glm::vec2(10, 0);
+			break;
+		case 7:
+			s = glm::vec2(5, 5);
+			break;
+		}
+		TheGame::Instance()->spawnPlayerWeapon(new WeaponMissile(getPosition(), s));
 	}
 	else {
 		TheGame::Instance()->spawnEnemy(new EnemyMissileAI(getPosition()));
