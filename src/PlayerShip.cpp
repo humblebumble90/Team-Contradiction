@@ -12,7 +12,7 @@
 PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
 {
-	TheTextureManager::Instance()->load("../Assets/textures/player.png", "Player", TheGame::Instance()->getRenderer());
+	changeTexture("Player");
 	setPosition(targetTransform);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);

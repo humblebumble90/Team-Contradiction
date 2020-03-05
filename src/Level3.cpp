@@ -18,11 +18,7 @@ Level3::Level3(PlayerShip* thePlayer)
 	m_pMap = new Map();
 	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
 	//player = thePlayer;
-	TheSoundManager::Instance()->load("../Assets/audio/RamRushTemporary.ogg", "RamRush", SOUND_MUSIC);
-	TheSoundManager::Instance()->load("../Assets/audio/BossRush1Temporary.ogg", "BossRush1", SOUND_MUSIC);
-	TheSoundManager::Instance()->load("../Assets/audio/BossRush2Temporary.ogg", "BossRush2", SOUND_MUSIC);
-	TheSoundManager::Instance()->load("../Assets/audio/FinalBossTemporary.ogg", "FinalBoss", SOUND_MUSIC);
-	TheSoundManager::Instance()->playMusic("RamRush", 0);
+	playSound("RamRush", 0);
 }
 
 Level3::~Level3()
@@ -88,19 +84,19 @@ void Level3::start()
 
 void Level3::Boss1()
 {
-	TheSoundManager::Instance()->playMusic("BossRush1", 999);
+	playSound("BossRush1", 999);
 	spawnEnemy(new BlasterSkiffAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss2()
 {
-	TheSoundManager::Instance()->playMusic("BossRush1", 999);
+	playSound("BossRush1", 999);
 	spawnEnemy(new FirebrandAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss3()
 {
-	TheSoundManager::Instance()->playMusic("BossRush2", 999);
+	playSound("BossRush2", 999);
 	spawnEnemy(new CannonBargeAI(glm::vec2(Config::SCREEN_WIDTH + 120, Config::SCREEN_HEIGHT / 2)));
 	spawnEnemy(new MissileBargeAI(glm::vec2(Config::SCREEN_WIDTH + 400, Config::SCREEN_HEIGHT / 2)));
 	spawnEnemy(new FireBargeAI(glm::vec2(Config::SCREEN_WIDTH + 680, Config::SCREEN_HEIGHT / 2)));
@@ -108,13 +104,13 @@ void Level3::Boss3()
 
 void Level3::Boss4()
 {
-	TheSoundManager::Instance()->playMusic("BossRush2", 999);
+	playSound("BossRush2", 999);
 	spawnEnemy(new CannonlordAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss5()
 {
-	TheSoundManager::Instance()->playMusic("FinalBoss", 999);
+	playSound("FinalBoss", 999);
 	spawnEnemy(new DeathcageAI(glm::vec2(Config::SCREEN_WIDTH + 320, Config::SCREEN_HEIGHT / 2)));
 }
 
