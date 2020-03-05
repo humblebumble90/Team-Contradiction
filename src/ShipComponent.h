@@ -16,6 +16,7 @@ public:
 protected:
 	Frame* parent;
 	std::string name;
+	glm::vec2 getID();
 private:
 	glm::vec2 iD = { -1,-1 };
 };

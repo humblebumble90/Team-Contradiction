@@ -1,6 +1,7 @@
 #include "MissileLauncher.h"
 #include "Game.h"
 #include "EnemyMissileAI.h"
+#include "WeaponMissile.h"
 
 MissileLauncher::MissileLauncher()
 {
@@ -13,10 +14,21 @@ MissileLauncher::~MissileLauncher()
 
 void MissileLauncher::Fire()
 {
-	//TODO: Add a Cooldown, and a method of firing it
-
 	if (getParent()->getParent()->getName() == "Player") {
-		TheGame::Instance()->spawnPlayerWeapon(new WeaponMissile(getPosition(), glm::vec2(10, 0)));
+		glm::vec2 s;
+		int i = getID().y;
+		switch (i) {
+		case 2:
+			s = glm::vec2(5, -5);
+			break;
+		case 4:
+			s = glm::vec2(10, 0);
+			break;
+		case 7:
+			s = glm::vec2(5, 5);
+			break;
+		}
+		TheGame::Instance()->spawnPlayerWeapon(new WeaponMissile(getPosition(), s));
 	}
 	else {
 		TheGame::Instance()->spawnEnemy(new EnemyMissileAI(getPosition()));

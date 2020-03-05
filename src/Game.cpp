@@ -8,6 +8,7 @@
 #include "AI.h"
 #include "Level1.h"
 #include "Level3.h"
+#include "Weapon.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -259,6 +260,32 @@ void Game::handleEvents()
 			case SDLK_f:
 				((Level3*)m_currentScene)->CheatCode(); //WARNING: For testing Level 3 only! Remove this when testing ends!
 				//getPlayerShip()->GetFrame().GetWeapon(0).Fire();
+				break;
+			case SDLK_z:
+				for (int z = 0; z < 3; ++z) {
+					if (firingCooldown[z] == 0) {
+						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+						firingCooldown[z] = firingCooldownReset[z];
+					}
+				}
+				break;
+			case SDLK_x:
+				if (firingCooldown[0] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
+					firingCooldown[0] = firingCooldownReset[0];
+				}
+				break;
+			case SDLK_c:
+				if (firingCooldown[1] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(1).Fire();
+					firingCooldown[1] = firingCooldownReset[1];
+				}
+				break;
+			case SDLK_v:
+				if (firingCooldown[2] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(2).Fire();
+					firingCooldown[2] = firingCooldownReset[2];
+				}
 				break;
 			}
 			break;

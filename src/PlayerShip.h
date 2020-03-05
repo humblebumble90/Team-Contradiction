@@ -29,7 +29,6 @@ public:
 	//Invincibility
 	bool getInvincibility();
 	bool inv;
-	void invincible();
 
 	//Moving
 	void move(Move newMove);
@@ -46,6 +45,7 @@ private:
 	int playerLives;
 	std::string name;
 	const static int defaultAlpha = 255;
+	void invincible();
 };
 
 

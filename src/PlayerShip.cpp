@@ -9,7 +9,11 @@
 #include "Blank.h"
 #include <functional>
 
+<<<<<<< HEAD
 PlayerShip::PlayerShip(int health, int lives , glm::vec2 targetTransform)
+=======
+PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
+>>>>>>> master
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
 {
 	changeTexture("Player");
@@ -20,12 +24,19 @@ PlayerShip::PlayerShip(int health, int lives , glm::vec2 targetTransform)
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
 	{
-		BasicBody(),BasicBody(),MissileLauncher(),Blank(),
-		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
-		BasicBody(),BasicBody(),MissileLauncher(),Blank()
+		Blank(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		BasicBody(), BasicBody(), Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
+		BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),
+		BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
+		Blank(), BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),
+		Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),
+		Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
+		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank()
 	};
 #pragma endregion
-	frame = new Frame(5, //Enemy is 300px by 300px
+	frame = new Frame(5, //Enemy is 150px by 100px
 		build, 15, 10); //Will tweak if it proves to be too much or too little
 	frame->Initialize(this);
 	playerLives = lives;
@@ -58,14 +69,17 @@ void PlayerShip::Damage(int i)
 		playerHealth += 1;
 		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
 		invincible();
+<<<<<<< HEAD
+=======
 	}
-		else if(playerLives <= 0)
-		{
-			std::cout << "Player Health: " << playerHealth << std::endl;
-			std::cout << "Player Lives: " << playerLives << std::endl;
-			std::cout << "Player died!" << std::endl;
-			//Game::Instance()->changeSceneState(END_SCENE);
-		}
+	else if(playerLives <= 0)
+	{
+		std::cout << "Player Health: " << playerHealth << std::endl;
+		std::cout << "Player Lives: " << playerLives << std::endl;
+		std::cout << "Player died!" << std::endl;
+		//Game::Instance()->changeSceneState(END_SCENE);
+>>>>>>> master
+	}
 }
 bool PlayerShip::getInvincibility()
 {
@@ -74,15 +88,22 @@ bool PlayerShip::getInvincibility()
 
 void PlayerShip::invincible()
 {
+<<<<<<< HEAD
 	//if not invincible do this
 	if(!inv)
+=======
+	if (!inv)
+>>>>>>> master
 	{
 		std::cout << "Invincibled!\n";
 		inv = true;
 		m_alpha *= 0.5f;
 		endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 }
 
 Frame* PlayerShip::GetFrame()
@@ -155,12 +176,20 @@ void PlayerShip::update()
 	if (playerLives > 0)
 	{
 		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
+<<<<<<< HEAD
 
 		auto deltax = currentPosition.x + currentVelocity.x;
 		auto deltay = currentPosition.y + currentVelocity.y;
 		setPosition(glm::vec2(deltax, deltay));
 	}
 
+=======
+		auto deltax = currentPosition.x + currentVelocity.x;
+		auto deltay = currentPosition.y + currentVelocity.y;
+		setPosition(glm::vec2(deltax, deltay));
+	}
+
+>>>>>>> master
 	
 	//when the invincibility has finished run this
 	if (inv == true && endInvincibleTime <= SDL_GetTicks())

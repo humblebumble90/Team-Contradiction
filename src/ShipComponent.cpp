@@ -53,3 +53,8 @@ std::string ShipComponent::getName()
 {
 	return name;
 }
+
+glm::vec2 ShipComponent::getID()
+{
+	return iD;
+}

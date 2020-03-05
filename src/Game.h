@@ -99,6 +99,9 @@ private:
 
 	Scene* m_currentScene;
 	SceneState m_currentSceneState;
+
+	int firingCooldown[3] = { 0,0,0 };
+	int firingCooldownReset[3] = { 50,50,50 };
 };
 
 typedef Game TheGame;
