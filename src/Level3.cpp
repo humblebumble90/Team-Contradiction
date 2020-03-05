@@ -71,6 +71,10 @@ void Level3::Boss1()
 
 void Level3::Boss2()
 {
+<<<<<<< HEAD
+=======
+	spawnEnemy(new FirebrandAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
+>>>>>>> parent of fb161a7... Completely Debugged Firebrand:
 }
 
 void Level3::Boss3()
@@ -80,6 +84,10 @@ void Level3::Boss3()
 
 void Level3::Boss4()
 {
+<<<<<<< HEAD
+=======
+	spawnEnemy(new CannonlordAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
+>>>>>>> parent of fb161a7... Completely Debugged Firebrand:
 }
 
 void Level3::Boss5()
