@@ -16,8 +16,6 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 	setPosition(targetTransform);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
-	this->playerLives = playerLives;
-	this->playerHealth = playerHealth;
 
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
