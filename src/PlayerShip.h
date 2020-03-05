@@ -45,6 +45,7 @@ private:
 	int playerHealth;
 	int playerLives;
 	std::string name;
+	const static int defaultAlpha = 255;
 };
 
 

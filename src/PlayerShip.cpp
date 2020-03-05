@@ -146,18 +146,22 @@ void PlayerShip::update()
 		}
 	}
 
-	setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
-
+	if(playerLives > 0)
+	{
+		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
+	}
 
 	auto deltax = currentPosition.x + currentVelocity.x;
 	auto deltay = currentPosition.y + currentVelocity.y;
 	setPosition(glm::vec2(deltax, deltay));
+
 	
+	//when the invincibility has finished run this
 	if (inv == true && endInvincibleTime <= SDL_GetTicks())
 	{
 		std::cout << "invincible finished!\n";
 		inv = false;
-		TextureManager::Instance()->setAlpha("player", m_alpha);
+		TextureManager::Instance()->setAlpha("player", defaultAlpha);
 	}
 	
 }

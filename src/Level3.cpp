@@ -148,6 +148,8 @@ void Level3::loadAllTextures()
 	//cannonlord
 	loadTexture("../Assets/textures/Cannonlord.png", "Cannonlord");
 	loadTexture("../Assets/textures/CannonlordHit.png", "CannonlordHit");
+	loadTexture("../Assets/textures/CannonBarge.png", "CannonBarge");
+	loadTexture("../Assets/textures/CannonBargeHit.png", "CannonBargeHit");
 
 	//deathcage
 	loadTexture("../Assets/textures/Deathcage.png", "Deathcage");
