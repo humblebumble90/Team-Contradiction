@@ -26,8 +26,8 @@ void LevelScene::update()
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
-	for (DisplayObject* d : playerWeapons) {
-		d->update();
+	for (PlayerWeapon* pw : playerWeapons) {
+		pw->update();
 	}
 	#pragma region Player Collision and invinciblity
 	if (player->getInvincibility() == false)
@@ -129,8 +129,8 @@ void LevelScene::draw()
 	for (AI* a : enemies) {
 		a->GetParent()->draw();
 	}
-	for (DisplayObject* d : playerWeapons) {
-		d->draw();
+	for (PlayerWeapon* pw : playerWeapons) {
+		pw->draw();
 	}
 }
 
@@ -166,4 +166,9 @@ void LevelScene::spawnEnemy(AI* enemyAI)
 		}
 		enemies.push_back(enemyAI);
 	}
+}
+
+void LevelScene::spawnPlayerWeapon(PlayerWeapon* playerWeapon)
+{
+	playerWeapons.push_back(playerWeapon);
 }
