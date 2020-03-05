@@ -181,10 +181,10 @@ void Game::spawnEnemy(AI* enemyAI)
 	((LevelScene*)m_currentScene)->spawnEnemy(enemyAI);
 }
 
-/*void Game::spawnPlayerWeapon(PlayerWeapon* pw)
+void Game::spawnPlayerWeapon(PlayerWeapon* pw)
 {
 	((LevelScene*)m_currentScene)->spawnPlayerWeapon(pw);
-}*/
+}
 
 void Game::render()
 {
