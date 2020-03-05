@@ -12,10 +12,7 @@ PlayerWeapon::~PlayerWeapon()
 
 void PlayerWeapon::draw()
 {
-	int xComponent = getPosition().x - (frame->getGridSize() * frame->GridWidth() / 2);
-	int yComponent = getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2);
-
-	TheTextureManager::Instance()->draw(name, xComponent, yComponent,
+	TheTextureManager::Instance()->draw(name, getPosition().x - (frame->getGridSize() * frame->GridWidth() / 2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2),
 		TheGame::Instance()->getRenderer(), 0, 255, true);
 }
 
