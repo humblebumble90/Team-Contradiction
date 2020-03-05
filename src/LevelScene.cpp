@@ -57,7 +57,6 @@ void LevelScene::update()
 							if (CollisionManager::shipComponentCheck(s, c))
 							{
 								player->Damage(1);
-								player->invincible();
 
 								if (c.getName() == "BasicBody")
 								{

@@ -9,7 +9,7 @@
 #include "Blank.h"
 #include <functional>
 
-PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform)
+PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
 {
 	changeTexture("Player");
@@ -37,6 +37,8 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 	frame = new Frame(5, //Enemy is 150px by 100px
 		build, 15, 10); //Will tweak if it proves to be too much or too little
 	frame->Initialize(this);
+	playerLives = lives;
+	playerHealth = health;
 	std::cout << "PlayerHealth: " << playerHealth << std::endl;
 	std::cout << "Player Lives: " << playerLives << std::endl;
 	std::cout << "PlayerShip is instantiated!" << std::endl;
@@ -64,14 +66,15 @@ void PlayerShip::Damage(int i)
 		std::cout << "Player life decreases for 1!";
 		playerHealth += 1;
 		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
+		invincible();
 	}
-		else if(playerLives <= 0)
-		{
-			std::cout << "Player Health: " << playerHealth << std::endl;
-			std::cout << "Player Lives: " << playerLives << std::endl;
-			std::cout << "Player died!" << std::endl;
-			//Game::Instance()->changeSceneState(END_SCENE);
-		}
+	else if(playerLives <= 0)
+	{
+		std::cout << "Player Health: " << playerHealth << std::endl;
+		std::cout << "Player Lives: " << playerLives << std::endl;
+		std::cout << "Player died!" << std::endl;
+		//Game::Instance()->changeSceneState(END_SCENE);
+	}
 }
 bool PlayerShip::getInvincibility()
 {
@@ -79,11 +82,13 @@ bool PlayerShip::getInvincibility()
 }
 void PlayerShip::invincible()
 {
-	std::cout << "Invincibled!\n";
-	inv = true;
-	m_alpha *= 0.5f;
-	endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
-
+	if (!inv)
+	{
+		std::cout << "Invincibled!\n";
+		inv = true;
+		m_alpha *= 0.5f;
+		endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
+	}
 }
 
 
@@ -158,11 +163,10 @@ void PlayerShip::update()
 	if(playerLives > 0)
 	{
 		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
+		auto deltax = currentPosition.x + currentVelocity.x;
+		auto deltay = currentPosition.y + currentVelocity.y;
+		setPosition(glm::vec2(deltax, deltay));
 	}
-
-	auto deltax = currentPosition.x + currentVelocity.x;
-	auto deltay = currentPosition.y + currentVelocity.y;
-	setPosition(glm::vec2(deltax, deltay));
 
 	
 	//when the invincibility has finished run this
@@ -170,7 +174,7 @@ void PlayerShip::update()
 	{
 		std::cout << "invincible finished!\n";
 		inv = false;
-		TextureManager::Instance()->setAlpha("player", defaultAlpha);
+		m_alpha = defaultAlpha;
 	}
 	
 }
