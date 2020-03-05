@@ -3,11 +3,8 @@
 
 WeaponMissile::WeaponMissile()
 {
-	TheTextureManager::Instance()->load("../Assets/textures/ship3.png", "ship3", TheGame::Instance()->getRenderer());
-	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("ship3");
-
-	setWidth(size.x);
-	setHeight(size.y);
+	
+	changeTexture("ship3");
 	setPosition(glm::vec2(0.0f, 0.0f));
 	setIsColliding(false);
 	setType(GameObjectType::WEAPON_MISSILE);
@@ -25,7 +22,7 @@ void WeaponMissile::draw()
 	int xComponent = getPosition().x;
 	int yComponent = getPosition().y;
 
-	TheTextureManager::Instance()->draw("ship3", xComponent, yComponent,
+	TheTextureManager::Instance()->draw(name, xComponent, yComponent,
 		TheGame::Instance()->getRenderer(), 0, 255, true);
 }
 

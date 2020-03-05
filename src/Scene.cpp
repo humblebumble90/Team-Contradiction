@@ -37,15 +37,31 @@ int Scene::numberOfChildren()
 //loads the texture so that you dont need to do it in the display object
 void Scene::loadTexture(std::string path, std::string id)
 {
-	TheTextureManager::Instance()->load(path,
+	const bool loadSucessful = TheTextureManager::Instance()->load(path,
 		id, TheGame::Instance()->getRenderer());
-	std::cout << "texture set with path: " << path << std::endl;
-	std::cout << "^id: " << id << std::endl;
+	if(loadSucessful == true)
+	{
+		std::cout << "texture loaded with path: " << path << std::endl;
+		std::cout << "^id: " << id << std::endl;
+	}
+	else
+	{
+		std::cout << "unable to load texture with path:" << path << std::endl;
+	}
+	
 }
 
 void Scene::loadSound(std::string path, std::string id, sound_type type)
 {
-	TheSoundManager::Instance()->load(path, id, type);
-	std::cout << "sound set with path: " << path << std::endl;
-	std::cout << "^id: " << id << std::endl;
+	bool loadSucessful = TheSoundManager::Instance()->load(path, id, type);
+	if (loadSucessful == true)
+	{
+		std::cout << "sound loaded with path: " << path << std::endl;
+		std::cout << "^id: " << id << std::endl;
+	}
+	else
+	{
+		std::cout << "unable to load sound with path: " << path << std::endl;
+	}
+	
 }
