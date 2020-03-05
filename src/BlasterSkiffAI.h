@@ -11,7 +11,7 @@ public:
 	void SecondaryFunction() override;
 private:
 	float topBouncePoint, bottomBouncePoint, spawnPoint; //set these numbers via testing
-	int firingCooldown = 30, firingCooldownReset = 30, firingIteration = 0;
+	int firingCooldown = 20, firingCooldownReset = 20, firingIteration = 0;
 };
 
 #endif

@@ -32,7 +32,7 @@ BlasterSkiffAI::BlasterSkiffAI(glm::vec2 transform)
 	parent = new Enemy(new Frame(40, //Enemy is 320px by 640px
 	build, 8, 16), 50, //Will tweak if 50 health proves to be too much or too little
 	this, transform, "BlasterSkiff");
-	speed.y = 2.00f; //Tweak this number later
+	speed.y = 1.00f; //Tweak this number later
 	topBouncePoint = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridHeight() / 2;
 	bottomBouncePoint = Config::SCREEN_HEIGHT - topBouncePoint;
 	spawnPoint = 25;
