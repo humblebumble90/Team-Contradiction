@@ -26,5 +26,5 @@ void PlayerWeapon::clean()
 
 void PlayerWeapon::Move()
 {
-	setPosition(glm::vec2(getPosition() + speed.x, getPosition() + speed.y));
+	setPosition(glm::vec2(getPosition().x + speed.x, getPosition().y + speed.y));
 }
