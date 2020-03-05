@@ -29,6 +29,7 @@
 //Game Objects
 #include "PlayerShip.h"
 #include "Enemy.h"
+#include "PlayerWeapon.h"
 
 class Game
 {
@@ -75,6 +76,7 @@ public:
 	void destroyEnemy(Enemy* enemy);
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
+	void spawnPlayerWeapon(PlayerWeapon* pw);
 
 private:
 	Game();

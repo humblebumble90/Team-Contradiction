@@ -18,13 +18,14 @@ public:
 	void GameOver();
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
+	void spawnPlayerWeapon(PlayerWeapon* playerWeapon);
 	PlayerShip* getPlayerShip();
 protected:
 	bool scrolling = true, spawnedEnemy=false;
 	#pragma region Game Objects
 	std::vector<AI*> enemies;
 	PlayerShip* player;
-	std::vector<WeaponMissile*> playerWeapons;
+	std::vector<PlayerWeapon*> playerWeapons;
 
 	Map* m_pMap;
 	#pragma endregion

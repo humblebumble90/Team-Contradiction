@@ -13,13 +13,10 @@ MissileLauncher::~MissileLauncher()
 
 void MissileLauncher::Fire()
 {
-	//instantiates an object of WeaponMissile and draws it on the screen
+	//TODO: Add a Cooldown, and a method of firing it
 
 	if (getParent()->getParent()->getName() == "Player") {
-		//TODO: Instead of creating an m_pWeaponMissile, this method should add a WeaponMissile to the LevelScene,
-		//likely by calling a method in Game.cpp to call a method of the same name in LevelScene
-		m_pWeaponMissile = new WeaponMissile();
-		m_pWeaponMissile->draw();
+		TheGame::Instance()->spawnPlayerWeapon(new WeaponMissile(getPosition(), glm::vec2(10, 0)));
 	}
 	else {
 		TheGame::Instance()->spawnEnemy(new EnemyMissileAI(getPosition()));
