@@ -76,8 +76,8 @@ void LevelScene::update()
 	}
 #pragma endregion
 	#pragma region Player Weapon Collision
-	for (PlayerWeapon* p : playerWeapons) {
-		for (ShipComponent s : p->getFrame()->GetBuild())
+	for (int b = 0; b < playerWeapons.size(); ++ b) {
+		for (ShipComponent s : playerWeapons[b]->getFrame()->GetBuild())
 		{
 			if (s.getName() == "BasicBody" || s.getName() == "IndesBody")
 			{

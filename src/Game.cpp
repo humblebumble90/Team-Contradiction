@@ -199,6 +199,11 @@ void Game::update()
 {
 	m_currentScene->update();
 	m_currentScene->handleEvents();
+	for (int i : firingCooldown) {
+		if (i > 0) {
+			--i;
+		}
+	}
 }
 
 void Game::clean()
