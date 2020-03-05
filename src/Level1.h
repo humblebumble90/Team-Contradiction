@@ -13,6 +13,7 @@ public:
 	void clean() override;
 	void handleEvents() override;
 	void start() override;
+	void loadAllTextures();
 
 private:
 };

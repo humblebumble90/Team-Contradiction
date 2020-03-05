@@ -4,6 +4,7 @@
 
 Level1::Level1()
 {
+	loadAllTextures();
 	int second = 60;
 	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT + 25);
 	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT/2 + 25);
@@ -113,4 +114,14 @@ void Level1::handleEvents()
 
 void Level1::start()
 {
+}
+void Level1::loadAllTextures()
+{
+	//load the texture with loadTexture() with params path and id respectively
+	loadTexture("../Assets/textures/player.png", "Player");
+	loadTexture("../Assets/textures/map.jpg", "map");
+	loadTexture("../Assets/textures/ship3.png", "ship3");
+	loadTexture("../Assets/textures/Ram.png", "Ram");
+	loadTexture("../Assets/textures/Zigzag.png", "Zigzag");
+	loadTexture("../Assets/textures/EnemyMissile.png", "EnemyMissile");
 }

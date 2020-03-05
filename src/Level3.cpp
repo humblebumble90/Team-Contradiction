@@ -13,6 +13,8 @@
 
 Level3::Level3(PlayerShip* thePlayer)
 {
+	loadAllTextures();
+	loadAllSounds();
 	m_pMap = new Map();
 	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
 	//player = thePlayer;
@@ -124,4 +126,50 @@ void Level3::Victory()
 void Level3::CheatCode()
 {
 	enemies.clear();
+}
+
+void Level3::loadAllTextures()
+{
+	std::cout << "loading all the textures" << std::endl;
+	//ram
+	loadTexture("../Assets/textures/Ram.png", "Ram");
+	//player
+	loadTexture("../Assets/textures/player.png", "Player");
+	//background
+	loadTexture("../Assets/textures/background.png", "map");
+	//enemy missle
+	loadTexture("../Assets/textures/EnemyMissile.png", "EnemyMissile");
+	//blaster skiff
+	loadTexture("../Assets/textures/BlasterSkiff.png", "BlasterSkiff");
+	loadTexture("../Assets/textures/BlasterSkiffHit.png", "BlasterSkiffHit");
+	//missile
+	loadTexture("../Assets/textures/Missile.png", "Missile");
+	//firebrand
+	loadTexture("../Assets/textures/Firebrand.png", "Firebrand");
+	loadTexture("../Assets/textures/FirebrandHit.png", "FirebrandHit");
+	loadTexture("../Assets/textures/FireBargeHit.png", "FireBargeHit");
+	loadTexture("../Assets/textures/FireBarge.png", "FireBarge");
+	//cannonlord
+	loadTexture("../Assets/textures/Cannonlord.png", "Cannonlord");
+	loadTexture("../Assets/textures/CannonlordHit.png", "CannonlordHit");
+
+	//deathcage
+	loadTexture("../Assets/textures/Deathcage.png", "Deathcage");
+	loadTexture("../Assets/textures/DeathcageHit.png", "DeathcageHit");
+
+	//unknown
+	loadTexture("../Assets/textures/MissileBarge.png", "MissileBarge");
+	loadTexture("../Assets/textures/MissileBarge", "MissileBarge");
+	std::cout << "finish loading textures" << std::endl;
+}
+
+void Level3::loadAllSounds()
+{
+	//sound
+	std::cout << "Loading sounds" << std::endl;
+	loadSound("../Assets/audio/RamRushTemporary.ogg", "RamRush", SOUND_MUSIC);
+	loadSound("../Assets/audio/BossRush1Temporary.ogg", "BossRush1", SOUND_MUSIC);
+	loadSound("../Assets/audio/BossRush2Temporary.ogg", "BossRush2", SOUND_MUSIC);
+	loadSound("../Assets/audio/FinalBossTemporary.ogg", "FinalBoss", SOUND_MUSIC);
+	std::cout << "Finish loading sounds" << std::endl;
 }

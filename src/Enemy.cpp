@@ -16,10 +16,7 @@ Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTr
 	}*/
 	frame->Initialize(this);
 	setPosition(targetTransform);
-	TheTextureManager::Instance()->load("../Assets/textures/"+name+".png",
-		name, TheGame::Instance()->getRenderer());
-	TheTextureManager::Instance()->load("../Assets/textures/" + name + "Hit.png",
-		name+"Hit", TheGame::Instance()->getRenderer());
+	changeTexture(enemyName);
 }
 
 Enemy::~Enemy()

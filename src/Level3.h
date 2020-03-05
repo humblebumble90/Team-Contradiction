@@ -36,6 +36,8 @@ public:/*
 private:
 	//Timers
 	int ramRushTimerDelay = 180, ramRushTimer = 1800, bossDelayTimer = 60, bossDelayTimerReset = 60, bossIteration = 0;
+	void loadAllTextures();
+	void loadAllSounds();
 };
 
 #endif
