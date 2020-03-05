@@ -18,7 +18,7 @@ void Map::draw()
 {
 	int xComponent = getPosition().x;
 	int yComponent = getPosition().y;
-	TheTextureManager::Instance()->draw(id, xComponent, yComponent,
+	TheTextureManager::Instance()->draw(name, xComponent, yComponent,
 		TheGame::Instance()->getRenderer());
 }
 
