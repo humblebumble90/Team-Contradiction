@@ -33,8 +33,9 @@ public:
 	//Moving
 	void move(Move newMove);
 	//getter and setter of playerMoving boolean
-	int getIsMoving();
-	void setIsMoving(int num);
+	bool getIsMoving();
+	void setIsMoving(bool newState);
+	
 	Frame* frame;
 
 	//getter and setter of player lives
@@ -46,7 +47,7 @@ public:
 private:
 	Uint8 m_alpha;
 	float m_maxSpeed;
-	int m_isMoving;
+	bool m_isMoving;
 	int endInvincibleTime;
 	int playerHealth;
 	int playerLives;

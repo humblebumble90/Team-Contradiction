@@ -251,19 +251,19 @@ void Game::handleEvents()
 				m_bRunning = false;
 				break;
 			case SDLK_w:
-				getPlayerShip()->setIsMoving(1);
+				getPlayerShip()->setIsMoving(true);
 				getPlayerShip()->move(UP);
 				break;
 			case SDLK_s:
-				getPlayerShip()->setIsMoving(1);
+				getPlayerShip()->setIsMoving(true);
 				getPlayerShip()->move(DOWN);
 				break;
 			case SDLK_a:
-				getPlayerShip()->setIsMoving(1);
+				getPlayerShip()->setIsMoving(true);
 				getPlayerShip()->move(LEFT);
 				break;
 			case SDLK_d:
-				getPlayerShip()->setIsMoving(1);
+				getPlayerShip()->setIsMoving(true);
 				getPlayerShip()->move(RIGHT);
 				break;
 				// The below code throws a Debug Assertion Failed Error
@@ -272,29 +272,42 @@ void Game::handleEvents()
 				//getPlayerShip()->GetFrame().GetWeapon(0).Fire();
 				break;
 			case SDLK_z:
-				for (int z = 0; z < 3; ++z) {
-					if (firingCooldown[z] == 0) {
-						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
-						firingCooldown[z] = firingCooldownReset[z];
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+					for (int z = 0; z < 3; ++z) {
+						if (firingCooldown[z] == 0) {
+							getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+							firingCooldown[z] = firingCooldownReset[z];
+						}
 					}
 				}
 				break;
 			case SDLK_x:
-				if (firingCooldown[0] == 0) {
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[0] == 0) {
 					getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
 					firingCooldown[0] = firingCooldownReset[0];
-				}
+					}
 				break;
+				}
+
 			case SDLK_c:
-				if (firingCooldown[1] == 0) {
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[1] == 0) {
 					getPlayerShip()->GetFrame()->GetWeapon(1).Fire();
 					firingCooldown[1] = firingCooldownReset[1];
+					}
 				}
 				break;
 			case SDLK_v:
-				if (firingCooldown[2] == 0) {
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[2] == 0) {
 					getPlayerShip()->GetFrame()->GetWeapon(2).Fire();
 					firingCooldown[2] = firingCooldownReset[2];
+					}
 				}
 				break;
 			}
@@ -303,18 +316,16 @@ void Game::handleEvents()
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_w:
-				getPlayerShip()->setIsMoving(-1);
+				getPlayerShip()->setIsMoving(false);
 				break;
-
 			case SDLK_s:
-				getPlayerShip()->setIsMoving(-1);
+				getPlayerShip()->setIsMoving(false);
 				break;
 
 			case SDLK_a:
-				getPlayerShip()->setIsMoving(-1);
-				break;
+				getPlayerShip()->setIsMoving(false);
 			case SDLK_d:
-				getPlayerShip()->setIsMoving(-1);
+				getPlayerShip()->setIsMoving(false);
 				break;
 			}
 		default:

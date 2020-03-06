@@ -10,7 +10,7 @@
 #include <functional>
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
-:m_isMoving(0), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
+:m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
 {
 	changeTexture("Player");
 	setPosition(targetTransform);
@@ -123,8 +123,6 @@ void PlayerShip::draw()
 
 void PlayerShip::move(Move newMove)
 {
-	if (m_isMoving > 0)
-	{
 		switch (newMove)
 		{
 		case RIGHT:
@@ -140,17 +138,16 @@ void PlayerShip::move(Move newMove)
 			setVelocity(glm::vec2(getVelocity().x, 1.0f * m_maxSpeed));
 			break;
 		}
-	}
 }
 
-int PlayerShip::getIsMoving()
+bool PlayerShip::getIsMoving()
 {
 	return m_isMoving;
 }
 
-void PlayerShip::setIsMoving(int num)
+void PlayerShip::setIsMoving(bool newState)
 {
-	m_isMoving += num;
+	m_isMoving = newState;
 }
 
 int PlayerShip::getPlayerLives()
@@ -180,22 +177,8 @@ void PlayerShip::update()
 
 	if (m_isMoving == false)
 	{
-		if (currentVelocity.x < 0)
-		{
-			currentVelocity.x *= 0.95f;
-		}
-		else if (currentVelocity.x > 0)
-		{
-			currentVelocity.x *= 0.95f;
-		}
-		if (currentVelocity.y < 0)
-		{
-			currentVelocity.y *= 0.95f;
-		}
-		else if (currentVelocity.y >= 0)
-		{
-			currentVelocity.y *= 0.95f;
-		}
+		currentVelocity.x *= 0.99f;
+		currentVelocity.y *= 0.99f;
 	}
 
 	if (playerLives >= 0)
