@@ -312,24 +312,24 @@ void Game::handleEvents()
 				break;
 			}
 			break;
+		default:
+			break;
 		case SDL_KEYUP:
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_w:
 				getPlayerShip()->setIsMoving(false);
 				break;
+			case SDLK_a:
+				getPlayerShip()->setIsMoving(false);
+				break;
 			case SDLK_s:
 				getPlayerShip()->setIsMoving(false);
 				break;
-
-			case SDLK_a:
-				getPlayerShip()->setIsMoving(false);
 			case SDLK_d:
 				getPlayerShip()->setIsMoving(false);
 				break;
 			}
-		default:
-			break;
 		}
 	}
 }

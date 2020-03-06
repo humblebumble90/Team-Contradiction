@@ -4,6 +4,7 @@
 
 #include "Scene.h"
 #include "Label.h"
+#include "Start_Scene_Bg.h"
 
 class StartScene : public Scene
 {
@@ -20,6 +21,7 @@ public:
 
 private:
 	Label* m_pStartLabel;
+	Start_Scene_Bg* m_pStart_Scene_Bg;
 };
 
 #endif /* defined (__START_SCENE__) */

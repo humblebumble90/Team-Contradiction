@@ -16,6 +16,7 @@ StartScene::~StartScene()
 
 void StartScene::draw()
 {
+	m_pStart_Scene_Bg->draw();
 	m_pStartLabel->draw();
 }
 
@@ -60,8 +61,12 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
-	SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("START SCENE", "Dock51", 80, blue, glm::vec2(400.0f, 40.0f));
+	m_pStart_Scene_Bg = new Start_Scene_Bg();
+	m_pStart_Scene_Bg->setParent(this);
+	addChild(m_pStart_Scene_Bg);
+	SDL_Color black = { 0, 0, 0, 255 };
+	m_pStartLabel = new Label("Guild of Agnis", "Dock51",
+		80, black, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.2f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
