@@ -63,8 +63,6 @@ void LevelScene::update()
 							{
 								std::cout << "something" << std::endl;
 								player->Damage(1);
-<<<<<<< HEAD
-=======
 
 								if (c.getName() == "BasicBody")
 								{
@@ -104,16 +102,6 @@ void LevelScene::update()
 								else
 								{
 									((IndesBody&)s).Damage(c);
-								}
->>>>>>> master
-
-								if (c.getName() == "BasicBody")
-								{
-									((BasicBody&)c).Damage(1);
-								}
-								else
-								{
-									((IndesBody&)c).Damage(s);
 								}
 							}
 
