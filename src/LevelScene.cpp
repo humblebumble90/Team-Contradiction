@@ -36,16 +36,20 @@ void LevelScene::update()
 		//{
 		//	CollisionManager::squaredRadiusCheck(player, enemy);
 		//}
-
+		//get the player's build
 		for (ShipComponent s : player->GetFrame()->GetBuild())
 		{
+			//if the build is a basicbody
 			if (s.getName() == "BasicBody")
 			{
+				// for all enemies
 				//std::cout << s.getPosition().x << std::endl;
 				for (AI* a : enemies)
 				{
+					//get the ship component of the enemies
 					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
 					{
+						//if the names are basic body and indesbody
 						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
 						{
 							//std::cout << s.getName() << std::endl;
@@ -54,8 +58,10 @@ void LevelScene::update()
 							//std::cout << c.getName() << std::endl;
 							//std::cout << c.getPosition().x << std::endl;
 							//std::cout << c.getPosition().y << std::endl;
+							//and they are colliding then do this
 							if (CollisionManager::shipComponentCheck(s, c))
 							{
+								std::cout << "something" << std::endl;
 								player->Damage(1);
 
 								if (c.getName() == "BasicBody")
@@ -96,15 +102,6 @@ void LevelScene::update()
 								else
 								{
 									((IndesBody&)s).Damage(c);
-								}
-
-								if (c.getName() == "BasicBody")
-								{
-									((BasicBody&)c).Damage(1);
-								}
-								else
-								{
-									((IndesBody&)c).Damage(s);
 								}
 							}
 

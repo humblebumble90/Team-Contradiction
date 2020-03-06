@@ -50,7 +50,7 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 
 PlayerShip::~PlayerShip()
 {
-	;
+	
 }
 
 void PlayerShip::Damage(int i)
@@ -61,7 +61,7 @@ void PlayerShip::Damage(int i)
 		std::cout << "Player damaged!\n";
 		std::cout << "PlayerHealth: " << playerHealth << std::endl;
 		playerLives -= 1;
-		std::cout << "Player life decreases for 1!";
+		std::cout << "Player life decreases for 1!" << std::endl;
 		playerHealth += 1;
 		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
 		invincible();
@@ -78,8 +78,10 @@ bool PlayerShip::getInvincibility()
 {
 	return inv;
 }
+
 void PlayerShip::invincible()
 {
+	//if not invincible do this
 	if (!inv)
 	{
 		std::cout << "Invincibled!\n";
@@ -88,7 +90,6 @@ void PlayerShip::invincible()
 		endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
 	}
 }
-
 
 Frame* PlayerShip::GetFrame()
 {
@@ -132,7 +133,6 @@ void PlayerShip::setIsMoving(bool newState)
 	m_isMoving = newState;
 }
 
-
 void PlayerShip::update()
 {
 	auto currentPosition = getPosition();
@@ -158,14 +158,13 @@ void PlayerShip::update()
 		}
 	}
 
-	if(playerLives > 0)
+	if (playerLives > 0)
 	{
 		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
 		auto deltax = currentPosition.x + currentVelocity.x;
 		auto deltay = currentPosition.y + currentVelocity.y;
 		setPosition(glm::vec2(deltax, deltay));
 	}
-
 	
 	//when the invincibility has finished run this
 	if (inv == true && endInvincibleTime <= SDL_GetTicks())
