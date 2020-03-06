@@ -10,7 +10,7 @@
 #include <functional>
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
-:m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
+:m_isMoving(0), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
 {
 	changeTexture("Player");
 	setPosition(targetTransform);
@@ -91,6 +91,26 @@ void PlayerShip::invincible()
 	}
 }
 
+void PlayerShip::checkBound()
+{
+	if(getPosition().x <= Config::SCREEN_WIDTH * 0.05f)
+	{
+		setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.05f, getPosition().y));
+	}
+	if (getPosition().x >= Config::SCREEN_WIDTH * 0.95f)
+	{
+		setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.95f, getPosition().y));
+	}
+	if(getPosition().y <= Config::SCREEN_HEIGHT * 0.05f)
+	{
+		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.05f));
+	}
+	if (getPosition().y >= Config::SCREEN_HEIGHT * 0.95f)
+	{
+		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.95f));
+	}
+}
+
 Frame* PlayerShip::GetFrame()
 {
 	return frame;
@@ -103,7 +123,7 @@ void PlayerShip::draw()
 
 void PlayerShip::move(Move newMove)
 {
-	if (m_isMoving)
+	if (m_isMoving > 0)
 	{
 		switch (newMove)
 		{
@@ -123,14 +143,34 @@ void PlayerShip::move(Move newMove)
 	}
 }
 
-bool PlayerShip::getIsMoving()
+int PlayerShip::getIsMoving()
 {
 	return m_isMoving;
 }
 
-void PlayerShip::setIsMoving(bool newState)
+void PlayerShip::setIsMoving(int num)
 {
-	m_isMoving = newState;
+	m_isMoving += num;
+}
+
+int PlayerShip::getPlayerLives()
+{
+	return playerLives;
+}
+
+void PlayerShip::setPlayerLives(int num)
+{
+	playerLives += num;
+}
+
+int PlayerShip::getPlayerScore()
+{
+	return playerScore;
+}
+
+void PlayerShip::setPlayerScore(int num)
+{
+	playerScore += num;
 }
 
 void PlayerShip::update()
@@ -158,12 +198,16 @@ void PlayerShip::update()
 		}
 	}
 
-	if (playerLives > 0)
+	if (playerLives >= 0)
 	{
 		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
 		auto deltax = currentPosition.x + currentVelocity.x;
 		auto deltay = currentPosition.y + currentVelocity.y;
 		setPosition(glm::vec2(deltax, deltay));
+	}
+	else
+	{
+		delete this;
 	}
 	
 	//when the invincibility has finished run this
@@ -173,7 +217,7 @@ void PlayerShip::update()
 		inv = false;
 		m_alpha = defaultAlpha;
 	}
-	
+	checkBound();
 }
 
 void PlayerShip::clean()

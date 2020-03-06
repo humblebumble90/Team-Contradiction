@@ -251,19 +251,19 @@ void Game::handleEvents()
 				m_bRunning = false;
 				break;
 			case SDLK_w:
-				getPlayerShip()->setIsMoving(true);
+				getPlayerShip()->setIsMoving(1);
 				getPlayerShip()->move(UP);
 				break;
 			case SDLK_s:
-				getPlayerShip()->setIsMoving(true);
+				getPlayerShip()->setIsMoving(1);
 				getPlayerShip()->move(DOWN);
 				break;
 			case SDLK_a:
-				getPlayerShip()->setIsMoving(true);
+				getPlayerShip()->setIsMoving(1);
 				getPlayerShip()->move(LEFT);
 				break;
 			case SDLK_d:
-				getPlayerShip()->setIsMoving(true);
+				getPlayerShip()->setIsMoving(1);
 				getPlayerShip()->move(RIGHT);
 				break;
 				// The below code throws a Debug Assertion Failed Error
@@ -303,18 +303,18 @@ void Game::handleEvents()
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_w:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setIsMoving(-1);
 				break;
 
 			case SDLK_s:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setIsMoving(-1);
 				break;
 
 			case SDLK_a:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setIsMoving(-1);
 				break;
 			case SDLK_d:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setIsMoving(-1);
 				break;
 			}
 		default:

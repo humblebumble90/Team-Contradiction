@@ -32,20 +32,29 @@ public:
 
 	//Moving
 	void move(Move newMove);
-	//getters and setters
-	bool getIsMoving();
-	void setIsMoving(bool newState);
+	//getter and setter of playerMoving boolean
+	int getIsMoving();
+	void setIsMoving(int num);
 	Frame* frame;
+
+	//getter and setter of player lives
+	int getPlayerLives();
+	void setPlayerLives(int num);
+	//getter and setter of player score
+	int getPlayerScore();
+	void setPlayerScore(int num);
 private:
 	Uint8 m_alpha;
 	float m_maxSpeed;
-	bool m_isMoving;
+	int m_isMoving;
 	int endInvincibleTime;
 	int playerHealth;
 	int playerLives;
+	int playerScore;
 	std::string name;
 	const static int defaultAlpha = 255;
 	void invincible();
+	void checkBound();
 };
 
 
