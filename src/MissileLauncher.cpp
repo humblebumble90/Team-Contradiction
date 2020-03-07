@@ -37,10 +37,7 @@ void MissileLauncher::Fire()
 
 void MissileLauncher::Fire(glm::vec2 trajectory)
 {
-	if (getParent()->getParent()->getName() == "Player") {
-		//TODO: WeaponMissile needs some sort of trajectory handling
-	}
-	else {
+	if (getParent()->getParent()->getName() != "Player") {
 		TheGame::Instance()->spawnEnemy(new EnemyMissileAI(getPosition(), getPosition() + trajectory));
 	}
 }
