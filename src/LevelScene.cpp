@@ -8,6 +8,7 @@
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "CollisionManager.h"
+#include <experimental/coroutine>
 
 LevelScene::LevelScene()
 {
