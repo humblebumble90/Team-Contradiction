@@ -171,6 +171,11 @@ void Game::destroyEnemy(Enemy* enemy) {
 	((LevelScene*)m_currentScene)->DestroyEnemy(enemy);
 }
 
+void Game::destroyWeapon(PlayerWeapon* weapon)
+{
+	((LevelScene*)m_currentScene)->DestroyWeapon(weapon);
+}
+
 glm::vec2 Game::getPlayerPosition()
 {
 	return ((LevelScene*)m_currentScene)->getPlayerPosition();
@@ -199,6 +204,11 @@ void Game::update()
 {
 	m_currentScene->update();
 	m_currentScene->handleEvents();
+	for (int z = 0; z < 3; ++z) {
+		if (firingCooldown[z] > 0) {
+			--firingCooldown[z];
+		}
+	}
 }
 
 void Game::clean()
@@ -262,32 +272,47 @@ void Game::handleEvents()
 				//getPlayerShip()->GetFrame().GetWeapon(0).Fire();
 				break;
 			case SDLK_z:
-				for (int z = 0; z < 3; ++z) {
-					if (firingCooldown[z] == 0) {
-						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
-						firingCooldown[z] = firingCooldownReset[z];
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+					for (int z = 0; z < 3; ++z) {
+						if (firingCooldown[z] == 0) {
+							getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+							firingCooldown[z] = firingCooldownReset[z];
+						}
 					}
 				}
 				break;
 			case SDLK_x:
-				if (firingCooldown[0] == 0) {
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[0] == 0) {
 					getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
 					firingCooldown[0] = firingCooldownReset[0];
-				}
+					}
 				break;
+				}
+
 			case SDLK_c:
-				if (firingCooldown[1] == 0) {
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[1] == 0) {
 					getPlayerShip()->GetFrame()->GetWeapon(1).Fire();
 					firingCooldown[1] = firingCooldownReset[1];
+					}
 				}
 				break;
 			case SDLK_v:
-				if (firingCooldown[2] == 0) {
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[2] == 0) {
 					getPlayerShip()->GetFrame()->GetWeapon(2).Fire();
 					firingCooldown[2] = firingCooldownReset[2];
+					}
 				}
 				break;
 			}
+			break;
+		default:
 			break;
 		case SDL_KEYUP:
 			switch (event.key.keysym.sym)
@@ -295,20 +320,16 @@ void Game::handleEvents()
 			case SDLK_w:
 				getPlayerShip()->setIsMoving(false);
 				break;
-
-			case SDLK_s:
+			case SDLK_a:
 				getPlayerShip()->setIsMoving(false);
 				break;
-
-			case SDLK_a:
+			case SDLK_s:
 				getPlayerShip()->setIsMoving(false);
 				break;
 			case SDLK_d:
 				getPlayerShip()->setIsMoving(false);
 				break;
 			}
-		default:
-			break;
 		}
 	}
 }

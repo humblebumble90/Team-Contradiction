@@ -18,13 +18,13 @@ void MissileLauncher::Fire()
 		glm::vec2 s;
 		int i = getID().y;
 		switch (i) {
-		case 2:
+		case 0:
 			s = glm::vec2(5, -5);
 			break;
-		case 4:
+		case 1:
 			s = glm::vec2(10, 0);
 			break;
-		case 7:
+		case 2:
 			s = glm::vec2(5, 5);
 			break;
 		}
@@ -37,10 +37,7 @@ void MissileLauncher::Fire()
 
 void MissileLauncher::Fire(glm::vec2 trajectory)
 {
-	if (getParent()->getParent()->getName() == "Player") {
-		//TODO: WeaponMissile needs some sort of trajectory handling
-	}
-	else {
+	if (getParent()->getParent()->getName() != "Player") {
 		TheGame::Instance()->spawnEnemy(new EnemyMissileAI(getPosition(), getPosition() + trajectory));
 	}
 }

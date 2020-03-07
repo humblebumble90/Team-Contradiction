@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "Game.h"
-#include "AI.h"
+#include "FlyOntoScreenAI.h"
 #include "Frame.h"
 #include "PlayerLockAI.h"
 #include "CannonlordAI.h"
@@ -26,13 +26,21 @@ Enemy::~Enemy()
 
 void Enemy::Damage(int i)
 {
-	health -= i;
-	if (health <= 0)
-	{
-		TheGame::Instance()->destroyEnemy(this);
+	bool doDamage = true;
+	if (((FlyOntoScreenAI*)aI)->isBoss){
+		if (!((FlyOntoScreenAI*)aI)->isAtTarget()) {
+			doDamage = false;
+		}
 	}
-	else {
-		hitTimer = hitTimerReset;
+	if (doDamage) {
+		health -= i;
+		if (health <= 0)
+		{
+			TheGame::Instance()->destroyEnemy(this);
+		}
+		else {
+			hitTimer = hitTimerReset;
+		}
 	}
 }
 
@@ -49,7 +57,12 @@ AI* Enemy::getAI()
 void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
-	if (health <=1 && getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <= 0) {
+	if (health <=1 && (
+		(getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <= 0) ||
+		(getPosition().x >= Config::SCREEN_WIDTH*1.5) ||
+		(getPosition().y + ((GetFrame()->GridHeight() * GetFrame()->getGridSize()) / 2) <= 0) ||
+		(getPosition().y - ((GetFrame()->GridHeight() * GetFrame()->getGridSize()) / 2) >= Config::SCREEN_HEIGHT)
+		)) {
 		TheGame::Instance()->destroyEnemy(this);
 	}
 }

@@ -15,6 +15,7 @@ public:
 	void update() override;
 	void draw() override;
 	void DestroyEnemy(Enemy* enemy);
+	void DestroyWeapon(PlayerWeapon* weapon);
 	void GameOver();
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
@@ -34,5 +35,7 @@ protected:
 	std::vector<int> ramSpawnTimer, zigzagSpawnTimer, cannoneerSpawnTimer, guardianSpawnTimer, diagonSpawnTimer, blastSpawnTimer;
 	std::vector<glm::vec2> ramSpawnLocation, zigzagSpawnLocation, cannoneerSpawnLocation, guardianSpawnLocation, diagonSpawnLocation, blastSpawnLocation;
 	#pragma endregion
+private:
+	void Damage(ShipComponent sc[2]);
 };
 #endif

@@ -21,7 +21,10 @@ void LevelScene::update()
 {
 	++time;
 	spawnedEnemy = false;
-	player->update();
+	if(player->getPlayerLives() >= 0)
+	{
+		player->update();
+	}
 	m_pMap->update();
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
@@ -29,6 +32,7 @@ void LevelScene::update()
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->update();
 	}
+	/*
 	#pragma region Player Collision and invinciblity
 	if (player->getInvincibility() == false && enemies.empty() == false)
 	{
@@ -82,8 +86,8 @@ void LevelScene::update()
 	}
 #pragma endregion
 	#pragma region Player Weapon Collision
-	for (PlayerWeapon* p : playerWeapons) {
-		for (ShipComponent s : p->getFrame()->GetBuild())
+	for (int b = 0; b < playerWeapons.size(); ++ b) {
+		for (ShipComponent s : playerWeapons[b]->getFrame()->GetBuild())
 		{
 			if (s.getName() == "BasicBody" || s.getName() == "IndesBody")
 			{
@@ -112,6 +116,42 @@ void LevelScene::update()
 		}
 	}
 #pragma endregion
+	*/
+	#pragma region Collisions
+	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
+		for (AI* enemy : enemies) {
+			for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
+				if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
+					if (playerWeapons.size() > 0) {
+						for (PlayerWeapon* pw : playerWeapons) {
+							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
+								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+									if (CollisionManager::shipComponentCheck(es, ps))
+									{
+										ShipComponent temp[2] = { ps, es };
+										Damage(temp);
+									}
+								}
+							}
+						}
+					}
+					if (!player->getInvincibility()) {
+						for (ShipComponent ps : player->GetFrame()->GetBuild()) {
+							if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+								if (CollisionManager::shipComponentCheck(es, ps))
+								{
+									ShipComponent temp[2] = { ps, es };
+									Damage(temp);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	#pragma endregion
+
 	#pragma region Spawn Enemies
 	if (ramIteration < ramSpawnTimer.size()) {
 		if (time == ramSpawnTimer[ramIteration])
@@ -161,12 +201,15 @@ void LevelScene::update()
 void LevelScene::draw()
 {
 	m_pMap->draw();
-	player->draw();
-	for (AI* a : enemies) {
-		a->GetParent()->draw();
+	if (player->getPlayerLives() >= 0)
+	{
+		player->draw();
 	}
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
+	}
+	for (AI* a : enemies) {
+		a->GetParent()->draw();
 	}
 }
 
@@ -179,10 +222,32 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 		}
 	}
 }
+void LevelScene::DestroyWeapon(PlayerWeapon* weapon)
+{
+	for (int i = 0; i < playerWeapons.size(); ++i) {
+		if (playerWeapons[i]->getFrame()->getParent() == weapon) {
+			playerWeapons.erase(playerWeapons.begin() + i);
+			break;
+		}
+	}
+}
 
 PlayerShip* LevelScene::getPlayerShip()
 {
 	return player;
+}
+
+void LevelScene::Damage(ShipComponent sc[2])
+{
+	for (int z = 0; z < 2; ++z) {
+		if (sc[z].getName() == "BasicBody") {
+			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
+			((BasicBody&)sc[z]).Damage(i);
+		}
+		else if (sc[z].getName() == "IndesBody") {
+			((IndesBody&)sc[z]).Damage(sc[1 - z]);
+		}
+	}
 }
 
 void LevelScene::GameOver()
