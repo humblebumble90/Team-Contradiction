@@ -32,6 +32,7 @@ void LevelScene::update()
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->update();
 	}
+	/*
 	#pragma region Player Collision and invinciblity
 	if (player->getInvincibility() == false)
 	{
@@ -115,6 +116,42 @@ void LevelScene::update()
 		}
 	}
 #pragma endregion
+	*/
+	#pragma region Collisions
+	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
+		for (AI* enemy : enemies) {
+			for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
+				if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
+					if (playerWeapons.size() > 0) {
+						for (PlayerWeapon* pw : playerWeapons) {
+							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
+								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+									if (CollisionManager::shipComponentCheck(es, ps))
+									{
+										ShipComponent temp[2] = { ps, es };
+										Damage(temp);
+									}
+								}
+							}
+						}
+					}
+					if (!player->getInvincibility()) {
+						for (ShipComponent ps : player->GetFrame()->GetBuild()) {
+							if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+								if (CollisionManager::shipComponentCheck(es, ps))
+								{
+									ShipComponent temp[2] = { ps, es };
+									Damage(temp);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	#pragma endregion
+
 	#pragma region Spawn Enemies
 	if (ramIteration < ramSpawnTimer.size()) {
 		if (time == ramSpawnTimer[ramIteration])
@@ -198,6 +235,19 @@ void LevelScene::DestroyWeapon(PlayerWeapon* weapon)
 PlayerShip* LevelScene::getPlayerShip()
 {
 	return player;
+}
+
+void LevelScene::Damage(ShipComponent sc[2])
+{
+	for (int z = 0; z < 2; ++z) {
+		if (sc[z].getName() == "BasicBody") {
+			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
+			((BasicBody&)sc[z]).Damage(i);
+		}
+		else if (sc[z].getName() == "IndesBody") {
+			((IndesBody&)sc[z]).Damage(sc[1 - z]);
+		}
+	}
 }
 
 void LevelScene::GameOver()
