@@ -18,13 +18,13 @@ void MissileLauncher::Fire()
 		glm::vec2 s;
 		int i = getID().y;
 		switch (i) {
-		case 2:
+		case 0:
 			s = glm::vec2(5, -5);
 			break;
-		case 4:
+		case 1:
 			s = glm::vec2(10, 0);
 			break;
-		case 7:
+		case 2:
 			s = glm::vec2(5, 5);
 			break;
 		}
