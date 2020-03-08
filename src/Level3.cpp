@@ -157,7 +157,7 @@ void Level3::loadAllTextures()
 
 	//unknown
 	loadTexture("../Assets/textures/MissileBarge.png", "MissileBarge");
-	loadTexture("../Assets/textures/MissileBarge", "MissileBarge");
+	loadTexture("../Assets/textures/MissileBargeHit.png", "MissileBargeHit");
 	std::cout << "finish loading textures" << std::endl;
 }
 
