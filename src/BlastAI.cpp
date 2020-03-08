@@ -31,7 +31,17 @@ void BlastAI::PrimaryFunction()
 		float z = -1.0f;
 		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
-			((MissileLauncher*)&w)->Fire(glm::vec2(0, z));
+			float x;
+			if (abs(z) == 1) {
+				x = -0.5f;
+			}
+			else if (abs(z) == 0) {
+				x = -1;
+			}
+			else {
+				x = -0.75f;
+			}
+			((MissileLauncher*)&w)->Fire(glm::vec2(x, z));
 			z += 0.5f;
 		}
 		firingCooldown = firingCooldownReset;

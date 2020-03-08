@@ -35,11 +35,11 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 		this, transform, "Deathcage");
 
 #pragma region Assocate Cannons
-	std::vector<Weapon> Cannons;
+	std::vector<Cannon> Cannons;
 	for (Weapon w : parent->GetFrame()->GetWeapons())
 	{
 		if (w.getName()=="Cannon") {
-			Cannons.push_back(w);
+			Cannons.push_back((Cannon&)w);
 		}
 	}
 	for (int z = 0; z <= cannonMaximum; ++z)
@@ -78,7 +78,8 @@ void DeathcageAI::SecondaryFunction()
 		{
 			centerCannons[centerIteration].Fire();
 			centerCannons[centerCannons.size() - 1 - centerIteration].Fire();
-			if (centerIteration + 1 == centerCannons.size() - 1 - centerIteration)
+			++centerIteration;
+			if (centerIteration == centerCannons.size() - centerIteration)
 			{
 				centerIteration = 0;
 				cannonIteration = 0;
@@ -86,8 +87,8 @@ void DeathcageAI::SecondaryFunction()
 		}
 		else
 		{
-			topCannons[cannonIteration].Fire();
-			bottomCannons[cannonIteration].Fire();
+			topCannons[cannonIteration].Fire(glm::vec2(0, 1));
+			bottomCannons[cannonIteration].Fire(glm::vec2(0, -1));
 			++cannonIteration;
 		}
 	}

@@ -11,22 +11,22 @@ BlasterSkiffAI::BlasterSkiffAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 	#pragma region Frame Construction
 	{
-		Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(), Blank(), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(), Blank(), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-			BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-			BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(), Blank(), Blank(), Blank(),
-			Blank(), MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(), Blank(), Blank(), Blank()
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), IndesBody(false), Blank(),
+			BasicBody(),IndesBody(false), IndesBody(false),	  IndesBody(false), Blank(),		  Blank(),			IndesBody(false), IndesBody(false),
+			BasicBody(),IndesBody(false), IndesBody(false),   IndesBody(false), Blank(),		  Blank(),			IndesBody(false), IndesBody(false),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), IndesBody(false), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(), Blank()
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 320px by 640px

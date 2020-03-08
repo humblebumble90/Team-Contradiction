@@ -133,13 +133,15 @@ void Level3::loadAllTextures()
 	loadTexture("../Assets/textures/player.png", "Player");
 	//background
 	loadTexture("../Assets/textures/background.png", "map");
-	//enemy missle
+	//enemy weapons
 	loadTexture("../Assets/textures/EnemyMissile.png", "EnemyMissile");
+	loadTexture("../Assets/textures/EnemyCannonball.png", "EnemyCannonball");
 	//blaster skiff
 	loadTexture("../Assets/textures/BlasterSkiff.png", "BlasterSkiff");
 	loadTexture("../Assets/textures/BlasterSkiffHit.png", "BlasterSkiffHit");
-	//missile
+	//player weapons
 	loadTexture("../Assets/textures/Missile.png", "Missile");
+	loadTexture("../Assets/textures/Cannonball.png", "Cannonball");
 	//firebrand
 	loadTexture("../Assets/textures/Firebrand.png", "Firebrand");
 	loadTexture("../Assets/textures/FirebrandHit.png", "FirebrandHit");

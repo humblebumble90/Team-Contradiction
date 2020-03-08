@@ -8,12 +8,14 @@ GuardianAI::GuardianAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
 	{
-		BasicBody(),
-		Cannon()
+		BasicBody(), BasicBody(),
+		BasicBody(), BasicBody(),
+		BasicBody(), BasicBody(),
+		Cannon(), BasicBody()
 	};
 #pragma endregion
-	parent = new Enemy(new Frame(30, //Enemy is 30px by 60px
-		build, 1, 2), 1, this, transform, "Guardian");
+	parent = new Enemy(new Frame(15, //Enemy is 30px by 60px
+		build, 2, 4), 1, this, transform, "Guardian");
 	speed.y = -5.00f; //Tweak this number later
 }
 

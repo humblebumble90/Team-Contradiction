@@ -1,14 +1,15 @@
-#include "CannonBall.h"
+#include "Cannonball.h"
 #include "Game.h"
 #include "IndesBody.h"
 
-CannonBall::CannonBall(glm::vec2 position, glm::vec2 velocity)
+Cannonball::Cannonball(glm::vec2 position, glm::vec2 velocity)
 {
-	TheTextureManager::Instance()->load("../Assets/textures/CannonBall.png", "CannonBall", TheGame::Instance()->getRenderer());
-	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("CannonBall");
+	name = "Cannonball";
+	TheTextureManager::Instance()->load("../Assets/textures/Cannonball.png", "Cannonball", TheGame::Instance()->getRenderer());
+	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("Cannonball");
 	setWidth(size.x);
 	setHeight(size.y);
-	setPosition(glm::vec2(Config::SCREEN_HEIGHT * 0.5f, Config::SCREEN_WIDTH)); // This is not the final position
+	setPosition(position);
 	setVelocity(velocity);
 
 	std::vector<ShipComponent> build = { IndesBody(true) };
@@ -19,4 +20,4 @@ CannonBall::CannonBall(glm::vec2 position, glm::vec2 velocity)
 
 }
 
-CannonBall::~CannonBall() = default;
+Cannonball::~Cannonball() = default;

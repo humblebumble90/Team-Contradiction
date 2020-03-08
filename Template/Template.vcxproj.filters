@@ -225,6 +225,21 @@
     <ClCompile Include="..\src\StartButton.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\EnemyCannonballAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Cannonball.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Control_Img.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FlameThrowerWeapon.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Vector2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -415,6 +430,21 @@
     </ClInclude>
     <ClInclude Include="..\src\StartButton.h">
       <Filter>Source Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\EnemyCannonballAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Cannonball.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Control_Img.h">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FlameThrowerWeapon.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Vector2.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

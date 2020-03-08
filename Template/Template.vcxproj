@@ -159,9 +159,13 @@
     <ClCompile Include="..\src\BlastAI.cpp" />
     <ClCompile Include="..\src\Button.cpp" />
     <ClCompile Include="..\src\Cannon.cpp" />
+    <ClCompile Include="..\src\Cannonball.cpp" />
     <ClCompile Include="..\src\CannoneerAI.cpp" />
+    <ClCompile Include="..\src\Control_Img.cpp" />
     <ClCompile Include="..\src\DiagonAI.cpp" />
+    <ClCompile Include="..\src\EnemyCannonballAI.cpp" />
     <ClCompile Include="..\src\Flamethrower.cpp" />
+    <ClCompile Include="..\src\FlameThrowerWeapon.cpp" />
     <ClCompile Include="..\src\GuardianAI.cpp" />
     <ClCompile Include="..\src\Level1.cpp" />
     <ClCompile Include="..\src\Map.cpp" />
@@ -212,6 +216,7 @@
     <ClCompile Include="..\src\Target.cpp" />
     <ClCompile Include="..\src\TextureManager.cpp" />
     <ClCompile Include="..\src\Util.cpp" />
+    <ClCompile Include="..\src\Vector2.cpp" />
     <ClCompile Include="..\src\Weapon.cpp" />
     <ClCompile Include="..\src\WeaponMissile.cpp" />
     <ClCompile Include="..\src\ZigzagAI.cpp" />
@@ -220,9 +225,13 @@
     <ClInclude Include="..\src\BlastAI.h" />
     <ClInclude Include="..\src\Button.h" />
     <ClInclude Include="..\src\Cannon.h" />
+    <ClInclude Include="..\src\Cannonball.h" />
     <ClInclude Include="..\src\CannoneerAI.h" />
+    <ClInclude Include="..\src\Control_Img.h" />
     <ClInclude Include="..\src\DiagonAI.h" />
+    <ClInclude Include="..\src\EnemyCannonballAI.h" />
     <ClInclude Include="..\src\Flamethrower.h" />
+    <ClInclude Include="..\src\FlameThrowerWeapon.h" />
     <ClInclude Include="..\src\GameObjectType.h" />
     <ClInclude Include="..\src\GuardianAI.h" />
     <ClInclude Include="..\src\Level1.h" />
@@ -277,6 +286,7 @@
     <ClInclude Include="..\src\Target.h" />
     <ClInclude Include="..\src\TextureManager.h" />
     <ClInclude Include="..\src\Util.h" />
+    <ClInclude Include="..\src\Vector2.h" />
     <ClInclude Include="..\src\Weapon.h" />
     <ClInclude Include="..\src\WeaponMissile.h" />
     <ClInclude Include="..\src\ZigzagAI.h" />

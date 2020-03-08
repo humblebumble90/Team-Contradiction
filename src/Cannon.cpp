@@ -1,7 +1,6 @@
 #include "Cannon.h"
-#include "CannonBall.h"
-#include "CannonBargeAI.h"
-#include "FirebrandAI.h"
+#include "Cannonball.h"
+#include "EnemyCannonballAI.h"
 #include "Game.h"
 Cannon::Cannon()
 {
@@ -24,7 +23,7 @@ void Cannon::Fire()
 		{
 		case 0:
 
-			velocity = glm::vec2(5.0, -5.0f);
+			velocity = glm::vec2(4.0, -4.0f);
 			break;
 
 		case 1:
@@ -34,15 +33,15 @@ void Cannon::Fire()
 
 		case 2:
 
-			velocity = glm::vec2(5.0f, 5.0f);
+			velocity = glm::vec2(4.0f, 4.0f);
 			break;
 		}
-		TheGame::Instance()->spawnPlayerWeapon(new CannonBall(getPosition(), velocity));
+		TheGame::Instance()->spawnPlayerWeapon(new Cannonball(getPosition(), velocity));
 	}
 
 	else
 	{
-		TheGame::Instance()->spawnEnemy(new FirebrandAI(getPosition()));
+		TheGame::Instance()->spawnEnemy(new EnemyCannonballAI(getPosition(), glm::vec2(-1, 0)));
 	}
 
 }
@@ -52,25 +51,7 @@ void Cannon::Fire(glm::vec2 direction)
 
 	if (getParent()->getParent()->getName() != "Player")
 	{
-		if (direction.x == 0.0f && direction.y == 1.0f)
-		{
-			velocity = glm::vec2(0.0f, 8.0f); // travels up
-		}
-
-		else if (direction.x == 0.0f && direction.y == -1.0f)
-		{
-			velocity = glm::vec2(0.0f, -8.0f); // travels down
-		}
-
-		else if (direction.x == 1.0f && direction.y == 0.0f)
-		{
-			velocity = glm::vec2(8.0f, 0.0f); // travels right
-		}
-
-		else if (direction.x == -1.0f && direction.y == 0.0f)
-		{
-			velocity = glm::vec2(-8.0f, 0.0f); // travels left
-		}
+		TheGame::Instance()->spawnEnemy(new EnemyCannonballAI(getPosition(), direction));
 	}
 
 	//TheGame::Instance()->spawnEnemy(new FirebrandAI(getPosition()+velocity));

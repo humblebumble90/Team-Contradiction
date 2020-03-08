@@ -3,14 +3,12 @@
 #define __CANNONBALL__
 
 #include "PlayerWeapon.h"
-class CannonBall :public PlayerWeapon
+class Cannonball :public PlayerWeapon
 {
 public:
-	CannonBall(glm::vec2 position, glm::vec2 velocity);
-	~CannonBall();
+	Cannonball(glm::vec2 position, glm::vec2 velocity);
+	~Cannonball();
 private:
 
 };
 #endif // defined(__CANNONBALL__) //
-
-
