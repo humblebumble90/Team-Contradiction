@@ -6,6 +6,7 @@
 #include "WeaponMissile.h"
 #include "AI.h"
 #include "Map.h"
+#include "Control_Img.h"
 
 class LevelScene : public Scene
 {
@@ -37,5 +38,6 @@ protected:
 	#pragma endregion
 private:
 	void Damage(ShipComponent sc[2]);
+	Control_Img* m_pControl_Img = new Control_Img();
 };
 #endif

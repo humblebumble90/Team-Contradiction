@@ -160,6 +160,7 @@
     <ClCompile Include="..\src\Button.cpp" />
     <ClCompile Include="..\src\Cannon.cpp" />
     <ClCompile Include="..\src\CannoneerAI.cpp" />
+    <ClCompile Include="..\src\Control_Img.cpp" />
     <ClCompile Include="..\src\DiagonAI.cpp" />
     <ClCompile Include="..\src\Flamethrower.cpp" />
     <ClCompile Include="..\src\GuardianAI.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="..\src\Button.h" />
     <ClInclude Include="..\src\Cannon.h" />
     <ClInclude Include="..\src\CannoneerAI.h" />
+    <ClInclude Include="..\src\Control_Img.h" />
     <ClInclude Include="..\src\DiagonAI.h" />
     <ClInclude Include="..\src\Flamethrower.h" />
     <ClInclude Include="..\src\GameObjectType.h" />
