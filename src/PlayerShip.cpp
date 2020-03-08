@@ -173,7 +173,7 @@ float PlayerShip::getPlayerSpeed()
 
 void PlayerShip::setPlayerSpeed(float num)
 {
-	m_maxSpeed += num;
+	m_maxSpeed = num;
 }
 
 void PlayerShip::update()
