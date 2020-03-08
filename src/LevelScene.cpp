@@ -34,7 +34,7 @@ void LevelScene::update()
 	}
 	/*
 	#pragma region Player Collision and invinciblity
-	if (player->getInvincibility() == false)
+	if (player->getInvincibility() == false && enemies.empty() == false)
 	{
 		//for (Enemy* enemy : m_pEnemy)
 		//{
