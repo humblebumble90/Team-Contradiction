@@ -45,10 +45,8 @@ void Cannon::Fire()
 	}
 
 }
-void Cannon::Fire(glm::vec2 direction)
+void Cannon::Fire(Vector2 direction)
 {
-	glm::vec2 velocity;
-
 	if (getParent()->getParent()->getName() != "Player")
 	{
 		TheGame::Instance()->spawnEnemy(new EnemyCannonballAI(getPosition(), direction));

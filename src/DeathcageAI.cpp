@@ -87,8 +87,8 @@ void DeathcageAI::SecondaryFunction()
 		}
 		else
 		{
-			topCannons[cannonIteration].Fire(glm::vec2(0, 1));
-			bottomCannons[cannonIteration].Fire(glm::vec2(0, -1));
+			topCannons[cannonIteration].Fire(Vector2(0, 1));
+			bottomCannons[cannonIteration].Fire(Vector2(0, -1));
 			++cannonIteration;
 		}
 	}
