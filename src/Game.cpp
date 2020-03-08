@@ -241,59 +241,63 @@ void Game::handleEvents()
 	m_currentScene->handleEvents();
 #pragma region Playership control
 	const Uint8* keystates = SDL_GetKeyboardState(NULL);
-	if (keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A])
+	if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE &&
+		getPlayerShip()->getPlayerLives() >= 0)
 	{
-		getPlayerShip()->move(LEFT);
-	}
-	if (keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_D])
-	{
-		getPlayerShip()->move(RIGHT);
-	}
-	if (keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W])
-	{
-		getPlayerShip()->move(UP);
-	}
-	if (keystates[SDL_SCANCODE_DOWN] || keystates[SDL_SCANCODE_S])
-	{
-		getPlayerShip()->move(DOWN);
-	}
-	if (keystates[SDL_SCANCODE_Z])
-		if (getPlayerShip()->getPlayerLives() >= 0)
+		if (keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A])
 		{
-			for (int z = 0; z < 3; ++z) {
-				if (firingCooldown[z] == 0) {
-					getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
-					firingCooldown[z] = firingCooldownReset[z];
+			getPlayerShip()->move(LEFT);
+		}
+		if (keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_D])
+		{
+			getPlayerShip()->move(RIGHT);
+		}
+		if (keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W])
+		{
+			getPlayerShip()->move(UP);
+		}
+		if (keystates[SDL_SCANCODE_DOWN] || keystates[SDL_SCANCODE_S])
+		{
+			getPlayerShip()->move(DOWN);
+		}
+		if (keystates[SDL_SCANCODE_Z])
+			if (getPlayerShip()->getPlayerLives() >= 0)
+			{
+				for (int z = 0; z < 3; ++z) {
+					if (firingCooldown[z] == 0) {
+						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+						firingCooldown[z] = firingCooldownReset[z];
+					}
 				}
 			}
-		}
-	if (keystates[SDL_SCANCODE_X])
-		if (getPlayerShip()->getPlayerLives() >= 0)
-		{
-			if (firingCooldown[0] == 0) {
-				getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
-				firingCooldown[0] = firingCooldownReset[0];
+		if (keystates[SDL_SCANCODE_X])
+			if (getPlayerShip()->getPlayerLives() >= 0)
+			{
+				if (firingCooldown[0] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
+					firingCooldown[0] = firingCooldownReset[0];
+				}
 			}
-		}
-	if (keystates[SDL_SCANCODE_C])
-		if (getPlayerShip()->getPlayerLives() >= 0)
-		{
-			if (firingCooldown[1] == 0) {
-				getPlayerShip()->GetFrame()->GetWeapon(1).Fire();
-				firingCooldown[1] = firingCooldownReset[1];
+		if (keystates[SDL_SCANCODE_C])
+			if (getPlayerShip()->getPlayerLives() >= 0)
+			{
+				if (firingCooldown[1] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(1).Fire();
+					firingCooldown[1] = firingCooldownReset[1];
+				}
 			}
-		}
-	if (keystates[SDL_SCANCODE_V])
-		if (getPlayerShip()->getPlayerLives() >= 0)
-		{
-			if (firingCooldown[2] == 0) {
-				getPlayerShip()->GetFrame()->GetWeapon(2).Fire();
-				firingCooldown[2] = firingCooldownReset[2];
+		if (keystates[SDL_SCANCODE_V])
+			if (getPlayerShip()->getPlayerLives() >= 0)
+			{
+				if (firingCooldown[2] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(2).Fire();
+					firingCooldown[2] = firingCooldownReset[2];
+				}
 			}
-		}
+	}
 #pragma endregion 
 	SDL_Event event;
-	while  (SDL_PollEvent(&event))
+		while(SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
@@ -424,6 +428,23 @@ void Game::handleEvents()
 			default:
 				break;
 			}
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+			std:std::cout << "Clicked?\n";
+				for (int z = 0; z < 3; ++z) {
+					if (firingCooldown[z] == 0) {
+						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+						firingCooldown[z] = firingCooldownReset[z];
+					}
+				}
+				break;
+			default:
+				break;
+			}
+			break;
 		}
 	}
 }
