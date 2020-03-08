@@ -266,6 +266,18 @@ void Game::handleEvents()
 				getPlayerShip()->setIsMoving(true);
 				getPlayerShip()->move(RIGHT);
 				break;
+			case SDLK_KP_PLUS:
+				if(getPlayerShip()->getPlayerSpeed() < 7.5f)
+				{
+					getPlayerShip()->setPlayerSpeed(0.5f);
+				}
+				break;
+			case SDLK_KP_MINUS:
+				if(getPlayerShip()->getPlayerSpeed() > 3.0f)
+				{
+					getPlayerShip()->setPlayerSpeed(-0.5f);
+				}
+				break;
 				// The below code throws a Debug Assertion Failed Error
 			case SDLK_f:
 				((Level3*)m_currentScene)->CheatCode(); //WARNING: For testing Level 3 only! Remove this when testing ends!
