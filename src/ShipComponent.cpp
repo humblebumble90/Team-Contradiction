@@ -14,8 +14,8 @@ glm::vec2 ShipComponent::getPosition()
 	return parent->getParent()->getName() == "Cannonlord" ?
 	#pragma region Position (Cannonlord)
 		glm::vec2(
-			2 * cos(posX - parentPosition.x) * (posX - parentPosition.x) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()),
-			2 * cos(posY - parentPosition.y) * (posY - parentPosition.y) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation())
+			posX + 2 * cos(posX - parentPosition.x) * (posX - parentPosition.x) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()),
+			posY + 2 * cos(posY - parentPosition.y) * (posY - parentPosition.y) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation())
 		)
 		/*
 		Things I'll need for rotation:
