@@ -260,4 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 
+bin/Debug/Template.exe
 Template/Intermediate/Debug/
