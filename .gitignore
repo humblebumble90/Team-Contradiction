@@ -11,7 +11,7 @@
 *.userprefs
 
 # Build results
-Template\Intermediate\Debug\*
+Debug/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -260,4 +260,3 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-Template/Intermediate/Debug/
