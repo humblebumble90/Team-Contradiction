@@ -241,7 +241,7 @@ void Game::handleEvents()
 	m_currentScene->handleEvents();
 
 	SDL_Event event;
-	if (SDL_PollEvent(&event))
+	while  (SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
@@ -287,7 +287,7 @@ void Game::handleEvents()
 				((Level3*)m_currentScene)->CheatCode(); //WARNING: For testing Level 3 only! Remove this when testing ends!
 				//getPlayerShip()->GetFrame().GetWeapon(0).Fire();
 				break;
-			case SDLK_z:
+			/*case SDLK_z:
 				if (getPlayerShip()->getPlayerLives() >= 0)
 				{
 					for (int z = 0; z < 3; ++z) {
@@ -325,7 +325,7 @@ void Game::handleEvents()
 					firingCooldown[2] = firingCooldownReset[2];
 					}
 				}
-				break;
+				break;*/
 			}
 			break;
 		default:
@@ -334,16 +334,63 @@ void Game::handleEvents()
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_w:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x,0.0f));
+
 				break;
 			case SDLK_a:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
 				break;
 			case SDLK_s:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
 				break;
 			case SDLK_d:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				break;
+			}
+		}
+		switch (event.type)
+		{
+		case SDL_KEYDOWN:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_z:
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+					for (int z = 0; z < 3; ++z) {
+						if (firingCooldown[z] == 0) {
+							getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+							firingCooldown[z] = firingCooldownReset[z];
+						}
+					}
+				}
+				break;
+			case SDLK_x:
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+					if (firingCooldown[0] == 0) {
+						getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
+						firingCooldown[0] = firingCooldownReset[0];
+					}
+					break;
+				}
+
+			case SDLK_c:
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+					if (firingCooldown[1] == 0) {
+						getPlayerShip()->GetFrame()->GetWeapon(1).Fire();
+						firingCooldown[1] = firingCooldownReset[1];
+					}
+				}
+				break;
+			case SDLK_v:
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+					if (firingCooldown[2] == 0) {
+						getPlayerShip()->GetFrame()->GetWeapon(2).Fire();
+						firingCooldown[2] = firingCooldownReset[2];
+					}
+				}
 				break;
 			}
 		}

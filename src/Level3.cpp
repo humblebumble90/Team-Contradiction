@@ -76,6 +76,10 @@ void Level3::handleEvents()
 		}
 		++bossIteration;
 	}
+	if(player == nullptr)
+	{
+		std::cout << "player is " << player << std::endl;
+	}
 }
 
 void Level3::start()

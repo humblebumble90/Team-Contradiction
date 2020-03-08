@@ -1,7 +1,6 @@
 #include "CannonlordAI.h"
 #include "Blank.h"
 #include "BasicBody.h"
-#include "Cannon.h"
 
 CannonlordAI::CannonlordAI(glm::vec2 transform)
 {
@@ -21,6 +20,27 @@ CannonlordAI::CannonlordAI(glm::vec2 transform)
 		this, transform, "Cannonlord");
 	speed.x = -baseSpeed;
 	target = glm::vec2(Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT / 2);
+
+	#pragma region Cannon Setup
+	int z = 0;
+	for (Weapon w : parent->GetFrame()->GetWeapons())
+	{
+		if (z < 3) {
+			topCannons.push_back((Cannon&) w);
+		}
+		else if (z > 6) {
+			bottomCannons.push_back((Cannon&) w);
+		}
+		else if (z % 2 == 1) {
+			leftCannons.push_back((Cannon&) w);
+		}
+		else {
+			rightCannons.push_back((Cannon&) w);
+		}
+		++z;
+	}
+	#pragma endregion
+
 }
 
 CannonlordAI::~CannonlordAI()
@@ -29,57 +49,19 @@ CannonlordAI::~CannonlordAI()
 
 void CannonlordAI::SecondaryFunction()
 {
-	#pragma region Fire Cannons
-	--attackCooldown;
-	if (attackCooldown <= 0)
-	{
-		int z = 0;
-		for (Weapon w : parent->GetFrame()->GetWeapons())
-		{
-			//DANGER! Rotation MAY be backwards (needs testing) [it shouldn't be backwards, but just in case...]
-			if (
-				(positiveRotation >=0 && positiveRotation < 90 && z < 3) ||
-				(positiveRotation >= 90 && positiveRotation < 180 && z % 2 == 1 && z >=3 && z <= 6) ||
-				(positiveRotation >= 180 && positiveRotation < 270 && z > 6) ||
-				(positiveRotation >= 270 && positiveRotation < 360 && z % 2 == 0 && z >= 3 && z <= 6)
-				)//Fire up
-			{
-				((Cannon*)& w)->Fire(glm::vec2(2 * (0 + rotation / 90), 2 * (-1 + rotation / 90)));
-			}
-			else if (
-				(positiveRotation >= 0 && positiveRotation < 90 && z > 6) ||
-				(positiveRotation >= 90 && positiveRotation < 180 && z % 2 == 0 && z >= 3 && z <= 6) ||
-				(positiveRotation >= 180 && positiveRotation < 270 && z < 3) ||
-				(positiveRotation >= 270 && positiveRotation < 360 && z % 2 == 1 && z >= 3 && z <= 6)
-				) //Fire down
-			{
-				((Cannon*)& w)->Fire(glm::vec2(2 * (0 - rotation / 90), 2 * (1 - rotation / 90)));
-			}
-			else if (
-				(positiveRotation >= 0 && positiveRotation < 90 && z % 2 == 1) ||
-				(positiveRotation >= 90 && positiveRotation < 180 && z > 6) ||
-				(positiveRotation >= 180 && positiveRotation < 270 && z % 1 == 0) ||
-				(positiveRotation >= 270 && positiveRotation < 360 && z < 3)
-				) //Fire left
-			{
-				((Cannon*)& w)->Fire(glm::vec2(2 * (-1 + rotation / 90), 2 * (0 - rotation / 90)));
-			}
-			else //Fire right
-			{
-				((Cannon*)& w)->Fire(glm::vec2(2 * (1 - rotation / 90), 2 * (0 + rotation / 90)));
-			}
-			w.Fire();
-			++z;
-		}
-		attackCooldown = attackCooldownReset;
-	}
-#pragma endregion
 	#pragma region Direction Change
 	if (rotationTimer > 0)
 	{
 		--rotationTimer;
 		rotation = rotationValues[rotationIteration] > 0 ? rotation + rotationFactor : rotation - rotationFactor;
-		positiveRotation = rotation < 0 ? 360 - rotation : rotation;
+		positiveRotation = rotation;
+		while (positiveRotation >= 360 || positiveRotation < 0) {
+			positiveRotation = positiveRotation >= 360 ? positiveRotation - 360 : positiveRotation + 360;
+		}
+		localRotation = positiveRotation;
+		while (localRotation >= 90) {
+			localRotation -= 90;
+		}
 		if (rotationTimer <= 0)
 		{
 			int i = rotation < 0 ? rotation + 360 : rotation;
@@ -126,10 +108,45 @@ void CannonlordAI::SecondaryFunction()
 		--movementTimer;
 	}
 	#pragma endregion
-
+	#pragma region Fire Cannons
+	--attackCooldown;
+	if (attackCooldown <= 0)
+	{
+		//Some sort of error around here...
+		if (positiveRotation >= 0 && positiveRotation < 90) {
+			cannonlordFire(topCannons, bottomCannons, leftCannons, rightCannons);
+		}
+		else if (positiveRotation >= 90 && positiveRotation < 180) {
+			cannonlordFire(leftCannons, rightCannons, bottomCannons, topCannons);
+		}
+		else if (positiveRotation >= 180 && positiveRotation < 270) {
+			cannonlordFire(bottomCannons, topCannons, rightCannons, leftCannons);
+		}
+		else if (positiveRotation >= 270 && positiveRotation < 360) {
+			cannonlordFire(rightCannons, leftCannons, topCannons, bottomCannons);
+		}
+		attackCooldown = attackCooldownReset;
+	}
+	#pragma endregion
 }
 
 double CannonlordAI::getRotation()
 {
 	return rotation;
+}
+
+void CannonlordAI::cannonlordFire(std::vector<Cannon> up, std::vector<Cannon> down, std::vector<Cannon> left, std::vector<Cannon> right)
+{
+	for (Cannon w : up) {
+		w.Fire(Vector2(2 * (0 + localRotation / 90), 2 * (-1 + localRotation / 90)));
+	}
+	for (Cannon w : down) {
+		w.Fire(Vector2(2 * (0 - localRotation / 90), 2 * (1 - localRotation / 90)));
+	}
+	for (Cannon w : left) {
+		w.Fire(Vector2(2 * (-1 + localRotation / 90), 2 * (0 - localRotation / 90)));
+	}
+	for (Cannon w : right) {
+		w.Fire(Vector2(2 * (1 - localRotation / 90), 2 * (0 + localRotation / 90)));
+	}
 }

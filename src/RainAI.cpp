@@ -72,7 +72,7 @@ void RainAI::SecondaryFunction()
 		{
 			for (Weapon w : parent->GetFrame()->GetWeapons())
 			{
-				((Cannon*)&w)->Fire(glm::vec2(0, 1));
+				((Cannon*)&w)->Fire(Vector2(0, 1));
 			}
 			firingCooldown = rainFiringCooldownReset;
 		}

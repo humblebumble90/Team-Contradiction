@@ -28,21 +28,21 @@ void BlastAI::PrimaryFunction()
 	--firingCooldown;
 	if (firingCooldown <= 0) {
 		std::vector<MissileLauncher*> weapons;
-		float z = -1.0f;
+		int z = -4;
 		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
 			float x;
-			if (abs(z) == 1) {
-				x = -0.5f;
+			if (abs(z) == 4) {
+				x = -2;
 			}
 			else if (abs(z) == 0) {
-				x = -1;
+				x = -4;
 			}
 			else {
-				x = -0.75f;
+				x = -3;
 			}
 			((MissileLauncher*)&w)->Fire(glm::vec2(x, z));
-			z += 0.5f;
+			z += 2;
 		}
 		firingCooldown = firingCooldownReset;
 	}
