@@ -11,7 +11,7 @@
 *.userprefs
 
 # Build results
-Debug/
+Template\Intermediate\Debug\*
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
