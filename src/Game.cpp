@@ -27,6 +27,27 @@ Game::~Game()
 {
 }
 
+void Game::move()
+{
+	const Uint8* keystates = SDL_GetKeyboardState(NULL);
+	if (keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A])
+	{
+		getPlayerShip()->move(LEFT);
+	}
+	if (keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_D])
+	{
+		getPlayerShip()->move(RIGHT);
+	}
+	if (keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W])
+	{
+		getPlayerShip()->move(UP);
+	}
+	if (keystates[SDL_SCANCODE_DOWN] || keystates[SDL_SCANCODE_S])
+	{
+		getPlayerShip()->move(DOWN);
+	}
+}
+
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
@@ -213,6 +234,8 @@ void Game::update()
 			--firingCooldown[z];
 		}
 	}
+
+	move();
 }
 
 void Game::clean()
@@ -253,22 +276,6 @@ void Game::handleEvents()
 			{
 			case SDLK_ESCAPE:
 				m_bRunning = false;
-				break;
-			case SDLK_w:
-				getPlayerShip()->setIsMoving(true);
-				getPlayerShip()->move(UP);
-				break;
-			case SDLK_s:
-				getPlayerShip()->setIsMoving(true);
-				getPlayerShip()->move(DOWN);
-				break;
-			case SDLK_a:
-				getPlayerShip()->setIsMoving(true);
-				getPlayerShip()->move(LEFT);
-				break;
-			case SDLK_d:
-				getPlayerShip()->setIsMoving(true);
-				getPlayerShip()->move(RIGHT);
 				break;
 			case SDLK_KP_PLUS:
 				if(getPlayerShip()->getPlayerSpeed() < 7.5f)
@@ -345,6 +352,21 @@ void Game::handleEvents()
 				break;
 			case SDLK_d:
 				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				break;
+			case SDLK_UP:
+				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
+
+				break;
+			case SDLK_LEFT:
+				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				break;
+			case SDLK_DOWN:
+				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
+				break;
+			case SDLK_RIGHT:
+				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				break;
+			default:
 				break;
 			}
 		}

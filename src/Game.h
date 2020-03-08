@@ -82,6 +82,7 @@ public:
 private:
 	Game();
 	~Game();
+	void move(); // Moves player
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
