@@ -8,6 +8,7 @@
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "CollisionManager.h"
+#include <experimental/coroutine>
 
 LevelScene::LevelScene()
 {
@@ -21,7 +22,10 @@ void LevelScene::update()
 {
 	++time;
 	spawnedEnemy = false;
-	player->update();
+	if(player->getPlayerLives() >= 0)
+	{
+		player->update();
+	}
 	m_pMap->update();
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
@@ -161,7 +165,10 @@ void LevelScene::update()
 void LevelScene::draw()
 {
 	m_pMap->draw();
-	player->draw();
+	if (player->getPlayerLives() >= 0)
+	{
+		player->draw();
+	}
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}

@@ -16,11 +16,15 @@ StartScene::~StartScene()
 
 void StartScene::draw()
 {
+	m_pStart_Scene_Bg->draw();
 	m_pStartLabel->draw();
+	m_pStartButton->draw();
 }
 
 void StartScene::update()
 {
+	m_pStartButton->setMousePosition(m_mousePosition);
+	m_pStartButton->ButtonClick();
 }
 
 void StartScene::clean()
@@ -32,12 +36,38 @@ void StartScene::clean()
 void StartScene::handleEvents()
 {
 	SDL_Event event;
+	int wheel = 0;
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
 		case SDL_QUIT:
 			TheGame::Instance()->quit();
+			break;
+		case SDL_MOUSEMOTION:
+			m_mousePosition.x = event.motion.x;
+			m_mousePosition.y = event.motion.y;
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_pStartButton->setMouseButtonClicked(true);
+				break;
+			}
+
+			break;
+		case SDL_MOUSEBUTTONUP:
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_pStartButton->setMouseButtonClicked(false);
+				break;
+			}
+			break;
+		case SDL_MOUSEWHEEL:
+			wheel = event.wheel.y;
 			break;
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym)
@@ -60,9 +90,17 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
-	SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("START SCENE", "Dock51", 80, blue, glm::vec2(400.0f, 40.0f));
+	m_pStart_Scene_Bg = new Start_Scene_Bg();
+	m_pStart_Scene_Bg->setParent(this);
+	addChild(m_pStart_Scene_Bg);
+	SDL_Color black = { 0, 0, 0, 255 };
+	m_pStartLabel = new Label("Guild of Agnis", "Dock51",
+		80, black, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.2f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
+	m_pStartButton = new StartButton();
+	m_pStartButton->setParent(this);
+	addChild(m_pStartButton);
+	
 
 }
