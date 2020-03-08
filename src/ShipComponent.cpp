@@ -11,12 +11,23 @@ glm::vec2 ShipComponent::getPosition()
 	glm::vec2 parentPosition = parent->getParent()->getPosition();
 	float posX = parentPosition.x + ((iD.x - (parent->GridWidth() - 1) / 2) * parent->getGridSize()),
 		  posY = parentPosition.y + ((iD.y - (parent->GridHeight() - 1) / 2) * parent->getGridSize());
-	return parent->getParent()->getName() == "Cannonlord" ?
-	#pragma region Position (Cannonlord)
-		glm::vec2(
-			posX + 2 * cos(posX - parentPosition.x) * (posX - parentPosition.x) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()),
-			posY + 2 * cos(posY - parentPosition.y) * (posY - parentPosition.y) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation())
-		)
+	if (parent->getParent()->getName() == "Cannonlord") {
+		float angle = ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180;
+		return glm::vec2(
+			cos(angle) * (posX - parentPosition.x) - sin(angle) * (posY - parentPosition.y) + parentPosition.x,
+			sin(angle) * (posX - parentPosition.x) - cos(angle) * (posY - parentPosition.y) + parentPosition.y
+		);
+	}
+	return glm::vec2(posX, posY);
+#pragma region Position (Cannonlord)
+		//glm::vec2(
+			//posX + 2 * cos(posX - parentPosition.x) * (posX - parentPosition.x) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()),
+			//posY + /*2 * cos(posY - parentPosition.y) * (posY - parentPosition.y) **/ sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation())
+			
+			//posX + cos(posX-parentPosition.x)*(2 * (posX-parentPosition.x)* sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation())),
+			//posY + sin(posY - parentPosition.y) * (2 * (posY - parentPosition.y) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()))
+
+		//)
 		/*
 		Things I'll need for rotation:
 
@@ -25,9 +36,6 @@ glm::vec2 ShipComponent::getPosition()
 		- The distance between me and the center	posX - parentPosition.x & posY - parentPosition.y (may need to abs)
 		- The amount i'm rotating by				((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()
 		*/
-	#pragma endregion
-	#pragma region Position (Normal)
-		: glm::vec2(posX, posY);
 	#pragma endregion
 }
 

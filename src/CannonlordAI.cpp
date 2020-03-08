@@ -16,7 +16,7 @@ CannonlordAI::CannonlordAI(glm::vec2 transform)
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 360px by 240px
-	build, 9, 6), 300, //Will tweak if 50 health proves to be too much or too little
+	build, 9, 6), 500, //Will tweak if 50 health proves to be too much or too little
 		this, transform, "Cannonlord");
 	speed.x = -baseSpeed;
 	target = glm::vec2(Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT / 2);
@@ -112,18 +112,29 @@ void CannonlordAI::SecondaryFunction()
 	--attackCooldown;
 	if (attackCooldown <= 0)
 	{
+	#pragma region Firing Vectors
+		Vector2 up =	Vector2(2 * (0 + localRotation / 90), 2 * (-1 + localRotation / 90));
+		Vector2 down =	Vector2(2 * (0 - localRotation / 90), 2 * (1 - localRotation / 90));
+		Vector2 left =	Vector2(2 * (-1 + localRotation / 90), 2 * (0 - localRotation / 90));
+		Vector2 right = Vector2(2 * (1 - localRotation / 90), 2 * (0 + localRotation / 90));
+	#pragma endregion
+
 		//Some sort of error around here...
 		if (positiveRotation >= 0 && positiveRotation < 90) {
-			cannonlordFire(topCannons, bottomCannons, leftCannons, rightCannons);
+			//cannonlordFire(topCannons, bottomCannons, leftCannons, rightCannons);
+			cannonlordFire(down, up, left, right);
 		}
 		else if (positiveRotation >= 90 && positiveRotation < 180) {
-			cannonlordFire(leftCannons, rightCannons, bottomCannons, topCannons);
+			//cannonlordFire(leftCannons, rightCannons, bottomCannons, topCannons);
+			cannonlordFire(right, left, up, down);
 		}
 		else if (positiveRotation >= 180 && positiveRotation < 270) {
-			cannonlordFire(bottomCannons, topCannons, rightCannons, leftCannons);
+			//cannonlordFire(bottomCannons, topCannons, rightCannons, leftCannons);
+			cannonlordFire(up, down, right, left);
 		}
 		else if (positiveRotation >= 270 && positiveRotation < 360) {
-			cannonlordFire(rightCannons, leftCannons, topCannons, bottomCannons);
+			//cannonlordFire(rightCannons, leftCannons, topCannons, bottomCannons);
+			cannonlordFire(left, right, down, up);
 		}
 		attackCooldown = attackCooldownReset;
 	}
@@ -135,18 +146,34 @@ double CannonlordAI::getRotation()
 	return rotation;
 }
 
-void CannonlordAI::cannonlordFire(std::vector<Cannon> up, std::vector<Cannon> down, std::vector<Cannon> left, std::vector<Cannon> right)
+void CannonlordAI::cannonlordFire(Vector2 up, Vector2 down, Vector2 left, Vector2 right)
 {
-	for (Cannon w : up) {
-		w.Fire(Vector2(2 * (0 + localRotation / 90), 2 * (-1 + localRotation / 90)));
+	/*for (Cannon w : up) {
+		w.Fire();
 	}
 	for (Cannon w : down) {
-		w.Fire(Vector2(2 * (0 - localRotation / 90), 2 * (1 - localRotation / 90)));
+		w.Fire();
 	}
 	for (Cannon w : left) {
-		w.Fire(Vector2(2 * (-1 + localRotation / 90), 2 * (0 - localRotation / 90)));
+		w.Fire();
 	}
 	for (Cannon w : right) {
-		w.Fire(Vector2(2 * (1 - localRotation / 90), 2 * (0 + localRotation / 90)));
+		w.Fire();
+	}*/
+	int z = 0;
+	for (Weapon w : GetParent()->GetFrame()->GetWeapons()) {
+		if (z < 3) {
+			((Cannon&)w).Fire(up);
+		}
+		else if (z > 6) {
+			((Cannon&)w).Fire(down);
+		}
+		else if (z % 2 == 1) {
+			((Cannon&)w).Fire(left);
+		}
+		else {
+			((Cannon&)w).Fire(right);
+		}
+		++z;
 	}
 }
