@@ -26,6 +26,7 @@ void LevelScene::update()
 	{
 		player->update();
 	}
+	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 	m_pMap->update();
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
@@ -206,6 +207,7 @@ void LevelScene::draw()
 	{
 		player->draw();
 	}
+	m_pLivesLabel->draw();
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}
