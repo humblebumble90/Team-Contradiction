@@ -294,15 +294,56 @@ void Game::handleEvents()
 					firingCooldown[2] = firingCooldownReset[2];
 				}
 			}
-	}
-#pragma endregion
-	if(m_currentSceneState == END_SCENE)
-	{
-		if(keystates[SDL_SCANCODE_R])
+		if(keystates[SDL_SCANCODE_1])
 		{
-			Game::Instance()->changeSceneState(LEVEL1SCENE);
+			getPlayerShip()->setPlayerSpeed(3.0f);
+		}
+		if (keystates[SDL_SCANCODE_2])
+		{
+			getPlayerShip()->setPlayerSpeed(3.5f);
+		}
+		if (keystates[SDL_SCANCODE_3])
+		{
+			getPlayerShip()->setPlayerSpeed(4.0f);
+		}
+		if (keystates[SDL_SCANCODE_4])
+		{
+			getPlayerShip()->setPlayerSpeed(4.5f);
+		}
+		if (keystates[SDL_SCANCODE_5])
+		{
+			getPlayerShip()->setPlayerSpeed(5.0f);
+		}
+		if (keystates[SDL_SCANCODE_6])
+		{
+			getPlayerShip()->setPlayerSpeed(5.5f);
+		}
+		if (keystates[SDL_SCANCODE_7])
+		{
+			getPlayerShip()->setPlayerSpeed(6.0f);
+		}
+		if (keystates[SDL_SCANCODE_8])
+		{
+			getPlayerShip()->setPlayerSpeed(6.5f);
+		}
+		if (keystates[SDL_SCANCODE_9])
+		{
+			getPlayerShip()->setPlayerSpeed(7.0f);
+		}
+		if (keystates[SDL_SCANCODE_0])
+		{
+			getPlayerShip()->setPlayerSpeed(7.5f);
+		}
+		if (keystates[SDL_SCANCODE_MINUS])
+		{
+			getPlayerShip()->setPlayerSpeed(8.0f);
+		}
+		if (keystates[SDL_SCANCODE_EQUALS])
+		{
+			getPlayerShip()->setPlayerSpeed(8.5f);
 		}
 	}
+#pragma endregion
 	SDL_Event event;
 		while(SDL_PollEvent(&event))
 	{
@@ -316,42 +357,6 @@ void Game::handleEvents()
 			{
 			case SDLK_ESCAPE:
 				m_bRunning = false;
-				break;
-			case SDLK_1:
-					getPlayerShip()->setPlayerSpeed(3.0f);
-				break;
-			case SDLK_2:
-					getPlayerShip()->setPlayerSpeed(3.5f);
-				break;
-			case SDLK_3:
-					getPlayerShip()->setPlayerSpeed(4.0f);
-				break;
-			case SDLK_4:
-					getPlayerShip()->setPlayerSpeed(4.5f);
-				break;
-			case SDLK_5:
-					getPlayerShip()->setPlayerSpeed(5.0f);
-				break;
-			case SDLK_6:
-					getPlayerShip()->setPlayerSpeed(5.5f);
-				break;
-			case SDLK_7:
-					getPlayerShip()->setPlayerSpeed(6.0f);
-				break;
-			case SDLK_8:
-					getPlayerShip()->setPlayerSpeed(6.5f);
-				break;
-			case SDLK_9:
-					getPlayerShip()->setPlayerSpeed(7.0f);
-				break;
-			case SDLK_0:
-					getPlayerShip()->setPlayerSpeed(7.5f);
-				break;
-			case SDLK_MINUS:
-					getPlayerShip()->setPlayerSpeed(8.0f);
-				break;
-			case SDLK_EQUALS :
-					getPlayerShip()->setPlayerSpeed(8.5f);
 				break;
 			default:
 				break;

@@ -16,8 +16,8 @@ EndScene::~EndScene()
 
 void EndScene::draw()
 {
-	m_game_over_bg_->draw();
-	m_Label->draw();
+		m_game_over_bg_->draw();
+		m_Label->draw();
 }
 
 void EndScene::update()
@@ -47,7 +47,7 @@ void EndScene::handleEvents()
 			case SDLK_ESCAPE:
 				TheGame::Instance()->quit();
 				break;
-			case SDLK_1:
+			case SDLK_r:
 				TheGame::Instance()->changeSceneState(SceneState::START_SCENE);
 				break;
 			}

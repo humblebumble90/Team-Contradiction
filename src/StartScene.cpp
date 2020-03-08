@@ -29,6 +29,8 @@ void StartScene::update()
 
 void StartScene::clean()
 {
+	delete m_pStart_Scene_Bg;
+	delete m_pStartButton;
 	delete m_pStartLabel;
 	removeAllChildren();
 }
@@ -79,6 +81,9 @@ void StartScene::handleEvents()
 				TheGame::Instance()->changeSceneState(SceneState::LEVEL1_SCENE);
 				//TheGame::Instance()->changeSceneState(SceneState::LEVEL3_SCENE);
 				break;
+			case SDLK_2:
+				TheGame::Instance()->changeSceneState(END_SCENE);
+				break;
 			}
 			break;
 
@@ -93,11 +98,13 @@ void StartScene::start()
 	m_pStart_Scene_Bg = new Start_Scene_Bg();
 	m_pStart_Scene_Bg->setParent(this);
 	addChild(m_pStart_Scene_Bg);
+	
 	SDL_Color black = { 0, 0, 0, 255 };
 	m_pStartLabel = new Label("Guild of Agnis", "Dock51",
 		80, black, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.2f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
+	
 	m_pStartButton = new StartButton();
 	m_pStartButton->setParent(this);
 	addChild(m_pStartButton);
