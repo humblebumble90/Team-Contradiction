@@ -214,6 +214,7 @@ void LevelScene::draw()
 	for (AI* a : enemies) {
 		a->GetParent()->draw();
 	}
+	m_pControl_Img->draw();
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
