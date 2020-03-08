@@ -124,4 +124,10 @@ void Level1::loadAllTextures()
 	loadTexture("../Assets/textures/Ram.png", "Ram");
 	loadTexture("../Assets/textures/Zigzag.png", "Zigzag");
 	loadTexture("../Assets/textures/EnemyMissile.png", "EnemyMissile");
+	loadTexture("../Assets/textures/EnemyCannonball.png", "EnemyCannonball");
+	loadTexture("../Assets/textures/Cannonball.png", "Cannonball");
+	loadTexture("../Assets/textures/Guardian.png", "Guardian");
+	loadTexture("../Assets/textures/Blast.png", "Blast");
+	loadTexture("../Assets/textures/Diagon.png", "Diagon");
+	loadTexture("../Assets/textures/Cannoneer.png", "Cannoneer");
 }

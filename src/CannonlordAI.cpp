@@ -44,7 +44,7 @@ void CannonlordAI::SecondaryFunction()
 				(positiveRotation >= 270 && positiveRotation < 360 && z % 2 == 0 && z >= 3 && z <= 6)
 				)//Fire up
 			{
-				((Cannon*)& w)->Fire(glm::vec2(0 + rotation / 90, -1 + rotation / 90));
+				((Cannon*)& w)->Fire(glm::vec2(2 * (0 + rotation / 90), 2 * (-1 + rotation / 90)));
 			}
 			else if (
 				(positiveRotation >= 0 && positiveRotation < 90 && z > 6) ||
@@ -53,7 +53,7 @@ void CannonlordAI::SecondaryFunction()
 				(positiveRotation >= 270 && positiveRotation < 360 && z % 2 == 1 && z >= 3 && z <= 6)
 				) //Fire down
 			{
-				((Cannon*)& w)->Fire(glm::vec2(0 - rotation / 90, 1 - rotation / 90));
+				((Cannon*)& w)->Fire(glm::vec2(2 * (0 - rotation / 90), 2 * (1 - rotation / 90)));
 			}
 			else if (
 				(positiveRotation >= 0 && positiveRotation < 90 && z % 2 == 1) ||
@@ -62,15 +62,16 @@ void CannonlordAI::SecondaryFunction()
 				(positiveRotation >= 270 && positiveRotation < 360 && z < 3)
 				) //Fire left
 			{
-				((Cannon*)& w)->Fire(glm::vec2(-1 + rotation / 90, 0 - rotation / 90));
+				((Cannon*)& w)->Fire(glm::vec2(2 * (-1 + rotation / 90), 2 * (0 - rotation / 90)));
 			}
 			else //Fire right
 			{
-				((Cannon*)& w)->Fire(glm::vec2(1 - rotation / 90, 0 + rotation / 90));
+				((Cannon*)& w)->Fire(glm::vec2(2 * (1 - rotation / 90), 2 * (0 + rotation / 90)));
 			}
 			w.Fire();
 			++z;
 		}
+		attackCooldown = attackCooldownReset;
 	}
 #pragma endregion
 	#pragma region Direction Change
