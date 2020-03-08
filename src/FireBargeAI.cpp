@@ -11,8 +11,8 @@ FireBargeAI::FireBargeAI(glm::vec2 transform)
 	{
 		Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank(),
 		Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
-		Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
-		Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
+		Flamethrower(), BasicBody(), Blank(), Blank(), BasicBody(), Flamethrower(),
+		Flamethrower(), BasicBody(), Blank(), Blank(), BasicBody(), Flamethrower(),
 		Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
 		Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank()
 	};

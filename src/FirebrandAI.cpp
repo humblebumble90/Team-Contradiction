@@ -12,18 +12,18 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 	#pragma region Frame Construction
 	{
-		MissileLauncher(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Blank(), Blank(),
-		MissileLauncher(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		Flamethrower(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		Flamethrower(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		MissileLauncher(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		MissileLauncher(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Blank(), Blank()
+		MissileLauncher(),	Flamethrower(),	Flamethrower(), Flamethrower(),		Flamethrower(),		Flamethrower(),		Blank(), Blank(),
+		MissileLauncher(),	BasicBody(),	IndesBody(false), IndesBody(false), IndesBody(false),	IndesBody(false),	IndesBody(false), Blank(),
+		Flamethrower(),		BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), Blank(),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), Blank(),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), IndesBody(false),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			Blank(), IndesBody(false),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			Blank(), IndesBody(false),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), IndesBody(false),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), Blank(),
+		Flamethrower(),		BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), Blank(),
+		MissileLauncher(),	BasicBody(),	IndesBody(false), IndesBody(false), IndesBody(false),	IndesBody(false),	IndesBody(false), Blank(),
+		MissileLauncher(),	Flamethrower(),	Flamethrower(), Flamethrower(),		Flamethrower(),		Flamethrower(),		Blank(), Blank()
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 320px by 480px

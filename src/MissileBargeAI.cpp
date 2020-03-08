@@ -11,8 +11,8 @@ MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 	{
 		Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank(),
 		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
+		MissileLauncher(), BasicBody(), Blank(), Blank(), BasicBody(), MissileLauncher(),
+		MissileLauncher(), BasicBody(), Blank(), Blank(), BasicBody(), MissileLauncher(),
 		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
 		Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank()
 	};

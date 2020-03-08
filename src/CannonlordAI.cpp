@@ -8,12 +8,12 @@ CannonlordAI::CannonlordAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 	#pragma region Frame Construction
 	{
-		Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank(),
-		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
-		BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
-		BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
-		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
-		Blank(), Cannon(), BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank()
+		Blank(),	Cannon(),	 BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank(),
+		Cannon(),	BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
+		BasicBody(),BasicBody(), Blank(), Blank(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
+		BasicBody(),BasicBody(), Blank(), Blank(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
+		Cannon(),	BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
+		Blank(),	Cannon(),	 BasicBody(), BasicBody(), Cannon(), BasicBody(), BasicBody(), Cannon(), Blank()
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 360px by 240px

@@ -11,8 +11,8 @@ CannonBargeAI::CannonBargeAI(glm::vec2 transform)
 	{
 		Blank(), Cannon(), Cannon(),Cannon(),Cannon(), Blank(),
 		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
-		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
-		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
+		Cannon(), BasicBody(), Blank(), Blank(), BasicBody(), Cannon(),
+		Cannon(), BasicBody(), Blank(), Blank(), BasicBody(), Cannon(),
 		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
 		Blank(), Cannon(), Cannon(),Cannon(),Cannon(), Blank()
 	};
