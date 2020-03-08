@@ -18,7 +18,7 @@ MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 240px by 240px
-	build, 6, 6), 100, //Will tweak if it proves to be too much or too little
+	build, 6, 6), 150, //Will tweak if it proves to be too much or too little
 		this, transform, "MissileBarge");
 	speed.y = -8.00f;
 	topLimit = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridHeight() / 2;
