@@ -173,6 +173,16 @@ void PlayerShip::setPlayerScore(int num)
 	playerScore += num;
 }
 
+float PlayerShip::getPlayerSpeed()
+{
+	return m_maxSpeed;
+}
+
+void PlayerShip::setPlayerSpeed(float num)
+{
+	m_maxSpeed += num;
+}
+
 void PlayerShip::update()
 {
 	auto currentPosition = getPosition();

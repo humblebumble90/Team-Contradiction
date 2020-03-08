@@ -78,7 +78,8 @@ void DeathcageAI::SecondaryFunction()
 		{
 			centerCannons[centerIteration].Fire();
 			centerCannons[centerCannons.size() - 1 - centerIteration].Fire();
-			if (centerIteration + 1 > centerCannons.size() - 1 - centerIteration)
+			++centerIteration;
+			if (centerIteration == centerCannons.size() - centerIteration)
 			{
 				centerIteration = 0;
 				cannonIteration = 0;
