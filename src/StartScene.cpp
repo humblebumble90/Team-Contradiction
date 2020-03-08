@@ -18,10 +18,13 @@ void StartScene::draw()
 {
 	m_pStart_Scene_Bg->draw();
 	m_pStartLabel->draw();
+	m_pStartButton->draw();
 }
 
 void StartScene::update()
 {
+	m_pStartButton->setMousePosition(m_mousePosition);
+	m_pStartButton->ButtonClick();
 }
 
 void StartScene::clean()
@@ -33,12 +36,38 @@ void StartScene::clean()
 void StartScene::handleEvents()
 {
 	SDL_Event event;
+	int wheel = 0;
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
 		case SDL_QUIT:
 			TheGame::Instance()->quit();
+			break;
+		case SDL_MOUSEMOTION:
+			m_mousePosition.x = event.motion.x;
+			m_mousePosition.y = event.motion.y;
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_pStartButton->setMouseButtonClicked(true);
+				break;
+			}
+
+			break;
+		case SDL_MOUSEBUTTONUP:
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_pStartButton->setMouseButtonClicked(false);
+				break;
+			}
+			break;
+		case SDL_MOUSEWHEEL:
+			wheel = event.wheel.y;
 			break;
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym)
@@ -69,5 +98,9 @@ void StartScene::start()
 		80, black, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.2f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
+	m_pStartButton = new StartButton();
+	m_pStartButton->setParent(this);
+	addChild(m_pStartButton);
+	
 
 }
