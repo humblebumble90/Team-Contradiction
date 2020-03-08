@@ -330,16 +330,17 @@ void Game::handleEvents()
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_w:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x,0.0f));
+
 				break;
 			case SDLK_a:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
 				break;
 			case SDLK_s:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
 				break;
 			case SDLK_d:
-				getPlayerShip()->setIsMoving(false);
+				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
 				break;
 			}
 		}

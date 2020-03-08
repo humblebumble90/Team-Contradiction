@@ -8,6 +8,7 @@
 #include "MissileLauncher.h"
 #include "Blank.h"
 #include <functional>
+#include <glm/detail/type_vec2.hpp>
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
@@ -188,11 +189,11 @@ void PlayerShip::update()
 	auto currentPosition = getPosition();
 	auto currentVelocity = getVelocity();
 
-	if (m_isMoving == false)
-	{
-		currentVelocity.x *= 0.99f;
-		currentVelocity.y *= 0.99f;
-	}
+	//if (m_isMoving == false)
+	//{
+	//	currentVelocity.x *= 0.9f;
+	//	currentVelocity.y *= 0.9f;
+	//}
 
 	if (playerLives >= 0)
 	{

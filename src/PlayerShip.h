@@ -8,6 +8,7 @@
 #include "Frame.h"
 #include "Move.h"
 #include <SDL_hints.h>
+#include <glm/detail/type_vec2.hpp>
 
 class PlayerShip : public DisplayObject {
 public:
