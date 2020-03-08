@@ -101,6 +101,8 @@ void StartScene::start()
 	m_pStartButton = new StartButton();
 	m_pStartButton->setParent(this);
 	addChild(m_pStartButton);
+
+
 	
 
 }
