@@ -103,6 +103,8 @@ private:
 
 	int firingCooldown[3] = { 0,0,0 };
 	int firingCooldownReset[3] = { 20,20,20 };
+
+	void move();
 };
 
 typedef Game TheGame;
