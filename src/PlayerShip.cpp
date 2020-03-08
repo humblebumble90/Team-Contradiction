@@ -32,11 +32,11 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),
 		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank()*/
 		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
-		BasicBody(), BasicBody(),BasicBody(), MissileLauncher(),
+		BasicBody(), Blank(),BasicBody(), MissileLauncher(),
 		BasicBody(), BasicBody(), BasicBody(), MissileLauncher()
 	};
 #pragma endregion
-	frame = new Frame(37.5, //Enemy is 150px by 100px
+	frame = new Frame(33, //Enemy is 132px by 100px
 		build, 4, 3); //Will tweak if it proves to be too much or too little
 	frame->Initialize(this);
 	playerLives = lives;

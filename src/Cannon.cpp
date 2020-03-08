@@ -39,7 +39,7 @@ void Cannon::Fire()
 		TheGame::Instance()->spawnPlayerWeapon(new Cannonball(getPosition(), velocity));
 	}
 
-	else
+	else if (getParent()->getParent()->getName() != "Cannonlord")
 	{
 		TheGame::Instance()->spawnEnemy(new EnemyCannonballAI(getPosition(), glm::vec2(-1, 0)));
 	}
