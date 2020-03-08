@@ -59,23 +59,15 @@ PlayerShip::~PlayerShip()
 
 void PlayerShip::Damage(int i)
 {
-	if (playerHealth >= 1 && playerLives >= 0)
+	if (playerHealth >= 1 && playerLives >= 0 && !inv)
 	{
-		playerHealth -= i;
 		std::cout << "Player damaged!\n";
 		std::cout << "PlayerHealth: " << playerHealth << std::endl;
-		//playerLives -= 1;
+		playerLives -= 1;
 		std::cout << "Player life decreases for 1!" << std::endl;
 		playerHealth += 1;
 		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
 		invincible();
-	}
-	else if(playerLives <= 0)
-	{
-		std::cout << "Player Health: " << playerHealth << std::endl;
-		std::cout << "Player Lives: " << playerLives << std::endl;
-		std::cout << "Player died!" << std::endl;
-		//Game::Instance()->changeSceneState(END_SCENE);
 	}
 }
 bool PlayerShip::getInvincibility()
@@ -201,10 +193,6 @@ void PlayerShip::update()
 		auto deltax = currentPosition.x + currentVelocity.x;
 		auto deltay = currentPosition.y + currentVelocity.y;
 		setPosition(glm::vec2(deltax, deltay));
-	}
-	else
-	{
-		delete this;
 	}
 	
 	//when the invincibility has finished run this

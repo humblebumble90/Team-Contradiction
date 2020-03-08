@@ -9,6 +9,7 @@
 #include "IndesBody.h"
 #include "CollisionManager.h"
 #include <experimental/coroutine>
+#include "Game.h"
 
 LevelScene::LevelScene()
 {
@@ -121,6 +122,7 @@ void LevelScene::update()
 #pragma endregion
 	*/
 	#pragma region Collisions
+	//if the enemies are spawned or if the player is invincible
 	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
 		for (AI* enemy : enemies) {
 			for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
@@ -199,6 +201,11 @@ void LevelScene::update()
 		}
 	}
 	#pragma endregion
+
+	if(player->getPlayerLives() == 0)
+	{
+		Game::Instance()->changeSceneState(END_SCENE);
+	}
 }
 
 void LevelScene::draw()

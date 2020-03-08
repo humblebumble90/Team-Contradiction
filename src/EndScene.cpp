@@ -46,9 +46,6 @@ void EndScene::handleEvents()
 				TheGame::Instance()->quit();
 				break;
 			case SDLK_1:
-				TheGame::Instance()->changeSceneState(SceneState::PLAY_SCENE);
-				break;
-			case SDLK_2:
 				TheGame::Instance()->changeSceneState(SceneState::START_SCENE);
 				break;
 			}
