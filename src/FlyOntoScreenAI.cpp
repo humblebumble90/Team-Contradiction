@@ -27,3 +27,8 @@ glm::vec2 FlyOntoScreenAI::GetSpeed()
 {
 	return atTarget ? speed : glm::vec2{0,0};
 }
+
+bool FlyOntoScreenAI::isAtTarget()
+{
+	return atTarget;
+}

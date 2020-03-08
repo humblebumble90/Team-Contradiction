@@ -20,7 +20,7 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
 	{
-		Blank(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		/*Blank(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
 		BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
 		BasicBody(), BasicBody(), Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
 		BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),
@@ -29,11 +29,14 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 		Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),
 		Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
 		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),
-		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank()
+		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank()*/
+		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
+		BasicBody(), BasicBody(),BasicBody(), MissileLauncher(),
+		BasicBody(), BasicBody(), BasicBody(), MissileLauncher()
 	};
 #pragma endregion
-	frame = new Frame(5, //Enemy is 150px by 100px
-		build, 15, 10); //Will tweak if it proves to be too much or too little
+	frame = new Frame(37.5, //Enemy is 150px by 100px
+		build, 4, 3); //Will tweak if it proves to be too much or too little
 	frame->Initialize(this);
 	playerLives = lives;
 	playerHealth = health;

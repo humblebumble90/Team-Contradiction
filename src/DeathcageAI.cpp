@@ -31,7 +31,7 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 640px by 720px - NOTE: Deathcage is the height of the screen
-	build, 16, 18), 100, //Will tweak if 100 health proves to be too much or too little
+	build, 16, 18), 500, //Will tweak if 100 health proves to be too much or too little
 		this, transform, "Deathcage");
 
 #pragma region Assocate Cannons

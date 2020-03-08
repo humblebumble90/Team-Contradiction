@@ -10,6 +10,8 @@ public:
 	void PrimaryFunction() override;
 	virtual void SecondaryFunction();
 	glm::vec2 GetSpeed() override;
+	bool isAtTarget();
+	bool isBoss = true;
 protected:
 	glm::vec2 target;
 	glm::vec2 entrySpeed = glm::vec2 (-5, 0);
