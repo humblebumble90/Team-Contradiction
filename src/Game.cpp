@@ -433,7 +433,8 @@ void Game::handleEvents()
 			switch (event.button.button)
 			{
 			case SDL_BUTTON_LEFT:
-			std:std::cout << "Clicked?\n";
+				if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE &&
+					getPlayerShip() != nullptr)
 				for (int z = 0; z < 3; ++z) {
 					if (firingCooldown[z] == 0) {
 						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
