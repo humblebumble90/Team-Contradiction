@@ -12,6 +12,7 @@ public:
 	~Enemy();
 	void Damage(int i) override;
 	Frame* GetFrame();
+	AI* getAI();
 #pragma region From GameObject
 	void draw() override;
 	void update() override;
@@ -19,7 +20,7 @@ public:
 #pragma endregion
 private:
 	Frame* frame;
-	int health;
+	int health, hitTimer = 0, hitTimerReset = 10;
 	AI* aI;
 	void Move();
 };

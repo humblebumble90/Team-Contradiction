@@ -2,7 +2,7 @@
 #ifndef __CANNONBARGE__
 #define __CANNONBARGE__
 #include "FlyOntoScreenAI.h"
-class CannonBargeAI : FlyOntoScreenAI
+class CannonBargeAI : public FlyOntoScreenAI
 {
 public:
 	CannonBargeAI(glm::vec2 transform);

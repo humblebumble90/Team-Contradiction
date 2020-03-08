@@ -12,22 +12,22 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 	#pragma region Frame Construction
 	{
-		MissileLauncher(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Blank(), Blank(),
-		MissileLauncher(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		Flamethrower(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false),
-		Cannon(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		Flamethrower(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		MissileLauncher(), BasicBody(), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
-		MissileLauncher(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Flamethrower(), Blank(), Blank()
+		MissileLauncher(),	Flamethrower(),	Flamethrower(), Flamethrower(),		Flamethrower(),		Flamethrower(),		Blank(), Blank(),
+		MissileLauncher(),	BasicBody(),	IndesBody(false), IndesBody(false), IndesBody(false),	IndesBody(false),	IndesBody(false), Blank(),
+		Flamethrower(),		BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), Blank(),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), Blank(),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), IndesBody(false),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			Blank(), IndesBody(false),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			Blank(), IndesBody(false),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), IndesBody(false),
+		Cannon(),			BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), Blank(),
+		Flamethrower(),		BasicBody(),	IndesBody(false), Blank(),			Blank(),			Blank(),			IndesBody(false), Blank(),
+		MissileLauncher(),	BasicBody(),	IndesBody(false), IndesBody(false), IndesBody(false),	IndesBody(false),	IndesBody(false), Blank(),
+		MissileLauncher(),	Flamethrower(),	Flamethrower(), Flamethrower(),		Flamethrower(),		Flamethrower(),		Blank(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(10, //Enemy is 400px by 600px
-	build, 8, 12), 50, //Will tweak if 50 health proves to be too much or too little
+	parent = new Enemy(new Frame(40, //Enemy is 320px by 480px
+	build, 8, 12), 150, //Will tweak if 50 health proves to be too much or too little
 		this, transform, "Firebrand");
 	speed.y = baseSpeed; //Tweak this number later
 
@@ -38,6 +38,8 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 			w.Fire();
 		}
 	}
+
+	target = glm::vec2(1000, Config::SCREEN_HEIGHT/2);
 }
 
 FirebrandAI::~FirebrandAI()
@@ -48,20 +50,22 @@ void FirebrandAI::SecondaryFunction()
 {
 	#pragma region Cooldowns - Turn these into coroutines
 	#pragma region Cannons
-	if (cannonCooldown > 0)
+	if (cannonCooldown > 0 && ramCooldown == 0)
 	{
 		--cannonCooldown;
 	}
 #pragma endregion
 	#pragma region Missiles
-	--missileCooldown;
-	if (missileCooldown <= 0)
-	{
-		missileCooldown = missileCooldownReset;
-		for (Weapon w : parent->GetFrame()->GetWeapons())
+	if (ramCooldown == 0) {
+		--missileCooldown;
+		if (missileCooldown <= 0)
 		{
-			if (w.getName()=="MissileLauncher") {
-				w.Fire();
+			missileCooldown = missileCooldownReset;
+			for (Weapon w : parent->GetFrame()->GetWeapons())
+			{
+				if (w.getName() == "MissileLauncher") {
+					w.Fire();
+				}
 			}
 		}
 	}
@@ -112,7 +116,7 @@ void FirebrandAI::SecondaryFunction()
 		{
 			ramCounter = ramCounterReset;
 			ramCooldown = ramCooldownReset;
-			speed.x = -baseSpeed;
+			speed.x = -baseSpeed*3;
 		}
 		else if (cannonCooldown <= 0)
 		{
@@ -126,5 +130,8 @@ void FirebrandAI::SecondaryFunction()
 			hasTarget = false;
 			--ramCounter;
 		}
+	}
+	else if (speed.y == 0) {
+		speed.y = parent->getPosition().y > moveTarget ? -baseSpeed : baseSpeed;
 	}
 }

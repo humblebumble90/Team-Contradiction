@@ -7,6 +7,8 @@
 #include "LevelScene.h"
 #include "AI.h"
 #include "Level1.h"
+#include "Level3.h"
+#include "Weapon.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -145,9 +147,18 @@ void Game::changeSceneState(SceneState newState)
 			m_currentScene = new StartScene();
 			std::cout << "start scene activated" << std::endl;
 			break;
+		case SceneState::END_SCENE:
+			m_currentScene = new EndScene();
+			std::cout << "end scene activated" << std::endl;
+			break;
 		case SceneState::LEVEL1_SCENE:
 			m_currentScene = new Level1();
 			std::cout << "play scene activated" << std::endl;
+			break;
+		case SceneState::LEVEL3_SCENE:
+			PlayerShip* player = getPlayerShip();
+			m_currentScene = new Level3(player);
+			std::cout << "boss rush activated" << std::endl;
 			break;
 		}
 		
@@ -164,6 +175,11 @@ void Game::destroyEnemy(Enemy* enemy) {
 	((LevelScene*)m_currentScene)->DestroyEnemy(enemy);
 }
 
+void Game::destroyWeapon(PlayerWeapon* weapon)
+{
+	((LevelScene*)m_currentScene)->DestroyWeapon(weapon);
+}
+
 glm::vec2 Game::getPlayerPosition()
 {
 	return ((LevelScene*)m_currentScene)->getPlayerPosition();
@@ -172,6 +188,11 @@ glm::vec2 Game::getPlayerPosition()
 void Game::spawnEnemy(AI* enemyAI)
 {
 	((LevelScene*)m_currentScene)->spawnEnemy(enemyAI);
+}
+
+void Game::spawnPlayerWeapon(PlayerWeapon* pw)
+{
+	((LevelScene*)m_currentScene)->spawnPlayerWeapon(pw);
 }
 
 void Game::render()
@@ -186,6 +207,12 @@ void Game::render()
 void Game::update()
 {
 	m_currentScene->update();
+	m_currentScene->handleEvents();
+	for (int z = 0; z < 3; ++z) {
+		if (firingCooldown[z] > 0) {
+			--firingCooldown[z];
+		}
+	}
 }
 
 void Game::clean()
@@ -243,11 +270,65 @@ void Game::handleEvents()
 				getPlayerShip()->setIsMoving(true);
 				getPlayerShip()->move(RIGHT);
 				break;
+			case SDLK_KP_PLUS:
+				if(getPlayerShip()->getPlayerSpeed() < 7.5f)
+				{
+					getPlayerShip()->setPlayerSpeed(0.5f);
+				}
+				break;
+			case SDLK_KP_MINUS:
+				if(getPlayerShip()->getPlayerSpeed() > 3.0f)
+				{
+					getPlayerShip()->setPlayerSpeed(-0.5f);
+				}
+				break;
 				// The below code throws a Debug Assertion Failed Error
-			/*case SDLK_f:
-				getPlayerShip()->GetFrame().GetWeapon(0).Fire();
-				break;*/
+			case SDLK_f:
+				((Level3*)m_currentScene)->CheatCode(); //WARNING: For testing Level 3 only! Remove this when testing ends!
+				//getPlayerShip()->GetFrame().GetWeapon(0).Fire();
+				break;
+			case SDLK_z:
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+					for (int z = 0; z < 3; ++z) {
+						if (firingCooldown[z] == 0) {
+							getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+							firingCooldown[z] = firingCooldownReset[z];
+						}
+					}
+				}
+				break;
+			case SDLK_x:
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[0] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
+					firingCooldown[0] = firingCooldownReset[0];
+					}
+				break;
+				}
+
+			case SDLK_c:
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[1] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(1).Fire();
+					firingCooldown[1] = firingCooldownReset[1];
+					}
+				}
+				break;
+			case SDLK_v:
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+									if (firingCooldown[2] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(2).Fire();
+					firingCooldown[2] = firingCooldownReset[2];
+					}
+				}
+				break;
 			}
+			break;
+		default:
 			break;
 		case SDL_KEYUP:
 			switch (event.key.keysym.sym)
@@ -255,20 +336,16 @@ void Game::handleEvents()
 			case SDLK_w:
 				getPlayerShip()->setIsMoving(false);
 				break;
-
-			case SDLK_s:
+			case SDLK_a:
 				getPlayerShip()->setIsMoving(false);
 				break;
-
-			case SDLK_a:
+			case SDLK_s:
 				getPlayerShip()->setIsMoving(false);
 				break;
 			case SDLK_d:
 				getPlayerShip()->setIsMoving(false);
 				break;
 			}
-		default:
-			break;
 		}
 	}
 }

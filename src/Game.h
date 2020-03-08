@@ -29,6 +29,7 @@
 //Game Objects
 #include "PlayerShip.h"
 #include "Enemy.h"
+#include "PlayerWeapon.h"
 
 class Game
 {
@@ -73,8 +74,10 @@ public:
 	void quit();
 
 	void destroyEnemy(Enemy* enemy);
+	void destroyWeapon(PlayerWeapon* weapon);
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
+	void spawnPlayerWeapon(PlayerWeapon* pw);
 
 private:
 	Game();
@@ -97,6 +100,9 @@ private:
 
 	Scene* m_currentScene;
 	SceneState m_currentSceneState;
+
+	int firingCooldown[3] = { 0,0,0 };
+	int firingCooldownReset[3] = { 20,20,20 };
 };
 
 typedef Game TheGame;

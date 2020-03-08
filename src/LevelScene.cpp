@@ -4,9 +4,11 @@
 #include "CannoneerAI.h"
 #include "GuardianAI.h"
 #include "DiagonAI.h"
+#include "BlastAI.h"
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "CollisionManager.h"
+#include <experimental/coroutine>
 
 LevelScene::LevelScene()
 {
@@ -20,34 +22,43 @@ LevelScene::~LevelScene()
 
 void LevelScene::update()
 {
-	
 	++time;
 	spawnedEnemy = false;
-	player->update();
+	if(player->getPlayerLives() >= 0)
+	{
+		player->update();
+	}
+	m_pSpeedLabel->setText("Speed: " + std::to_string(player->getPlayerSpeed()));
+	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 	m_pMap->update();
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
-	for (DisplayObject* d : playerWeapons) {
-		d->update();
+	for (PlayerWeapon* pw : playerWeapons) {
+		pw->update();
 	}
+	/*
 	#pragma region Player Collision and invinciblity
-	if (player->getInvincibility() == false)
+	if (player->getInvincibility() == false && enemies.empty() == false)
 	{
 		//for (Enemy* enemy : m_pEnemy)
 		//{
 		//	CollisionManager::squaredRadiusCheck(player, enemy);
 		//}
-
+		//get the player's build
 		for (ShipComponent s : player->GetFrame()->GetBuild())
 		{
+			//if the build is a basicbody
 			if (s.getName() == "BasicBody")
 			{
+				// for all enemies
 				//std::cout << s.getPosition().x << std::endl;
 				for (AI* a : enemies)
 				{
+					//get the ship component of the enemies
 					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
 					{
+						//if the names are basic body and indesbody
 						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
 						{
 							//std::cout << s.getName() << std::endl;
@@ -56,10 +67,11 @@ void LevelScene::update()
 							//std::cout << c.getName() << std::endl;
 							//std::cout << c.getPosition().x << std::endl;
 							//std::cout << c.getPosition().y << std::endl;
+							//and they are colliding then do this
 							if (CollisionManager::shipComponentCheck(s, c))
 							{
+								std::cout << "something" << std::endl;
 								player->Damage(1);
-								player->invincible();
 
 								if (c.getName() == "BasicBody")
 								{
@@ -78,6 +90,73 @@ void LevelScene::update()
 		}
 	}
 #pragma endregion
+	#pragma region Player Weapon Collision
+	for (int b = 0; b < playerWeapons.size(); ++ b) {
+		for (ShipComponent s : playerWeapons[b]->getFrame()->GetBuild())
+		{
+			if (s.getName() == "BasicBody" || s.getName() == "IndesBody")
+			{
+				for (AI* a : enemies)
+				{
+					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
+					{
+						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
+						{
+							if (CollisionManager::shipComponentCheck(s, c))
+							{
+								if (s.getName() == "BasicBody")
+								{
+									((BasicBody&)s).Damage(1);
+								}
+								else
+								{
+									((IndesBody&)s).Damage(c);
+								}
+							}
+
+						}
+					}
+				}
+			}
+		}
+	}
+#pragma endregion
+	*/
+	#pragma region Collisions
+	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
+		for (AI* enemy : enemies) {
+			for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
+				if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
+					if (playerWeapons.size() > 0) {
+						for (PlayerWeapon* pw : playerWeapons) {
+							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
+								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+									if (CollisionManager::shipComponentCheck(es, ps))
+									{
+										ShipComponent temp[2] = { ps, es };
+										Damage(temp);
+									}
+								}
+							}
+						}
+					}
+					if (!player->getInvincibility()) {
+						for (ShipComponent ps : player->GetFrame()->GetBuild()) {
+							if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+								if (CollisionManager::shipComponentCheck(es, ps))
+								{
+									ShipComponent temp[2] = { ps, es };
+									Damage(temp);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	#pragma endregion
+
 	#pragma region Spawn Enemies
 	if (ramIteration < ramSpawnTimer.size()) {
 		if (time == ramSpawnTimer[ramIteration])
@@ -114,19 +193,32 @@ void LevelScene::update()
 			++diagonIteration;
 		}
 	}
+	if (blastIteration < blastSpawnTimer.size()) {
+		if (time == blastSpawnTimer[blastIteration])
+		{
+			spawnEnemy(new BlastAI(blastSpawnLocation[blastIteration]));
+			++blastIteration;
+		}
+	}
 	#pragma endregion
 }
 
 void LevelScene::draw()
 {
 	m_pMap->draw();
-	player->draw();
+	if (player->getPlayerLives() >= 0)
+	{
+		player->draw();
+	}
+	m_pLivesLabel->draw();
+	m_pSpeedLabel->draw();
+	for (PlayerWeapon* pw : playerWeapons) {
+		pw->draw();
+	}
 	for (AI* a : enemies) {
 		a->GetParent()->draw();
 	}
-	for (DisplayObject* d : playerWeapons) {
-		d->draw();
-	}
+	m_pControl_Img->draw();
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
@@ -138,10 +230,32 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 		}
 	}
 }
+void LevelScene::DestroyWeapon(PlayerWeapon* weapon)
+{
+	for (int i = 0; i < playerWeapons.size(); ++i) {
+		if (playerWeapons[i]->getFrame()->getParent() == weapon) {
+			playerWeapons.erase(playerWeapons.begin() + i);
+			break;
+		}
+	}
+}
 
 PlayerShip* LevelScene::getPlayerShip()
 {
 	return player;
+}
+
+void LevelScene::Damage(ShipComponent sc[2])
+{
+	for (int z = 0; z < 2; ++z) {
+		if (sc[z].getName() == "BasicBody") {
+			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
+			((BasicBody&)sc[z]).Damage(i);
+		}
+		else if (sc[z].getName() == "IndesBody") {
+			((IndesBody&)sc[z]).Damage(sc[1 - z]);
+		}
+	}
 }
 
 void LevelScene::GameOver()
@@ -156,8 +270,14 @@ glm::vec2 LevelScene::getPlayerPosition()
 void LevelScene::spawnEnemy(AI* enemyAI)
 {
 	if (spawnedEnemy == false) {
-		//std::cout << enemyAI << std::endl;
-		spawnedEnemy = true;
+		if (!enemyAI->GetParent()->getName().find("Barge")) {
+			spawnedEnemy = true;
+		}
 		enemies.push_back(enemyAI);
 	}
+}
+
+void LevelScene::spawnPlayerWeapon(PlayerWeapon* playerWeapon)
+{
+	playerWeapons.push_back(playerWeapon);
 }

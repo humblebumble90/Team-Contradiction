@@ -20,7 +20,6 @@ public:/*
 	~Level3();
 
 	// Inherited via Scene
-	void update() override;
 	void clean() override;
 	void handleEvents() override;
 	void start() override;
@@ -32,9 +31,13 @@ public:/*
 	void Boss4(); //Spawns Cannonlord
 	void Boss5(); //Changes music, then spawns Deathcage
 	void Victory(); //Switches the scene to the VictoryScreen
+
+	void CheatCode();
 private:
 	//Timers
-	int ramRushTimerDelay = 180, ramRushTimer = 900, bossDelayTimer = 60, bossDelayTimerReset = 60;
+	int ramRushTimerDelay = 180, ramRushTimer = 1800, bossDelayTimer = 60, bossDelayTimerReset = 60, bossIteration = 0;
+	void loadAllTextures();
+	void loadAllSounds();
 };
 
 #endif

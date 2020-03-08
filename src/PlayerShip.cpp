@@ -9,7 +9,7 @@
 #include "Blank.h"
 #include <functional>
 
-PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransform)
+PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
 {
 	changeTexture("Player");
@@ -20,14 +20,26 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
 	{
-		BasicBody(),BasicBody(),MissileLauncher(),Blank(),
+		/*Blank(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		BasicBody(), Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		BasicBody(), BasicBody(), Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
+		BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),
+		BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
+		Blank(), BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),
+		Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),
+		Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
+		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),
+		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank()*/
 		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
-		BasicBody(),BasicBody(),MissileLauncher(),Blank()
+		BasicBody(), BasicBody(),BasicBody(), MissileLauncher(),
+		BasicBody(), BasicBody(), BasicBody(), MissileLauncher()
 	};
 #pragma endregion
-	frame = new Frame(5, //Enemy is 300px by 300px
-		build, 15, 10); //Will tweak if it proves to be too much or too little
+	frame = new Frame(37.5, //Enemy is 150px by 100px
+		build, 4, 3); //Will tweak if it proves to be too much or too little
 	frame->Initialize(this);
+	playerLives = lives;
+	playerHealth = health;
 	std::cout << "PlayerHealth: " << playerHealth << std::endl;
 	std::cout << "Player Lives: " << playerLives << std::endl;
 	std::cout << "PlayerShip is instantiated!" << std::endl;
@@ -41,7 +53,7 @@ PlayerShip::PlayerShip(int playerHealth, int playerLives, glm::vec2 targetTransf
 
 PlayerShip::~PlayerShip()
 {
-	;
+	
 }
 
 void PlayerShip::Damage(int i)
@@ -51,32 +63,56 @@ void PlayerShip::Damage(int i)
 		playerHealth -= i;
 		std::cout << "Player damaged!\n";
 		std::cout << "PlayerHealth: " << playerHealth << std::endl;
-		playerLives -= 1;
-		std::cout << "Player life decreases for 1!";
+		//playerLives -= 1;
+		std::cout << "Player life decreases for 1!" << std::endl;
 		playerHealth += 1;
 		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
+		invincible();
 	}
-		else if(playerLives <= 0)
-		{
-			std::cout << "Player Health: " << playerHealth << std::endl;
-			std::cout << "Player Lives: " << playerLives << std::endl;
-			std::cout << "Player died!" << std::endl;
-			//Game::Instance()->changeSceneState(END_SCENE);
-		}
+	else if(playerLives <= 0)
+	{
+		std::cout << "Player Health: " << playerHealth << std::endl;
+		std::cout << "Player Lives: " << playerLives << std::endl;
+		std::cout << "Player died!" << std::endl;
+		//Game::Instance()->changeSceneState(END_SCENE);
+	}
 }
 bool PlayerShip::getInvincibility()
 {
 	return inv;
 }
+
 void PlayerShip::invincible()
 {
-	std::cout << "Invincibled!\n";
-	inv = true;
-	m_alpha *= 0.5f;
-	endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
-
+	//if not invincible do this
+	if (!inv)
+	{
+		std::cout << "Invincibled!\n";
+		inv = true;
+		m_alpha *= 0.5f;
+		endInvincibleTime = SDL_GetTicks() + 3000; // 3 seconds
+	}
 }
 
+void PlayerShip::checkBound()
+{
+	if(getPosition().x <= Config::SCREEN_WIDTH * 0.05f)
+	{
+		setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.05f, getPosition().y));
+	}
+	if (getPosition().x >= Config::SCREEN_WIDTH * 0.95f)
+	{
+		setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.95f, getPosition().y));
+	}
+	if(getPosition().y <= Config::SCREEN_HEIGHT * 0.05f)
+	{
+		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.05f));
+	}
+	if (getPosition().y >= Config::SCREEN_HEIGHT * 0.95f)
+	{
+		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.95f));
+	}
+}
 
 Frame* PlayerShip::GetFrame()
 {
@@ -90,8 +126,6 @@ void PlayerShip::draw()
 
 void PlayerShip::move(Move newMove)
 {
-	if (m_isMoving)
-	{
 		switch (newMove)
 		{
 		case RIGHT:
@@ -107,7 +141,6 @@ void PlayerShip::move(Move newMove)
 			setVelocity(glm::vec2(getVelocity().x, 1.0f * m_maxSpeed));
 			break;
 		}
-	}
 }
 
 bool PlayerShip::getIsMoving()
@@ -120,6 +153,35 @@ void PlayerShip::setIsMoving(bool newState)
 	m_isMoving = newState;
 }
 
+int PlayerShip::getPlayerLives()
+{
+	return playerLives;
+}
+
+void PlayerShip::setPlayerLives(int num)
+{
+	playerLives += num;
+}
+
+int PlayerShip::getPlayerScore()
+{
+	return playerScore;
+}
+
+void PlayerShip::setPlayerScore(int num)
+{
+	playerScore += num;
+}
+
+float PlayerShip::getPlayerSpeed()
+{
+	return m_maxSpeed;
+}
+
+void PlayerShip::setPlayerSpeed(float num)
+{
+	m_maxSpeed += num;
+}
 
 void PlayerShip::update()
 {
@@ -128,38 +190,30 @@ void PlayerShip::update()
 
 	if (m_isMoving == false)
 	{
-		if (currentVelocity.x < 0)
-		{
-			currentVelocity.x *= 0.95f;
-		}
-		else if (currentVelocity.x > 0)
-		{
-			currentVelocity.x *= 0.95f;
-		}
-		if (currentVelocity.y < 0)
-		{
-			currentVelocity.y *= 0.95f;
-		}
-		else if (currentVelocity.y >= 0)
-		{
-			currentVelocity.y *= 0.95f;
-		}
+		currentVelocity.x *= 0.99f;
+		currentVelocity.y *= 0.99f;
 	}
 
-	setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
-
-
-	auto deltax = currentPosition.x + currentVelocity.x;
-	auto deltay = currentPosition.y + currentVelocity.y;
-	setPosition(glm::vec2(deltax, deltay));
+	if (playerLives >= 0)
+	{
+		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
+		auto deltax = currentPosition.x + currentVelocity.x;
+		auto deltay = currentPosition.y + currentVelocity.y;
+		setPosition(glm::vec2(deltax, deltay));
+	}
+	else
+	{
+		delete this;
+	}
 	
+	//when the invincibility has finished run this
 	if (inv == true && endInvincibleTime <= SDL_GetTicks())
 	{
 		std::cout << "invincible finished!\n";
 		inv = false;
-		TextureManager::Instance()->setAlpha("player", m_alpha);
+		m_alpha = defaultAlpha;
 	}
-	
+	checkBound();
 }
 
 void PlayerShip::clean()

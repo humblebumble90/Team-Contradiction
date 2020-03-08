@@ -27,6 +27,9 @@ public:
 
 	void addChild(DisplayObject* child);
 	void removeAllChildren();
+	void loadTexture(std::string path, std::string id);
+	void loadSound(std::string path, std::string id , sound_type type);
+	void playSound(std::string id, int loop);
 	int numberOfChildren();
 	void loadTexture(std::string path, std::string id);
 	void loadSound(std::string path, std::string id, sound_type type);

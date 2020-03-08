@@ -3,7 +3,7 @@
 #define __BLASTERSKIFF__
 #include "FlyOntoScreenAI.h"
 
-class BlasterSkiffAI : FlyOntoScreenAI
+class BlasterSkiffAI : public FlyOntoScreenAI
 {
 public:
 	BlasterSkiffAI(glm::vec2 transform);
@@ -11,7 +11,7 @@ public:
 	void SecondaryFunction() override;
 private:
 	float topBouncePoint, bottomBouncePoint, spawnPoint; //set these numbers via testing
-	int firingCooldown = 10, firingCooldownReset = 10, firingIteration = 0;
+	int firingCooldown = 20, firingCooldownReset = 20, firingIteration = 0;
 };
 
 #endif

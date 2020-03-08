@@ -11,7 +11,7 @@ void FlyOntoScreenAI::PrimaryFunction()
 	if (!atTarget)
 	{
 		parent->setPosition(parent->getPosition() + entrySpeed);
-		if (parent->getPosition() == target) {
+		if (parent->getPosition().x <= target.x && parent->getPosition().y == target.y) {
 			atTarget = true;
 		}
 	}
@@ -26,4 +26,9 @@ void FlyOntoScreenAI::SecondaryFunction()
 glm::vec2 FlyOntoScreenAI::GetSpeed()
 {
 	return atTarget ? speed : glm::vec2{0,0};
+}
+
+bool FlyOntoScreenAI::isAtTarget()
+{
+	return atTarget;
 }

@@ -6,12 +6,13 @@
 *.user
 *.userosscache
 *.sln.docstates
+template.exe
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Build results
-#[Dd]ebug/
+[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -259,3 +260,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+bin/Debug/Template.exe
+Template/Intermediate/Debug/

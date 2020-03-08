@@ -2,6 +2,7 @@
 #include "Blank.h"
 #include "BasicBody.h"
 #include "MissileLauncher.h"
+#include "Config.h"
 
 MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 {
@@ -10,16 +11,19 @@ MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 	{
 		Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank(),
 		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
+		MissileLauncher(), BasicBody(), Blank(), Blank(), BasicBody(), MissileLauncher(),
+		MissileLauncher(), BasicBody(), Blank(), Blank(), BasicBody(), MissileLauncher(),
 		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
 		Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(50, //Enemy is 300px by 300px
-	build, 6, 6), 20, //Will tweak if it proves to be too much or too little
+	parent = new Enemy(new Frame(40, //Enemy is 240px by 240px
+	build, 6, 6), 150, //Will tweak if it proves to be too much or too little
 		this, transform, "MissileBarge");
-	speed.y = -12.00f;
+	speed.y = -8.00f;
+	topLimit = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridHeight() / 2;
+	bottomLimit = Config::SCREEN_HEIGHT - topLimit;
+	target = glm::vec2(Config::SCREEN_WIDTH * 3 / 4, Config::SCREEN_HEIGHT / 2);
 }
 
 MissileBargeAI::~MissileBargeAI()

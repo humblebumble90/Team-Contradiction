@@ -2,6 +2,7 @@
 #include "Blank.h"
 #include "BasicBody.h"
 #include "Cannon.h"
+#include "Config.h"
 
 CannonBargeAI::CannonBargeAI(glm::vec2 transform)
 {
@@ -10,15 +11,16 @@ CannonBargeAI::CannonBargeAI(glm::vec2 transform)
 	{
 		Blank(), Cannon(), Cannon(),Cannon(),Cannon(), Blank(),
 		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
-		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
-		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
+		Cannon(), BasicBody(), Blank(), Blank(), BasicBody(), Cannon(),
+		Cannon(), BasicBody(), Blank(), Blank(), BasicBody(), Cannon(),
 		Cannon(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Cannon(),
 		Blank(), Cannon(), Cannon(),Cannon(),Cannon(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(50, //Enemy is 300px by 300px
-	build, 6, 6), 20, //Will tweak if it proves to be too much or too little
-		this, transform, "BlasterSkiff");
+	parent = new Enemy(new Frame(40, //Enemy is 240px by 240px
+	build, 6, 6), 150, //Will tweak if it proves to be too much or too little
+		this, transform, "CannonBarge");
+	target = glm::vec2(Config::SCREEN_WIDTH/2, Config::SCREEN_HEIGHT/2);
 }
 
 CannonBargeAI::~CannonBargeAI()
@@ -36,10 +38,22 @@ void CannonBargeAI::SecondaryFunction()
 	if (attackCooldown <= 0)
 	{
 		attackCooldown = attackCooldownReset;
+		int z = 0;
 		for (Weapon w : parent->GetFrame()->GetWeapons())
 		{
-			w.Fire();
+			if (z < 4) {
+				((Cannon*)& w)->Fire(glm::vec2(0 + rotation / 90, -1 + rotation / 90));
+			}
+			else if (z > 11) {
+				((Cannon*)& w)->Fire(glm::vec2(0 - rotation / 90, 1 - rotation / 90));
+			}
+			else if (z % 2 == 0) {
+				((Cannon*)& w)->Fire(glm::vec2(-1 + rotation / 90, 0 - rotation / 90));
+			}
+			else {
+				((Cannon*)& w)->Fire(glm::vec2(1 - rotation / 90, 0 + rotation / 90));
+			}
+			++z;
 		}
 	}
-	//currently, this does not rotate whatsoever
 }

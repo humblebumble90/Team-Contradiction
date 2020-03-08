@@ -3,6 +3,7 @@
 #include "BasicBody.h"
 #include "Flamethrower.h"
 #include "Cannon.h"
+#include "Config.h"
 
 DeathcageAI::DeathcageAI(glm::vec2 transform)
 {
@@ -29,16 +30,16 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 		BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(50, //Enemy is 800px by 900px - NOTE: Deathcage is the height of the screen
-	build, 16, 18), 100, //Will tweak if 100 health proves to be too much or too little
+	parent = new Enemy(new Frame(40, //Enemy is 640px by 720px - NOTE: Deathcage is the height of the screen
+	build, 16, 18), 5000, //Will tweak if 100 health proves to be too much or too little
 		this, transform, "Deathcage");
 
 #pragma region Assocate Cannons
-	std::vector<Weapon> Cannons;
+	std::vector<Cannon> Cannons;
 	for (Weapon w : parent->GetFrame()->GetWeapons())
 	{
 		if (w.getName()=="Cannon") {
-			Cannons.push_back(w);
+			Cannons.push_back((Cannon&)w);
 		}
 	}
 	for (int z = 0; z <= cannonMaximum; ++z)
@@ -58,6 +59,9 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 			w.Fire();
 		}
 	}
+
+	target = glm::vec2(parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2, Config::SCREEN_HEIGHT / 2);
+	entrySpeed = glm::vec2(-10, 0);
 }
 
 DeathcageAI::~DeathcageAI()
@@ -74,7 +78,8 @@ void DeathcageAI::SecondaryFunction()
 		{
 			centerCannons[centerIteration].Fire();
 			centerCannons[centerCannons.size() - 1 - centerIteration].Fire();
-			if (centerIteration + 1 == centerCannons.size() - 1 - centerIteration)
+			++centerIteration;
+			if (centerIteration == centerCannons.size() - centerIteration)
 			{
 				centerIteration = 0;
 				cannonIteration = 0;
@@ -82,8 +87,8 @@ void DeathcageAI::SecondaryFunction()
 		}
 		else
 		{
-			topCannons[cannonIteration].Fire();
-			bottomCannons[cannonIteration].Fire();
+			topCannons[cannonIteration].Fire(glm::vec2(0, 1));
+			bottomCannons[cannonIteration].Fire(glm::vec2(0, -1));
 			++cannonIteration;
 		}
 	}

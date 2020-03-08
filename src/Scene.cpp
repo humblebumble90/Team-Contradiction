@@ -39,7 +39,7 @@ void Scene::loadTexture(std::string path, std::string id)
 {
 	const bool loadSucessful = TheTextureManager::Instance()->load(path,
 		id, TheGame::Instance()->getRenderer());
-	if(loadSucessful == true)
+	if (loadSucessful == true)
 	{
 		std::cout << "texture loaded with path: " << path << std::endl;
 		std::cout << "^id: " << id << std::endl;
@@ -48,7 +48,7 @@ void Scene::loadTexture(std::string path, std::string id)
 	{
 		std::cout << "unable to load texture with path:" << path << std::endl;
 	}
-	
+
 }
 
 void Scene::loadSound(std::string path, std::string id, sound_type type)
@@ -63,5 +63,10 @@ void Scene::loadSound(std::string path, std::string id, sound_type type)
 	{
 		std::cout << "unable to load sound with path: " << path << std::endl;
 	}
-	
+}
+
+void Scene::playSound(std::string id, int loop)
+{
+	TheSoundManager::Instance()->playMusic(id, loop);
+	std::cout << "Attempted to play sound with id: " << id << std::endl;
 }

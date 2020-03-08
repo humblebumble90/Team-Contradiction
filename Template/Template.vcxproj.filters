@@ -207,6 +207,36 @@
     <ClCompile Include="..\src\DiagonAI.cpp">
       <Filter>Source Files\AIs</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\BlastAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\RainAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PlayerWeapon.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Start_Scene_Bg.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\StartButton.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\EnemyCannonballAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Cannonball.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Control_Img.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FlameThrowerWeapon.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Vector2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -379,6 +409,36 @@
     </ClInclude>
     <ClInclude Include="..\src\DiagonAI.h">
       <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\BlastAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RainAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PlayerWeapon.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Start_Scene_Bg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\StartButton.h">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\EnemyCannonballAI.h">
+      <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Cannonball.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Control_Img.h">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FlameThrowerWeapon.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Vector2.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -48,6 +48,7 @@ goto start
 
 :updateBranch
 git fetch origin master
+git rebase origin master
 pause
 goto start
 
@@ -62,7 +63,7 @@ goto start
 :merge
 echo The highlighted green text is where you are right now
 git branch
-set /p merge"=Which branch do you want to merge from?"
+set /p merge="Which branch do you want to merge from?"
 git merge %merge%
 pause
 goto start
