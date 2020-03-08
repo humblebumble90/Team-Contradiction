@@ -26,6 +26,7 @@ void LevelScene::update()
 	{
 		player->update();
 	}
+	m_pSpeedLabel->setText("Speed: " + std::to_string(player->getPlayerSpeed()));
 	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 	m_pMap->update();
 	for (int z = 0; z < enemies.size(); ++z) {
@@ -208,6 +209,7 @@ void LevelScene::draw()
 		player->draw();
 	}
 	m_pLivesLabel->draw();
+	m_pSpeedLabel->draw();
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}
