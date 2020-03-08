@@ -242,7 +242,7 @@ void Game::handleEvents()
 #pragma region Playership control
 	const Uint8* keystates = SDL_GetKeyboardState(NULL);
 	if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE &&
-		getPlayerShip()->getPlayerLives() >= 0)
+		getPlayerShip()!= nullptr)
 	{
 		if (keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A])
 		{
@@ -260,7 +260,7 @@ void Game::handleEvents()
 		{
 			getPlayerShip()->move(DOWN);
 		}
-		if (keystates[SDL_SCANCODE_Z])
+		if (keystates[SDL_SCANCODE_Z] || SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 			if (getPlayerShip()->getPlayerLives() >= 0)
 			{
 				for (int z = 0; z < 3; ++z) {
@@ -429,23 +429,23 @@ void Game::handleEvents()
 				break;
 			}
 			break;
-		case SDL_MOUSEBUTTONDOWN:
-			switch (event.button.button)
-			{
-			case SDL_BUTTON_LEFT:
-				if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE &&
-					getPlayerShip() != nullptr)
-				for (int z = 0; z < 3; ++z) {
-					if (firingCooldown[z] == 0) {
-						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
-						firingCooldown[z] = firingCooldownReset[z];
-					}
-				}
-				break;
-			default:
-				break;
-			}
-			break;
+		//case SDL_MOUSEBUTTONDOWN:
+		//	switch (event.button.button)
+		//	{
+		//	case SDL_BUTTON_LEFT:
+		//		if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE &&
+		//			getPlayerShip() != nullptr)
+		//		for (int z = 0; z < 3; ++z) {
+		//			if (firingCooldown[z] == 0) {
+		//				getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+		//				firingCooldown[z] = firingCooldownReset[z];
+		//			}
+		//		}
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//	break;
 		}
 	}
 }
