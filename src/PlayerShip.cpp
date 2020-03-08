@@ -30,14 +30,13 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 		Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
 		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),
 		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank()*/
-		Blank(), BasicBody(),BasicBody(),BasicBody(),MissileLauncher(), Blank(),
-		Blank(), BasicBody(), BasicBody(),BasicBody(), MissileLauncher(), Blank(),
-		Blank(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(), Blank(),
-		Blank(), Blank(), Blank(), Blank(), Blank(), Blank()
+		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
+		BasicBody(), BasicBody(),BasicBody(), MissileLauncher(),
+		BasicBody(), BasicBody(), BasicBody(), MissileLauncher()
 	};
 #pragma endregion
-	frame = new Frame(25, //Enemy is 150px by 100px
-		build, 6, 4); //Will tweak if it proves to be too much or too little
+	frame = new Frame(37.5, //Enemy is 150px by 100px
+		build, 4, 3); //Will tweak if it proves to be too much or too little
 	frame->Initialize(this);
 	playerLives = lives;
 	playerHealth = health;
@@ -64,7 +63,7 @@ void PlayerShip::Damage(int i)
 		playerHealth -= i;
 		std::cout << "Player damaged!\n";
 		std::cout << "PlayerHealth: " << playerHealth << std::endl;
-		playerLives -= 1;
+		//playerLives -= 1;
 		std::cout << "Player life decreases for 1!" << std::endl;
 		playerHealth += 1;
 		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;

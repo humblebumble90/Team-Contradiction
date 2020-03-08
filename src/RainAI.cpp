@@ -19,7 +19,7 @@ RainAI::RainAI(glm::vec2 transform)
 		Blank(), Blank(), Cannon(), BasicBody(), Cannon(), Blank(), Blank()
 	};
 	parent = new Enemy(new Frame(40, //Enemy is 280px by 280px
-		build, 7, 7), 50, //Will tweak if 50 health proves to be too much or too little
+		build, 7, 7), 150, //Will tweak if 50 health proves to be too much or too little
 		this, transform, "Rain");
 	speed.y = 10.00f; //Tweak this number later
 #pragma endregion
