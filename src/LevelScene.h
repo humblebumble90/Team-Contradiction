@@ -7,6 +7,8 @@
 #include "AI.h"
 #include "Map.h"
 #include "Label.h"
+#include <SDL_ttf.h>
+#include "Control_Img.h"
 
 class LevelScene : public Scene
 {
@@ -30,6 +32,7 @@ protected:
 	SDL_Color yellow = { 255, 255, 0, 255 };
 	Label* m_pLivesLabel = new Label("Lives: ", "Consolas",
 		24, yellow, glm::vec2(10.0f, 10.0f), TTF_STYLE_NORMAL, false);
+	Control_Img* m_pControl_Img = new Control_Img();
 	std::vector<PlayerWeapon*> playerWeapons;
 
 	Map* m_pMap;
