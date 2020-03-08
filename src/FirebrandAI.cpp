@@ -27,7 +27,7 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 320px by 480px
-	build, 8, 12), 150, //Will tweak if 50 health proves to be too much or too little
+	build, 8, 12), 40, //Will tweak if 50 health proves to be too much or too little
 		this, transform, "Firebrand");
 	speed.y = baseSpeed; //Tweak this number later
 
