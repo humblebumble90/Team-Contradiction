@@ -306,17 +306,43 @@ void Game::handleEvents()
 			case SDLK_ESCAPE:
 				m_bRunning = false;
 				break;
-			case SDLK_KP_PLUS:
-				if(getPlayerShip()->getPlayerSpeed() < 7.5f)
-				{
-					getPlayerShip()->setPlayerSpeed(0.5f);
-				}
+			case SDLK_1:
+					getPlayerShip()->setPlayerSpeed(3.0f);
 				break;
-			case SDLK_KP_MINUS:
-				if(getPlayerShip()->getPlayerSpeed() > 3.0f)
-				{
-					getPlayerShip()->setPlayerSpeed(-0.5f);
-				}
+			case SDLK_2:
+					getPlayerShip()->setPlayerSpeed(3.5f);
+				break;
+			case SDLK_3:
+					getPlayerShip()->setPlayerSpeed(4.0f);
+				break;
+			case SDLK_4:
+					getPlayerShip()->setPlayerSpeed(4.5f);
+				break;
+			case SDLK_5:
+					getPlayerShip()->setPlayerSpeed(5.0f);
+				break;
+			case SDLK_6:
+					getPlayerShip()->setPlayerSpeed(5.5f);
+				break;
+			case SDLK_7:
+					getPlayerShip()->setPlayerSpeed(6.0f);
+				break;
+			case SDLK_8:
+					getPlayerShip()->setPlayerSpeed(6.5f);
+				break;
+			case SDLK_9:
+					getPlayerShip()->setPlayerSpeed(7.0f);
+				break;
+			case SDLK_0:
+					getPlayerShip()->setPlayerSpeed(7.5f);
+				break;
+			case SDLK_MINUS:
+					getPlayerShip()->setPlayerSpeed(8.0f);
+				break;
+			case SDLK_EQUALS :
+					getPlayerShip()->setPlayerSpeed(8.5f);
+				break;
+			default:
 				break;
 				// The below code throws a Debug Assertion Failed Error
 			case SDLK_f:
