@@ -64,11 +64,14 @@ void LevelScene::update()
 										&& CollisionManager::shipComponentCheck(ps,es))
 									{
 										player->setKillCounter(1);
-										if (player->getKillCounter() == 20)
+										if (player->getKillCounter() % 30 == 0)
 										{
-											m_pshield = new Shield();
+											Shield* shield = new Shield();
 											shieldSpawnPos = es.getParent()->getParent()->getPosition();
-											m_pshield->setPosition(shieldSpawnPos);
+											shield->setPosition(shieldSpawnPos);
+											shield->setVelocity
+											(glm::vec2( -5.0f , 0.0f));
+											m_pshields.push_back(shield);
 										}
 									}
 									if (CollisionManager::shipComponentCheck(es, ps))
@@ -95,10 +98,24 @@ void LevelScene::update()
 			}
 		}
 	}
-	if(m_pshield != nullptr && CollisionManager::squaredRadiusCheck(player, m_pshield))
+	if (!m_pshields.empty())
 	{
-		player->setShieldAvailable(true);
-		m_pshield->setCollided(true);
+		for (int i = 0; i < m_pshields.size(); i++)
+		{
+			auto item = m_pshields[i];
+			if (CollisionManager::circleAABBCheck(player, item))
+			{
+				std::cout << "Shield status: " << item << std::endl;
+				player->setShieldAvailable(true);
+				item->setCollided(true);
+				m_pshields.erase(m_pshields.begin() + i);
+					break;
+			}
+			if (!item->getCollided())
+			{
+				item->update();
+			}
+		}
 	}
 	#pragma endregion
 
@@ -147,11 +164,10 @@ void LevelScene::update()
 	}
 	#pragma endregion
 
-	if(player->getPlayerLives() == 0 && !player->getShieldAvailable())
+	if(player->getPlayerLives() < 0)
 	{
 		Game::Instance()->changeSceneState(END_SCENE);
 	}
-
 
 }
 
@@ -186,9 +202,16 @@ void LevelScene::draw()
 	{
 		m_pControl_Img->draw();
 	}
-	if(m_pshield != nullptr && !m_pshield->getCollided())
+	//if(m_pshield != nullptr)
+	//{
+	//	m_pshield->draw();
+	//}
+	if(!m_pshields.empty())
 	{
-		m_pshield->draw();
+		for(auto item : m_pshields)
+		{
+				item->draw();
+		}
 	}
 }
 

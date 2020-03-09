@@ -36,7 +36,7 @@ protected:
 
 	Control_Img* m_pControl_Img = new Control_Img();
 	std::vector<PlayerWeapon*> playerWeapons;
-	Shield* m_pshield;
+	std::vector<Shield*> m_pshields;
 	glm::vec2 shieldSpawnPos;
 
 	Map* m_pMap;
