@@ -9,12 +9,11 @@ GuardianAI::GuardianAI(glm::vec2 transform)
 #pragma region Frame Construction
 	{
 		BasicBody(), BasicBody(),
-		BasicBody(), BasicBody(),
-		BasicBody(), BasicBody(),
-		Cannon(), BasicBody()
+		Cannon(), BasicBody(),
+		BasicBody(), BasicBody()
 	};
 #pragma endregion
-	parent = new Enemy(new Frame(15, //Enemy is 30px by 60px
+	parent = new Enemy(new Frame(15, //Enemy Hitbox is 30px by 45px (sprite is 30x60)
 		build, 2, 4), 1, this, transform, "Guardian");
 	speed.y = -5.00f; //Tweak this number later
 }
