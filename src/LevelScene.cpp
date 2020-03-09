@@ -24,6 +24,7 @@ void LevelScene::update()
 {
 	++time;
 	spawnedEnemy = false;
+	initializeLabels();
 	if (player->getPlayerLives() >= 0)
 	{
 		player->update();
@@ -251,3 +252,18 @@ void LevelScene::spawnPlayerWeapon(PlayerWeapon* playerWeapon)
 {
 	playerWeapons.push_back(playerWeapon);
 }
+
+void LevelScene::initializeLabels()
+{
+	if (player != nullptr)
+	{
+		SDL_Color yellow = { 255, 255, 0, 255 };
+		m_pLivesLabel = new Label("Lives: " + std::to_string(player->getPlayerLives()), "Consolas",
+			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.45f, 10.0f), TTF_STYLE_NORMAL, false);
+		m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "Consolas",
+			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);
+		return;
+	}
+}
+
+
