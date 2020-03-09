@@ -14,6 +14,7 @@ public:
 	void handleEvents() override;
 	void start() override;
 	void loadAllTextures();
+	void loadAllSounds();
 
 private:
 };

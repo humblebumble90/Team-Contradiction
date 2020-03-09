@@ -8,13 +8,13 @@ DiagonAI::DiagonAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
 	{
-		BasicBody(), BasicBody(), BasicBody(),
-		Cannon(), BasicBody(), BasicBody(),
-		BasicBody(), BasicBody(), BasicBody()
+		BasicBody(), BasicBody(),
+		Cannon(), BasicBody(),
 	};
 #pragma endregion
-	parent = new Enemy(new Frame(16.666667, //Enemy is 50px by 50px
-		build, 3, 3), 1, this, transform, "Diagon");
+	parent = new Enemy(new Frame(25, //Enemy is 50px by 50px
+		build, 2, 2), 1, this, transform, "Diagon");
+	baseSpeed = 15.00f;
 	Initialize(glm::vec2(Config::SCREEN_WIDTH / 2, Config::SCREEN_HEIGHT / 2));
 }
 

@@ -9,16 +9,14 @@ FireBargeAI::FireBargeAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 	#pragma region Frame Construction
 	{
-		Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank(),
-		Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
-		Flamethrower(), BasicBody(), Blank(), Blank(), BasicBody(), Flamethrower(),
-		Flamethrower(), BasicBody(), Blank(), Blank(), BasicBody(), Flamethrower(),
-		Flamethrower(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Flamethrower(),
-		Blank(), Flamethrower(), Flamethrower(),Flamethrower(),Flamethrower(), Blank()
+		Blank(), Flamethrower(), Flamethrower(), Blank(),
+		Flamethrower(), BasicBody(), BasicBody(), Flamethrower(),
+		Flamethrower(), BasicBody(), BasicBody(), Flamethrower(),
+		Blank(), Flamethrower(), Flamethrower(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(40, //Enemy is 240px by 240px
-	build, 6, 6), 150, //Will tweak if it proves to be too much or too little
+	parent = new Enemy(new Frame(60, //Enemy is 240px by 240px
+	build, 4, 4), 20, //Will tweak if it proves to be too much or too little
 		this, transform, "FireBarge");
 	speed.y = -baseSpeed; //Tweak this number later
 

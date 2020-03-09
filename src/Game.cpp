@@ -294,8 +294,56 @@ void Game::handleEvents()
 					firingCooldown[2] = firingCooldownReset[2];
 				}
 			}
+		if(keystates[SDL_SCANCODE_1])
+		{
+			getPlayerShip()->setPlayerSpeed(3.0f);
+		}
+		if (keystates[SDL_SCANCODE_2])
+		{
+			getPlayerShip()->setPlayerSpeed(3.5f);
+		}
+		if (keystates[SDL_SCANCODE_3])
+		{
+			getPlayerShip()->setPlayerSpeed(4.0f);
+		}
+		if (keystates[SDL_SCANCODE_4])
+		{
+			getPlayerShip()->setPlayerSpeed(4.5f);
+		}
+		if (keystates[SDL_SCANCODE_5])
+		{
+			getPlayerShip()->setPlayerSpeed(5.0f);
+		}
+		if (keystates[SDL_SCANCODE_6])
+		{
+			getPlayerShip()->setPlayerSpeed(5.5f);
+		}
+		if (keystates[SDL_SCANCODE_7])
+		{
+			getPlayerShip()->setPlayerSpeed(6.0f);
+		}
+		if (keystates[SDL_SCANCODE_8])
+		{
+			getPlayerShip()->setPlayerSpeed(6.5f);
+		}
+		if (keystates[SDL_SCANCODE_9])
+		{
+			getPlayerShip()->setPlayerSpeed(7.0f);
+		}
+		if (keystates[SDL_SCANCODE_0])
+		{
+			getPlayerShip()->setPlayerSpeed(7.5f);
+		}
+		if (keystates[SDL_SCANCODE_MINUS])
+		{
+			getPlayerShip()->setPlayerSpeed(8.0f);
+		}
+		if (keystates[SDL_SCANCODE_EQUALS])
+		{
+			getPlayerShip()->setPlayerSpeed(8.5f);
+		}
 	}
-#pragma endregion 
+#pragma endregion
 	SDL_Event event;
 		while(SDL_PollEvent(&event))
 	{
@@ -309,42 +357,6 @@ void Game::handleEvents()
 			{
 			case SDLK_ESCAPE:
 				m_bRunning = false;
-				break;
-			case SDLK_1:
-					getPlayerShip()->setPlayerSpeed(3.0f);
-				break;
-			case SDLK_2:
-					getPlayerShip()->setPlayerSpeed(3.5f);
-				break;
-			case SDLK_3:
-					getPlayerShip()->setPlayerSpeed(4.0f);
-				break;
-			case SDLK_4:
-					getPlayerShip()->setPlayerSpeed(4.5f);
-				break;
-			case SDLK_5:
-					getPlayerShip()->setPlayerSpeed(5.0f);
-				break;
-			case SDLK_6:
-					getPlayerShip()->setPlayerSpeed(5.5f);
-				break;
-			case SDLK_7:
-					getPlayerShip()->setPlayerSpeed(6.0f);
-				break;
-			case SDLK_8:
-					getPlayerShip()->setPlayerSpeed(6.5f);
-				break;
-			case SDLK_9:
-					getPlayerShip()->setPlayerSpeed(7.0f);
-				break;
-			case SDLK_0:
-					getPlayerShip()->setPlayerSpeed(7.5f);
-				break;
-			case SDLK_MINUS:
-					getPlayerShip()->setPlayerSpeed(8.0f);
-				break;
-			case SDLK_EQUALS :
-					getPlayerShip()->setPlayerSpeed(8.5f);
 				break;
 			default:
 				break;
@@ -400,30 +412,62 @@ void Game::handleEvents()
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_w:
-				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x,0.0f));
-
+				if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+									getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x,0.0f));
+				}
 				break;
 			case SDLK_a:
-				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+									getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				}
 				break;
 			case SDLK_s:
-				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
+				}
 				break;
 			case SDLK_d:
-				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				}
 				break;
 			case SDLK_UP:
-				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
-
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
+				}
 				break;
 			case SDLK_LEFT:
-				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				}
+				
 				break;
 			case SDLK_DOWN:
-				getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));	
+				}
+
 				break;
 			case SDLK_RIGHT:
-				getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				}	
 				break;
 			default:
 				break;
