@@ -28,7 +28,7 @@ void LevelScene::update()
 		player->update();
 	}
 	//m_pSpeedLabel->setText("Speed: " + std::to_string(player->getPlayerSpeed()));
-	//m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 	m_pMap->update();
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
@@ -131,6 +131,17 @@ void LevelScene::update()
 						for (PlayerWeapon* pw : playerWeapons) {
 							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
 								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+									if(ps.getName() == "IndesBody" && es.getName() == "BasicBody"
+										&& CollisionManager::shipComponentCheck(ps,es))
+									{
+										player->setKillCounter(1);
+										if (player->getKillCounter() == 20)
+										{
+											m_pshield = new Shield();
+											shieldSpawnPos = es.getParent()->getParent()->getPosition();
+											m_pshield->setPosition(shieldSpawnPos);
+										}
+									}
 									if (CollisionManager::shipComponentCheck(es, ps))
 									{
 										ShipComponent temp[2] = { ps, es };
@@ -154,6 +165,11 @@ void LevelScene::update()
 				}
 			}
 		}
+	}
+	if(m_pshield != nullptr && CollisionManager::squaredRadiusCheck(player, m_pshield))
+	{
+		player->setShieldAvailable(true);
+		m_pshield->setCollided(true);
 	}
 	#pragma endregion
 
@@ -202,7 +218,7 @@ void LevelScene::update()
 	}
 	#pragma endregion
 
-	if(player->getPlayerLives() == 0)
+	if(player->getPlayerLives() == 0 && !player->getShieldAvailable())
 	{
 		Game::Instance()->changeSceneState(END_SCENE);
 	}
@@ -215,8 +231,8 @@ void LevelScene::draw()
 	{
 		player->draw();
 	}
-	//m_pLivesLabel->draw();
-	//m_pSpeedLabel->draw();
+	m_pSpeedLabel->draw();
+	m_pLivesLabel->draw();
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}
@@ -224,6 +240,10 @@ void LevelScene::draw()
 		a->GetParent()->draw();
 	}
 	m_pControl_Img->draw();
+	if(m_pshield != nullptr && !m_pshield->getCollided())
+	{
+		m_pshield->draw();
+	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)

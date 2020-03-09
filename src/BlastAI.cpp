@@ -7,15 +7,15 @@ BlastAI::BlastAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
 	{
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody()
+		MissileLauncher(), BasicBody(), BasicBody(),
+		MissileLauncher(), BasicBody(), BasicBody(),
+		MissileLauncher(), BasicBody(), BasicBody(),
+		MissileLauncher(), BasicBody(), BasicBody(),
+		MissileLauncher(), BasicBody(), BasicBody(),
 	};
 #pragma endregion
 	parent = new Enemy(new Frame(15, //Enemy is 75px by 75px
-		build, 5, 5), 1, this, transform, "Blast");
+		build, 3, 5), 1, this, transform, "Blast");
 	speed.x = -4.00f; //Tweak this number later
 }
 
