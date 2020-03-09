@@ -18,11 +18,12 @@ RainAI::RainAI(glm::vec2 transform)
 		Blank(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), Blank(),
 		Blank(), Blank(), Cannon(), BasicBody(), Cannon(), Blank(), Blank()
 	};
+#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 280px by 280px
 		build, 7, 7), 25, //Will tweak if 50 health proves to be too much or too little
 		this, transform, "Rain");
 	speed.y = 10.00f; //Tweak this number later
-#pragma endregion
+	target = glm::vec2(Config::SCREEN_WIDTH - parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2, Config::SCREEN_HEIGHT / 2);
 }
 
 RainAI::~RainAI()
