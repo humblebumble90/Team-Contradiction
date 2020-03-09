@@ -217,10 +217,6 @@ void PlayerShip::update()
 	//	currentVelocity.x *= 0.9f;
 	//	currentVelocity.y *= 0.9f;
 	//}
-	if(killCounter == 21)
-	{
-		killCounter = 1;
-	}
 	if (playerLives >= 0)
 	{
 		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
