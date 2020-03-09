@@ -8,6 +8,7 @@ public:
 	Shield();
 	~Shield();
 	void draw() override;
+	void move();
 	void update() override;
 	void clean() override;
 	bool getCollided();
@@ -15,4 +16,4 @@ public:
 private:
 	bool collided;
 };
-#endif  /*Defiend (__SHIELD__)*/
+#endif  /*Defined (__SHIELD__)*/
