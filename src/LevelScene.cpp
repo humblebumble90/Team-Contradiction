@@ -255,8 +255,9 @@ void LevelScene::spawnPlayerWeapon(PlayerWeapon* playerWeapon)
 
 void LevelScene::initializeLabels()
 {
-	if (player != nullptr)
+	if (player != nullptr && m_pLivesLabel == nullptr && m_pSpeedLabel == nullptr)
 	{
+		std::cout << "Working checker...\n";
 		SDL_Color yellow = { 255, 255, 0, 255 };
 		m_pLivesLabel = new Label("Lives: " + std::to_string(player->getPlayerLives()), "Consolas",
 			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.45f, 10.0f), TTF_STYLE_NORMAL, false);
