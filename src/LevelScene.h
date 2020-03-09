@@ -47,6 +47,8 @@ protected:
 	std::vector<int> ramSpawnTimer, zigzagSpawnTimer, cannoneerSpawnTimer, guardianSpawnTimer, diagonSpawnTimer, blastSpawnTimer;
 	std::vector<glm::vec2> ramSpawnLocation, zigzagSpawnLocation, cannoneerSpawnLocation, guardianSpawnLocation, diagonSpawnLocation, blastSpawnLocation;
 	#pragma endregion
+
+	void initializeLabels();
 private:
 	void Damage(ShipComponent sc[2]);
 };
