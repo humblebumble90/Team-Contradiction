@@ -6,6 +6,7 @@ Level1::Level1()
 {
 	loadAllTextures();
 	loadAllSounds();
+
 	int second = 60;
 	int wave = 5 * second;
 	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT - 25);
@@ -183,6 +184,9 @@ Level1::Level1()
 
 	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
 	m_pMap = new Map();
+	m_pMap2 = new Map();
+	m_pMap->setPosition(glm::vec2(0, 0));
+	m_pMap2->setPosition(glm::vec2(1950, 0));
 	playSound("Level1", 999);
 }
 

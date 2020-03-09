@@ -13,6 +13,7 @@
 
 LevelScene::LevelScene()
 {
+
 }
 
 LevelScene::~LevelScene()
@@ -30,6 +31,7 @@ void LevelScene::update()
 	//m_pSpeedLabel->setText("Speed: " + std::to_string(player->getPlayerSpeed()));
 	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 	m_pMap->update();
+	m_pMap2->update();
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
@@ -222,11 +224,14 @@ void LevelScene::update()
 	{
 		Game::Instance()->changeSceneState(END_SCENE);
 	}
+
+
 }
 
 void LevelScene::draw()
 {
 	m_pMap->draw();
+	m_pMap2->draw();
 	if (player->getPlayerLives() >= 0)
 	{
 		player->draw();

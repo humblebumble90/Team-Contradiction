@@ -42,6 +42,7 @@ protected:
 	glm::vec2 shieldSpawnPos;
 
 	Map* m_pMap;
+	Map* m_pMap2;
 	#pragma endregion
 	#pragma region Spawn Timers
 	int time = 0, ramIteration = 0, zigzagIteration = 0, cannoneerIteration = 0, guardianIteration = 0, diagonIteration = 0, blastIteration = 0;
