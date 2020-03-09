@@ -155,6 +155,11 @@ void LevelScene::update()
 			}
 		}
 	}
+	if(m_pshield != nullptr && CollisionManager::squaredRadiusCheck(player, m_pshield))
+	{
+		player->setShieldAvailable(true);
+		m_pshield->setCollided(true);
+	}
 	#pragma endregion
 
 	#pragma region Spawn Enemies
@@ -215,8 +220,8 @@ void LevelScene::draw()
 	{
 		player->draw();
 	}
-	m_pLivesLabel->draw();
 	m_pSpeedLabel->draw();
+	m_pLivesLabel->draw();
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}
@@ -224,12 +229,23 @@ void LevelScene::draw()
 		a->GetParent()->draw();
 	}
 	m_pControl_Img->draw();
+	if(m_pshield != nullptr && !m_pshield->getCollided())
+	{
+		m_pshield->draw();
+	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
 {
 	for (int i = 0; i < enemies.size(); ++i) {
 		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
+			player->setKillCounter(1);
+			if (player->getKillCounter() == 20)
+			{
+				m_pshield = new Shield();
+				shieldSpawnPos = enemies[i]->GetParent()->getPosition();
+				m_pshield->setPosition(shieldSpawnPos);
+			}
 			enemies.erase(enemies.begin()+i);
 			break;
 		}

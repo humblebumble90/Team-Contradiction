@@ -11,7 +11,7 @@
 #include <glm/detail/type_vec2.hpp>
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
-:m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
+:m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false),killCounter(0),shieldAvailable(false)
 {
 	changeTexture("Player");
 	setPosition(targetTransform);
@@ -67,7 +67,11 @@ void PlayerShip::Damage(int i)
 		std::cout << "Player life decreases for 1!" << std::endl;
 		playerHealth += 1;
 		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
-		invincible();
+		if(shieldAvailable)
+		{
+			invincible();
+			shieldAvailable = false;
+		}
 	}
 }
 bool PlayerShip::getInvincibility()
@@ -105,6 +109,27 @@ void PlayerShip::checkBound()
 	{
 		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.95f));
 	}
+}
+
+int PlayerShip::getKillCounter()
+{
+	return killCounter;
+}
+
+void PlayerShip::setKillCounter(int num)
+{
+	killCounter += num;
+	std::cout << killCounter << std::endl;
+}
+
+bool PlayerShip::getShieldAvailable()
+{
+	return shieldAvailable;
+}
+
+void PlayerShip::setShieldAvailable(bool newState)
+{
+	shieldAvailable = newState;
 }
 
 Frame* PlayerShip::GetFrame()
@@ -186,7 +211,10 @@ void PlayerShip::update()
 	//	currentVelocity.x *= 0.9f;
 	//	currentVelocity.y *= 0.9f;
 	//}
-
+	if(killCounter >= 21)
+	{
+		killCounter = 1;
+	}
 	if (playerLives >= 0)
 	{
 		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
