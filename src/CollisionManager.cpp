@@ -35,6 +35,8 @@ bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* objec
 				std::cout << "Collision with Mine!" << std::endl;
 				TheSoundManager::Instance()->playSound("thunder", 0);
 				break;
+			case SHIELD:
+				std::cout << "Collision with shield!\n";
 			default:
 				//std::cout << "Collision with unknown type!" << std::endl;
 				break;

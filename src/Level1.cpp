@@ -200,6 +200,7 @@ void Level1::handleEvents()
 
 void Level1::start()
 {
+	
 }
 void Level1::loadAllTextures()
 {

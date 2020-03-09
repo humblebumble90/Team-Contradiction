@@ -30,7 +30,6 @@ public:
 
 	//Invincibility
 	bool getInvincibility();
-	bool inv;
 
 	//Moving
 	void move(Move newMove);
@@ -49,11 +48,20 @@ public:
 	//Getter and setter of player speed
 	float getPlayerSpeed();
 	void setPlayerSpeed(float num);
+
+	void setKillCounter(int num);
+
+	bool getShieldAvailable();
+	void setShieldAvailable(bool newState);
 private:
 	Uint8 m_alpha;
 	float m_maxSpeed;
 	bool m_isMoving;
+	
+	bool shieldAvailable;
+	bool inv;
 	int endInvincibleTime;
+	
 	int playerHealth;
 	int playerLives;
 	int playerScore;
@@ -61,6 +69,9 @@ private:
 	const static int defaultAlpha = 255;
 	void invincible();
 	void checkBound();
+	//KillCounter
+	int killCounter;
+	int getKillCounter();
 };
 
 

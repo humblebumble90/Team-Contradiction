@@ -16,7 +16,7 @@ Level3::Level3(PlayerShip* thePlayer)
 	loadAllTextures();
 	loadAllSounds();
 	m_pMap = new Map();
-	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
+	player = new PlayerShip(1, 30, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
 	//player = thePlayer;
 	playSound("RamRush", 0);
 }
