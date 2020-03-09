@@ -5,6 +5,7 @@
 Level1::Level1()
 {
 	loadAllTextures();
+	loadAllSounds();
 	int second = 60;
 	int wave = 5 * second;
 	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT - 25);
@@ -182,6 +183,7 @@ Level1::Level1()
 
 	player = new PlayerShip(1, 3, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
 	m_pMap = new Map();
+	playSound("Level1", 999);
 }
 
 Level1::~Level1()
@@ -216,4 +218,9 @@ void Level1::loadAllTextures()
 	loadTexture("../Assets/textures/Diagon.png", "Diagon");
 	loadTexture("../Assets/textures/Cannoneer.png", "Cannoneer");
 	loadTexture("../Assets/textures/Rain.png", "Rain");
+}
+
+void Level1::loadAllSounds()
+{
+	loadSound("../Assets/audio/level1.ogg", "Level1", SOUND_MUSIC);
 }

@@ -60,6 +60,7 @@ void EndScene::handleEvents()
 
 void EndScene::start()
 {
+	loadAllSounds();
 	SDL_Color blue = { 255, 0, 0, 255 };
 	m_Label = new Label("Push R key to restart the game.", "Dock51", 40, blue, 
 		glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.9f));
@@ -69,4 +70,10 @@ void EndScene::start()
 	m_game_over_bg_ = new Game_Over_Bg();
 	m_game_over_bg_->setParent(this);
 	addChild(m_game_over_bg_);
+	playSound("GameOver", 999);
+}
+
+void EndScene::loadAllSounds()
+{
+	loadSound("../Assets/audio/game_over.ogg", "GameOver", SOUND_MUSIC);
 }

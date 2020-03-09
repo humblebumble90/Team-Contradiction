@@ -19,6 +19,7 @@ public:
 	virtual void start() override;
 
 private:
+	void loadAllSounds();
 	Label* m_Label;
 	Game_Over_Bg* m_game_over_bg_;
 };
