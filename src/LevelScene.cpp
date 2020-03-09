@@ -29,13 +29,6 @@ void LevelScene::update()
 	{
 		player->update();
 	}
-	if (m_pSpeedLabel != nullptr){
-		m_pSpeedLabel->setText("Speed: " + std::to_string(player->getPlayerSpeed()));
-	}
-	if (m_pLivesLabel != nullptr)
-	{
-		m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-	}
 	if (m_pMap != nullptr)
 	{
 		m_pMap->update();
@@ -60,11 +53,12 @@ void LevelScene::update()
 						for (PlayerWeapon* pw : playerWeapons) {
 							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
 								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
-									if(ps.getName() == "IndesBody" && es.getName() == "BasicBody"
+									
+										if(ps.getName() == "IndesBody" && es.getName() == "BasicBody"
 										&& CollisionManager::shipComponentCheck(ps,es))
 									{
 										player->setKillCounter(1);
-										if (player->getKillCounter() % 30 == 0)
+										if (player->getKillCounter() % 20 == 0)
 										{
 											Shield* shield = new Shield();
 											shieldSpawnPos = es.getParent()->getParent()->getPosition();
@@ -72,12 +66,17 @@ void LevelScene::update()
 											shield->setVelocity
 											(glm::vec2( -5.0f , 0.0f));
 											m_pshields.push_back(shield);
+											std::cout << "Shield gen\n";
 										}
 									}
 									if (CollisionManager::shipComponentCheck(es, ps))
 									{
 										ShipComponent temp[2] = { ps, es };
 										Damage(temp);
+										if (ps.getName() == "BasicBody")
+										{
+											m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+										}
 									}
 								}
 							}
@@ -90,6 +89,11 @@ void LevelScene::update()
 								{
 									ShipComponent temp[2] = { ps, es };
 									Damage(temp);
+									if(ps.getName() == "BasicBody")
+									{
+										m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+									}
+									
 								}
 							}
 						}
@@ -185,9 +189,9 @@ void LevelScene::draw()
 	{
 		player->draw();
 	}
-	if (m_pSpeedLabel != nullptr) {
-		m_pSpeedLabel->draw();
-	}
+	//if (m_pSpeedLabel != nullptr) {
+	//	m_pSpeedLabel->draw();
+	//}
 	if (m_pLivesLabel != nullptr) {
 		m_pLivesLabel->draw();
 	}
@@ -278,14 +282,14 @@ void LevelScene::spawnPlayerWeapon(PlayerWeapon* playerWeapon)
 
 void LevelScene::initializeLabels()
 {
-	if (player != nullptr && m_pLivesLabel == nullptr && m_pSpeedLabel == nullptr)
+	if (player != nullptr && m_pLivesLabel == nullptr)
 	{
-		std::cout << "Working checker...\n";
+		std::cout << "Initialized.\n";
 		SDL_Color yellow = { 255, 255, 0, 255 };
 		m_pLivesLabel = new Label("Lives: " + std::to_string(player->getPlayerLives()), "Consolas",
-			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.45f, 10.0f), TTF_STYLE_NORMAL, false);
-		m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "Consolas",
-			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);
+			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, 10.0f), TTF_STYLE_NORMAL, false);
+		/*m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "Consolas",
+			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);*/
 		return;
 	}
 }

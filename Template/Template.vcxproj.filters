@@ -249,6 +249,9 @@
     <ClCompile Include="..\src\Level3Button.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Power_Up.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -463,6 +466,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Level3Button.h">
       <Filter>Source Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Power_Up.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

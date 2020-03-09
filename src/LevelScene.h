@@ -10,6 +10,7 @@
 #include <SDL_ttf.h>
 #include "Control_Img.h"
 #include "Shield.h"
+#include "Power_Up.h"
 
 class LevelScene : public Scene
 {
@@ -31,12 +32,13 @@ protected:
 	std::vector<AI*> enemies;
 	PlayerShip* player;
 	SDL_Color yellow = { 255, 255, 0, 255 };
-	Label* m_pSpeedLabel;
+	//Label* m_pSpeedLabel;
 	Label* m_pLivesLabel;
 
 	Control_Img* m_pControl_Img = new Control_Img();
 	std::vector<PlayerWeapon*> playerWeapons;
 	std::vector<Shield*> m_pshields;
+	std::vector<Power_Up*> power_ups;
 	glm::vec2 shieldSpawnPos;
 
 	Map* m_pMap;
