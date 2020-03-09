@@ -28,7 +28,7 @@ void LevelScene::update()
 		player->update();
 	}
 	//m_pSpeedLabel->setText("Speed: " + std::to_string(player->getPlayerSpeed()));
-	//m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 	m_pMap->update();
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
@@ -207,7 +207,7 @@ void LevelScene::update()
 	}
 	#pragma endregion
 
-	if(player->getPlayerLives() == 0)
+	if(player->getPlayerLives() == 0 && !player->getShieldAvailable())
 	{
 		Game::Instance()->changeSceneState(END_SCENE);
 	}
