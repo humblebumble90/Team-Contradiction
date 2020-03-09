@@ -50,5 +50,5 @@ void Map::_checkBounds()
 
 void Map::_reset()
 {
-	setPosition(glm::vec2(1959, 0));
+	setPosition(glm::vec2(1960, 0));
 }
