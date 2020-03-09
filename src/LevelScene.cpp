@@ -24,105 +24,31 @@ void LevelScene::update()
 {
 	++time;
 	spawnedEnemy = false;
-	if(player->getPlayerLives() >= 0)
+	if (player->getPlayerLives() >= 0)
 	{
 		player->update();
 	}
-	//m_pSpeedLabel->setText("Speed: " + std::to_string(player->getPlayerSpeed()));
-	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-	m_pMap->update();
-	m_pMap2->update();
+	if (m_pSpeedLabel != nullptr){
+		m_pSpeedLabel->setText("Speed: " + std::to_string(player->getPlayerSpeed()));
+	}
+	if (m_pLivesLabel != nullptr)
+	{
+		m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+	}
+	if (m_pMap != nullptr)
+	{
+		m_pMap->update();
+	}
+	if (m_pMap2 != nullptr)
+	{
+		m_pMap2->update();
+	}
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->update();
 	}
-	/*
-	#pragma region Player Collision and invinciblity
-	if (player->getInvincibility() == false && enemies.empty() == false)
-	{
-		//for (Enemy* enemy : m_pEnemy)
-		//{
-		//	CollisionManager::squaredRadiusCheck(player, enemy);
-		//}
-		//get the player's build
-		for (ShipComponent s : player->GetFrame()->GetBuild())
-		{
-			//if the build is a basicbody
-			if (s.getName() == "BasicBody")
-			{
-				// for all enemies
-				//std::cout << s.getPosition().x << std::endl;
-				for (AI* a : enemies)
-				{
-					//get the ship component of the enemies
-					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
-					{
-						//if the names are basic body and indesbody
-						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
-						{
-							//std::cout << s.getName() << std::endl;
-							//std::cout << s.getPosition().x << std::endl;
-							//std::cout << s.getPosition().y << std::endl;
-							//std::cout << c.getName() << std::endl;
-							//std::cout << c.getPosition().x << std::endl;
-							//std::cout << c.getPosition().y << std::endl;
-							//and they are colliding then do this
-							if (CollisionManager::shipComponentCheck(s, c))
-							{
-								std::cout << "something" << std::endl;
-								player->Damage(1);
-
-								if (c.getName() == "BasicBody")
-								{
-									((BasicBody&)c).Damage(1);
-								}
-								else
-								{
-									((IndesBody&)c).Damage(s);
-								}
-							}
-
-						}
-					}
-				}
-			}
-		}
-	}
-#pragma endregion
-	#pragma region Player Weapon Collision
-	for (int b = 0; b < playerWeapons.size(); ++ b) {
-		for (ShipComponent s : playerWeapons[b]->getFrame()->GetBuild())
-		{
-			if (s.getName() == "BasicBody" || s.getName() == "IndesBody")
-			{
-				for (AI* a : enemies)
-				{
-					for (ShipComponent c : a->GetParent()->GetFrame()->GetBuild())
-					{
-						if (c.getName() == "BasicBody" || c.getName() == "IndesBody")
-						{
-							if (CollisionManager::shipComponentCheck(s, c))
-							{
-								if (s.getName() == "BasicBody")
-								{
-									((BasicBody&)s).Damage(1);
-								}
-								else
-								{
-									((IndesBody&)s).Damage(c);
-								}
-							}
-
-						}
-					}
-				}
-			}
-		}
-	}
-#pragma endregion
-	*/
 	#pragma region Collisions
 	//if the enemies are spawned or if the player is invincible
 	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
@@ -230,21 +156,35 @@ void LevelScene::update()
 
 void LevelScene::draw()
 {
-	m_pMap->draw();
-	m_pMap2->draw();
+	if (m_pMap != nullptr)
+	{
+		m_pMap->draw();
+	}
+	if (m_pMap2 != nullptr)
+	{
+		m_pMap2->draw();
+	}
 	if (player->getPlayerLives() >= 0)
 	{
 		player->draw();
 	}
-	m_pSpeedLabel->draw();
-	m_pLivesLabel->draw();
+	if (m_pSpeedLabel != nullptr) {
+		m_pSpeedLabel->draw();
+	}
+	if (m_pLivesLabel != nullptr) {
+		m_pLivesLabel->draw();
+	}
+
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}
 	for (AI* a : enemies) {
 		a->GetParent()->draw();
 	}
-	m_pControl_Img->draw();
+	if (m_pControl_Img != nullptr)
+	{
+		m_pControl_Img->draw();
+	}
 	if(m_pshield != nullptr && !m_pshield->getCollided())
 	{
 		m_pshield->draw();

@@ -3,9 +3,6 @@
 
 Map::Map()
 {
-	TheTextureManager::Instance()->load("../Assets/textures/map.jpg",
-		"map", TheGame::Instance()->getRenderer());
-
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("map");
 	setWidth(size.x);
 	setHeight(size.y);
