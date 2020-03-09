@@ -31,7 +31,7 @@ void Enemy::Damage(int i)
 			doDamage = false;
 		}
 	}
-	if (doDamage) {
+	if (doDamage && hitTimer <= 0) {
 		health -= i;
 		if (health <= 0)
 		{

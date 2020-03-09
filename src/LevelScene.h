@@ -9,6 +9,7 @@
 #include "Label.h"
 #include <SDL_ttf.h>
 #include "Control_Img.h"
+#include "Shield.h"
 
 class LevelScene : public Scene
 {
@@ -34,8 +35,11 @@ protected:
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.45f, 10.0f), TTF_STYLE_NORMAL, false);
 	Label* m_pLivesLabel = new Label("Lives: ", "Consolas",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH*0.65f, 10.0f), TTF_STYLE_NORMAL, false);
+
 	Control_Img* m_pControl_Img = new Control_Img();
 	std::vector<PlayerWeapon*> playerWeapons;
+	Shield* m_pshield;
+	glm::vec2 shieldSpawnPos;
 
 	Map* m_pMap;
 	#pragma endregion

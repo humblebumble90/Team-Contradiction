@@ -239,9 +239,113 @@ PlayerShip * Game::getPlayerShip()
 void Game::handleEvents()
 {
 	m_currentScene->handleEvents();
-
+#pragma region Playership control
+	const Uint8* keystates = SDL_GetKeyboardState(NULL);
+	if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE &&
+		getPlayerShip()!= nullptr)
+	{
+		if (keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A])
+		{
+			getPlayerShip()->move(LEFT);
+		}
+		if (keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_D])
+		{
+			getPlayerShip()->move(RIGHT);
+		}
+		if (keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W])
+		{
+			getPlayerShip()->move(UP);
+		}
+		if (keystates[SDL_SCANCODE_DOWN] || keystates[SDL_SCANCODE_S])
+		{
+			getPlayerShip()->move(DOWN);
+		}
+		if (keystates[SDL_SCANCODE_Z] || SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+			if (getPlayerShip()->getPlayerLives() >= 0)
+			{
+				for (int z = 0; z < 3; ++z) {
+					if (firingCooldown[z] == 0) {
+						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+						firingCooldown[z] = firingCooldownReset[z];
+					}
+				}
+			}
+		if (keystates[SDL_SCANCODE_X])
+			if (getPlayerShip()->getPlayerLives() >= 0)
+			{
+				if (firingCooldown[0] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
+					firingCooldown[0] = firingCooldownReset[0];
+				}
+			}
+		if (keystates[SDL_SCANCODE_C])
+			if (getPlayerShip()->getPlayerLives() >= 0)
+			{
+				if (firingCooldown[1] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(1).Fire();
+					firingCooldown[1] = firingCooldownReset[1];
+				}
+			}
+		if (keystates[SDL_SCANCODE_V])
+			if (getPlayerShip()->getPlayerLives() >= 0)
+			{
+				if (firingCooldown[2] == 0) {
+					getPlayerShip()->GetFrame()->GetWeapon(2).Fire();
+					firingCooldown[2] = firingCooldownReset[2];
+				}
+			}
+		if(keystates[SDL_SCANCODE_1])
+		{
+			getPlayerShip()->setPlayerSpeed(3.0f);
+		}
+		if (keystates[SDL_SCANCODE_2])
+		{
+			getPlayerShip()->setPlayerSpeed(3.5f);
+		}
+		if (keystates[SDL_SCANCODE_3])
+		{
+			getPlayerShip()->setPlayerSpeed(4.0f);
+		}
+		if (keystates[SDL_SCANCODE_4])
+		{
+			getPlayerShip()->setPlayerSpeed(4.5f);
+		}
+		if (keystates[SDL_SCANCODE_5])
+		{
+			getPlayerShip()->setPlayerSpeed(5.0f);
+		}
+		if (keystates[SDL_SCANCODE_6])
+		{
+			getPlayerShip()->setPlayerSpeed(5.5f);
+		}
+		if (keystates[SDL_SCANCODE_7])
+		{
+			getPlayerShip()->setPlayerSpeed(6.0f);
+		}
+		if (keystates[SDL_SCANCODE_8])
+		{
+			getPlayerShip()->setPlayerSpeed(6.5f);
+		}
+		if (keystates[SDL_SCANCODE_9])
+		{
+			getPlayerShip()->setPlayerSpeed(7.0f);
+		}
+		if (keystates[SDL_SCANCODE_0])
+		{
+			getPlayerShip()->setPlayerSpeed(7.5f);
+		}
+		if (keystates[SDL_SCANCODE_MINUS])
+		{
+			getPlayerShip()->setPlayerSpeed(8.0f);
+		}
+		if (keystates[SDL_SCANCODE_EQUALS])
+		{
+			getPlayerShip()->setPlayerSpeed(8.5f);
+		}
+	}
+#pragma endregion
 	SDL_Event event;
-	if (SDL_PollEvent(&event))
+		while(SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
@@ -254,40 +358,14 @@ void Game::handleEvents()
 			case SDLK_ESCAPE:
 				m_bRunning = false;
 				break;
-			case SDLK_w:
-				getPlayerShip()->setIsMoving(true);
-				getPlayerShip()->move(UP);
-				break;
-			case SDLK_s:
-				getPlayerShip()->setIsMoving(true);
-				getPlayerShip()->move(DOWN);
-				break;
-			case SDLK_a:
-				getPlayerShip()->setIsMoving(true);
-				getPlayerShip()->move(LEFT);
-				break;
-			case SDLK_d:
-				getPlayerShip()->setIsMoving(true);
-				getPlayerShip()->move(RIGHT);
-				break;
-			case SDLK_KP_PLUS:
-				if(getPlayerShip()->getPlayerSpeed() < 7.5f)
-				{
-					getPlayerShip()->setPlayerSpeed(0.5f);
-				}
-				break;
-			case SDLK_KP_MINUS:
-				if(getPlayerShip()->getPlayerSpeed() > 3.0f)
-				{
-					getPlayerShip()->setPlayerSpeed(-0.5f);
-				}
+			default:
 				break;
 				// The below code throws a Debug Assertion Failed Error
 			case SDLK_f:
 				((Level3*)m_currentScene)->CheatCode(); //WARNING: For testing Level 3 only! Remove this when testing ends!
 				//getPlayerShip()->GetFrame().GetWeapon(0).Fire();
 				break;
-			case SDLK_z:
+			/*case SDLK_z:
 				if (getPlayerShip()->getPlayerLives() >= 0)
 				{
 					for (int z = 0; z < 3; ++z) {
@@ -325,7 +403,7 @@ void Game::handleEvents()
 					firingCooldown[2] = firingCooldownReset[2];
 					}
 				}
-				break;
+				break;*/
 			}
 			break;
 		default:
@@ -334,18 +412,84 @@ void Game::handleEvents()
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_w:
-				getPlayerShip()->setIsMoving(false);
+				if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+									getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x,0.0f));
+				}
 				break;
 			case SDLK_a:
-				getPlayerShip()->setIsMoving(false);
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+									getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				}
 				break;
 			case SDLK_s:
-				getPlayerShip()->setIsMoving(false);
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
+				}
 				break;
 			case SDLK_d:
-				getPlayerShip()->setIsMoving(false);
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				}
+				break;
+			case SDLK_UP:
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));
+				}
+				break;
+			case SDLK_LEFT:
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				}
+				
+				break;
+			case SDLK_DOWN:
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(getPlayerShip()->getVelocity().x, 0.0f));	
+				}
+
+				break;
+			case SDLK_RIGHT:
+				if (m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE
+					&& getPlayerShip() != nullptr)
+				{
+					getPlayerShip()->setVelocity(glm::vec2(0.0f, getPlayerShip()->getVelocity().y));
+				}	
+				break;
+			default:
 				break;
 			}
+			break;
+		//case SDL_MOUSEBUTTONDOWN:
+		//	switch (event.button.button)
+		//	{
+		//	case SDL_BUTTON_LEFT:
+		//		if(m_currentSceneState != START_SCENE && m_currentSceneState != END_SCENE &&
+		//			getPlayerShip() != nullptr)
+		//		for (int z = 0; z < 3; ++z) {
+		//			if (firingCooldown[z] == 0) {
+		//				getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
+		//				firingCooldown[z] = firingCooldownReset[z];
+		//			}
+		//		}
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//	break;
 		}
 	}
 }

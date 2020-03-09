@@ -31,7 +31,7 @@ DeathcageAI::DeathcageAI(glm::vec2 transform)
 	};
 	#pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 640px by 720px - NOTE: Deathcage is the height of the screen
-	build, 16, 18), 5000, //Will tweak if 100 health proves to be too much or too little
+	build, 16, 18), 150, //Will tweak if 100 health proves to be too much or too little
 		this, transform, "Deathcage");
 
 #pragma region Assocate Cannons
@@ -87,8 +87,8 @@ void DeathcageAI::SecondaryFunction()
 		}
 		else
 		{
-			topCannons[cannonIteration].Fire(glm::vec2(0, 1));
-			bottomCannons[cannonIteration].Fire(glm::vec2(0, -1));
+			topCannons[cannonIteration].Fire(Vector2(0, 1));
+			bottomCannons[cannonIteration].Fire(Vector2(0, -1));
 			++cannonIteration;
 		}
 	}

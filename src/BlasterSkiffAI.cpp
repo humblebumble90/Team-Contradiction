@@ -11,26 +11,24 @@ BlasterSkiffAI::BlasterSkiffAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 	#pragma region Frame Construction
 	{
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), IndesBody(false), Blank(),
-			BasicBody(),IndesBody(false), IndesBody(false),	  IndesBody(false), Blank(),		  Blank(),			IndesBody(false), IndesBody(false),
-			BasicBody(),IndesBody(false), IndesBody(false),   IndesBody(false), Blank(),		  Blank(),			IndesBody(false), IndesBody(false),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), IndesBody(false), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(), Blank(),
-			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(), Blank()
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), IndesBody(false),
+			BasicBody(),IndesBody(false), IndesBody(false),	  IndesBody(false), Blank(),		  Blank(),			IndesBody(false),
+			BasicBody(),IndesBody(false), IndesBody(false),   IndesBody(false), Blank(),		  Blank(),			IndesBody(false),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), IndesBody(false),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  IndesBody(false), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), IndesBody(false), Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), IndesBody(false), Blank(),			Blank(),
+			Blank(),	MissileLauncher(), MissileLauncher(), IndesBody(false), Blank(),		  Blank(),			Blank(),
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(40, //Enemy is 320px by 640px
-	build, 8, 16), 150, //Will tweak if 50 health proves to be too much or too little
+	parent = new Enemy(new Frame(45.714285, //Enemy is 320px by 640px
+	build, 7, 14), 25,
 	this, transform, "BlasterSkiff");
 	speed.y = 1.00f; //Tweak this number later
 	topBouncePoint = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridHeight() / 2;

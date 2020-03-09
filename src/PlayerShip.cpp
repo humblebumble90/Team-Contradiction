@@ -8,9 +8,10 @@
 #include "MissileLauncher.h"
 #include "Blank.h"
 #include <functional>
+#include <glm/detail/type_vec2.hpp>
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
-:m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false)
+:m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false),killCounter(0),shieldAvailable(false)
 {
 	changeTexture("Player");
 	setPosition(targetTransform);
@@ -30,13 +31,13 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 		Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),Blank(),Blank(),
 		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank(),
 		Blank(),Blank(),Blank(),Blank(),Blank(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),BasicBody(),Blank(),Blank(),Blank(),Blank(),Blank()*/
-		BasicBody(),BasicBody(),BasicBody(),MissileLauncher(),
-		BasicBody(), BasicBody(),BasicBody(), MissileLauncher(),
-		BasicBody(), BasicBody(), BasicBody(), MissileLauncher()
+		BasicBody(),BasicBody(),MissileLauncher(),
+		BasicBody(),BasicBody(), MissileLauncher(),
+		BasicBody(), BasicBody(), MissileLauncher()
 	};
 #pragma endregion
-	frame = new Frame(37.5, //Enemy is 150px by 100px
-		build, 4, 3); //Will tweak if it proves to be too much or too little
+	frame = new Frame(30, //Player Collider is 90px by 90px
+		build, 3, 3);
 	frame->Initialize(this);
 	playerLives = lives;
 	playerHealth = health;
@@ -58,23 +59,20 @@ PlayerShip::~PlayerShip()
 
 void PlayerShip::Damage(int i)
 {
-	if (playerHealth >= 1 && playerLives >= 0)
+	if (playerHealth >= 1 && playerLives > 0 && !inv)
 	{
-		playerHealth -= i;
 		std::cout << "Player damaged!\n";
 		std::cout << "PlayerHealth: " << playerHealth << std::endl;
-		//playerLives -= 1;
+		playerLives -= 1;
 		std::cout << "Player life decreases for 1!" << std::endl;
 		playerHealth += 1;
 		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
-		invincible();
+			invincible();
 	}
-	else if(playerLives <= 0)
+	if(playerHealth >= 1 && playerLives == 0 && !inv && shieldAvailable)
 	{
-		std::cout << "Player Health: " << playerHealth << std::endl;
-		std::cout << "Player Lives: " << playerLives << std::endl;
-		std::cout << "Player died!" << std::endl;
-		//Game::Instance()->changeSceneState(END_SCENE);
+		invincible();
+		shieldAvailable = false;
 	}
 }
 bool PlayerShip::getInvincibility()
@@ -112,6 +110,27 @@ void PlayerShip::checkBound()
 	{
 		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.95f));
 	}
+}
+
+int PlayerShip::getKillCounter()
+{
+	return killCounter;
+}
+
+void PlayerShip::setKillCounter(int num)
+{
+	killCounter += num;
+	std::cout << killCounter << std::endl;
+}
+
+bool PlayerShip::getShieldAvailable()
+{
+	return shieldAvailable;
+}
+
+void PlayerShip::setShieldAvailable(bool newState)
+{
+	shieldAvailable = newState;
 }
 
 Frame* PlayerShip::GetFrame()
@@ -180,7 +199,7 @@ float PlayerShip::getPlayerSpeed()
 
 void PlayerShip::setPlayerSpeed(float num)
 {
-	m_maxSpeed += num;
+	m_maxSpeed = num;
 }
 
 void PlayerShip::update()
@@ -188,22 +207,21 @@ void PlayerShip::update()
 	auto currentPosition = getPosition();
 	auto currentVelocity = getVelocity();
 
-	if (m_isMoving == false)
+	//if (m_isMoving == false)
+	//{
+	//	currentVelocity.x *= 0.9f;
+	//	currentVelocity.y *= 0.9f;
+	//}
+	if(killCounter >= 21)
 	{
-		currentVelocity.x *= 0.99f;
-		currentVelocity.y *= 0.99f;
+		killCounter = 1;
 	}
-
 	if (playerLives >= 0)
 	{
 		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));
 		auto deltax = currentPosition.x + currentVelocity.x;
 		auto deltay = currentPosition.y + currentVelocity.y;
 		setPosition(glm::vec2(deltax, deltay));
-	}
-	else
-	{
-		delete this;
 	}
 	
 	//when the invincibility has finished run this
