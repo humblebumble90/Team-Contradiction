@@ -169,6 +169,7 @@
     <ClCompile Include="..\src\Game_Over_Bg.cpp" />
     <ClCompile Include="..\src\GuardianAI.cpp" />
     <ClCompile Include="..\src\Level1.cpp" />
+    <ClCompile Include="..\src\Level3Button.cpp" />
     <ClCompile Include="..\src\Map.cpp" />
     <ClCompile Include="..\src\MissileLauncher.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="..\src\Game_Over_Bg.h" />
     <ClInclude Include="..\src\GuardianAI.h" />
     <ClInclude Include="..\src\Level1.h" />
+    <ClInclude Include="..\src\Level3Button.h" />
     <ClInclude Include="..\src\Map.h" />
     <ClInclude Include="..\src\MissileLauncher.h" />
     <ClInclude Include="..\src\Move.h" />

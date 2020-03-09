@@ -6,11 +6,11 @@
 class Start_Scene_Bg:public DisplayObject
 {
 public:
-	Start_Scene_Bg(std::string imagePath = "../Assets/textures/StartSceneBg.png",
+	/*Start_Scene_Bg(std::string imagePath = "../Assets/textures/StartSceneBg.png",
 		std::string name = "Start_Scene_Bg",
 		GameObjectType type = START_SCENE_BG,
-		glm::vec2 position = glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.5f), bool isCentered = true);
-	
+		glm::vec2 position = glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.5f), bool isCentered = true);*/
+	Start_Scene_Bg();
 	~Start_Scene_Bg();
 	void draw() override;
 	void update() override;
