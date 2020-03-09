@@ -201,7 +201,7 @@ void Level1::loadAllTextures()
 {
 	//load the texture with loadTexture() with params path and id respectively
 	loadTexture("../Assets/textures/player.png", "Player");
-	loadTexture("../Assets/textures/map.jpg", "map");
+	loadTexture("../Assets/textures/background.png", "map");
 	loadTexture("../Assets/textures/ship3.png", "ship3");
 	loadTexture("../Assets/textures/Ram.png", "Ram");
 	loadTexture("../Assets/textures/Zigzag.png", "Zigzag");
