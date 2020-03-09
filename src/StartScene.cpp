@@ -95,6 +95,7 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
+	loadAllSounds();
 	m_pStart_Scene_Bg = new Start_Scene_Bg();
 	m_pStart_Scene_Bg->setParent(this);
 	addChild(m_pStart_Scene_Bg);
@@ -108,8 +109,13 @@ void StartScene::start()
 	m_pStartButton = new StartButton();
 	m_pStartButton->setParent(this);
 	addChild(m_pStartButton);
-
+	playSound("Menu", 999);
 
 	
 
+}
+
+void StartScene::loadAllSounds()
+{
+	loadSound("../Assets/audio/menu.ogg", "Menu", SOUND_MUSIC);
 }

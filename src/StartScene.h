@@ -25,6 +25,7 @@ private:
 	Label* m_pStartLabel;
 	Start_Scene_Bg* m_pStart_Scene_Bg;
 	StartButton* m_pStartButton;
+	void loadAllSounds();
 };
 
 #endif /* defined (__START_SCENE__) */
