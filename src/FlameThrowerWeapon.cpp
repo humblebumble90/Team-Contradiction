@@ -10,8 +10,10 @@ FlameThrowerWeapon::FlameThrowerWeapon(glm::vec2 position)
 	setHeight(size.y);
 	setPosition(position);
 
-	std::vector<ShipComponent> build = { IndesBody(true) };
-	frame = new Frame(45, build, 25, 100);
+	std::vector<ShipComponent> build = {
+		IndesBody(true),IndesBody(true),IndesBody(true),IndesBody(true)
+	};
+	frame = new Frame(25, build, 4, 1);
 	frame->Initialize(this);
 }
 
