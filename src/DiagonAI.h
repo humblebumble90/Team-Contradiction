@@ -10,6 +10,5 @@ public:
 	void PrimaryFunction() override;
 private:
 	int firingCooldown = 50, firingCooldownReset = 50;
-	float baseSpeed = 15.00f;
 };
 #endif
