@@ -131,6 +131,17 @@ void LevelScene::update()
 						for (PlayerWeapon* pw : playerWeapons) {
 							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
 								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+									if(ps.getName() == "IndesBody" && es.getName() == "BasicBody"
+										&& CollisionManager::shipComponentCheck(ps,es))
+									{
+										player->setKillCounter(1);
+										if (player->getKillCounter() == 20)
+										{
+											m_pshield = new Shield();
+											shieldSpawnPos = es.getParent()->getParent()->getPosition();
+											m_pshield->setPosition(shieldSpawnPos);
+										}
+									}
 									if (CollisionManager::shipComponentCheck(es, ps))
 									{
 										ShipComponent temp[2] = { ps, es };
@@ -239,13 +250,6 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 {
 	for (int i = 0; i < enemies.size(); ++i) {
 		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
-			player->setKillCounter(1);
-			if (player->getKillCounter() == 20)
-			{
-				m_pshield = new Shield();
-				shieldSpawnPos = enemies[i]->GetParent()->getPosition();
-				m_pshield->setPosition(shieldSpawnPos);
-			}
 			enemies.erase(enemies.begin()+i);
 			break;
 		}
