@@ -200,6 +200,10 @@ Level1::~Level1()
 
 void Level1::clean()
 {
+	delete player;
+	delete m_pMap;
+	delete m_pMap2;
+	removeAllChildren();
 }
 
 void Level1::handleEvents()

@@ -343,6 +343,22 @@ void Game::handleEvents()
 			getPlayerShip()->setPlayerSpeed(8.5f);
 		}
 	}
+	if (keystates[SDL_SCANCODE_KP_0])
+	{
+		Game::Instance()->changeSceneState(START_SCENE);
+	}
+	if (keystates[SDL_SCANCODE_KP_1])
+	{
+		Game::Instance()->changeSceneState(LEVEL1_SCENE);
+	}
+	if (keystates[SDL_SCANCODE_KP_3])
+	{
+		Game::Instance()->changeSceneState(LEVEL3_SCENE);
+	}
+	if (keystates[SDL_SCANCODE_KP_5])
+	{
+		Game::Instance()->changeSceneState(END_SCENE);
+	}
 #pragma endregion
 	SDL_Event event;
 		while(SDL_PollEvent(&event))
