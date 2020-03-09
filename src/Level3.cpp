@@ -35,6 +35,11 @@ Level3::~Level3()
 
 void Level3::clean()
 {
+	delete player;
+	delete m_pMap;
+	delete m_pMap2;
+	removeAllChildren();
+	
 }
 
 void Level3::handleEvents()
