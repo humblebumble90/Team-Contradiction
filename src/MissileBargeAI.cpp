@@ -9,16 +9,14 @@ MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 	std::vector<ShipComponent> build =
 	#pragma region Frame Construction
 	{
-		Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-		MissileLauncher(), BasicBody(), Blank(), Blank(), BasicBody(), MissileLauncher(),
-		MissileLauncher(), BasicBody(), Blank(), Blank(), BasicBody(), MissileLauncher(),
-		MissileLauncher(), BasicBody(), BasicBody(), BasicBody(), BasicBody(), MissileLauncher(),
-		Blank(), MissileLauncher(), MissileLauncher(),MissileLauncher(),MissileLauncher(), Blank()
+		Blank(), MissileLauncher(),MissileLauncher(), Blank(),
+		MissileLauncher(), BasicBody(),BasicBody(), MissileLauncher(),
+		MissileLauncher(), BasicBody(),BasicBody(), MissileLauncher(),
+		Blank(), MissileLauncher(),MissileLauncher(), Blank()
 	};
 	#pragma endregion
-	parent = new Enemy(new Frame(40, //Enemy is 240px by 240px
-	build, 6, 6), 150, //Will tweak if it proves to be too much or too little
+	parent = new Enemy(new Frame(60, //Enemy is 240px by 240px
+	build, 4, 4), 20, //Will tweak if it proves to be too much or too little
 		this, transform, "MissileBarge");
 	speed.y = -8.00f;
 	topLimit = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridHeight() / 2;
