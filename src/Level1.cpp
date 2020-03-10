@@ -4,6 +4,7 @@
 
 Level1::Level1()
 {
+	level = 1;
 	loadAllTextures();
 	loadAllSounds();
 

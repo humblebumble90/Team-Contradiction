@@ -13,6 +13,7 @@
 
 Level3::Level3(PlayerShip* thePlayer)
 {
+	level = 3;
 	loadAllTextures();
 	loadAllSounds();
 	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT / 2));

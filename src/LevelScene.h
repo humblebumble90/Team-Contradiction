@@ -51,6 +51,7 @@ protected:
 	#pragma endregion
 
 	void initializeLabels();
+	int level;
 private:
 	void Damage(ShipComponent sc[2]);
 };
