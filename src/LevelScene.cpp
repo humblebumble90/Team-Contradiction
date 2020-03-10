@@ -48,12 +48,17 @@ void LevelScene::update()
 	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
 		for (AI* enemy : enemies) {
 			for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
+				bool Break = false;
 				if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
 					if (playerWeapons.size() > 0) {
 						for (PlayerWeapon* pw : playerWeapons) {
 							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
 								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
-									
+									/*
+									This has been commented out because IT'S IN THE WRONG PLACE!!! This places a HUGE amount of computational expense!
+									Consider putting this inside the enemy's Damage() method as previously instructed by Josh
+
+
 										if(ps.getName() == "IndesBody" && es.getName() == "BasicBody"
 										&& CollisionManager::shipComponentCheck(ps,es))
 									{
@@ -68,19 +73,27 @@ void LevelScene::update()
 											m_pshields.push_back(shield);
 											std::cout << "Shield gen\n";
 										}
-									}
+									}*/
 									if (CollisionManager::shipComponentCheck(es, ps))
 									{
 										ShipComponent temp[2] = { ps, es };
 										Damage(temp);
-										if (ps.getName() == "BasicBody")
+										Break = true;
+										break;
+										/*if (ps.getName() == "BasicBody")
 										{
 											m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-										}
+										}*/
 									}
 								}
 							}
+							if (Break) {
+								break;
+							}
 						}
+					}
+					if (Break) {
+						break;
 					}
 					if (!player->getInvincibility()) {
 						for (ShipComponent ps : player->GetFrame()->GetBuild()) {
@@ -93,15 +106,21 @@ void LevelScene::update()
 									{
 										m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 									}
+									Break = true;
+									break;
 									
 								}
 							}
+						}
+						if (Break) {
+							break;
 						}
 					}
 				}
 			}
 		}
 	}
+	#pragma endregion
 	if (!m_pshields.empty())
 	{
 		for (int i = 0; i < m_pshields.size(); i++)
@@ -113,7 +132,7 @@ void LevelScene::update()
 				player->setShieldAvailable(true);
 				item->setCollided(true);
 				m_pshields.erase(m_pshields.begin() + i);
-					break;
+				break;
 			}
 			if (!item->getCollided())
 			{
@@ -121,8 +140,6 @@ void LevelScene::update()
 			}
 		}
 	}
-	#pragma endregion
-
 	#pragma region Spawn Enemies
 	if (ramIteration < ramSpawnTimer.size()) {
 		if (time == ramSpawnTimer[ramIteration])
