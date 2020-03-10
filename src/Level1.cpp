@@ -8,7 +8,7 @@ Level1::Level1()
 	loadAllSounds();
 
 	int second = 60;
-	int wave = 5 * second;
+	int wave = 3 * second;
 	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT - 25);
 	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT / 2 + 25);
 	glm::vec2 top = glm::vec2(Config::SCREEN_WIDTH + 25, 25);
@@ -79,14 +79,48 @@ Level1::Level1()
 		//2
 		2 * wave,
 		2 * wave + 1,
-		2 * wave + 2
+		//20
+		20 * wave,
+		20 * wave + 1,
+		20 * wave + 2,
+		20 * wave + 3,
+		//21
+		21 * wave,
+		21 * wave +	1,
+		21 * wave + 2,
+		21 * wave + 3,
+		//22
+		22 * wave,
+		22 * wave + 1,
+		22 * wave + 2,
+		22 * wave + 3,
+		//23
+		23 * wave,
+		23 * wave + 1,
+		23 * wave + 2,
+		23 * wave + 3
 	};
 	zigzagSpawnLocation =
 	{
 		//2
-		centerTop,
 		middle,
-		centerBottom
+		bottom,
+		//20
+		middle,
+		centerBottom,
+		bottom,
+		//21
+		middle,
+		centerBottom,
+		bottom,
+		//22
+		middle,
+		centerBottom,
+		bottom,
+		//23
+		middle,
+		centerBottom,
+		bottom
 	};
 
 
@@ -95,7 +129,9 @@ Level1::Level1()
 		//5
 		5 * wave,
 		//14
-		14 * wave
+		14 * wave,
+		//24
+		24 * wave
 	};
 
 	guardianSpawnLocation =
@@ -103,6 +139,8 @@ Level1::Level1()
 		//5
 		guardianPosition,
 		//14
+		guardianPosition,
+		//24
 		guardianPosition
 	};
 
@@ -117,7 +155,17 @@ Level1::Level1()
 		//13
 		13 * wave + 30,
 		13 * wave + 31,
-		13 * wave + 32
+		13 * wave + 32,
+		//21
+		21 * wave + 30,
+		21 * wave + 40,
+		21 * wave + 50,
+		21 * wave + 60,
+		//22
+		22 * wave + 70,
+		22 * wave + 80,
+		22 * wave + 90,
+		22 * wave + 100
 	};
 
 	ramSpawnLocation =
@@ -129,6 +177,16 @@ Level1::Level1()
 		//13
 		top,
 		middle,
+		bottom,
+		//21
+		top,
+		centerTop,
+		centerBottom,
+		bottom,
+
+		top,
+		centerTop,
+		centerBottom,
 		bottom
 	};
 
@@ -141,7 +199,17 @@ Level1::Level1()
 		//11
 		11 * wave + 30,
 		11 * wave + 31,
-		11 * wave + 32
+		11 * wave + 32,
+		//23
+		23 * wave + 30,
+		23 * wave + 40,
+		23 * wave + 50,
+		23 * wave + 60,
+
+		23 * wave + 70,
+		23 * wave + 80,
+		23 * wave + 90,
+		23 * wave + 100
 	};
 
 	diagonSpawnLocation =
@@ -153,7 +221,17 @@ Level1::Level1()
 		//11
 		top,
 		middle,
-		bottom
+		bottom,
+		//23
+		bottom,
+		bottom,
+		bottom,
+		bottom,
+
+		top,
+		top,
+		top,
+		top
 	};
 
 	//blastSpawnTimer =
