@@ -49,7 +49,7 @@ void LevelScene::update()
 		for (AI* enemy : enemies) {
 			for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
 				bool Break = false;
-				if (es.getName() == "BasicBody" || es.getName() == "IndesBody" || level!=3) {
+				if (es.getName() == "BasicBody" || es.getName() == "IndesBody" || (level!=3 && es.getName()!="Blank")) {
 					if (playerWeapons.size() > 0) {
 						for (PlayerWeapon* pw : playerWeapons) {
 							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
