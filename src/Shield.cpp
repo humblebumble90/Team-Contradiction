@@ -17,6 +17,7 @@ Shield::Shield():collided(false)
 
 Shield::~Shield()
 {
+	TheTextureManager::Instance()->removeTexture("Shield");
 }
 
 void Shield::draw()
@@ -36,6 +37,10 @@ void Shield::move()
 void Shield::update()
 {
 	move();
+	if(this->getPosition().x < -5.0f)
+	{
+		this->setCollided(true);
+	}
 }
 
 void Shield::clean()

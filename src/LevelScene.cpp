@@ -10,6 +10,7 @@
 #include "CollisionManager.h"
 #include <experimental/coroutine>
 #include "Game.h"
+#include "FlyOntoScreenAI.h"
 
 LevelScene::LevelScene()
 {
@@ -18,6 +19,29 @@ LevelScene::LevelScene()
 
 LevelScene::~LevelScene()
 {
+}
+
+void LevelScene::checkShieldCollision()
+{
+	if (!m_pshields.empty())
+	{
+		for (int i = 0; i < m_pshields.size(); i++)
+		{
+			auto item = m_pshields[i];
+			if (CollisionManager::squaredRadiusCheck(player, item))
+			{
+				std::cout << "Shield status: " << item << std::endl;
+				player->setShieldAvailable(true);
+				item->setCollided(true);
+				m_pshields.erase(m_pshields.begin() + i);
+				break;
+			}
+			if (!item->getCollided())
+			{
+				item->update();
+			}
+		}
+	}
 }
 
 void LevelScene::update()
@@ -120,26 +144,10 @@ void LevelScene::update()
 			}
 		}
 	}
+	
+	checkShieldCollision();
 	#pragma endregion
-	if (!m_pshields.empty())
-	{
-		for (int i = 0; i < m_pshields.size(); i++)
-		{
-			auto item = m_pshields[i];
-			if (CollisionManager::circleAABBCheck(player, item))
-			{
-				std::cout << "Shield status: " << item << std::endl;
-				player->setShieldAvailable(true);
-				item->setCollided(true);
-				m_pshields.erase(m_pshields.begin() + i);
-				break;
-			}
-			if (!item->getCollided())
-			{
-				item->update();
-			}
-		}
-	}
+	
 	#pragma region Spawn Enemies
 	if (ramIteration < ramSpawnTimer.size()) {
 		if (time == ramSpawnTimer[ramIteration])
@@ -231,7 +239,10 @@ void LevelScene::draw()
 	{
 		for(auto item : m_pshields)
 		{
+			if(!item->getCollided())
+			{
 				item->draw();
+			}
 		}
 	}
 }
@@ -260,6 +271,18 @@ PlayerShip* LevelScene::getPlayerShip()
 	return player;
 }
 
+void LevelScene::spawnShield(ShipComponent* sc)
+{
+	player->initializeKillCounter();
+	Shield* shield = new Shield();
+	shieldSpawnPos = sc[1].getParent()->getParent()->getPosition();
+	shield->setPosition(shieldSpawnPos);
+	shield->setVelocity
+		(glm::vec2(-5.0f, 0.0f));
+	m_pshields.push_back(shield);
+	std::cout << "Shield gen\n";
+}
+
 void LevelScene::Damage(ShipComponent sc[2])
 {
 	for (int z = 0; z < 2; ++z) {
@@ -269,6 +292,18 @@ void LevelScene::Damage(ShipComponent sc[2])
 		}
 		else if (sc[z].getName() == "IndesBody") {
 			((IndesBody&)sc[z]).Damage(sc[1 - z]);
+		}
+	}
+	if (sc[0].getName() == "IndesBody" && sc[1].getName() == "BasicBody")
+	{
+		if(!(((FlyOntoScreenAI*)((Enemy*)sc[1].getParent()->getParent())->getAI())->isBoss))
+		{
+			player->setKillCounter(1);
+		}
+		if (player->getKillCounter() > 0 &&
+			player->getKillCounter() % 20 == 0)
+		{
+			spawnShield(sc);			
 		}
 	}
 }

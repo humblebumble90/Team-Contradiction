@@ -124,8 +124,8 @@ int PlayerShip::getKillCounter()
 
 void PlayerShip::setKillCounter(int num)
 {
-	killCounter += num;
-	std::cout << killCounter << std::endl;
+		killCounter += num;
+		std::cout << killCounter << std::endl;
 }
 
 bool PlayerShip::getShieldAvailable()
@@ -136,6 +136,11 @@ bool PlayerShip::getShieldAvailable()
 void PlayerShip::setShieldAvailable(bool newState)
 {
 	shieldAvailable = newState;
+}
+
+void PlayerShip::initializeKillCounter()
+{
+	killCounter = 0;
 }
 
 Frame* PlayerShip::GetFrame()
