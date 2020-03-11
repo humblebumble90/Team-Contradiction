@@ -273,6 +273,7 @@ PlayerShip* LevelScene::getPlayerShip()
 
 void LevelScene::spawnShield(ShipComponent* sc)
 {
+	player->initializeKillCounter();
 	Shield* shield = new Shield();
 	shieldSpawnPos = sc[1].getParent()->getParent()->getPosition();
 	shield->setPosition(shieldSpawnPos);
@@ -295,14 +296,9 @@ void LevelScene::Damage(ShipComponent sc[2])
 	}
 	if (sc[0].getName() == "IndesBody" && sc[1].getName() == "BasicBody")
 	{
-		for(auto enemy : enemies)
+		if(!(((FlyOntoScreenAI*)((Enemy*)sc[1].getParent()->getParent())->getAI())->isBoss))
 		{
-			if(enemy->GetParent()->GetFrame()->getParent()->getName() ==
-				sc[1].getParent()->getParent()->getName() &&
-				!((FlyOntoScreenAI*)enemy)->isBoss)
-			{
-				player->setKillCounter(1);
-			}
+			player->setKillCounter(1);
 		}
 		if (player->getKillCounter() > 0 &&
 			player->getKillCounter() % 20 == 0)

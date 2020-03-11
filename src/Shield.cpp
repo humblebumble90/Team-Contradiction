@@ -37,7 +37,7 @@ void Shield::move()
 void Shield::update()
 {
 	move();
-	if(this->getPosition().x < 0)
+	if(this->getPosition().x < -5.0f)
 	{
 		this->setCollided(true);
 	}
