@@ -54,5 +54,7 @@ protected:
 	int level;
 private:
 	void Damage(ShipComponent sc[2]);
+	void checkShieldCollision();
+	void spawnShield(ShipComponent* sc);
 };
 #endif
