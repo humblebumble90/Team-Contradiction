@@ -58,7 +58,7 @@ void Level3::handleEvents()
 			Boss1();
 		}
 	}
-	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 30 == 0)
+	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 45 == 0)
 	{
 		int coor1 = rand() % 2;
 		int coor1Decider = rand() % 2;
