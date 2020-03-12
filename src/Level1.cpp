@@ -84,22 +84,18 @@ Level1::Level1()
 		20 * wave,
 		20 * wave + 1,
 		20 * wave + 2,
-		20 * wave + 3,
 		//21
 		21 * wave,
 		21 * wave +	1,
 		21 * wave + 2,
-		21 * wave + 3,
 		//22
 		22 * wave,
 		22 * wave + 1,
 		22 * wave + 2,
-		22 * wave + 3,
 		//23
 		23 * wave,
 		23 * wave + 1,
 		23 * wave + 2,
-		23 * wave + 3
 	};
 	zigzagSpawnLocation =
 	{
