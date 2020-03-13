@@ -1,14 +1,11 @@
 #include "Scoreboard.h"
 #include "Config.h"
-#include <fstream>
+#include <fstream> //learning how to do reading and writing files so ignore this
 
 Scoreboard::Scoreboard()
 {
 	lives = Config::LIVES;
 	score = Config::SCORE;
-	//learning how to do reading and writing files so ignore this
-	std::ofstream scores;
-	
 }
 
 Scoreboard::~Scoreboard()
