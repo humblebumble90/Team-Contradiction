@@ -1,19 +1,20 @@
 #pragma once
 #include "DisplayObject.h"
-#ifndef __SHIELD__
-#define __SHIELD__
-class Shield:public DisplayObject
+#ifndef __POWER_UP__
+#define __POWER_UP__
+class Power_Up:public DisplayObject
 {
+	Power_Up();
+	~Power_Up();
+
 public:
-	Shield();
-	~Shield();
 	void draw() override;
-	void move();
 	void update() override;
 	void clean() override;
 	bool getCollided();
 	void setCollided(bool newState);
 private:
 	bool collided;
+	void move();
 };
-#endif  /*Defined (__SHIELD__)*/
+#endif /*Defined (__POWER_UP__)*/

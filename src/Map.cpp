@@ -3,9 +3,6 @@
 
 Map::Map()
 {
-	TheTextureManager::Instance()->load("../Assets/textures/map.jpg",
-		"map", TheGame::Instance()->getRenderer());
-
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("map");
 	setWidth(size.x);
 	setHeight(size.y);
@@ -45,7 +42,7 @@ void Map::_move()
 
 void Map::_checkBounds()
 {
-	if (getPosition().x <= -645)
+	if (getPosition().x <= -1950)
 	{
 		_reset();
 	}
@@ -53,5 +50,5 @@ void Map::_checkBounds()
 
 void Map::_reset()
 {
-	setPosition(glm::vec2(0, 0));
+	setPosition(glm::vec2(1960, 0));
 }

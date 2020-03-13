@@ -8,8 +8,7 @@
 class Button : public DisplayObject
 {
 public:
-	Button(std::string imagePath = "../Assets/textures/StartButton.png", 
-		std::string buttonName = "startButton",
+	Button(std::string buttonName = "startButton",
 		GameObjectType type = START_BUTTON, 
 		glm::vec2 position = glm::vec2(0.0f, 0.0f), bool isCentered = true);
 	

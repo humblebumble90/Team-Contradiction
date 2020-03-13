@@ -13,11 +13,20 @@
 
 Level3::Level3(PlayerShip* thePlayer)
 {
+	level = 3;
 	loadAllTextures();
 	loadAllSounds();
-	m_pMap = new Map();
-	player = new PlayerShip(1, 10, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
+	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
 	//player = thePlayer;
+	m_pMap = new Map();
+	m_pMap2 = new Map();
+	m_pMap->setPosition(glm::vec2(0, 0));
+	m_pMap2->setPosition(glm::vec2(1950, 0));
+	//m_pSpeedLabel = new Label("Speed: ", "Consolas",
+	//	24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.45f, 10.0f), TTF_STYLE_NORMAL, false);
+	playSound("Level1", 999);
+	//m_pLivesLabel = new Label("Lives: ", "Consolas",
+	//	24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);
 	playSound("RamRush", 0);
 }
 
@@ -27,6 +36,11 @@ Level3::~Level3()
 
 void Level3::clean()
 {
+	delete player;
+	delete m_pMap;
+	delete m_pMap2;
+	removeAllChildren();
+	
 }
 
 void Level3::handleEvents()
@@ -44,7 +58,7 @@ void Level3::handleEvents()
 			Boss1();
 		}
 	}
-	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 30 == 0)
+	if (ramRushTimerDelay <= 0 && ramRushTimer > 0 && ramRushTimer % 45 == 0)
 	{
 		int coor1 = rand() % 2;
 		int coor1Decider = rand() % 2;
