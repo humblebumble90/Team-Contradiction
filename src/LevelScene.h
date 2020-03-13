@@ -10,6 +10,7 @@
 #include <SDL_ttf.h>
 #include "Control_Img.h"
 #include "Shield.h"
+#include "Power_Up.h"
 
 class LevelScene : public Scene
 {
@@ -31,24 +32,29 @@ protected:
 	std::vector<AI*> enemies;
 	PlayerShip* player;
 	SDL_Color yellow = { 255, 255, 0, 255 };
-	Label* m_pSpeedLabel = new Label("Speed: ", "Consolas",
-		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.45f, 10.0f), TTF_STYLE_NORMAL, false);
-	Label* m_pLivesLabel = new Label("Lives: ", "Consolas",
-		24, yellow, glm::vec2(Config::SCREEN_WIDTH*0.65f, 10.0f), TTF_STYLE_NORMAL, false);
+	//Label* m_pSpeedLabel;
+	Label* m_pLivesLabel;
 
 	Control_Img* m_pControl_Img = new Control_Img();
 	std::vector<PlayerWeapon*> playerWeapons;
-	Shield* m_pshield;
+	std::vector<Shield*> m_pshields;
+	std::vector<Power_Up*> power_ups;
 	glm::vec2 shieldSpawnPos;
 
 	Map* m_pMap;
+	Map* m_pMap2;
 	#pragma endregion
 	#pragma region Spawn Timers
 	int time = 0, ramIteration = 0, zigzagIteration = 0, cannoneerIteration = 0, guardianIteration = 0, diagonIteration = 0, blastIteration = 0;
 	std::vector<int> ramSpawnTimer, zigzagSpawnTimer, cannoneerSpawnTimer, guardianSpawnTimer, diagonSpawnTimer, blastSpawnTimer;
 	std::vector<glm::vec2> ramSpawnLocation, zigzagSpawnLocation, cannoneerSpawnLocation, guardianSpawnLocation, diagonSpawnLocation, blastSpawnLocation;
 	#pragma endregion
+
+	void initializeLabels();
+	int level;
 private:
 	void Damage(ShipComponent sc[2]);
+	void checkShieldCollision();
+	void spawnShield(ShipComponent* sc);
 };
 #endif

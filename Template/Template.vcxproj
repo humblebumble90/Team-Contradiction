@@ -169,6 +169,7 @@
     <ClCompile Include="..\src\Game_Over_Bg.cpp" />
     <ClCompile Include="..\src\GuardianAI.cpp" />
     <ClCompile Include="..\src\Level1.cpp" />
+    <ClCompile Include="..\src\Level3Button.cpp" />
     <ClCompile Include="..\src\Map.cpp" />
     <ClCompile Include="..\src\MissileLauncher.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
@@ -206,6 +207,7 @@
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\PlayerWeapon.cpp" />
     <ClCompile Include="..\src\PlayScene.cpp" />
+    <ClCompile Include="..\src\Power_Up.cpp" />
     <ClCompile Include="..\src\RainAI.cpp" />
     <ClCompile Include="..\src\RamAI.cpp" />
     <ClCompile Include="..\src\Scene.cpp" />
@@ -238,6 +240,7 @@
     <ClInclude Include="..\src\Game_Over_Bg.h" />
     <ClInclude Include="..\src\GuardianAI.h" />
     <ClInclude Include="..\src\Level1.h" />
+    <ClInclude Include="..\src\Level3Button.h" />
     <ClInclude Include="..\src\Map.h" />
     <ClInclude Include="..\src\MissileLauncher.h" />
     <ClInclude Include="..\src\Move.h" />
@@ -278,6 +281,7 @@
     <ClInclude Include="..\src\Label.h" />
     <ClInclude Include="..\src\PlayerWeapon.h" />
     <ClInclude Include="..\src\PlayScene.h" />
+    <ClInclude Include="..\src\Power_Up.h" />
     <ClInclude Include="..\src\RainAI.h" />
     <ClInclude Include="..\src\RamAI.h" />
     <ClInclude Include="..\src\Scene.h" />

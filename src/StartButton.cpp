@@ -4,9 +4,8 @@
 StartButton::StartButton()
 // call super constructor
 	:Button(
-		"../Assets/textures/StartButton.png",
-		"startButton",
-		START_BUTTON, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.95f)), m_isClicked(false)
+		"Level1Button",
+		LEVEL1_BUTTON, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.9f)), m_isClicked(false)
 {
 
 }
@@ -21,8 +20,6 @@ bool StartButton::ButtonClick()
 	{
 		if (!m_isClicked)
 		{
-			//Game::Instance()->changeSceneState(LEVEL1_SCENE);
-			Game::Instance()->changeSceneState(LEVEL3_SCENE);
 			m_isClicked = true;
 		}
 		return true;

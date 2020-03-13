@@ -3,6 +3,7 @@
 #define __GAME_OBJECT_TYPE__
 enum GameObjectType {
 	NONE = -1,
+	POWER_UP,
 	SHIELD,
 	GAME_OVER_BG,
 	CONTROL_IMG,
@@ -19,6 +20,8 @@ enum GameObjectType {
 	MINE,
 	TILE,
 	START_BUTTON,
+	LEVEL1_BUTTON,
+	LEVEL3_BUTTON,
 	WEAPON_MISSILE,
 	NUM_OF_TYPES
 };
