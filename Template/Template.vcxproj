@@ -211,6 +211,7 @@
     <ClCompile Include="..\src\RainAI.cpp" />
     <ClCompile Include="..\src\RamAI.cpp" />
     <ClCompile Include="..\src\Scene.cpp" />
+    <ClCompile Include="..\src\Scoreboard.cpp" />
     <ClCompile Include="..\src\Shield.cpp" />
     <ClCompile Include="..\src\ShipComponent.cpp" />
     <ClCompile Include="..\src\SoundManager.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="..\src\RainAI.h" />
     <ClInclude Include="..\src\RamAI.h" />
     <ClInclude Include="..\src\Scene.h" />
+    <ClInclude Include="..\src\Scoreboard.h" />
     <ClInclude Include="..\src\Shield.h" />
     <ClInclude Include="..\src\ShipComponent.h" />
     <ClInclude Include="..\src\SoundManager.h" />
