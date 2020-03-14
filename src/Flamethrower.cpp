@@ -15,7 +15,10 @@ void Flamethrower::Fire()
 {
 	if (getParent()->getParent()->getName() == "Player")
 	{
-		TheGame::Instance()->spawnPlayerWeapon(new FlameThrowerWeapon(getPosition()));
+		flameThrower = new FlameThrowerWeapon(getPosition());
+        TheGame::Instance()->spawnPlayerWeapon(flameThrower);
+
+
 	}
 
 	/*else
