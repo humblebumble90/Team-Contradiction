@@ -4,7 +4,7 @@
 Level3Button::Level3Button()
 	: Button(
 	"Level3Button",
-		LEVEL3_BUTTON, glm::vec2(Config::SCREEN_WIDTH * 0.7f, Config::SCREEN_HEIGHT * 0.95f)), m_isClicked(false)
+		LEVEL3_BUTTON, glm::vec2(Config::SCREEN_WIDTH * 0.75f, Config::SCREEN_HEIGHT * 0.9f)), m_isClicked(false)
 {
 }
 

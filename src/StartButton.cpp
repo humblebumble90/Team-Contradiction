@@ -5,7 +5,7 @@ StartButton::StartButton()
 // call super constructor
 	:Button(
 		"Level1Button",
-		LEVEL1_BUTTON, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.95f)), m_isClicked(false)
+		LEVEL1_BUTTON, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.9f)), m_isClicked(false)
 {
 
 }

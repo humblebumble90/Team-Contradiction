@@ -59,20 +59,25 @@ PlayerShip::~PlayerShip()
 
 void PlayerShip::Damage(int i)
 {
-	if (playerHealth >= 1 && playerLives > 0 && !inv)
+	if (playerHealth >= 1 && playerLives >= 0 && !inv)
 	{
-		std::cout << "Player damaged!\n";
-		std::cout << "PlayerHealth: " << playerHealth << std::endl;
-		playerLives -= 1;
-		std::cout << "Player life decreases for 1!" << std::endl;
-		playerHealth += 1;
-		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
+		if (playerLives == 0 && !inv && shieldAvailable)
+		{
 			invincible();
-	}
-	if(playerHealth >= 1 && playerLives == 0 && !inv && shieldAvailable)
-	{
-		invincible();
-		shieldAvailable = false;
+			std::cout << "Used shield!\n";
+			shieldAvailable = false;
+		}
+		else
+		{
+			std::cout << "Player damaged!\n";
+			playerHealth -= 1;
+			std::cout << "PlayerHealth: " << playerHealth << std::endl;
+			playerLives -= 1;
+			std::cout << "Player life decreases for 1!" << std::endl;
+			playerHealth += 1;
+			std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
+			invincible();
+		}
 	}
 }
 bool PlayerShip::getInvincibility()
@@ -94,21 +99,21 @@ void PlayerShip::invincible()
 
 void PlayerShip::checkBound()
 {
-	if(getPosition().x <= Config::SCREEN_WIDTH * 0.05f)
+	if(getPosition().x <= Config::SCREEN_WIDTH * 0.03f)
 	{
-		setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.05f, getPosition().y));
+		setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.03f, getPosition().y));
 	}
-	if (getPosition().x >= Config::SCREEN_WIDTH * 0.95f)
+	if (getPosition().x >= Config::SCREEN_WIDTH * 0.97f)
 	{
-		setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.95f, getPosition().y));
+		setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.97f, getPosition().y));
 	}
-	if(getPosition().y <= Config::SCREEN_HEIGHT * 0.05f)
+	if(getPosition().y <= Config::SCREEN_HEIGHT * 0.03f)
 	{
-		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.05f));
+		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.03f));
 	}
-	if (getPosition().y >= Config::SCREEN_HEIGHT * 0.95f)
+	if (getPosition().y >= Config::SCREEN_HEIGHT * 0.97f)
 	{
-		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.95f));
+		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT * 0.97f));
 	}
 }
 
@@ -119,8 +124,8 @@ int PlayerShip::getKillCounter()
 
 void PlayerShip::setKillCounter(int num)
 {
-	killCounter += num;
-	std::cout << killCounter << std::endl;
+		killCounter += num;
+		std::cout << killCounter << std::endl;
 }
 
 bool PlayerShip::getShieldAvailable()
@@ -131,6 +136,11 @@ bool PlayerShip::getShieldAvailable()
 void PlayerShip::setShieldAvailable(bool newState)
 {
 	shieldAvailable = newState;
+}
+
+void PlayerShip::initializeKillCounter()
+{
+	killCounter = 0;
 }
 
 Frame* PlayerShip::GetFrame()
@@ -212,10 +222,6 @@ void PlayerShip::update()
 	//	currentVelocity.x *= 0.9f;
 	//	currentVelocity.y *= 0.9f;
 	//}
-	if(killCounter >= 21)
-	{
-		killCounter = 1;
-	}
 	if (playerLives >= 0)
 	{
 		setVelocity(glm::vec2(currentVelocity.x, currentVelocity.y));

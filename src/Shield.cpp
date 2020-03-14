@@ -10,13 +10,14 @@ Shield::Shield():collided(false)
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("Shield");
 	setWidth(size.x);
 	setHeight(size.y);
+	setVelocity(glm::vec2(0.0f, 0.0f));
 	setIsColliding(false);
 	setType(GameObjectType::SHIELD);
-	setVelocity(glm::vec2(5.0f, 0.0f));
 }
 
 Shield::~Shield()
 {
+	TheTextureManager::Instance()->removeTexture("Shield");
 }
 
 void Shield::draw()
@@ -27,9 +28,19 @@ void Shield::draw()
 		TheGame::Instance()->getRenderer());
 }
 
+void Shield::move()
+{
+	setPosition(glm::vec2(getPosition().x + getVelocity().x, getPosition().y + getVelocity().y));
+		
+}
+
 void Shield::update()
 {
-	setPosition(glm::vec2(getPosition().x + getVelocity().x, 0.0f));
+	move();
+	if(this->getPosition().x < -5.0f)
+	{
+		this->setCollided(true);
+	}
 }
 
 void Shield::clean()

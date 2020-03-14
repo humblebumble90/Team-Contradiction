@@ -2,7 +2,8 @@
 #include "Weapon.h"
 Frame::Frame() = default;//DANGER! Do not use!
 
-Frame::Frame(int size, std::vector<ShipComponent>& buildLayout, int width, int height) : gridWidth(width), gridHeight(height), gridSize(size), build(buildLayout)
+Frame::Frame(int size, std::vector<ShipComponent>& buildLayout, int width, int height)
+: gridWidth(width), gridHeight(height), gridSize(size), build(buildLayout)
 {
 	for (int z = 0; z < gridWidth; ++z) {
 		for (int y = z; y < build.size(); y += gridWidth) {

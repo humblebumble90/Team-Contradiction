@@ -3,7 +3,9 @@
 
 Map::Map()
 {
-	changeTexture("map");
+	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("map");
+	setWidth(size.x);
+	setHeight(size.y);
 	setVelocity(glm::vec2(-5, 0));
 	_reset();
 	setIsColliding(false);
@@ -48,5 +50,5 @@ void Map::_checkBounds()
 
 void Map::_reset()
 {
-	setPosition(glm::vec2(1959, 0));
+	setPosition(glm::vec2(1960, 0));
 }

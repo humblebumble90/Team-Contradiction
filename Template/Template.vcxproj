@@ -206,10 +206,11 @@
     <ClCompile Include="..\src\Label.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\PlayerWeapon.cpp" />
-    <ClCompile Include="..\src\PlayScene.cpp" />
+    <ClCompile Include="..\src\Power_Up.cpp" />
     <ClCompile Include="..\src\RainAI.cpp" />
     <ClCompile Include="..\src\RamAI.cpp" />
     <ClCompile Include="..\src\Scene.cpp" />
+    <ClCompile Include="..\src\Scoreboard.cpp" />
     <ClCompile Include="..\src\Shield.cpp" />
     <ClCompile Include="..\src\ShipComponent.cpp" />
     <ClCompile Include="..\src\SoundManager.cpp" />
@@ -279,10 +280,11 @@
     <ClInclude Include="..\src\IndesBody.h" />
     <ClInclude Include="..\src\Label.h" />
     <ClInclude Include="..\src\PlayerWeapon.h" />
-    <ClInclude Include="..\src\PlayScene.h" />
+    <ClInclude Include="..\src\Power_Up.h" />
     <ClInclude Include="..\src\RainAI.h" />
     <ClInclude Include="..\src\RamAI.h" />
     <ClInclude Include="..\src\Scene.h" />
+    <ClInclude Include="..\src\Scoreboard.h" />
     <ClInclude Include="..\src\Shield.h" />
     <ClInclude Include="..\src\ShipComponent.h" />
     <ClInclude Include="..\src\SoundManager.h" />
