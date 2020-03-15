@@ -9,6 +9,7 @@
 #include "Level1.h"
 #include "Level3.h"
 #include "Weapon.h"
+#include "FlameThrower.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -263,17 +264,39 @@ void Game::handleEvents()
 		if (keystates[SDL_SCANCODE_Z] || SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 			if (getPlayerShip()->getPlayerLives() >= 0)
 			{
-				for (int z = 0; z < 3; ++z) {
-					if (firingCooldown[z] == 0) {
+				for (int z = 0; z < 3; ++z) 
+				{
+					if (firingCooldown[z] == 0) 
+					{
 						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
 						firingCooldown[z] = firingCooldownReset[z];
 					}
 				}
 			}
+
+			else if (!keystates[SDL_SCANCODE_Z])
+			{
+				if (getPlayerShip()->getPlayerLives() >= 0)
+				{
+					for each (Weapon x in getPlayerShip()->GetFrame()->GetWeapons)
+					{
+						if (x.getName() == "Flamethrower")
+						{
+							if (((Flamethrower&)x).flameThrower != nullptr)
+							{
+								destroyWeapon(((Flamethrower&)x).flameThrower);
+							}
+
+				         }
+					}
+					
+				}
+			}
 		if (keystates[SDL_SCANCODE_X])
 			if (getPlayerShip()->getPlayerLives() >= 0)
 			{
-				if (firingCooldown[0] == 0) {
+				if (firingCooldown[0] == 0) 
+				{
 					getPlayerShip()->GetFrame()->GetWeapon(0).Fire();
 					firingCooldown[0] = firingCooldownReset[0];
 				}

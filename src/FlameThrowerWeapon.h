@@ -9,6 +9,7 @@ class FlameThrowerWeapon :public PlayerWeapon
 public:
 	FlameThrowerWeapon(glm::vec2 position);
 	~FlameThrowerWeapon();
+	void update() override;
 private:
 };
 

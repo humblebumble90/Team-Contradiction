@@ -96,9 +96,6 @@
     <ClCompile Include="..\src\StartScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\PlayScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\EndScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -237,6 +234,7 @@
     <ClCompile Include="..\src\FlameThrowerWeapon.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="..\src\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -248,9 +246,16 @@
     </ClCompile>
     <ClCompile Include="..\src\Level3Button.cpp">
       <Filter>Source Files\GameObjects</Filter>
+=======
+    <ClCompile Include="..\src\FlameThrowerAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+>>>>>>> Stashed changes
     </ClCompile>
     <ClCompile Include="..\src\Power_Up.cpp">
       <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scoreboard.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -306,9 +311,6 @@
       <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\StartScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\PlayScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\src\EndScene.h">
@@ -455,6 +457,7 @@
     <ClInclude Include="..\src\FlameThrowerWeapon.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="..\src\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -466,8 +469,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Level3Button.h">
       <Filter>Source Files\GameObjects</Filter>
+=======
+    <ClInclude Include="..\src\FlameThrowerAI.h">
+      <Filter>Header Files\AIs</Filter>
+>>>>>>> Stashed changes
     </ClInclude>
     <ClInclude Include="..\src\Power_Up.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scoreboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

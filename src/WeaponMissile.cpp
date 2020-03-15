@@ -11,17 +11,11 @@ WeaponMissile::WeaponMissile(glm::vec2 position, glm::vec2 velocity)
 	frame->Initialize(this);
 	setPosition(position);
 	speed = velocity;
-	/*glm::vec2 size = TheTextureManager::Instance()->getTextureSize(name);
-
-	setWidth(size.x);
-	setHeight(size.y);
-	setPosition(glm::vec2(0.0f, 0.0f));
-	setIsColliding(false);
-	setType(GameObjectType::WEAPON_MISSILE);
-	setVelocity(glm::vec2(0.0f, 0.0f));
-	SetSpeed(50.0f);*/
 }
+	/*glm::vec2 size = TheTextureManager::Instance()->getTextureSize(name);*/
+
 
 WeaponMissile::~WeaponMissile()
 {
+
 }
