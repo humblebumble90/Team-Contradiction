@@ -274,7 +274,7 @@ void Game::handleEvents()
 				}
 			}
 
-			else if (!keystates[SDL_SCANCODE_Z])
+			/*else if (!keystates[SDL_SCANCODE_Z])
 			{
 				if (getPlayerShip()->getPlayerLives() >= 0)
 				{
@@ -291,7 +291,7 @@ void Game::handleEvents()
 					}
 					
 				}
-			}
+			}*/
 		if (keystates[SDL_SCANCODE_X])
 			if (getPlayerShip()->getPlayerLives() >= 0)
 			{

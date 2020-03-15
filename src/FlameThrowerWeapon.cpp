@@ -21,6 +21,6 @@ FlameThrowerWeapon::~FlameThrowerWeapon() = default;
 
 void FlameThrowerWeapon::update()
 {
-	if()
+	//if()
 }
 
