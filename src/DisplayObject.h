@@ -20,11 +20,10 @@ public:
 
 	Scene* getParent();
 	void setParent(Scene* parent);
-
-	void changeTexture(std::string idName);
+	void changeTexture(std::string id);
 
 	virtual void Damage(int i);
-
+	
 private:
 	Scene* m_pParentScene;
 };

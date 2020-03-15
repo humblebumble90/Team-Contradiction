@@ -20,6 +20,7 @@ LevelScene::LevelScene()
 
 LevelScene::~LevelScene()
 {
+	
 }
 
 void LevelScene::checkShieldCollision()

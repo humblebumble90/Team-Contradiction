@@ -234,7 +234,6 @@
     <ClCompile Include="..\src\FlameThrowerWeapon.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
-<<<<<<< Updated upstream
     <ClCompile Include="..\src\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -246,10 +245,6 @@
     </ClCompile>
     <ClCompile Include="..\src\Level3Button.cpp">
       <Filter>Source Files\GameObjects</Filter>
-=======
-    <ClCompile Include="..\src\FlameThrowerAI.cpp">
-      <Filter>Source Files\AIs</Filter>
->>>>>>> Stashed changes
     </ClCompile>
     <ClCompile Include="..\src\Power_Up.cpp">
       <Filter>Source Files\GameObjects</Filter>
@@ -457,7 +452,6 @@
     <ClInclude Include="..\src\FlameThrowerWeapon.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
     <ClInclude Include="..\src\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -469,10 +463,6 @@
     </ClInclude>
     <ClInclude Include="..\src\Level3Button.h">
       <Filter>Source Files\GameObjects</Filter>
-=======
-    <ClInclude Include="..\src\FlameThrowerAI.h">
-      <Filter>Header Files\AIs</Filter>
->>>>>>> Stashed changes
     </ClInclude>
     <ClInclude Include="..\src\Power_Up.h">
       <Filter>Header Files</Filter>

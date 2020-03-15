@@ -250,7 +250,7 @@ void TextureManager::drawText(std::string id, int x, int y, SDL_Renderer * pRend
 
 glm::vec2 TextureManager::getTextureSize(std::string id)
 {
-	int width, height;
+	int width = -1, height = -1;
 	SDL_QueryTexture(m_textureMap[id], NULL, NULL, &width, &height);
 	glm::vec2 size;
 
