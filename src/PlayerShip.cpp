@@ -83,7 +83,6 @@ void PlayerShip::Damage(int i)
 			std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
 			invincible();
 		}
-	}
 }
 bool PlayerShip::getInvincibility()
 {
