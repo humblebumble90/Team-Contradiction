@@ -34,6 +34,8 @@ protected:
 	SDL_Color yellow = { 255, 255, 0, 255 };
 	//Label* m_pSpeedLabel;
 	Label* m_pLivesLabel;
+	Label* m_pScoreLabel;
+	Label* m_pHighScoreLabel;
 
 	Control_Img* m_pControl_Img = new Control_Img();
 	std::vector<PlayerWeapon*> playerWeapons;

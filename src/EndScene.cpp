@@ -4,6 +4,7 @@
 #include "GLM/gtx/string_cast.hpp"
 #include <algorithm>
 #include <iomanip>
+#include "Scoreboard.h"
 
 EndScene::EndScene()
 {
@@ -48,6 +49,7 @@ void EndScene::handleEvents()
 				TheGame::Instance()->quit();
 				break;
 			case SDLK_r:
+				Scoreboard::Instance()->resetValues();
 				TheGame::Instance()->changeSceneState(SceneState::START_SCENE);
 				break;
 			}
