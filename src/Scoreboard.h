@@ -6,19 +6,22 @@ class Scoreboard
 {
 	//this is for carrying your lives over to the other scenes
 public:
-	Scoreboard* Instance()
+	static Scoreboard* Instance()
 	{
-		if(instance != nullptr)
+		if(instance == nullptr)
 		{
+			instance = new Scoreboard();
 			return instance;
 		}
-		instance = new Scoreboard();
 		return instance;
 	}
 	int getLives();
 	void setLives(int setlives);
 	int getScore();
 	void setScore(int setScore);
+	int getHighScore();
+	void setHighScore(int num);
+	void resetValues();
 	
 private:
 	Scoreboard();
@@ -26,7 +29,8 @@ private:
 	
 	int lives;
 	int score;
-	Scoreboard* instance;
+	int highScore;
+	static Scoreboard* instance;
 };
 
 #endif 

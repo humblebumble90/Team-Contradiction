@@ -13,6 +13,7 @@ public:
 	static const int MINE_NUM = 60;
 	static const int LIVES = 5;
 	static const int SCORE = 0;
+	static const int HIGH_SCORE = 0;
 };
 
 #endif /* defined (__Config__) */
