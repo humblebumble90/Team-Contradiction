@@ -10,7 +10,7 @@ public:
 	Control_Img(std::string imagePath = "../Assets/textures/controls.png",
 		std::string name = "Control_Img",
 		GameObjectType type = CONTROL_IMG,
-		glm::vec2 position = glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.99f), bool isCentered = true);
+		glm::vec2 position = glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.94f), bool isCentered = true);
 
 	~Control_Img();
 	void draw() override;
