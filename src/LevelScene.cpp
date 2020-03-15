@@ -11,6 +11,7 @@
 #include <experimental/coroutine>
 #include "Game.h"
 #include "FlyOntoScreenAI.h"
+#include "Scoreboard.h"
 
 LevelScene::LevelScene()
 {
@@ -221,6 +222,14 @@ void LevelScene::draw()
 	if (m_pLivesLabel != nullptr) {
 		m_pLivesLabel->draw();
 	}
+	if(m_pScoreLabel != nullptr)
+	{
+		m_pScoreLabel->draw();
+	}
+	if(m_pHighScoreLabel != nullptr)
+	{
+		m_pHighScoreLabel->draw();
+	}
 
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
@@ -300,6 +309,11 @@ void LevelScene::Damage(ShipComponent sc[2])
 		if(!(((FlyOntoScreenAI*)((Enemy*)sc[1].getParent()->getParent())->getAI())->isBoss))
 		{
 			player->setKillCounter(1);
+			player->addScore(1);//Temporary calling score method for testing.
+			//player->addScore(/*some amount for score(integer)*/);
+			m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
+			m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
+			
 		}
 		if (player->getKillCounter() > 0 &&
 			player->getKillCounter() % 20 == 0)
@@ -339,10 +353,16 @@ void LevelScene::initializeLabels()
 	{
 		std::cout << "Initialized.\n";
 		SDL_Color yellow = { 255, 255, 0, 255 };
-		m_pLivesLabel = new Label("Lives: " + std::to_string(player->getPlayerLives()), "Consolas",
-			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, 10.0f), TTF_STYLE_NORMAL, false);
+		m_pLivesLabel = new Label("Lives: " + std::to_string(Scoreboard::Instance()->getLives()), "Consolas",
+			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.75f, 10.0f), TTF_STYLE_NORMAL, true);
 		/*m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "Consolas",
 			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);*/
+		m_pScoreLabel = new Label("Score: " + std::to_string(Scoreboard::Instance()->getScore()), "Consolas",
+			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.25f, 10.0f), TTF_STYLE_NORMAL,true);
+		m_pHighScoreLabel = new Label("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()), "Consolas",
+			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, 10.0f), TTF_STYLE_NORMAL, true);
+		
+		
 		return;
 	}
 }

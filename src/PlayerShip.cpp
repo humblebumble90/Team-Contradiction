@@ -9,6 +9,7 @@
 #include "Blank.h"
 #include <functional>
 #include <glm/detail/type_vec2.hpp>
+#include "Scoreboard.h"
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false),killCounter(0),shieldAvailable(false)
@@ -194,16 +195,18 @@ int PlayerShip::getPlayerLives()
 void PlayerShip::setPlayerLives(int num)
 {
 	playerLives += num;
+	Scoreboard::Instance()->setLives(playerLives);
 }
 
-int PlayerShip::getPlayerScore()
+int PlayerShip::getScore()
 {
 	return playerScore;
 }
 
-void PlayerShip::setPlayerScore(int num)
+void PlayerShip::addScore(int num)
 {
 	playerScore += num;
+	Scoreboard::Instance()->setScore(playerScore);
 }
 
 float PlayerShip::getPlayerSpeed()

@@ -43,8 +43,8 @@ public:
 	int getPlayerLives();
 	void setPlayerLives(int num);
 	//getter and setter of player score
-	int getPlayerScore();
-	void setPlayerScore(int num);
+	int getScore();
+	void addScore(int num);
 	//Getter and setter of player speed
 	float getPlayerSpeed();
 	void setPlayerSpeed(float num);
@@ -67,6 +67,7 @@ private:
 	int playerHealth;
 	int playerLives;
 	int playerScore;
+	int playerHighScore;
 	std::string name;
 	const static int defaultAlpha = 255;
 	void invincible();
