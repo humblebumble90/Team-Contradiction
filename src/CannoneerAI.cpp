@@ -17,6 +17,7 @@ CannoneerAI::CannoneerAI(glm::vec2 transform)
 
 CannoneerAI::~CannoneerAI()
 {
+
 }
 
 void CannoneerAI::PrimaryFunction()

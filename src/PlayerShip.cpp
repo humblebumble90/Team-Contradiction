@@ -61,8 +61,12 @@ void PlayerShip::Damage(int i)
 {
 	if (playerHealth >= 1 && playerLives >= 0 && !inv)
 	{
-		if (playerLives == 0 && !inv && shieldAvailable)
-		{
+		std::cout << "Player damaged!\n";
+		std::cout << "PlayerHealth: " << playerHealth << std::endl;
+		playerLives -= 1;
+		std::cout << "Player life decreases for 1!" << std::endl;
+		//playerHealth += 1;
+		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
 			invincible();
 			std::cout << "Used shield!\n";
 			shieldAvailable = false;

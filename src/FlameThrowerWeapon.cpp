@@ -19,3 +19,8 @@ FlameThrowerWeapon::FlameThrowerWeapon(glm::vec2 position)
 
 FlameThrowerWeapon::~FlameThrowerWeapon() = default;
 
+void FlameThrowerWeapon::update()
+{
+	if()
+}
+
