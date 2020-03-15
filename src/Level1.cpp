@@ -312,14 +312,3 @@ void Level1::loadAllSounds()
 {
 	loadSound("../Assets/audio/level1.ogg", "Level1", SOUND_MUSIC);
 }
-
-void Level1::loadAllTextures()
-{
-	//load the texture with loadTexture() with params path and id respectively
-	loadTexture("../Assets/textures/player.png", "Player");
-	loadTexture("../Assets/textures/map.jpg", "map");
-	loadTexture("../Assets/textures/ship3.png", "ship3");
-	loadTexture("../Assets/textures/Ram.png", "Ram");
-	loadTexture("../Assets/textures/Zigzag.png", "Zigzag");
-	loadTexture("../Assets/textures/EnemyMissile.png", "EnemyMissile");
-}
