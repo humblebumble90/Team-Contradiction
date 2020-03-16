@@ -32,19 +32,3 @@ void DisplayObject::changeTexture(std::string idName)
 void DisplayObject::Damage(int i) //Do not use!
 {
 }
-
-//Change Texture:
-//this changes the texture for the current object by using the id and sets the texture size
-void DisplayObject::changeTexture(std::string idName)
-{
-	glm::vec2 size = TheTextureManager::Instance()->getTextureSize(idName);
-	if (size.x == -1 || size.y == -1)
-	{
-		std::cout << "unable to get texture for id name:" << idName << std::endl;
-	}
-	else
-	{
-		std::cout << "Texture found for id name: " << idName << std::endl;
-		name = idName;
-	}
-}
