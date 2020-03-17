@@ -221,6 +221,7 @@
     <ClCompile Include="..\src\TextureManager.cpp" />
     <ClCompile Include="..\src\Util.cpp" />
     <ClCompile Include="..\src\Vector2.cpp" />
+    <ClCompile Include="..\src\VictoryScene.cpp" />
     <ClCompile Include="..\src\Weapon.cpp" />
     <ClCompile Include="..\src\WeaponMissile.cpp" />
     <ClCompile Include="..\src\ZigzagAI.cpp" />
@@ -295,6 +296,7 @@
     <ClInclude Include="..\src\TextureManager.h" />
     <ClInclude Include="..\src\Util.h" />
     <ClInclude Include="..\src\Vector2.h" />
+    <ClInclude Include="..\src\VictoryScene.h" />
     <ClInclude Include="..\src\Weapon.h" />
     <ClInclude Include="..\src\WeaponMissile.h" />
     <ClInclude Include="..\src\ZigzagAI.h" />
