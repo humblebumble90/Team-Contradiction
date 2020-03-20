@@ -4,12 +4,11 @@
 #include <iostream>
 #include <string>
 
-//Scoreboard* Scoreboard::instance = nullptr;
+Scoreboard* Scoreboard::instance = nullptr;
 Scoreboard::Scoreboard()
 {
 	highScore = Config::HIGH_SCORE;
 	resetValues();
-	instance = nullptr;
 }
 
 Scoreboard::~Scoreboard()
