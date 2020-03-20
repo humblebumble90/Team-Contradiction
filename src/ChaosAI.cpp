@@ -39,11 +39,13 @@ void ChaosAI::SecondaryFunction()
 		}
 	}
 	#pragma endregion
-	if (speed.x < 0) {
-		if (parent->getPosition().x <= 0) {
+	if (speed.x != 0) {
+		if ((parent->getPosition().x <= 0 && speed.x < 0) || (speed.x > 0 && parent->getPosition().x >= Config::SCREEN_WIDTH - 220)) {
+			if (speed.x < 0) {
+				reverseTimer = reverseTimerReset;
+			}
 			speed.x == 0;
 			speed.y = TheGame::Instance()->getPlayerPosition().y > parent->getPosition().y ? baseSpeed : -baseSpeed;
-			reverseTimer = reverseTimerReset;
 			timer = timerReset;
 			canFire = true;
 		}
@@ -59,10 +61,16 @@ void ChaosAI::SecondaryFunction()
 					}
 				}
 				speed.y = TheGame::Instance()->getPlayerPosition().y > parent->getPosition().y ? baseSpeed : -baseSpeed;
-				reverseTimer = reverseTimerReset;
 			}
 			else if (phase == 1) {
-
+				for (Weapon w : parent->GetFrame()->GetWeapons()) {
+					if (w.getName() == "MissileLauncher") {
+						w.Fire();
+					}
+					else if (w.getName() == "Cannon" && phase == 1 && reverseTimer == 0) {
+						w.Fire();
+					}
+				}
 			}
 			else {
 
@@ -71,6 +79,14 @@ void ChaosAI::SecondaryFunction()
 		}
 	}
 	#pragma endregion
+	if (reverseTimer > 0) {
+		--reverseTimer;
+		if (reverseTimer <= 0) {
+			canFire = false;
+			speed.x = baseSpeed;
+			speed.y = 0;
+		}
+	}
 #pragma region Phase 2
 	/*
 	The music increases in tempo at the start of this phase
