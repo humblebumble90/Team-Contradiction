@@ -161,6 +161,7 @@
     <ClCompile Include="..\src\Cannon.cpp" />
     <ClCompile Include="..\src\Cannonball.cpp" />
     <ClCompile Include="..\src\CannoneerAI.cpp" />
+    <ClCompile Include="..\src\ChaosAI.cpp" />
     <ClCompile Include="..\src\Control_Img.cpp" />
     <ClCompile Include="..\src\DiagonAI.cpp" />
     <ClCompile Include="..\src\EnemyCannonballAI.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="..\src\Cannon.h" />
     <ClInclude Include="..\src\Cannonball.h" />
     <ClInclude Include="..\src\CannoneerAI.h" />
+    <ClInclude Include="..\src\ChaosAI.h" />
     <ClInclude Include="..\src\Control_Img.h" />
     <ClInclude Include="..\src\DiagonAI.h" />
     <ClInclude Include="..\src\EnemyCannonballAI.h" />

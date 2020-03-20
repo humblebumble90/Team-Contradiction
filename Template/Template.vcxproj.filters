@@ -255,6 +255,9 @@
     <ClCompile Include="..\src\VictoryScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ChaosAI.cpp">
+      <Filter>Source Files\AIs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -475,6 +478,9 @@
     </ClInclude>
     <ClInclude Include="..\src\VictoryScene.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChaosAI.h">
+      <Filter>Header Files\AIs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
