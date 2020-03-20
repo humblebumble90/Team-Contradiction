@@ -92,3 +92,8 @@ void Enemy::update()
 void Enemy::clean()
 {
 }
+
+int Enemy::getHealth()
+{
+	return health;
+}

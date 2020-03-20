@@ -20,6 +20,7 @@ ChaosAI::ChaosAI(glm::vec2 transform)
 	target = glm::vec2(Config::SCREEN_WIDTH-220, Config::SCREEN_HEIGHT / 2);
 	score = 10000;
 	isBoss = false; //This is written so it'll utilize AABB Collision. This may cause errors with player getting Shields
+	speed.y = TheGame::Instance()->getPlayerPosition().y > parent->getPosition().y ? baseSpeed : -baseSpeed;
 }
 
 ChaosAI::~ChaosAI()
@@ -28,13 +29,48 @@ ChaosAI::~ChaosAI()
 
 void ChaosAI::SecondaryFunction()
 {
-#pragma region Phase 1
-	/*
-	In Phase 1, the boss will get the player's location, then move in that direction
-	If its firing timer hits 0, it fires, then the timer resets
-	After firing, the boss will retrack its target 
-	*/
-#pragma endregion
+	#pragma region Set Phase
+	if ((phase == 0 && parent->getHealth() <= phase1) || (phase == 1 && parent->getHealth() <= phase2)) {
+		++phase;
+		if (phase == 1) {
+			canFire = false;
+			speed.y == 0;
+			speed.x = -baseSpeed;
+		}
+	}
+	#pragma endregion
+	if (speed.x < 0) {
+		if (parent->getPosition().x <= 0) {
+			speed.x == 0;
+			speed.y = TheGame::Instance()->getPlayerPosition().y > parent->getPosition().y ? baseSpeed : -baseSpeed;
+			reverseTimer = reverseTimerReset;
+			timer = timerReset;
+			canFire = true;
+		}
+	}
+	#pragma region Firing
+	if (canFire) {
+		--timer;
+		if (timer <= 0) {
+			if (phase == 0) {
+				for (Weapon w : parent->GetFrame()->GetWeapons()) {
+					if (w.getName() == "Cannon") {
+						w.Fire();
+					}
+				}
+				speed.y = TheGame::Instance()->getPlayerPosition().y > parent->getPosition().y ? baseSpeed : -baseSpeed;
+				reverseTimer = reverseTimerReset;
+			}
+			else if (phase == 1) {
+
+			}
+			else {
+
+			}
+			timer = timerReset;
+		}
+	}
+	#pragma endregion
 #pragma region Phase 2
 	/*
 	The music increases in tempo at the start of this phase
@@ -44,6 +80,7 @@ void ChaosAI::SecondaryFunction()
 	Continues as in Phase 1, but also uses Missile Launchers
 	*/
 #pragma endregion
+#pragma region Phase 3
 	/*
 	The music increases in tempo once more upon reaching this phase
 	Phase 3 begins at 40 hp, and causes the boss to ram and rotate
@@ -52,8 +89,6 @@ void ChaosAI::SecondaryFunction()
 	It stops after getting 1/4 of the way across the screen, then rotates around the center
 	During this time, it fires all its weapons
 	*/
-#pragma region Phase 3
-
 #pragma endregion
 
 }
