@@ -73,76 +73,13 @@ void LevelScene::update()
 	//if the enemies are spawned or if the player is invincible
 	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
 		for (AI* enemy : enemies) {
-			for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
-				bool Break = false;
-				if (es.getName() == "BasicBody" || es.getName() == "IndesBody" || (level!=3 && es.getName()!="Blank")) {
-					if (playerWeapons.size() > 0) {
-						for (PlayerWeapon* pw : playerWeapons) {
-							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
-								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
-									/*
-									This has been commented out because IT'S IN THE WRONG PLACE!!! This places a HUGE amount of computational expense!
-									Consider putting this inside the enemy's Damage() method as previously instructed by Josh
-
-
-										if(ps.getName() == "IndesBody" && es.getName() == "BasicBody"
-										&& CollisionManager::shipComponentCheck(ps,es))
-									{
-										player->setKillCounter(1);
-										if (player->getKillCounter() % 20 == 0)
-										{
-											Shield* shield = new Shield();
-											shieldSpawnPos = es.getParent()->getParent()->getPosition();
-											shield->setPosition(shieldSpawnPos);
-											shield->setVelocity
-											(glm::vec2( -5.0f , 0.0f));
-											m_pshields.push_back(shield);
-											std::cout << "Shield gen\n";
-										}
-									}*/
-									if (CollisionManager::shipComponentCheck(es, ps))
-									{
-										ShipComponent temp[2] = { ps, es };
-										Damage(temp);
-										Break = true;
-										break;
-										/*if (ps.getName() == "BasicBody")
-										{
-											m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-										}*/
-									}
-								}
-							}
-							if (Break) {
-								break;
-							}
-						}
-					}
-					if (Break) {
-						break;
-					}
-					if (!player->getInvincibility()) {
-						for (ShipComponent ps : player->GetFrame()->GetBuild()) {
-							if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
-								if (CollisionManager::shipComponentCheck(es, ps))
-								{
-									ShipComponent temp[2] = { ps, es };
-									Damage(temp);
-									if(ps.getName() == "BasicBody")
-									{
-										m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-									}
-									Break = true;
-									break;
-									
-								}
-							}
-						}
-						if (Break) {
-							break;
-						}
-					}
+			if (playerWeapons.size() > 0) {
+				for (PlayerWeapon* pw : playerWeapons) {
+					collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy, pw);
 				}
+			}
+			if (!player->getInvincibility()) {
+				collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy);
 			}
 		}
 	}
@@ -291,6 +228,65 @@ void LevelScene::spawnShield(ShipComponent* sc)
 		(glm::vec2(-5.0f, 0.0f));
 	m_pshields.push_back(shield);
 	std::cout << "Shield gen\n";
+}
+
+void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
+{
+	//Collision check for Enemies versus Player Weapon
+	if (boss) {
+		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
+			if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
+				for (ShipComponent ps : pw->getFrame()->GetBuild()) {
+					if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+						if (CollisionManager::shipComponentCheck(es, ps))
+						{
+							ShipComponent temp[2] = { ps, es };
+							Damage(temp);
+						}
+					}
+				}
+			}
+		}
+	}
+	else {
+		if (CollisionManager::AABBCheck(enemy->GetParent(), pw))
+		{
+			enemy->GetParent()->Damage(1);
+			pw->Damage(1);
+		}
+	}
+}
+
+void LevelScene::collisionCheck(bool boss, AI* enemy)
+{
+	//Collision Check used for enemies versus player
+	if (boss)
+	{
+		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
+			if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
+				for (ShipComponent ps : player->GetFrame()->GetBuild()) {
+					if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+						if (CollisionManager::shipComponentCheck(es, ps))
+						{
+							ShipComponent temp[2] = { ps, es };
+							Damage(temp);
+							if (ps.getName() == "BasicBody")
+							{
+								m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	else {
+		if (CollisionManager::AABBCheck(enemy->GetParent(), player))
+		{
+			enemy->GetParent()->Damage(1);
+			player->Damage(1);
+		}
+	}
 }
 
 void LevelScene::Damage(ShipComponent sc[2])

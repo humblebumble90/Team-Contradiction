@@ -16,6 +16,7 @@ GuardianAI::GuardianAI(glm::vec2 transform)
 	parent = new Enemy(new Frame(15, //Enemy Hitbox is 30px by 45px (sprite is 30x60)
 		build, 2, 4), 1, this, transform, "Guardian");
 	speed.y = -5.00f; //Tweak this number later
+	score = 100;
 }
 
 GuardianAI::~GuardianAI()

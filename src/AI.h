@@ -12,5 +12,6 @@ public:
 protected:
 	Enemy* parent;
 	glm::vec2 speed;
+	int score;
 };
 #endif

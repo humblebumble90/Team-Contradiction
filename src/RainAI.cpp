@@ -24,6 +24,7 @@ RainAI::RainAI(glm::vec2 transform)
 		this, transform, "Rain");
 	speed.y = 10.00f; //Tweak this number later
 	target = glm::vec2(Config::SCREEN_WIDTH - parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2, Config::SCREEN_HEIGHT / 2);
+	score = 2500;
 }
 
 RainAI::~RainAI()

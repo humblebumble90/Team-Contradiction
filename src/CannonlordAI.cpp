@@ -20,6 +20,7 @@ CannonlordAI::CannonlordAI(glm::vec2 transform)
 		this, transform, "Cannonlord");
 	speed.x = -baseSpeed;
 	target = glm::vec2(Config::SCREEN_WIDTH, Config::SCREEN_HEIGHT / 2);
+	score = 9000;
 }
 
 CannonlordAI::~CannonlordAI()

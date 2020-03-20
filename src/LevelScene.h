@@ -58,5 +58,7 @@ private:
 	void Damage(ShipComponent sc[2]);
 	void checkShieldCollision();
 	void spawnShield(ShipComponent* sc);
+	void collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw);
+	void collisionCheck(bool boss, AI* enemy);
 };
 #endif
