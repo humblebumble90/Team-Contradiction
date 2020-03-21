@@ -1,7 +1,7 @@
 #include "IslandAI.h"
 #include "IndesBody.h"
 
-Island::Island(glm::vec2 transform)
+IslandAI::IslandAI(glm::vec2 transform)
 {
 	std::vector<ShipComponent> build =
 #pragma region Frame Construction
@@ -15,6 +15,6 @@ Island::Island(glm::vec2 transform)
 	score = 0;
 }
 
-Island::~Island()
+IslandAI::~IslandAI()
 {
 }

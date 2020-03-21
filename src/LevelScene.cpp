@@ -5,6 +5,7 @@
 #include "GuardianAI.h"
 #include "DiagonAI.h"
 #include "BlastAI.h"
+#include "IslandAI.h"
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "CollisionManager.h"
@@ -128,6 +129,13 @@ void LevelScene::update()
 		{
 			spawnEnemy(new BlastAI(blastSpawnLocation[blastIteration]));
 			++blastIteration;
+		}
+	}
+	if (islandIteration < islandSpawnTimer.size()) {
+		if (time == islandSpawnTimer[islandIteration])
+		{
+			spawnEnemy(new IslandAI(islandSpawnLocation[islandIteration]));
+			++islandIteration;
 		}
 	}
 	#pragma endregion
