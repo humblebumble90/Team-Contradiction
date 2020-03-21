@@ -169,6 +169,7 @@
     <ClCompile Include="..\src\FlameThrowerWeapon.cpp" />
     <ClCompile Include="..\src\Game_Over_Bg.cpp" />
     <ClCompile Include="..\src\GuardianAI.cpp" />
+    <ClCompile Include="..\src\IslandAI.cpp" />
     <ClCompile Include="..\src\Level1.cpp" />
     <ClCompile Include="..\src\Level3Button.cpp" />
     <ClCompile Include="..\src\Map.cpp" />
@@ -242,6 +243,7 @@
     <ClInclude Include="..\src\GameObjectType.h" />
     <ClInclude Include="..\src\Game_Over_Bg.h" />
     <ClInclude Include="..\src\GuardianAI.h" />
+    <ClInclude Include="..\src\IslandAI.h" />
     <ClInclude Include="..\src\Level1.h" />
     <ClInclude Include="..\src\Level3Button.h" />
     <ClInclude Include="..\src\Map.h" />
