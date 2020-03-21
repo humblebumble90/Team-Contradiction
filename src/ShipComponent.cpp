@@ -1,5 +1,6 @@
 #include "ShipComponent.h"
 #include "CannonlordAI.h"
+#include "ChaosAI.h"
 ShipComponent::ShipComponent() = default;
 
 ShipComponent::~ShipComponent()
@@ -11,8 +12,10 @@ glm::vec2 ShipComponent::getPosition()
 	glm::vec2 parentPosition = parent->getParent()->getPosition();
 	float posX = parentPosition.x + ((iD.x - (parent->GridWidth() - 1) / 2) * parent->getGridSize()),
 		  posY = parentPosition.y + ((iD.y - (parent->GridHeight() - 1) / 2) * parent->getGridSize());
-	if (parent->getParent()->getName() == "Cannonlord") {
-		float angle = ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180;
+	if (parent->getParent()->getName() == "Cannonlord" || parent->getParent()->getName() == "Chaos") {
+		float angle = parent->getParent()->getName() == "Cannonlord" ?
+			((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180 : 
+				 ((ChaosAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180;
 		return glm::vec2(
 			cos(angle) * (posX - parentPosition.x) - sin(angle) * (posY - parentPosition.y) + parentPosition.x,
 			sin(angle) * (posX - parentPosition.x) - cos(angle) * (posY - parentPosition.y) + parentPosition.y

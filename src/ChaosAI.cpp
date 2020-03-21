@@ -38,6 +38,7 @@ void ChaosAI::SecondaryFunction()
 		rotate = phase == 2;
 	}
 	#pragma endregion
+	#pragma region Rotation
 	if (rotate) {
 		if (!canFire) {
 			int i = rotation % 2 == 0 ? 1 : 2;
@@ -57,6 +58,8 @@ void ChaosAI::SecondaryFunction()
 			));
 		}
 	}
+	#pragma endregion
+	#pragma region Ramming
 	if (speed.x != 0) {
 		if ((parent->getPosition().x <= 0 && speed.x < 0) || (speed.x > 0 && parent->getPosition().x >= Config::SCREEN_WIDTH - 220)) {
 			if (speed.x < 0) {
@@ -68,6 +71,7 @@ void ChaosAI::SecondaryFunction()
 			canFire = true;
 		}
 	}
+	#pragma endregion
 	#pragma region Firing
 	if (canFire) {
 		--timer;
@@ -91,13 +95,29 @@ void ChaosAI::SecondaryFunction()
 				}
 			}
 			else {
+				Vector2 up = Vector2(0 + rotation / 90, -1 + rotation / 90);
+				Vector2 down = Vector2(0 - rotation / 90, 1 - rotation / 90);
+				Vector2 left = Vector2(-1 + rotation / 90, 0 - rotation / 90);
+				Vector2 right = Vector2(1 - rotation / 90, 0 + rotation / 90);
+				Vector2 direction;
+				if (rotation < 90) {
+					direction = left;
+				}
+				else if (rotation < 180) {
+					direction = up;
+				}
+				else if (rotation < 270) {
+					direction = right;
+				}
+				else {
+					direction = down;
+				}
 				for (Weapon w : parent->GetFrame()->GetWeapons()) {
 					if (w.getName() == "MissileLauncher") {
 						w.Fire();
 					}
 					else {
-						/*Firing algorythm for Cannons*/
-						w.Fire();
+						((Cannon&)w).Fire(direction);
 					}
 				}
 			}
@@ -105,6 +125,7 @@ void ChaosAI::SecondaryFunction()
 		}
 	}
 	#pragma endregion
+	#pragma region End Left-Side Phase
 	if (reverseTimer > 0) {
 		--reverseTimer;
 		if (reverseTimer <= 0) {
@@ -116,6 +137,8 @@ void ChaosAI::SecondaryFunction()
 			}
 		}
 	}
+	#pragma endregion
+	#pragma region Intro to Final Phase
 	if (finalPhase) {
 		if (parent->getPosition().x >= 400) {
 			finalPhase = false;
@@ -124,29 +147,19 @@ void ChaosAI::SecondaryFunction()
 			speed.y = 0;
 			timer = 1;
 			canFire = true;
+			reverseTimer = 0;
 		}
 	}
-#pragma region Phase 2
-	/*
-	Phase 2 begins at 75 hp, and causes the boss to travel to X: 0.
-	Once there, it will continue as in phase 1, but instead, it will fire its missiles
-	After 10 seconds, rams back to its original spot
-	Continues as in Phase 1, but also uses Missile Launchers
-	*/
-#pragma endregion
-#pragma region Phase 3
-	/*
-	Phase 3 begins at 40 hp, and causes the boss to ram and rotate
-	It continues as in Phase 2 for 10 seconds, but does so rotated 180 degrees
-	After the 10 seconds, it rams towards the center of the screen
-	It stops after getting 1/4 of the way across the screen, then rotates around the center
-	During this time, it fires all its weapons
-	*/
-#pragma endregion
-
+	#pragma endregion
 }
 
 int ChaosAI::getRotation()
 {
 	return rotation;
+}
+
+bool ChaosAI::getFire()
+{
+	//NOTE: This method alwars returns the OPPOSITE. This is to avoid problems in Enemy->Damage(int i)
+	return canFire ? false : true;
 }
