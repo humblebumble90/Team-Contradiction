@@ -1,6 +1,7 @@
 #include "Level1.h"
 #include "Map.h"
 #include "Config.h"
+#include "RainAI.h"
 
 Level1::Level1()
 {
@@ -18,6 +19,9 @@ Level1::Level1()
 
 	glm::vec2 guardianPosition = glm::vec2(Config::SCREEN_WIDTH - 20, Config::SCREEN_HEIGHT / 2);
 
+
+
+	
 	//main enemy
 	cannoneerSpawnTimer =
 	{
@@ -199,14 +203,14 @@ Level1::Level1()
 		11 * wave + 32,
 		//23
 		23 * wave + 30,
-		23 * wave + 40,
 		23 * wave + 50,
-		23 * wave + 60,
-
 		23 * wave + 70,
-		23 * wave + 80,
 		23 * wave + 90,
-		23 * wave + 100
+		//24
+		24 * wave + 30,
+		24 * wave + 50,
+		24 * wave + 70,
+		24 * wave + 90
 	};
 
 	diagonSpawnLocation =
@@ -224,39 +228,47 @@ Level1::Level1()
 		bottom,
 		bottom,
 		bottom,
-
+		//24
 		top,
 		top,
 		top,
 		top
 	};
 
-	//blastSpawnTimer =
-	//{
-	//	//5
-	//	5 * wave + 30,
-	//	5 * wave + 31,
-	//	//13
-	//	13 * wave + 30,
-	//	13 * wave + 31,
-	//	13 * wave + 32
-	//};
+	blastSpawnTimer =
+	{
+		//5
+		5 * wave + 30,
+		5 * wave + 31,
+		//13
+		13 * wave + 30,
+		13 * wave + 32,
+	};
 
-	//blastSpawnLocation =
-	//{
-	//	//5
-	//	centerTop,
-	//	centerBottom,
-	//	//13
-	//	centerTop,
-	//	middle,
-	//	centerBottom
-	//};
+	blastSpawnLocation =
+	{
+		//5
+		centerTop,
+		centerBottom,
+		//13
+		centerTop,
+		centerBottom
+	};
 
 	//obstacles
 	//not yet implemented
 
+	//rain(boss)
+	spawnEnemy(new RainAI(guardianPosition));
+	//if(time == 26 * wave)
+	//{
+	//	
+	//}
 
+
+
+
+	
 	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
 	m_pMap = new Map();
 	m_pMap2 = new Map();

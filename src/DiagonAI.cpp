@@ -14,7 +14,7 @@ DiagonAI::DiagonAI(glm::vec2 transform)
 #pragma endregion
 	parent = new Enemy(new Frame(25, //Enemy is 50px by 50px
 		build, 2, 2), 1, this, transform, "Diagon");
-	baseSpeed = 15.00f;
+	baseSpeed = 5.00f;
 	score = 100;
 	Initialize(glm::vec2(Config::SCREEN_WIDTH / 2, Config::SCREEN_HEIGHT / 2));
 }
