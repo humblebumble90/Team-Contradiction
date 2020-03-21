@@ -9,6 +9,7 @@ public:
 	virtual void PrimaryFunction();
 	virtual glm::vec2 GetSpeed();
 	Enemy* GetParent();
+	int getScore();
 protected:
 	Enemy* parent;
 	glm::vec2 speed;

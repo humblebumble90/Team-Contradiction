@@ -19,3 +19,8 @@ Enemy* AI::GetParent()
 {
 	return parent;
 }
+
+int AI::getScore()
+{
+	return score;
+}
