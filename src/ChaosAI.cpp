@@ -32,13 +32,26 @@ void ChaosAI::SecondaryFunction()
 	#pragma region Set Phase
 	if ((phase == 0 && parent->getHealth() <= phase1) || (phase == 1 && parent->getHealth() <= phase2)) {
 		++phase;
-		if (phase == 1) {
-			canFire = false;
-			speed.y == 0;
-			speed.x = -baseSpeed;
-		}
+		canFire = false;
+		speed.y == 0;
+		speed.x = -baseSpeed;
+		rotate = phase == 2;
 	}
 	#pragma endregion
+	if (rotate) {
+		if (!canFire) {
+			int i = rotation % 2 == 0 ? 1 : 2;
+			rotation += i;
+			rotate = rotation == 180 && canFire == false;
+		}
+		else {
+			++rotation;
+			if (rotation >= 360) {
+				rotation -= 360;
+			}
+			//Move around center of screen
+		}
+	}
 	if (speed.x != 0) {
 		if ((parent->getPosition().x <= 0 && speed.x < 0) || (speed.x > 0 && parent->getPosition().x >= Config::SCREEN_WIDTH - 220)) {
 			if (speed.x < 0) {
@@ -85,11 +98,21 @@ void ChaosAI::SecondaryFunction()
 			canFire = false;
 			speed.x = baseSpeed;
 			speed.y = 0;
+			if (phase == 2) {
+				finalPhase = true;
+			}
+		}
+	}
+	if (finalPhase) {
+		if (parent->getPosition().x >= 400) {
+			finalPhase = false;
+			rotate = true;
+			speed.x = 0;
+			speed.y = 0;
 		}
 	}
 #pragma region Phase 2
 	/*
-	The music increases in tempo at the start of this phase
 	Phase 2 begins at 75 hp, and causes the boss to travel to X: 0.
 	Once there, it will continue as in phase 1, but instead, it will fire its missiles
 	After 10 seconds, rams back to its original spot
@@ -98,7 +121,6 @@ void ChaosAI::SecondaryFunction()
 #pragma endregion
 #pragma region Phase 3
 	/*
-	The music increases in tempo once more upon reaching this phase
 	Phase 3 begins at 40 hp, and causes the boss to ram and rotate
 	It continues as in Phase 2 for 10 seconds, but does so rotated 180 degrees
 	After the 10 seconds, it rams towards the center of the screen
@@ -107,4 +129,9 @@ void ChaosAI::SecondaryFunction()
 	*/
 #pragma endregion
 
+}
+
+int ChaosAI::getRotation()
+{
+	return rotation;
 }
