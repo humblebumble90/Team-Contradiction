@@ -49,7 +49,12 @@ void ChaosAI::SecondaryFunction()
 			if (rotation >= 360) {
 				rotation -= 360;
 			}
-			//Move around center of screen
+			int i = rotation >= 180 ? rotation - 180 : rotation + 180;
+			float angle = i * M_PI / 180;
+			parent->setPosition(glm::vec2(
+				cos(angle) * (parent->getPosition().x - (Config::SCREEN_WIDTH / 2)) - sin(angle) * (parent->getPosition().y - (Config::SCREEN_HEIGHT / 2)) + (Config::SCREEN_WIDTH / 2),
+				sin(angle) * (parent->getPosition().x - (Config::SCREEN_WIDTH / 2)) - cos(angle) * (parent->getPosition().y - (Config::SCREEN_HEIGHT / 2)) + (Config::SCREEN_HEIGHT / 2)
+			));
 		}
 	}
 	if (speed.x != 0) {
@@ -86,7 +91,15 @@ void ChaosAI::SecondaryFunction()
 				}
 			}
 			else {
-
+				for (Weapon w : parent->GetFrame()->GetWeapons()) {
+					if (w.getName() == "MissileLauncher") {
+						w.Fire();
+					}
+					else {
+						/*Firing algorythm for Cannons*/
+						w.Fire();
+					}
+				}
 			}
 			timer = timerReset;
 		}
@@ -109,6 +122,8 @@ void ChaosAI::SecondaryFunction()
 			rotate = true;
 			speed.x = 0;
 			speed.y = 0;
+			timer = 1;
+			canFire = true;
 		}
 	}
 #pragma region Phase 2
