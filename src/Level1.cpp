@@ -318,6 +318,7 @@ void Level1::loadAllTextures()
 	loadTexture("../Assets/textures/Diagon.png", "Diagon");
 	loadTexture("../Assets/textures/Cannoneer.png", "Cannoneer");
 	loadTexture("../Assets/textures/Rain.png", "Rain");
+	loadTexture("../Assets/textures/RainHit.png", "RainHit");
 }
 
 void Level1::loadAllSounds()
