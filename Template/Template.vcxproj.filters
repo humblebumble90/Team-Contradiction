@@ -264,6 +264,9 @@
     <ClCompile Include="..\src\EnemyFlamethrowerAI.cpp">
       <Filter>Source Files\AIs</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\explosion.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -493,6 +496,9 @@
     </ClInclude>
     <ClInclude Include="..\src\EnemyFlamethrowerAI.h">
       <Filter>Header Files\AIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\explosion.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #include "TextureManager.h"
+#include "Game.h"
 
 TextureManager* TextureManager::s_pInstance = 0;
 
@@ -15,14 +16,14 @@ bool TextureManager::m_textureExists(std::string id)
 	return m_textureMap.find(id) != m_textureMap.end();
 }
 
-bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer * pRenderer)
+bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pRenderer)
 {
 	// check to see if texture does not already exist
 	if (m_textureExists(id))
 	{
 		return true;
 	}
-	
+
 	SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
 
 	if (pTempSurface == 0)
@@ -44,7 +45,7 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer * p
 	return false;
 }
 
-void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer * pRenderer, SDL_RendererFlip flip)
+void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* pRenderer, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -57,7 +58,7 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-void TextureManager::draw(std::string id, int x, int y, SDL_Renderer * pRenderer, bool centered, SDL_RendererFlip flip)
+void TextureManager::draw(std::string id, int x, int y, SDL_Renderer* pRenderer, bool centered, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -86,7 +87,7 @@ void TextureManager::draw(std::string id, int x, int y, SDL_Renderer * pRenderer
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer * pRenderer, double angle, int alpha, SDL_RendererFlip flip)
+void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* pRenderer, double angle, int alpha, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -101,7 +102,7 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, angle, 0, flip);
 }
 
-void TextureManager::draw(std::string id, int x, int y, SDL_Renderer * pRenderer, double angle, int alpha, bool centered, SDL_RendererFlip flip)
+void TextureManager::draw(std::string id, int x, int y, SDL_Renderer* pRenderer, double angle, int alpha, bool centered, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -131,7 +132,7 @@ void TextureManager::draw(std::string id, int x, int y, SDL_Renderer * pRenderer
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, angle, 0, flip);
 }
 
-void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer * pRenderer, SDL_RendererFlip flip)
+void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -145,7 +146,7 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-void TextureManager::drawFrame(std::string id, int x, int y, int currentRow, int currentFrame, SDL_Renderer * pRenderer, bool centered, SDL_RendererFlip flip)
+void TextureManager::drawFrame(std::string id, int x, int y, int currentRow, int currentFrame, SDL_Renderer* pRenderer, bool centered, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -173,7 +174,7 @@ void TextureManager::drawFrame(std::string id, int x, int y, int currentRow, int
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer * pRenderer, double angle, int alpha, SDL_RendererFlip flip)
+void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* pRenderer, double angle, int alpha, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -189,7 +190,7 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, angle, 0, flip);
 }
 
-void TextureManager::drawFrame(std::string id, int x, int y, int currentRow, int currentFrame, SDL_Renderer * pRenderer, double angle, int alpha, bool centered, SDL_RendererFlip flip)
+void TextureManager::drawFrame(std::string id, int x, int y, int currentRow, int currentFrame, SDL_Renderer* pRenderer, double angle, int alpha, bool centered, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -218,7 +219,67 @@ void TextureManager::drawFrame(std::string id, int x, int y, int currentRow, int
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, angle, 0, flip);
 }
 
-void TextureManager::drawText(std::string id, int x, int y, SDL_Renderer * pRenderer, double angle, int alpha, bool centered, SDL_RendererFlip flip)
+void TextureManager::drawFrame(const std::string& id, const int x, const int y, const int frame_width, const int frame_height, int& current_row,
+	int& current_frame, SDL_Renderer* pRenderer, int frame_number, int row_number, float speed_factor, SDL_Renderer* renderer, const double angle, const int alpha, const bool centered, const SDL_RendererFlip flip)
+{
+	animate(frame_width, frame_height, frame_number, row_number, speed_factor, current_frame, current_row);
+
+	SDL_Rect srcRect;
+	SDL_Rect destRect;
+
+	srcRect.x = 0;
+	srcRect.y = 0;
+
+	// frame_height size
+	const auto textureWidth = frame_width;
+	const auto textureHeight = frame_height;
+
+	// starting point of the where we are looking
+	srcRect.x = textureWidth * current_frame;
+	srcRect.y = textureHeight * current_row;
+
+	srcRect.w = textureWidth;
+	srcRect.h = textureHeight;
+
+	destRect.w = textureWidth;
+	destRect.h = textureHeight;
+
+	if (centered) {
+		const int xOffset = textureWidth * 0.5;
+		const int yOffset = textureHeight * 0.5;
+		destRect.x = x - xOffset;
+		destRect.y = y - yOffset;
+	}
+	else {
+		destRect.x = x;
+		destRect.y = y;
+	}
+
+	SDL_SetTextureAlphaMod(m_textureMap[id], alpha);
+	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, angle, 0, flip);
+}
+
+void TextureManager::animate(int frame_width, int frame_height, int frame_number, int row_number, float speed_factor, int& current_frame, int& current_row)
+{
+	const auto total_frames = frame_number * row_number;
+	int animation_rate = round(total_frames / 2 / speed_factor);
+
+	if (TheGame::Instance()->getFrames() % animation_rate == 0)
+	{
+		current_frame++;
+		if (current_frame > frame_number - 1)
+		{
+			current_frame = 0;
+			current_row++;
+		}
+		if (current_row > row_number - 1)
+		{
+			return;
+		}
+	}
+}
+
+void TextureManager::drawText(std::string id, int x, int y, SDL_Renderer* pRenderer, double angle, int alpha, bool centered, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -276,12 +337,12 @@ void TextureManager::setColour(std::string id, Uint8 red, Uint8 green, Uint8 blu
 	pTexture = NULL;
 }
 
-void TextureManager::addTexture(std::string id, SDL_Texture * texture)
+void TextureManager::addTexture(std::string id, SDL_Texture* texture)
 {
 	m_textureMap[id] = texture;
 }
 
-SDL_Texture * TextureManager::getTexture(std::string id)
+SDL_Texture* TextureManager::getTexture(std::string id)
 {
 	return m_textureMap[id];
 }
@@ -304,7 +365,7 @@ void TextureManager::clean()
 	it = m_textureMap.begin();
 	while (it != m_textureMap.end())
 	{
-		
+
 		SDL_DestroyTexture(it->second);
 		it->second = NULL;
 		m_textureMap.erase(it++);
