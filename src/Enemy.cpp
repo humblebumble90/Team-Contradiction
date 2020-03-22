@@ -61,10 +61,10 @@ void Enemy::Move()
 {
 	setPosition(getPosition() + aI->GetSpeed());
 	if (health <=1 && (
-		(getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <= 0) ||
+		(getPosition().x + ((GetFrame()->GridWidth() * GetFrame()->getGridSize()) / 2) <= -120) ||
 		(getPosition().x >= Config::SCREEN_WIDTH*1.5) ||
-		(getPosition().y + ((GetFrame()->GridHeight() * GetFrame()->getGridSize()) / 2) <= 0) ||
-		(getPosition().y - ((GetFrame()->GridHeight() * GetFrame()->getGridSize()) / 2) >= Config::SCREEN_HEIGHT)
+		(getPosition().y + ((GetFrame()->GridHeight() * GetFrame()->getGridSize()) / 2) <= -120) ||
+		(getPosition().y - ((GetFrame()->GridHeight() * GetFrame()->getGridSize()) / 2) >= Config::SCREEN_HEIGHT+120)
 		)) {
 		TheGame::Instance()->destroyEnemy(this);
 	}

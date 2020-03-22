@@ -93,10 +93,13 @@ void CannonlordAI::SecondaryFunction()
 	if (attackCooldown <= 0)
 	{
 	#pragma region Firing Vectors
-		Vector2 up =	Vector2(0 + localRotation / 90, -1 + localRotation / 90);
-		Vector2 down =	Vector2(0 - localRotation / 90, 1 - localRotation / 90);
-		Vector2 left =	Vector2(-1 + localRotation / 90, 0 - localRotation / 90);
-		Vector2 right = Vector2(1 - localRotation / 90, 0 + localRotation / 90);
+		float f = 0.01111111f;
+		f *= localRotation;
+		//float f = localRotation / 90;
+		Vector2 up = Vector2(0 + f, -1 + f);
+		Vector2 down = Vector2(0 - f, 1 - f);
+		Vector2 left = Vector2(-1 + f / 90, 0 - f);
+		Vector2 right = Vector2(1 - f / 90, 0 + f);
 	#pragma endregion
 	#pragma region Firing
 		if (positiveRotation >= 0 && positiveRotation < 90) {
