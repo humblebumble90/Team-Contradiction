@@ -37,14 +37,14 @@ void Shield::move()
 void Shield::update()
 {
 	move();
-	if(this->getPosition().x < -5.0f)
-	{
-		this->setCollided(true);
-	}
 }
 
 void Shield::clean()
 {
+	if(collided)
+	{
+		delete this;
+	}
 }
 
 bool Shield::getCollided()
@@ -55,5 +55,5 @@ bool Shield::getCollided()
 void Shield::setCollided(bool newState)
 {
 	collided = newState;
-	delete this;
+	clean();
 }

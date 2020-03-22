@@ -14,6 +14,9 @@ Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTr
 	/*if (name == "EnemyMissile" || name == "Ram") {
 		(((PlayerLockAI*)aI)->Initialize(this, 10.00f, targetTransform));
 	}*/
+	auto size = TheTextureManager::Instance()->getTextureSize(enemyName);
+	setWidth(size.x);
+	setHeight(size.y);
 	frame->Initialize(this);
 	setPosition(targetTransform);
 	changeTexture(enemyName);

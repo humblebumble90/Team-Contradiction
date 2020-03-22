@@ -28,7 +28,9 @@ void MissileLauncher::Fire()
 			s = glm::vec2(5, 5);
 			break;
 		}
-		TheGame::Instance()->spawnPlayerWeapon(new WeaponMissile(getPosition(), s));
+		WeaponMissile* wp = new WeaponMissile(getPosition(), s);
+		wp->start();
+		TheGame::Instance()->spawnPlayerWeapon(wp);
 	}
 	else {
 		TheGame::Instance()->spawnEnemy(new EnemyMissileAI(getPosition()));
