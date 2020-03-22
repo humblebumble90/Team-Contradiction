@@ -3,28 +3,29 @@
 #include "Config.h"
 #include "RainAI.h"
 
+int second = 60;
+int wave = 4 * second;
+
+glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT - 25);
+glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT / 2 + 25);
+glm::vec2 top = glm::vec2(Config::SCREEN_WIDTH + 25, 25);
+glm::vec2 centerTop = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT / 4 + 25);
+glm::vec2 centerBottom = glm::vec2(Config::SCREEN_WIDTH + 25, 3 * Config::SCREEN_HEIGHT / 4 - 25);
+
+glm::vec2 guardianPosition = glm::vec2(Config::SCREEN_WIDTH - 20, Config::SCREEN_HEIGHT / 2);
+
+glm::vec2 topIslandPosition = glm::vec2(Config::SCREEN_WIDTH + 370, Config::SCREEN_HEIGHT - 50);
+glm::vec2 bottomIslandPosition = glm::vec2(Config::SCREEN_WIDTH + 370, 50);
+
 Level1::Level1()
 {
 	level = 1;
 	loadAllTextures();
 	loadAllSounds();
-
-	int second = 60;
-	int wave = 3 * second;
-	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT - 25);
-	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT / 2 + 25);
-	glm::vec2 top = glm::vec2(Config::SCREEN_WIDTH + 25, 25);
-	glm::vec2 centerTop = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT / 4 + 25);
-	glm::vec2 centerBottom = glm::vec2(Config::SCREEN_WIDTH + 25, 3 * Config::SCREEN_HEIGHT / 4 - 25);
-
-	glm::vec2 guardianPosition = glm::vec2(Config::SCREEN_WIDTH - 20, Config::SCREEN_HEIGHT / 2);
-
-
-
 	
 	//main enemy
 	cannoneerSpawnTimer =
-	{
+	{ 
 
 		//1
 		wave,
@@ -256,15 +257,25 @@ Level1::Level1()
 	};
 
 	//obstacles
-	//not yet implemented
+	islandSpawnTimer =
+	{
+		//8
+		8 * wave,
+		8 * wave +1,
+		//18
+		18 * wave,
+		18 * wave + 1
+	};
 
-	//rain(boss)
-	spawnEnemy(new RainAI(guardianPosition));
-	//if(time == 26 * wave)
-	//{
-	//	
-	//}
-
+	islandSpawnLocation =
+	{
+		//8
+		topIslandPosition,
+		bottomIslandPosition,
+		//18
+		topIslandPosition,
+		bottomIslandPosition
+	};
 
 
 
@@ -295,6 +306,10 @@ void Level1::clean()
 
 void Level1::handleEvents()
 {
+	if (time == 26 * wave)
+	{
+		spawnEnemy(new RainAI(guardianPosition));
+	}
 }
 
 void Level1::start()
@@ -319,6 +334,7 @@ void Level1::loadAllTextures()
 	loadTexture("../Assets/textures/Cannoneer.png", "Cannoneer");
 	loadTexture("../Assets/textures/Rain.png", "Rain");
 	loadTexture("../Assets/textures/RainHit.png", "RainHit");
+	loadTexture("../Assets/textures/island.png", "Island");
 }
 
 void Level1::loadAllSounds()
