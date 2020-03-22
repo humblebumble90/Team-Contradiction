@@ -20,6 +20,8 @@ void StartScene::draw()
 	m_pStartLabel->draw();
 	m_pStartButton->draw();
 	m_pLevel3Button->draw();
+
+	m_pExplosion->draw();
 }
 
 void StartScene::update()
@@ -122,6 +124,9 @@ void StartScene::start()
 
 	m_pLevel3Button = new Level3Button();
 	addChild(m_pLevel3Button);
+
+	m_pExplosion = new Explosion();
+	addChild(m_pExplosion);
 
 }
 
