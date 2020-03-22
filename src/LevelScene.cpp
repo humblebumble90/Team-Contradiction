@@ -201,6 +201,13 @@ void LevelScene::draw()
 			}
 		}
 	}
+	if (!m_pExplosions.empty())
+	{
+		for (auto item : m_pExplosions)
+		{
+			item->draw();
+		}
+	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
@@ -304,6 +311,10 @@ void LevelScene::Damage(ShipComponent sc[2])
 		if (sc[z].getName() == "BasicBody") {
 			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
 			((BasicBody&)sc[z]).Damage(i);
+			glm::vec2 expPos = ((BasicBody&)sc[z]).getPosition();
+			Explosion* exp = new Explosion();
+			exp->setPosition(expPos);
+			m_pExplosions.push_back(exp);
 		}
 		else if (sc[z].getName() == "IndesBody") {
 			((IndesBody&)sc[z]).Damage(sc[1 - z]);
@@ -318,6 +329,7 @@ void LevelScene::Damage(ShipComponent sc[2])
 			//player->addScore(/*some amount for score(integer)*/);
 			m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
 			m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
+			
 			
 		}
 		if (player->getKillCounter() > 0 &&

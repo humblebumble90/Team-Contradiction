@@ -26,7 +26,7 @@ public:
 
 		return s_pInstance;
 	}
-	
+
 
 	bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
 
@@ -39,7 +39,10 @@ public:
 	void drawFrame(std::string id, int x, int y, int currentRow, int currentFrame, SDL_Renderer* pRenderer, bool centered = false, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* pRenderer, double angle, int alpha, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void drawFrame(std::string id, int x, int y, int currentRow, int currentFrame, SDL_Renderer* pRenderer, double angle, int alpha, bool centered = false, SDL_RendererFlip flip = SDL_FLIP_NONE);
-	
+	void drawFrame(const std::string& id, int x, int y, int frame_width, int frame_height, int& current_row, int& current_frame, SDL_Renderer* pRenderer, int frame_number, int row_number, float speed_factor, SDL_Renderer* renderer, double angle, int alpha, bool centered = false, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+	void animate(int frame_width, int frame_height, int frame_number, int row_number, float speed_factor, int& current_frame, int& current_row);
+
 	void drawText(std::string id, int x, int y, SDL_Renderer* pRenderer, double angle, int alpha, bool centered = false, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	glm::vec2 getTextureSize(std::string id);
@@ -66,6 +69,7 @@ private:
 	static TextureManager* s_pInstance;
 
 	bool m_textureExists(std::string id);
+
 };
 
 typedef TextureManager TheTextureManager;

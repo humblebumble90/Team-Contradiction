@@ -166,6 +166,7 @@
     <ClCompile Include="..\src\DiagonAI.cpp" />
     <ClCompile Include="..\src\EnemyCannonballAI.cpp" />
     <ClCompile Include="..\src\EnemyFlamethrowerAI.cpp" />
+    <ClCompile Include="..\src\explosion.cpp" />
     <ClCompile Include="..\src\Flamethrower.cpp" />
     <ClCompile Include="..\src\FlameThrowerWeapon.cpp" />
     <ClCompile Include="..\src\Game_Over_Bg.cpp" />
@@ -240,6 +241,7 @@
     <ClInclude Include="..\src\DiagonAI.h" />
     <ClInclude Include="..\src\EnemyCannonballAI.h" />
     <ClInclude Include="..\src\EnemyFlamethrowerAI.h" />
+    <ClInclude Include="..\src\explosion.h" />
     <ClInclude Include="..\src\Flamethrower.h" />
     <ClInclude Include="..\src\FlameThrowerWeapon.h" />
     <ClInclude Include="..\src\GameObjectType.h" />

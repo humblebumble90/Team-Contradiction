@@ -11,6 +11,7 @@
 #include "Control_Img.h"
 #include "Shield.h"
 #include "Power_Up.h"
+#include "explosion.h"
 
 class LevelScene : public Scene
 {
@@ -42,6 +43,7 @@ protected:
 	std::vector<Shield*> m_pshields;
 	std::vector<Power_Up*> power_ups;
 	glm::vec2 shieldSpawnPos;
+	std::vector<Explosion*> m_pExplosions;
 
 	Map* m_pMap;
 	Map* m_pMap2;
