@@ -15,7 +15,7 @@ ChaosAI::ChaosAI(glm::vec2 transform)
 	};
 #pragma endregion
 	parent = new Enemy(new Frame(80, //Enemy is 240px by 240px
-		build, 3, 3), 41, //Will tweak if 100 health proves to be too much or too little
+		build, 3, 3), 40, //Will tweak if 100 health proves to be too much or too little
 		this, transform, "Chaos");
 	target = glm::vec2(Config::SCREEN_WIDTH-220, Config::SCREEN_HEIGHT / 2);
 	score = 10000;

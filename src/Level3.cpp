@@ -3,8 +3,8 @@
 #include "SoundManager.h"
 // Game Objects
 /*Boss 0 - Ram Rush*/					#include "RamAI.h"
-/*Boss 1 - Blaster Skiff*/				#include "BlasterSkiffAI.h"
-//#include "ChaosAI.h"
+/*Boss 1 - Blaster Skiff*/				//#include "BlasterSkiffAI.h"
+#include "ChaosAI.h"
 /*Boss 2 - Firebrand*/					#include "FirebrandAI.h"
 /*Boss 3 - Triple Barge (Cannon)*/		#include "CannonBargeAI.h"
 /*Boss 3 - Triple Barge (Missile)*/		#include "MissileBargeAI.h"
@@ -104,8 +104,8 @@ void Level3::start()
 void Level3::Boss1()
 {
 	playSound("BossRush1", 999);
-	spawnEnemy(new BlasterSkiffAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
-	//spawnEnemy(new ChaosAI(glm::vec2(Config::SCREEN_WIDTH + 120, Config::SCREEN_HEIGHT / 2)));
+	//spawnEnemy(new BlasterSkiffAI(glm::vec2(Config::SCREEN_WIDTH + 160, Config::SCREEN_HEIGHT / 2)));
+	spawnEnemy(new ChaosAI(glm::vec2(Config::SCREEN_WIDTH + 120, Config::SCREEN_HEIGHT / 2)));
 }
 
 void Level3::Boss2()
@@ -157,10 +157,10 @@ void Level3::loadAllTextures()
 	loadTexture("../Assets/textures/EnemyMissile.png", "EnemyMissile");
 	loadTexture("../Assets/textures/EnemyCannonball.png", "EnemyCannonball");
 	//blaster skiff
-	//loadTexture("../Assets/textures/Chaos.png", "Chaos");
-	//loadTexture("../Assets/textures/ChaosHit.png", "ChaosHit");
-	loadTexture("../Assets/textures/BlasterSkiff.png", "BlasterSkiff");
-	loadTexture("../Assets/textures/BlasterSkiffHit.png", "BlasterSkiffHit");
+	loadTexture("../Assets/textures/Chaos.png", "Chaos");
+	loadTexture("../Assets/textures/ChaosHit.png", "ChaosHit");
+	//loadTexture("../Assets/textures/BlasterSkiff.png", "BlasterSkiff");
+	//loadTexture("../Assets/textures/BlasterSkiffHit.png", "BlasterSkiffHit");
 	//player weapons
 	loadTexture("../Assets/textures/Missile.png", "Missile");
 	loadTexture("../Assets/textures/Cannonball.png", "Cannonball");

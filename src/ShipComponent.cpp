@@ -19,6 +19,9 @@ glm::vec2 ShipComponent::getPosition()
 		return glm::vec2(
 			cos(angle) * (posX - parentPosition.x) - sin(angle) * (posY - parentPosition.y) + parentPosition.x,
 			sin(angle) * (posX - parentPosition.x) - cos(angle) * (posY - parentPosition.y) + parentPosition.y
+			//center + distance * cos(angle), center + distance * sin(angle)
+			//sin(angle) * (posX - parentPosition.x) + parentPosition.x,
+			//cos(angle) * (posY - parentPosition.y) + parentPosition.y
 		);
 	}
 	return glm::vec2(posX, posY);
