@@ -10,6 +10,14 @@ PlayerWeapon::~PlayerWeapon()
 {
 }
 
+void PlayerWeapon::start()
+{
+	auto size = TheTextureManager::Instance()->getTextureSize(name);
+	setWidth(size.x);
+	setHeight(size.y);
+}
+
+
 void PlayerWeapon::draw()
 {
 	TheTextureManager::Instance()->draw(name, getPosition().x - (frame->getGridSize() * frame->GridWidth() / 2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2),

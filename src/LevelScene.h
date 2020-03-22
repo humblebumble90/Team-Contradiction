@@ -54,13 +54,13 @@ protected:
 	std::vector<glm::vec2> ramSpawnLocation, zigzagSpawnLocation, cannoneerSpawnLocation, guardianSpawnLocation, diagonSpawnLocation, blastSpawnLocation, islandSpawnLocation;
 	#pragma endregion
 
-	void initializeLabels();
 	int level;
 private:
 	void Damage(ShipComponent sc[2]);
 	void checkShieldCollision();
-	void spawnShield(ShipComponent* sc);
+	void spawnShield(AI* enemy);
 	void collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw);
 	void collisionCheck(bool boss, AI* enemy);
+	void initialize();
 };
 #endif
