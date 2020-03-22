@@ -200,6 +200,13 @@ void LevelScene::draw()
 			}
 		}
 	}
+	if(!m_pExplosions.empty())
+	{
+		for(auto item: m_pExplosions)
+		{
+			item->draw();
+		}
+	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
@@ -228,9 +235,10 @@ PlayerShip* LevelScene::getPlayerShip()
 
 void LevelScene::spawnShield(ShipComponent* sc)
 {
+	
 	player->initializeKillCounter();
 	Shield* shield = new Shield();
-	shieldSpawnPos = sc[1].getParent()->getParent()->getPosition();
+	glm::vec2 shieldSpawnPos = sc[1].getParent()->getParent()->getPosition();
 	shield->setPosition(shieldSpawnPos);
 	shield->setVelocity
 		(glm::vec2(-5.0f, 0.0f));
@@ -303,6 +311,10 @@ void LevelScene::Damage(ShipComponent sc[2])
 		if (sc[z].getName() == "BasicBody") {
 			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
 			((BasicBody&)sc[z]).Damage(i);
+			glm::vec2 expPos = ((BasicBody&)sc[z]).getPosition();
+			Explosion* exp = new Explosion();
+			exp->setPosition(expPos);
+			m_pExplosions.push_back(exp);
 		}
 		else if (sc[z].getName() == "IndesBody") {
 			((IndesBody&)sc[z]).Damage(sc[1 - z]);

@@ -69,6 +69,7 @@ private:
 	static TextureManager* s_pInstance;
 
 	bool m_textureExists(std::string id);
+
 };
 
 typedef TextureManager TheTextureManager;

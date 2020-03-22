@@ -1,7 +1,7 @@
 #include "explosion.h"
 #include "Game.h"
 
-Explosion::Explosion()
+Explosion::Explosion():m_currentFrame(0),m_currentRow(0),animated(false)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/explosion.png",
 		"explosion", TheGame::Instance()->getRenderer());
@@ -17,8 +17,6 @@ Explosion::Explosion()
 	setIsColliding(false);
 	setType(EXPLOSION);
 	setState(IDLE);
-	m_currentFrame = 0;
-	m_currentRow = 0;
 }
 Explosion::~Explosion() = default;
 void Explosion::draw()
@@ -39,4 +37,14 @@ void Explosion::update()
 
 void Explosion::clean()
 {
+}
+
+void Explosion::setAnimated(bool newState)
+{
+	animated = newState;
+}
+
+bool Explosion::getAnimated()
+{
+	return animated;
 }

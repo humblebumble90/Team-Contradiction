@@ -20,8 +20,10 @@ void StartScene::draw()
 	m_pStartLabel->draw();
 	m_pStartButton->draw();
 	m_pLevel3Button->draw();
-
-	m_pExplosion->draw();
+	if(!m_pExplosion->getAnimated())
+	{
+		m_pExplosion->draw();
+	}
 }
 
 void StartScene::update()
