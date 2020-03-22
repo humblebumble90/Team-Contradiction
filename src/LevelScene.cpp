@@ -67,7 +67,8 @@ void LevelScene::update()
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
-	for (PlayerWeapon* pw : playerWeapons) {
+	for (PlayerWeapon* pw : playerWeapons) 
+	{
 		pw->update();
 	}
 	#pragma region Collisions

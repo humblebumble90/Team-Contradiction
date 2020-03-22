@@ -3,13 +3,18 @@
 #define __FLAMETHROWER__
 #include "Weapon.h"
 #include "FlameThrowerWeapon.h"
+#include "PlayerShip.h"
 class Flamethrower : public Weapon
 {
 public:
+	friend class PlayerShip;
 	Flamethrower();
 	~Flamethrower();
-	FlameThrowerWeapon* flameThrower;
+	FlameThrowerWeapon* flamethrower;
 	void Fire();
+
+private:
+	
 
 	
 };
