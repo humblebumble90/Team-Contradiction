@@ -18,20 +18,20 @@ Explosion::Explosion(std::string id):m_currentFrame(0),m_currentRow(0),animated(
 	setType(EXPLOSION);
 	setState(IDLE);
 }
-Explosion::~Explosion() = default;
+Explosion::~Explosion()
+{
+	delete this;
+}
 void Explosion::draw()
 {
 	const int xComponent = getPosition().x;
 	const int yComponent = getPosition().y;
-
-	if(TheTextureManager::Instance()->getTexture(ID) != nullptr)
-	{
-		TheTextureManager::Instance()->drawFrame(ID, xComponent,
-			yComponent, 64, 64, m_currentRow,
-			m_currentFrame, TheGame::Instance()->getRenderer(),
-			4, 4, 1.0f,
-			TheGame::Instance()->getRenderer(), 180, 255, true);
-	}
+	
+	TheTextureManager::Instance()->drawFrame(ID, xComponent,
+	yComponent, 64, 64, m_currentRow,
+	m_currentFrame, TheGame::Instance()->getRenderer(),
+	4, 4, 1.0f,
+	TheGame::Instance()->getRenderer(), 180, 255, true);
 }
 
 void Explosion::update()
@@ -40,13 +40,12 @@ void Explosion::update()
 
 void Explosion::clean()
 {
-		delete this;
+
 }
 
 void Explosion::setAnimated(bool newState)
 {
 	animated = newState;
-	clean();
 }
 
 bool Explosion::getAnimated()

@@ -275,7 +275,7 @@ void TextureManager::animate(std::string id,int frame_width, int frame_height, i
 		}
 		if (current_row > row_number - 1)
 		{
-			std::cout << id<<std::endl;
+			//std::cout << id<<std::endl;
 			removeTexture(id);
 			return;
 		}

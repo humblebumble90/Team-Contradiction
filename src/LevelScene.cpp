@@ -34,10 +34,11 @@ void LevelScene::checkShieldCollision()
 			if (CollisionManager::squaredRadiusCheck(player, item)
 				|| item->getPosition().x < -5.0f)
 			{
-				std::cout << "Shield status: " << item << std::endl;
 				player->setShieldAvailable(true);
 				item->setCollided(true);
+				m_pshields[i]->clean();
 				m_pshields.erase(m_pshields.begin() + i);
+				m_pshields.shrink_to_fit();
 				break;
 			}
 			if (!item->getCollided())
@@ -207,7 +208,9 @@ void LevelScene::draw()
 		for (auto item : m_pExplosions)
 		{
 			if(!item->getAnimated())
-			item->draw();
+			{
+				item->draw();
+			}
 		}
 	}
 }
@@ -239,18 +242,21 @@ PlayerShip* LevelScene::getPlayerShip()
 void LevelScene::spawnShield(AI* enemy)
 {
 	player->initializeKillCounter();
-	Shield* shield = new Shield();
+	shieldID = "Shield" + std::to_string(idNum);
+	std::cout << "Shield ID: "<< shieldID << std::endl;
+	Shield* shield = new Shield(shieldID);
 	shieldSpawnPos = enemy->GetParent()->getPosition();
 	shield->setPosition(shieldSpawnPos);
 	shield->setVelocity
 		(glm::vec2(-5.0f, 0.0f));
+	addChild(shield);
 	m_pshields.push_back(shield);
-	std::cout << "Shield gen\n";
+	//std::cout << "Shield gen\n";
 }
 
 void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 {
-	expID = "exp " + std::to_string(expNum);
+	expID = "exp " + std::to_string(idNum);
 	//Collision check for Enemies versus Player Weapon
 	if (boss) {
 		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
@@ -283,15 +289,13 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 			m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
 			m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
 			auto expPos = enemy->GetParent()->getPosition();
-			expNum++;
-			if(!m_pExplosions.empty())
-			{
-				removeExplosion();
-			}
-			std::cout << "Exp Num: "<< expNum << std::endl;
+			idNum++;
+			//std::cout << "Exp Num: "<< idNum << std::endl;
 			Explosion* exp = new Explosion(expID);
+			addChild(exp);
 			exp->setPosition(expPos);
 			m_pExplosions.push_back(exp);
+			DestroyExplosion();
 		}
 		if (player->getKillCounter() > 0 &&
 			player->getKillCounter() % 20 == 0)
@@ -303,7 +307,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 
 void LevelScene::collisionCheck(bool boss, AI* enemy)
 {
-	expID = "exp " + std::to_string(expNum);
+	expID = "exp " + std::to_string(idNum);
 	//Collision Check used for enemies versus player
 	if (boss)
 	{
@@ -330,28 +334,24 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 		{
 			enemy->GetParent()->Damage(1);
 			auto expPos1 = enemy->GetParent()->getPosition();
-			expNum++;
-			if (!m_pExplosions.empty())
-			{
-				removeExplosion();
-			}
-			std::cout << "Exp Num: " << expNum << std::endl;
+			idNum++;
+			//std::cout << "Exp Num: " << idNum << std::endl;
 			Explosion* exp1 = new Explosion(expID);
+			addChild(exp1);
 			exp1->setPosition(expPos1);
 			m_pExplosions.push_back(exp1);
+			DestroyExplosion();
 			if(!player->getInvincibility())
 			{
 				player->Damage(1);
 				auto expPos2 = player->getPosition();
-				expNum++;
-				if (!m_pExplosions.empty())
-				{
-					removeExplosion();
-				}
-				std::cout << "Exp Num: " << expNum << std::endl;
+				idNum++;
+				//std::cout << "Exp Num: " << idNum << std::endl;
 				Explosion* exp2 = new Explosion(expID);
+				addChild(exp2);
 				exp2->setPosition(expPos2);
 				m_pExplosions.push_back(exp2);
+				DestroyExplosion();
 				m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 			}
 		}
@@ -360,21 +360,19 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 
 void LevelScene::Damage(ShipComponent sc[2])
 {
-	expID = "exp " + std::to_string(expNum);
+	expID = "exp " + std::to_string(idNum);
 	for (int z = 0; z < 2; ++z) {
 		if (sc[z].getName() == "BasicBody") {
 			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
 			((BasicBody&)sc[z]).Damage(i);
-			expNum++;
-			if (!m_pExplosions.empty())
-			{
-				removeExplosion();
-			}
-			std::cout << "Exp Num: " << expNum << std::endl;
+			idNum++;
+			//std::cout << "Exp Num: " << idNum << std::endl;
 			glm::vec2 expPos = ((BasicBody&)sc[z]).getPosition();
 			Explosion* exp = new Explosion(expID);
+			addChild(exp);
 			exp->setPosition(expPos);
 			m_pExplosions.push_back(exp);
+			DestroyExplosion();
 		}
 		else if (sc[z].getName() == "IndesBody") {
 			((IndesBody&)sc[z]).Damage(sc[1 - z]);
@@ -400,14 +398,16 @@ void LevelScene::Damage(ShipComponent sc[2])
 	//}
 }
 
-void LevelScene::removeExplosion()
+void LevelScene::DestroyExplosion()
 {
 	for (int i = 0; i < m_pExplosions.size(); i++)
 	{
 		if (TheTextureManager::Instance()->getTexture(m_pExplosions[i]->getID()) == nullptr)
 		{
 			m_pExplosions[i]->setAnimated(true);
+			//std::cout << "Memory address before: " << m_pExplosions[i] << std::endl;
 			m_pExplosions.erase(m_pExplosions.begin()+i);
+			//std::cout<< "Memory address result: " << m_pExplosions[i] << std::endl;
 			m_pExplosions.shrink_to_fit();
 			break;
 		}
