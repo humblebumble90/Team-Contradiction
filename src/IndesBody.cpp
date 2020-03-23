@@ -20,7 +20,7 @@ void IndesBody::Damage(ShipComponent collision)
 			}
 		}
 		catch (_exception){}
-		if (parent->getParent()->getName() == "Misisle") {
+		if (parent->getParent()->getName() == "Missile") {
 			Game::Instance()->destroyWeapon((PlayerWeapon*)getParent()->getParent());
 		}
 		else {
