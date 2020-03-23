@@ -20,6 +20,10 @@ Enemy::Enemy(Frame* enemyFrame, int enemyHealth, AI* enemyAI, glm::vec2 targetTr
 	frame->Initialize(this);
 	setPosition(targetTransform);
 	changeTexture(enemyName);
+	if(name == "EnemyMissile" || name=="EnemyCannonball" || name=="EnemyFlamethrower")
+	{
+		setType(ENEMY_WEAPON);
+	}
 }
 
 Enemy::~Enemy()
@@ -42,6 +46,7 @@ void Enemy::Damage(int i)
 		health -= i;
 		if (health <= 0)
 		{
+			//std::cout << "Enemy dead: " << this->getName() << std::endl;
 			TheGame::Instance()->destroyEnemy(this);
 		}
 		else {
