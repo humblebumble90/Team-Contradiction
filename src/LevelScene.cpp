@@ -311,7 +311,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 	if (boss)
 	{
 		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
-			if (es.getName() == "BasicBody") {
+			if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
 				for (ShipComponent ps : player->GetFrame()->GetBuild()) {
 					if (ps.getName() == "BasicBody") {
 						if (CollisionManager::shipComponentCheck(es, ps))
@@ -319,6 +319,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 							ShipComponent temp[2] = { ps, es };
 							Damage(temp);
 							m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+
 						}
 					}
 				}
