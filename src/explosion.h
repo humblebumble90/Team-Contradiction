@@ -5,7 +5,7 @@
 class Explosion : public DisplayObject
 {
 public:
-	Explosion();
+	Explosion(std::string id);
 	~Explosion();
 
 	void draw() override;
@@ -13,7 +13,9 @@ public:
 	void clean() override;
 	void setAnimated(bool newState);
 	bool getAnimated();
+	std::string getID();
 private:
+	std::string ID;
 	int m_currentFrame;
 	int m_currentRow;
 	bool animated;

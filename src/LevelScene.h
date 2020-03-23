@@ -62,5 +62,8 @@ private:
 	void collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw);
 	void collisionCheck(bool boss, AI* enemy);
 	void initialize();
+	void removeExplosion();
+	int expNum = 0;
+	std::string expID;
 };
 #endif

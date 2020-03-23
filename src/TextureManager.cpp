@@ -222,7 +222,8 @@ void TextureManager::drawFrame(std::string id, int x, int y, int currentRow, int
 void TextureManager::drawFrame(const std::string& id, const int x, const int y, const int frame_width, const int frame_height, int& current_row,
 	int& current_frame, SDL_Renderer* pRenderer, int frame_number, int row_number, float speed_factor, SDL_Renderer* renderer, const double angle, const int alpha, const bool centered, const SDL_RendererFlip flip)
 {
-	animate(frame_width, frame_height, frame_number, row_number, speed_factor, current_frame, current_row);
+	animate(id,frame_width, frame_height, frame_number, 
+		row_number, speed_factor, current_frame, current_row);
 
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -259,7 +260,7 @@ void TextureManager::drawFrame(const std::string& id, const int x, const int y, 
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, angle, 0, flip);
 }
 
-void TextureManager::animate(int frame_width, int frame_height, int frame_number, int row_number, float speed_factor, int& current_frame, int& current_row)
+void TextureManager::animate(std::string id,int frame_width, int frame_height, int frame_number, int row_number, float speed_factor, int& current_frame, int& current_row)
 {
 	const auto total_frames = frame_number * row_number;
 	int animation_rate = round(total_frames / 2 / speed_factor);
@@ -274,6 +275,8 @@ void TextureManager::animate(int frame_width, int frame_height, int frame_number
 		}
 		if (current_row > row_number - 1)
 		{
+			std::cout << id<<std::endl;
+			removeTexture(id);
 			return;
 		}
 	}
