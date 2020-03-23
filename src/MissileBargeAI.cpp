@@ -22,6 +22,7 @@ MissileBargeAI::MissileBargeAI(glm::vec2 transform)
 	topLimit = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridHeight() / 2;
 	bottomLimit = Config::SCREEN_HEIGHT - topLimit;
 	target = glm::vec2(Config::SCREEN_WIDTH * 3 / 4, Config::SCREEN_HEIGHT / 2);
+	score = 1500;
 }
 
 MissileBargeAI::~MissileBargeAI()

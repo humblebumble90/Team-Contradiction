@@ -17,6 +17,7 @@ BlastAI::BlastAI(glm::vec2 transform)
 	parent = new Enemy(new Frame(15, //Enemy is 75px by 75px
 		build, 3, 5), 1, this, transform, "Blast");
 	speed.x = -4.00f; //Tweak this number later
+	score = 150;
 }
 
 BlastAI::~BlastAI()

@@ -9,6 +9,7 @@ RamAI::RamAI(glm::vec2 transform)
 	parent = new Enemy(new Frame(50, //Enemy is 50px by 50px
 		build, 1, 1), 1, this, transform, "Ram");
 	baseSpeed = 10.00f;
+	score = 100;
 	Initialize();
 }
 

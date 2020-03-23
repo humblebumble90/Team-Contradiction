@@ -5,6 +5,7 @@
 #include "GuardianAI.h"
 #include "DiagonAI.h"
 #include "BlastAI.h"
+#include "IslandAI.h"
 #include "BasicBody.h"
 #include "IndesBody.h"
 #include "CollisionManager.h"
@@ -30,12 +31,14 @@ void LevelScene::checkShieldCollision()
 		for (int i = 0; i < m_pshields.size(); i++)
 		{
 			auto item = m_pshields[i];
-			if (CollisionManager::squaredRadiusCheck(player, item))
+			if (CollisionManager::squaredRadiusCheck(player, item)
+				|| item->getPosition().x < -5.0f)
 			{
-				std::cout << "Shield status: " << item << std::endl;
 				player->setShieldAvailable(true);
 				item->setCollided(true);
+				m_pshields[i]->clean();
 				m_pshields.erase(m_pshields.begin() + i);
+				m_pshields.shrink_to_fit();
 				break;
 			}
 			if (!item->getCollided())
@@ -50,7 +53,7 @@ void LevelScene::update()
 {
 	++time;
 	spawnedEnemy = false;
-	initializeLabels();
+	initialize();
 	if (player->getPlayerLives() >= 0)
 	{
 		player->update();
@@ -66,83 +69,21 @@ void LevelScene::update()
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
-	for (PlayerWeapon* pw : playerWeapons) {
+	for (PlayerWeapon* pw : playerWeapons) 
+	{
 		pw->update();
 	}
 	#pragma region Collisions
 	//if the enemies are spawned or if the player is invincible
 	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
 		for (AI* enemy : enemies) {
-			for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
-				bool Break = false;
-				if (es.getName() == "BasicBody" || es.getName() == "IndesBody" || (level!=3 && es.getName()!="Blank")) {
-					if (playerWeapons.size() > 0) {
-						for (PlayerWeapon* pw : playerWeapons) {
-							for (ShipComponent ps : pw->getFrame()->GetBuild()) {
-								if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
-									/*
-									This has been commented out because IT'S IN THE WRONG PLACE!!! This places a HUGE amount of computational expense!
-									Consider putting this inside the enemy's Damage() method as previously instructed by Josh
-
-
-										if(ps.getName() == "IndesBody" && es.getName() == "BasicBody"
-										&& CollisionManager::shipComponentCheck(ps,es))
-									{
-										player->setKillCounter(1);
-										if (player->getKillCounter() % 20 == 0)
-										{
-											Shield* shield = new Shield();
-											shieldSpawnPos = es.getParent()->getParent()->getPosition();
-											shield->setPosition(shieldSpawnPos);
-											shield->setVelocity
-											(glm::vec2( -5.0f , 0.0f));
-											m_pshields.push_back(shield);
-											std::cout << "Shield gen\n";
-										}
-									}*/
-									if (CollisionManager::shipComponentCheck(es, ps))
-									{
-										ShipComponent temp[2] = { ps, es };
-										Damage(temp);
-										Break = true;
-										break;
-										/*if (ps.getName() == "BasicBody")
-										{
-											m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-										}*/
-									}
-								}
-							}
-							if (Break) {
-								break;
-							}
-						}
-					}
-					if (Break) {
-						break;
-					}
-					if (!player->getInvincibility()) {
-						for (ShipComponent ps : player->GetFrame()->GetBuild()) {
-							if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
-								if (CollisionManager::shipComponentCheck(es, ps))
-								{
-									ShipComponent temp[2] = { ps, es };
-									Damage(temp);
-									if(ps.getName() == "BasicBody")
-									{
-										m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-									}
-									Break = true;
-									break;
-									
-								}
-							}
-						}
-						if (Break) {
-							break;
-						}
-					}
+			if (playerWeapons.size() > 0) {
+				for (PlayerWeapon* pw : playerWeapons) {
+					collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy, pw);
 				}
+			}
+			if (!player->getInvincibility()) {
+				collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy);
 			}
 		}
 	}
@@ -191,6 +132,13 @@ void LevelScene::update()
 		{
 			spawnEnemy(new BlastAI(blastSpawnLocation[blastIteration]));
 			++blastIteration;
+		}
+	}
+	if (islandIteration < islandSpawnTimer.size()) {
+		if (time == islandSpawnTimer[islandIteration])
+		{
+			spawnEnemy(new IslandAI(islandSpawnLocation[islandIteration]));
+			++islandIteration;
 		}
 	}
 	#pragma endregion
@@ -255,6 +203,16 @@ void LevelScene::draw()
 			}
 		}
 	}
+	if (!m_pExplosions.empty())
+	{
+		for (auto item : m_pExplosions)
+		{
+			if(!item->getAnimated())
+			{
+				item->draw();
+			}
+		}
+	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
@@ -281,44 +239,177 @@ PlayerShip* LevelScene::getPlayerShip()
 	return player;
 }
 
-void LevelScene::spawnShield(ShipComponent* sc)
+void LevelScene::spawnShield(AI* enemy)
 {
 	player->initializeKillCounter();
-	Shield* shield = new Shield();
-	shieldSpawnPos = sc[1].getParent()->getParent()->getPosition();
+	shieldID = "Shield" + std::to_string(idNum);
+	std::cout << "Shield ID: "<< shieldID << std::endl;
+	Shield* shield = new Shield(shieldID);
+	shieldSpawnPos = enemy->GetParent()->getPosition();
 	shield->setPosition(shieldSpawnPos);
 	shield->setVelocity
 		(glm::vec2(-5.0f, 0.0f));
+	addChild(shield);
 	m_pshields.push_back(shield);
-	std::cout << "Shield gen\n";
+	//std::cout << "Shield gen\n";
+}
+
+void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
+{
+	expID = "exp " + std::to_string(idNum);
+	//Collision check for Enemies versus Player Weapon
+	if (boss) {
+		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
+			if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
+				for (ShipComponent ps : pw->getFrame()->GetBuild()) {
+					if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+						if (CollisionManager::shipComponentCheck(es, ps))
+						{
+							ShipComponent temp[2] = { ps, es };
+							Damage(temp);
+							if(ps.getName() == "BasicBody" && !player->getInvincibility())
+							{
+								m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	else {
+		if (CollisionManager::AABBCheck(enemy->GetParent(), pw))
+		{
+			enemy->GetParent()->Damage(1);
+			pw->Damage(1);
+			//Temporary calling score method for testing.
+			//player->addScore(/*some amount for score(integer)*/);
+			player->setKillCounter(1);
+			player->addScore(player->getKillCounter());
+			m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
+			m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
+			auto expPos = enemy->GetParent()->getPosition();
+			idNum++;
+			//std::cout << "Exp Num: "<< idNum << std::endl;
+			Explosion* exp = new Explosion(expID);
+			addChild(exp);
+			exp->setPosition(expPos);
+			m_pExplosions.push_back(exp);
+			DestroyExplosion();
+		}
+		if (player->getKillCounter() > 0 &&
+			player->getKillCounter() % 20 == 0)
+		{
+			spawnShield(enemy);			
+		}
+	}
+}
+
+void LevelScene::collisionCheck(bool boss, AI* enemy)
+{
+	expID = "exp " + std::to_string(idNum);
+	//Collision Check used for enemies versus player
+	if (boss)
+	{
+		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
+			if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
+				for (ShipComponent ps : player->GetFrame()->GetBuild()) {
+					if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+						if (CollisionManager::shipComponentCheck(es, ps))
+						{
+							ShipComponent temp[2] = { ps, es };
+							Damage(temp);
+							if (ps.getName() == "BasicBody" && !player->getInvincibility())
+							{
+								m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	else {
+		if (CollisionManager::AABBCheck(enemy->GetParent(), player))
+		{
+			enemy->GetParent()->Damage(1);
+			auto expPos1 = enemy->GetParent()->getPosition();
+			idNum++;
+			//std::cout << "Exp Num: " << idNum << std::endl;
+			Explosion* exp1 = new Explosion(expID);
+			addChild(exp1);
+			exp1->setPosition(expPos1);
+			m_pExplosions.push_back(exp1);
+			DestroyExplosion();
+			if(!player->getInvincibility())
+			{
+				player->Damage(1);
+				auto expPos2 = player->getPosition();
+				idNum++;
+				//std::cout << "Exp Num: " << idNum << std::endl;
+				Explosion* exp2 = new Explosion(expID);
+				addChild(exp2);
+				exp2->setPosition(expPos2);
+				m_pExplosions.push_back(exp2);
+				DestroyExplosion();
+				m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+			}
+		}
+	}
 }
 
 void LevelScene::Damage(ShipComponent sc[2])
 {
+	expID = "exp " + std::to_string(idNum);
 	for (int z = 0; z < 2; ++z) {
 		if (sc[z].getName() == "BasicBody") {
 			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
 			((BasicBody&)sc[z]).Damage(i);
+			idNum++;
+			//std::cout << "Exp Num: " << idNum << std::endl;
+			glm::vec2 expPos = ((BasicBody&)sc[z]).getPosition();
+			Explosion* exp = new Explosion(expID);
+			addChild(exp);
+			exp->setPosition(expPos);
+			m_pExplosions.push_back(exp);
+			DestroyExplosion();
 		}
 		else if (sc[z].getName() == "IndesBody") {
 			((IndesBody&)sc[z]).Damage(sc[1 - z]);
 		}
 	}
-	if (sc[0].getName() == "IndesBody" && sc[1].getName() == "BasicBody")
+	//if (sc[0].getName() == "IndesBody" && sc[1].getName() == "BasicBody")
+	//{
+	//	if(!(((FlyOntoScreenAI*)((Enemy*)sc[1].getParent()->getParent())->getAI())->isBoss))
+	//	{
+	//		player->setKillCounter(1);
+	//		player->addScore(1);//Temporary calling score method for testing.
+	//		//player->addScore(/*some amount for score(integer)*/);
+	//		m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
+	//		m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
+	//		
+	//		
+	//	}
+	//	if (player->getKillCounter() > 0 &&
+	//		player->getKillCounter() % 20 == 0)
+	//	{
+	//		spawnShield(sc);			
+	//	}
+	//}
+}
+
+void LevelScene::DestroyExplosion()
+{
+	for (int i = 0; i < m_pExplosions.size(); i++)
 	{
-		if(!(((FlyOntoScreenAI*)((Enemy*)sc[1].getParent()->getParent())->getAI())->isBoss))
+		if (TheTextureManager::Instance()->getTexture(m_pExplosions[i]->getID()) == nullptr)
 		{
-			player->setKillCounter(1);
-			player->addScore(1);//Temporary calling score method for testing.
-			//player->addScore(/*some amount for score(integer)*/);
-			m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
-			m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
-			
-		}
-		if (player->getKillCounter() > 0 &&
-			player->getKillCounter() % 20 == 0)
-		{
-			spawnShield(sc);			
+			m_pExplosions[i]->setAnimated(true);
+			//std::cout << "Memory address before: " << m_pExplosions[i] << std::endl;
+			m_pExplosions.erase(m_pExplosions.begin()+i);
+			//std::cout<< "Memory address result: " << m_pExplosions[i] << std::endl;
+			m_pExplosions.shrink_to_fit();
+			break;
 		}
 	}
 }
@@ -347,7 +438,7 @@ void LevelScene::spawnPlayerWeapon(PlayerWeapon* playerWeapon)
 	playerWeapons.push_back(playerWeapon);
 }
 
-void LevelScene::initializeLabels()
+void LevelScene::initialize()
 {
 	if (player != nullptr && m_pLivesLabel == nullptr)
 	{
@@ -361,6 +452,8 @@ void LevelScene::initializeLabels()
 			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.25f, 10.0f), TTF_STYLE_NORMAL,true);
 		m_pHighScoreLabel = new Label("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()), "Consolas",
 			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, 10.0f), TTF_STYLE_NORMAL, true);
+
+		
 		
 		
 		return;

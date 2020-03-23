@@ -37,6 +37,7 @@ FirebrandAI::FirebrandAI(glm::vec2 transform)
 	}
 
 	target = glm::vec2(1000, Config::SCREEN_HEIGHT/2);
+	score = 4000;
 }
 
 FirebrandAI::~FirebrandAI()

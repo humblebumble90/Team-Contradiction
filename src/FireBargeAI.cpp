@@ -31,6 +31,7 @@ FireBargeAI::FireBargeAI(glm::vec2 transform)
 	leftLimit = parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2;
 	rightLimit = Config::SCREEN_WIDTH - leftLimit;
 	target = glm::vec2(rightLimit, Config::SCREEN_HEIGHT / 2);
+	score = 1500;
 }
 
 FireBargeAI::~FireBargeAI()

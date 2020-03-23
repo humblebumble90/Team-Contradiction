@@ -22,7 +22,8 @@ void Weapon::Fire()
 	else if (name == "Cannon") {
 		((Cannon*)this)->Fire();
 	}
-	else if (name == "Flamethrower") {
+	else if (name == "Flamethrower")
+	{
 		((Flamethrower*)this)->Fire();
 	}
 }

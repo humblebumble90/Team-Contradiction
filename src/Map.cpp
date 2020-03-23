@@ -3,6 +3,7 @@
 
 Map::Map()
 {
+	changeTexture("map");
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("map");
 	setWidth(size.x);
 	setHeight(size.y);

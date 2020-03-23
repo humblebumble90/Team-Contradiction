@@ -1,6 +1,8 @@
 #include "FlameThrowerWeapon.h"
 #include "Game.h"
 #include "IndesBody.h"
+#include "PlayerWeapon.h"
+#include "Flamethrower.h"
 
 FlameThrowerWeapon::FlameThrowerWeapon(glm::vec2 position)
 {
@@ -15,12 +17,17 @@ FlameThrowerWeapon::FlameThrowerWeapon(glm::vec2 position)
 	};
 	frame = new Frame(25, build, 4, 1);
 	frame->Initialize(this);
+	m_pflamethrower = new Flamethrower();
 }
 
 FlameThrowerWeapon::~FlameThrowerWeapon() = default;
 
 void FlameThrowerWeapon::update()
 {
-	//if()
+
+	//PlayerWeapon::update();
+
+	this->setPosition(glm::vec2(m_pflamethrower->getPosition().x + 1.0f, m_pflamethrower->getPosition().y));
+	
 }
 
