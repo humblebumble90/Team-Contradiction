@@ -41,7 +41,7 @@ public:
 	void drawFrame(std::string id, int x, int y, int currentRow, int currentFrame, SDL_Renderer* pRenderer, double angle, int alpha, bool centered = false, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void drawFrame(const std::string& id, int x, int y, int frame_width, int frame_height, int& current_row, int& current_frame, SDL_Renderer* pRenderer, int frame_number, int row_number, float speed_factor, SDL_Renderer* renderer, double angle, int alpha, bool centered = false, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-	void animate(int frame_width, int frame_height, int frame_number, int row_number, float speed_factor, int& current_frame, int& current_row);
+	void animate(std::string id,int frame_width, int frame_height, int frame_number, int row_number, float speed_factor, int& current_frame, int& current_row);
 
 	void drawText(std::string id, int x, int y, SDL_Renderer* pRenderer, double angle, int alpha, bool centered = false, SDL_RendererFlip flip = SDL_FLIP_NONE);
 

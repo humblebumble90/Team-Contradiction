@@ -31,7 +31,8 @@ void LevelScene::checkShieldCollision()
 		for (int i = 0; i < m_pshields.size(); i++)
 		{
 			auto item = m_pshields[i];
-			if (CollisionManager::squaredRadiusCheck(player, item))
+			if (CollisionManager::squaredRadiusCheck(player, item)
+				|| item->getPosition().x < -5.0f)
 			{
 				std::cout << "Shield status: " << item << std::endl;
 				player->setShieldAvailable(true);
@@ -39,12 +40,7 @@ void LevelScene::checkShieldCollision()
 				m_pshields.erase(m_pshields.begin() + i);
 				break;
 			}
-			if (item->getPosition().x < -5.0f)
-			{
-				item->setCollided(true);
-				m_pshields.erase(m_pshields.begin() + i);
-			}
-			if (item != nullptr && !item->getCollided())
+			if (!item->getCollided())
 			{
 				item->update();
 			}
@@ -210,6 +206,7 @@ void LevelScene::draw()
 	{
 		for (auto item : m_pExplosions)
 		{
+			if(!item->getAnimated())
 			item->draw();
 		}
 	}
@@ -253,6 +250,7 @@ void LevelScene::spawnShield(AI* enemy)
 
 void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 {
+	expID = "exp " + std::to_string(expNum);
 	//Collision check for Enemies versus Player Weapon
 	if (boss) {
 		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
@@ -285,7 +283,13 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 			m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
 			m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
 			auto expPos = enemy->GetParent()->getPosition();
-			Explosion* exp = new Explosion();
+			expNum++;
+			if(!m_pExplosions.empty())
+			{
+				removeExplosion();
+			}
+			std::cout << "Exp Num: "<< expNum << std::endl;
+			Explosion* exp = new Explosion(expID);
 			exp->setPosition(expPos);
 			m_pExplosions.push_back(exp);
 		}
@@ -299,6 +303,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 
 void LevelScene::collisionCheck(bool boss, AI* enemy)
 {
+	expID = "exp " + std::to_string(expNum);
 	//Collision Check used for enemies versus player
 	if (boss)
 	{
@@ -325,14 +330,26 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 		{
 			enemy->GetParent()->Damage(1);
 			auto expPos1 = enemy->GetParent()->getPosition();
-			Explosion* exp1 = new Explosion();
+			expNum++;
+			if (!m_pExplosions.empty())
+			{
+				removeExplosion();
+			}
+			std::cout << "Exp Num: " << expNum << std::endl;
+			Explosion* exp1 = new Explosion(expID);
 			exp1->setPosition(expPos1);
 			m_pExplosions.push_back(exp1);
 			if(!player->getInvincibility())
 			{
 				player->Damage(1);
 				auto expPos2 = player->getPosition();
-				Explosion* exp2 = new Explosion();
+				expNum++;
+				if (!m_pExplosions.empty())
+				{
+					removeExplosion();
+				}
+				std::cout << "Exp Num: " << expNum << std::endl;
+				Explosion* exp2 = new Explosion(expID);
 				exp2->setPosition(expPos2);
 				m_pExplosions.push_back(exp2);
 				m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
@@ -343,12 +360,19 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 
 void LevelScene::Damage(ShipComponent sc[2])
 {
+	expID = "exp " + std::to_string(expNum);
 	for (int z = 0; z < 2; ++z) {
 		if (sc[z].getName() == "BasicBody") {
 			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
 			((BasicBody&)sc[z]).Damage(i);
+			expNum++;
+			if (!m_pExplosions.empty())
+			{
+				removeExplosion();
+			}
+			std::cout << "Exp Num: " << expNum << std::endl;
 			glm::vec2 expPos = ((BasicBody&)sc[z]).getPosition();
-			Explosion* exp = new Explosion();
+			Explosion* exp = new Explosion(expID);
 			exp->setPosition(expPos);
 			m_pExplosions.push_back(exp);
 		}
@@ -374,6 +398,20 @@ void LevelScene::Damage(ShipComponent sc[2])
 	//		spawnShield(sc);			
 	//	}
 	//}
+}
+
+void LevelScene::removeExplosion()
+{
+	for (int i = 0; i < m_pExplosions.size(); i++)
+	{
+		if (TheTextureManager::Instance()->getTexture(m_pExplosions[i]->getID()) == nullptr)
+		{
+			m_pExplosions[i]->setAnimated(true);
+			m_pExplosions.erase(m_pExplosions.begin()+i);
+			m_pExplosions.shrink_to_fit();
+			break;
+		}
+	}
 }
 
 void LevelScene::GameOver()

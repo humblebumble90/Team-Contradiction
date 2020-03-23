@@ -41,10 +41,7 @@ void Shield::update()
 
 void Shield::clean()
 {
-	if(collided)
-	{
 		delete this;
-	}
 }
 
 bool Shield::getCollided()
