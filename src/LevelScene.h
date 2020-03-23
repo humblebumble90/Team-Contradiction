@@ -22,6 +22,7 @@ public:
 	void draw() override;
 	void DestroyEnemy(Enemy* enemy);
 	void DestroyWeapon(PlayerWeapon* weapon);
+	void DestroyExplosion();
 	void GameOver();
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
@@ -62,8 +63,8 @@ private:
 	void collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw);
 	void collisionCheck(bool boss, AI* enemy);
 	void initialize();
-	void removeExplosion();
-	int expNum = 0;
+	int idNum = 0;
+	std::string shieldID;
 	std::string expID;
 };
 #endif
