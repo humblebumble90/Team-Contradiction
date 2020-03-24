@@ -104,7 +104,7 @@ void CannonlordAI::SecondaryFunction()
 	#pragma region Firing
 		if (positiveRotation >= 0 && positiveRotation < 90) {
 			//cannonlordFire(topCannons, bottomCannons, leftCannons, rightCannons);
-			cannonlordFire(down, up, left, right);
+			cannonlordFire(up, down, left, right);
 		}
 		else if (positiveRotation >= 90 && positiveRotation < 180) {
 			//cannonlordFire(leftCannons, rightCannons, bottomCannons, topCannons);
@@ -112,7 +112,7 @@ void CannonlordAI::SecondaryFunction()
 		}
 		else if (positiveRotation >= 180 && positiveRotation < 270) {
 			//cannonlordFire(bottomCannons, topCannons, rightCannons, leftCannons);
-			cannonlordFire(up, down, right, left);
+			cannonlordFire(down, up, right, left);
 		}
 		else if (positiveRotation >= 270 && positiveRotation < 360) {
 			//cannonlordFire(rightCannons, leftCannons, topCannons, bottomCannons);
