@@ -10,18 +10,17 @@ ShipComponent::~ShipComponent()
 glm::vec2 ShipComponent::getPosition()
 {
 	glm::vec2 parentPosition = parent->getParent()->getPosition();
-	float posX = parentPosition.x + ((iD.x - (parent->GridWidth() - 1) / 2) * parent->getGridSize()),
-		  posY = parentPosition.y + ((iD.y - (parent->GridHeight() - 1) / 2) * parent->getGridSize());
+	float offsetX = (iD.x - (parent->GridWidth() - 1) / 2) * parent->getGridSize(),
+		  offsetY = (iD.y - (parent->GridHeight() - 1) / 2) * parent->getGridSize();
+	float posX = parentPosition.x + offsetX,
+		  posY = parentPosition.y + offsetY;
 	if (parent->getParent()->getName() == "Cannonlord" || parent->getParent()->getName() == "Chaos") {
 		float angle = parent->getParent()->getName() == "Cannonlord" ?
-			((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180 : 
+			((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180:
 				 ((ChaosAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180;
 		return glm::vec2(
-			cos(angle) * (posX - parentPosition.x) - sin(angle) * (posY - parentPosition.y) + parentPosition.x,
-			sin(angle) * (posX - parentPosition.x) - cos(angle) * (posY - parentPosition.y) + parentPosition.y
-			//center + distance * cos(angle), center + distance * sin(angle)
-			//sin(angle) * (posX - parentPosition.x) + parentPosition.x,
-			//cos(angle) * (posY - parentPosition.y) + parentPosition.y
+			cos(angle) * offsetX - sin(angle) * offsetY + parentPosition.x,
+			sin(angle) * offsetX + cos(angle) * offsetY + parentPosition.y
 		);
 	}
 	return glm::vec2(posX, posY);
