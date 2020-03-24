@@ -15,7 +15,7 @@ ChaosAI::ChaosAI(glm::vec2 transform)
 	};
 #pragma endregion
 	parent = new Enemy(new Frame(80, //Enemy is 240px by 240px
-		build, 3, 3), 40, //Will tweak if 100 health proves to be too much or too little
+		build, 3, 3), 100, //Will tweak if 100 health proves to be too much or too little
 		this, transform, "Chaos");
 	target = glm::vec2(Config::SCREEN_WIDTH-220, Config::SCREEN_HEIGHT / 2);
 	score = 10000;
@@ -146,10 +146,10 @@ void ChaosAI::SecondaryFunction()
 			if (phase == 2) {
 				finalPhase = true;
 				if (parent->getPosition().y > Config::SCREEN_HEIGHT / 2) {
-					speed.y = -baseSpeed;
+					speed.y = -baseSpeed * 2;
 				}
 				else if (parent->getPosition().y < Config::SCREEN_HEIGHT / 2) {
-					speed.y = baseSpeed;
+					speed.y = baseSpeed * 2;
 				}
 			}
 		}
@@ -157,7 +157,7 @@ void ChaosAI::SecondaryFunction()
 	#pragma endregion
 	#pragma region Intro to Final Phase
 	if (finalPhase) {
-		if (parent->getPosition().y == Config::SCREEN_HEIGHT / 2) {
+		if ((parent->getPosition().y >= Config::SCREEN_HEIGHT / 2 && speed.y > 0) || (parent->getPosition().y <= Config::SCREEN_HEIGHT / 2 && speed.y < 0)) {
 			speed.y == 0;
 		}
 		if (parent->getPosition().x >= 400) {

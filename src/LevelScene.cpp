@@ -69,15 +69,15 @@ void LevelScene::update()
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
-	for (PlayerWeapon* pw : playerWeapons) 
-	{
-		pw->update();
-	}
+	for (PlayerWeapon* pw : playerWeapons)
+		{
+			pw->update();
+		}
 	#pragma region Collisions
-	//if the enemies are spawned or if the player is invincible
-	if (enemies.size() > 0 && (playerWeapons.size() > 0 || !player->getInvincibility())) {
+	//if the enemies are spawned or if the player is not invincible
+	if (!playerWeapons.empty() || !player->getInvincibility()) {
 		for (AI* enemy : enemies) {
-			if (playerWeapons.size() > 0) {
+			if (!playerWeapons.empty()) {
 				for (PlayerWeapon* pw : playerWeapons) {
 					collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy, pw);
 				}
@@ -87,8 +87,10 @@ void LevelScene::update()
 			}
 		}
 	}
-	
-	checkShieldCollision();
+	if(!m_pshields.empty())
+	{
+		checkShieldCollision();
+	}
 	#pragma endregion
 	
 	#pragma region Spawn Enemies
@@ -256,21 +258,16 @@ void LevelScene::spawnShield(AI* enemy)
 
 void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 {
-	expID = "exp " + std::to_string(idNum);
 	//Collision check for Enemies versus Player Weapon
 	if (boss) {
 		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
-			if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
+			if (es.getName() == "BasicBody") {
 				for (ShipComponent ps : pw->getFrame()->GetBuild()) {
-					if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+					if (ps.getName() == "IndesBody") {
 						if (CollisionManager::shipComponentCheck(es, ps))
 						{
 							ShipComponent temp[2] = { ps, es };
 							Damage(temp);
-							if(ps.getName() == "BasicBody" && !player->getInvincibility())
-							{
-								m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-							}
 						}
 					}
 				}
@@ -278,9 +275,11 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 		}
 	}
 	else {
-		if (CollisionManager::AABBCheck(enemy->GetParent(), pw))
+		if (CollisionManager::AABBCheck(enemy->GetParent(), pw) && enemy->GetParent()->getType() != ENEMY_WEAPON)
 		{
 			enemy->GetParent()->Damage(1);
+			//std::cout << "Enemy name: " <<enemy->GetParent()->getName()<<
+				//"\nenemy health: (should be 0)"<<enemy->GetParent()->getHealth() << std::endl;
 			pw->Damage(1);
 			//Temporary calling score method for testing.
 			//player->addScore(/*some amount for score(integer)*/);
@@ -291,6 +290,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 			auto expPos = enemy->GetParent()->getPosition();
 			idNum++;
 			//std::cout << "Exp Num: "<< idNum << std::endl;
+			expID = "exp " + std::to_string(idNum);
 			Explosion* exp = new Explosion(expID);
 			addChild(exp);
 			exp->setPosition(expPos);
@@ -307,22 +307,19 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 
 void LevelScene::collisionCheck(bool boss, AI* enemy)
 {
-	expID = "exp " + std::to_string(idNum);
 	//Collision Check used for enemies versus player
 	if (boss)
 	{
 		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
 			if (es.getName() == "BasicBody" || es.getName() == "IndesBody") {
 				for (ShipComponent ps : player->GetFrame()->GetBuild()) {
-					if (ps.getName() == "BasicBody" || ps.getName() == "IndesBody") {
+					if (ps.getName() == "BasicBody") {
 						if (CollisionManager::shipComponentCheck(es, ps))
 						{
 							ShipComponent temp[2] = { ps, es };
 							Damage(temp);
-							if (ps.getName() == "BasicBody" && !player->getInvincibility())
-							{
-								m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-							}
+							m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+
 						}
 					}
 				}
@@ -332,6 +329,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 	else {
 		if (CollisionManager::AABBCheck(enemy->GetParent(), player))
 		{
+			expID = "exp " + std::to_string(idNum);
 			enemy->GetParent()->Damage(1);
 			auto expPos1 = enemy->GetParent()->getPosition();
 			idNum++;
