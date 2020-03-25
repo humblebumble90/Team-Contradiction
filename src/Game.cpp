@@ -268,30 +268,31 @@ void Game::handleEvents()
 				{
 					if (firingCooldown[z] == 0) 
 					{
+						
 						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
 						firingCooldown[z] = firingCooldownReset[z];
 					}
 				}
 			}
 
-			/*else if (!keystates[SDL_SCANCODE_Z])
+			else if (!keystates[SDL_SCANCODE_Z])
 			{
-				if (getPlayerShip()->getPlayerLives() >= 0)
+			  if (getPlayerShip()->getPlayerLives() >= 0)
 				{
-					for each (Weapon x in getPlayerShip()->GetFrame()->GetWeapons)
+					for(Weapon x : getPlayerShip()->GetFrame()->GetWeapons())
 					{
 						if (x.getName() == "Flamethrower")
 						{
-							if (((Flamethrower&)x).flameThrower != nullptr)
+							if (((Flamethrower&)x).flamethrower!= nullptr)
 							{
-								destroyWeapon(((Flamethrower&)x).flameThrower);
-							}
+								destroyWeapon(((Flamethrower&)x).flamethrower);
+						}
 
 				         }
 					}
 					
 				}
-			}*/
+			}
 		if (keystates[SDL_SCANCODE_X])
 			if (getPlayerShip()->getPlayerLives() >= 0)
 			{

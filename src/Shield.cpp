@@ -2,12 +2,13 @@
 #include "TextureManager.h"
 #include "Game.h"
 
-Shield::Shield():collided(false)
+Shield::Shield(std::string id) :collided(false), ID("")
 {
+	ID = id;
 	TheTextureManager::Instance()->load("../Assets/textures/Shield.png",
-		"Shield", TheGame::Instance()->getRenderer());
+		ID, TheGame::Instance()->getRenderer());
 
-	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("Shield");
+	glm::vec2 size = TheTextureManager::Instance()->getTextureSize(ID);
 	setWidth(size.x);
 	setHeight(size.y);
 	setVelocity(glm::vec2(0.0f, 0.0f));
@@ -17,14 +18,15 @@ Shield::Shield():collided(false)
 
 Shield::~Shield()
 {
-	TheTextureManager::Instance()->removeTexture("Shield");
+	std::cout <<"Shiled memory address:"<< this<<std::endl;
+	delete this;;
 }
 
 void Shield::draw()
 {
 	int xComponent = getPosition().x;
 	int yComponent = getPosition().y;
-	TheTextureManager::Instance()->draw("Shield", xComponent, yComponent,
+	TheTextureManager::Instance()->draw(ID, xComponent, yComponent,
 		TheGame::Instance()->getRenderer());
 }
 
@@ -37,14 +39,11 @@ void Shield::move()
 void Shield::update()
 {
 	move();
-	if(this->getPosition().x < -5.0f)
-	{
-		this->setCollided(true);
-	}
 }
 
 void Shield::clean()
 {
+	TextureManager::Instance()->removeTexture(ID);
 }
 
 bool Shield::getCollided()
@@ -55,5 +54,9 @@ bool Shield::getCollided()
 void Shield::setCollided(bool newState)
 {
 	collided = newState;
-	delete this;
+}
+
+std::string Shield::getID()
+{
+	return ID;
 }

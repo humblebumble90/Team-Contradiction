@@ -8,7 +8,7 @@ class PlayerWeapon : public DisplayObject
 public:
 	PlayerWeapon();
 	~PlayerWeapon();
-
+	void start();
 	void draw() override;
 	void update() override;
 	void clean() override;
@@ -18,5 +18,6 @@ public:
 protected:
 	glm::vec2 speed;
 	Frame* frame;
+
 };
 #endif // !__PLAYERWEAPON__

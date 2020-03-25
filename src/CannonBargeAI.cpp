@@ -19,6 +19,7 @@ CannonBargeAI::CannonBargeAI(glm::vec2 transform)
 	build, 4, 4), 15, //Will tweak if it proves to be too much or too little
 		this, transform, "CannonBarge");
 	target = glm::vec2(Config::SCREEN_WIDTH/2, Config::SCREEN_HEIGHT/2);
+	score = 1500;
 }
 
 CannonBargeAI::~CannonBargeAI()

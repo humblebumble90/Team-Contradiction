@@ -10,6 +10,14 @@ PlayerWeapon::~PlayerWeapon()
 {
 }
 
+void PlayerWeapon::start()
+{
+	auto size = TheTextureManager::Instance()->getTextureSize(name);
+	setWidth(size.x);
+	setHeight(size.y);
+}
+
+
 void PlayerWeapon::draw()
 {
 	TheTextureManager::Instance()->draw(name, getPosition().x - (frame->getGridSize() * frame->GridWidth() / 2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2),
@@ -19,6 +27,7 @@ void PlayerWeapon::draw()
 void PlayerWeapon::update()
 {
 	Move();
+
 }
 
 void PlayerWeapon::clean()
@@ -27,6 +36,8 @@ void PlayerWeapon::clean()
 
 void PlayerWeapon::Move()
 {
+
+	
 	setPosition(glm::vec2(getPosition().x + speed.x, getPosition().y + speed.y));
 	if (getPosition().x + ((frame->GridWidth() * getFrame()->getGridSize()) / 2) > Config::SCREEN_WIDTH) {
 		TheGame::Instance()->destroyWeapon(this);

@@ -35,7 +35,7 @@ BlasterSkiffAI::BlasterSkiffAI(glm::vec2 transform)
 	bottomBouncePoint = Config::SCREEN_HEIGHT - topBouncePoint;
 	spawnPoint = 25;
 	target = glm::vec2(Config::SCREEN_WIDTH - parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2, Config::SCREEN_HEIGHT/2);
-
+	score = 2500;
 }
 
 BlasterSkiffAI::~BlasterSkiffAI()

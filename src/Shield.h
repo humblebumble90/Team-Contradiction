@@ -5,7 +5,7 @@
 class Shield:public DisplayObject
 {
 public:
-	Shield();
+	Shield(std::string id);
 	~Shield();
 	void draw() override;
 	void move();
@@ -13,7 +13,9 @@ public:
 	void clean() override;
 	bool getCollided();
 	void setCollided(bool newState);
+	std::string getID();
 private:
 	bool collided;
+	std::string ID;
 };
 #endif  /*Defined (__SHIELD__)*/

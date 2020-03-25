@@ -13,6 +13,7 @@ ZigzagAI::ZigzagAI(glm::vec2 transform)
 	parent = new Enemy(new Frame(25.00f, //Enemy is 50px by 50px
 	build,2,2), 1, this, transform, "Zigzag");
 	speed.x = speed.y = -5.00f; //Tweak this number later
+	score = 100;
 }
 
 ZigzagAI::~ZigzagAI()

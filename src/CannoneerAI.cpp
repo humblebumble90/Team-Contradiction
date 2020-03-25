@@ -13,6 +13,7 @@ CannoneerAI::CannoneerAI(glm::vec2 transform)
 	parent = new Enemy(new Frame(25, //Enemy is 50px by 50px
 		build, 2, 2), 1, this, transform, "Cannoneer");
 	speed.x = -4.00f; //Tweak this number later
+	score = 100;
 }
 
 CannoneerAI::~CannoneerAI()
