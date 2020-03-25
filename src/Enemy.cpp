@@ -47,6 +47,7 @@ void Enemy::Damage(int i)
 		if (health <= 0)
 		{
 			//std::cout << "Enemy dead: " << this->getName() << std::endl;
+			TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
 			TheGame::Instance()->destroyEnemy(this);
 		}
 		else {

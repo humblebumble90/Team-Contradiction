@@ -22,6 +22,7 @@ public:
 	void draw() override;
 	void DestroyEnemy(Enemy* enemy);
 	void DestroyWeapon(PlayerWeapon* weapon);
+	void SpawnExplosion(glm::vec2 position);
 	void DestroyExplosion();
 	void GameOver();
 	glm::vec2 getPlayerPosition();

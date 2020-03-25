@@ -221,6 +221,7 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 {
 	for (int i = 0; i < enemies.size(); ++i) {
 		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
+			SpawnExplosion(enemies[i]->GetParent()->getPosition());
 			enemies.erase(enemies.begin()+i);
 			break;
 		}
@@ -234,6 +235,21 @@ void LevelScene::DestroyWeapon(PlayerWeapon* weapon)
 			break;
 		}
 	}
+}
+
+void LevelScene::SpawnExplosion(glm::vec2 position)
+{
+	player->setKillCounter(1);
+	m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
+	m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
+	idNum++;
+	//std::cout << "Exp Num: "<< idNum << std::endl;
+	expID = "exp " + std::to_string(idNum);
+	Explosion* exp = new Explosion(expID);
+	addChild(exp);
+	exp->setPosition(position);
+	m_pExplosions.push_back(exp);
+	DestroyExplosion();
 }
 
 PlayerShip* LevelScene::getPlayerShip()
@@ -283,19 +299,8 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 			pw->Damage(1);
 			//Temporary calling score method for testing.
 			//player->addScore(/*some amount for score(integer)*/);
-			player->setKillCounter(1);
-			player->addScore(player->getKillCounter());
-			m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
-			m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
-			auto expPos = enemy->GetParent()->getPosition();
-			idNum++;
-			//std::cout << "Exp Num: "<< idNum << std::endl;
-			expID = "exp " + std::to_string(idNum);
-			Explosion* exp = new Explosion(expID);
-			addChild(exp);
-			exp->setPosition(expPos);
-			m_pExplosions.push_back(exp);
-			DestroyExplosion();
+			//player->setKillCounter(1);
+			//player->addScore(player->getKillCounter());
 		}
 		if (player->getKillCounter() > 0 &&
 			player->getKillCounter() % 20 == 0)
@@ -329,27 +334,10 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 	else {
 		if (CollisionManager::AABBCheck(enemy->GetParent(), player))
 		{
-			expID = "exp " + std::to_string(idNum);
-			enemy->GetParent()->Damage(1);
-			auto expPos1 = enemy->GetParent()->getPosition();
-			idNum++;
-			//std::cout << "Exp Num: " << idNum << std::endl;
-			Explosion* exp1 = new Explosion(expID);
-			addChild(exp1);
-			exp1->setPosition(expPos1);
-			m_pExplosions.push_back(exp1);
-			DestroyExplosion();
 			if(!player->getInvincibility())
 			{
 				player->Damage(1);
-				auto expPos2 = player->getPosition();
-				idNum++;
-				//std::cout << "Exp Num: " << idNum << std::endl;
-				Explosion* exp2 = new Explosion(expID);
-				addChild(exp2);
-				exp2->setPosition(expPos2);
-				m_pExplosions.push_back(exp2);
-				DestroyExplosion();
+				SpawnExplosion(player->getPosition());
 				m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 			}
 		}
@@ -358,19 +346,10 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 
 void LevelScene::Damage(ShipComponent sc[2])
 {
-	expID = "exp " + std::to_string(idNum);
 	for (int z = 0; z < 2; ++z) {
 		if (sc[z].getName() == "BasicBody") {
 			int i = sc[1 - z].getParent()->getParent()->getName() == "Cannon" ? 2 : 1;
 			((BasicBody&)sc[z]).Damage(i);
-			idNum++;
-			//std::cout << "Exp Num: " << idNum << std::endl;
-			glm::vec2 expPos = ((BasicBody&)sc[z]).getPosition();
-			Explosion* exp = new Explosion(expID);
-			addChild(exp);
-			exp->setPosition(expPos);
-			m_pExplosions.push_back(exp);
-			DestroyExplosion();
 		}
 		else if (sc[z].getName() == "IndesBody") {
 			((IndesBody&)sc[z]).Damage(sc[1 - z]);
