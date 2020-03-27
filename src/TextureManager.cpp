@@ -228,8 +228,8 @@ void TextureManager::drawFrame(const std::string& id, const int x, const int y, 
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
 
-	srcRect.x = 0;
-	srcRect.y = 0;
+	//srcRect.x = 0;
+	//srcRect.y = 0;
 
 	// frame_height size
 	const auto textureWidth = frame_width;
@@ -265,6 +265,7 @@ void TextureManager::animate(std::string id,int frame_width, int frame_height, i
 	const auto total_frames = frame_number * row_number;
 	int animation_rate = round(total_frames / 2 / speed_factor);
 
+
 	if (TheGame::Instance()->getFrames() % animation_rate == 0)
 	{
 		current_frame++;
@@ -275,9 +276,12 @@ void TextureManager::animate(std::string id,int frame_width, int frame_height, i
 		}
 		if (current_row > row_number - 1)
 		{
-			//std::cout << id<<std::endl;
+			//std::cout << "Texture ID: " << id <<std::endl;
+			//std::cout << "Should not be null" << getTexture(id) << std::endl;
 			removeTexture(id);
-			return;
+			Game::Instance()->addGarbage(id);
+			//std::cout << "is it working?\n";
+			//std::cout <<"Should be null"<< getTexture(id)<<std::endl;
 		}
 	}
 }

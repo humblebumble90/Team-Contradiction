@@ -11,8 +11,6 @@ public:
 	void draw() override;
 	void update() override;
 	void clean() override;
-	void setAnimated(bool newState);
-	bool getAnimated();
 	std::string getID();
 private:
 	std::string ID;
