@@ -46,15 +46,15 @@ void Shield::clean()
 	TextureManager::Instance()->removeTexture(ID);
 }
 
-bool Shield::getCollided()
-{
-	return collided;
-}
-
-void Shield::setCollided(bool newState)
-{
-	collided = newState;
-}
+//bool Shield::getCollided()
+//{
+//	return collided;
+//}
+//
+//void Shield::setCollided(bool newState)
+//{
+//	collided = newState;
+//}
 
 std::string Shield::getID()
 {

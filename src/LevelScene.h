@@ -23,12 +23,13 @@ public:
 	void DestroyEnemy(Enemy* enemy);
 	void DestroyWeapon(PlayerWeapon* weapon);
 	void SpawnExplosion(glm::vec2 position);
-	void DestroyExplosion();
 	void GameOver();
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
 	void spawnPlayerWeapon(PlayerWeapon* playerWeapon);
 	PlayerShip* getPlayerShip();
+
+	void addGarbage(std::string id);
 protected:
 	bool scrolling = true, spawnedEnemy=false;
 	#pragma region Game Objects
@@ -64,8 +65,10 @@ private:
 	void collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw);
 	void collisionCheck(bool boss, AI* enemy);
 	void initialize();
+	void removeGarbage();
 	int idNum = 0;
 	std::string shieldID;
 	std::string expID;
+	std::vector<std::string> garbage;
 };
 #endif
