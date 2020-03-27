@@ -49,8 +49,8 @@ void Enemy::Damage(int i)
 		{
 			//std::cout << "Enemy dead: " << this->getName() << std::endl;
 			TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
-			TheGame::Instance()->destroyEnemy(this);
 			TheGame::Instance()->spawnExplosion(getPosition());
+			TheGame::Instance()->destroyEnemy(this);
 		}
 		else {
 			hitTimer = hitTimerReset;
