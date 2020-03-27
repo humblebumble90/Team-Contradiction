@@ -278,8 +278,12 @@ void TextureManager::animate(std::string id,int frame_width, int frame_height, i
 		{
 			//std::cout << "Texture ID: " << id <<std::endl;
 			//std::cout << "Should not be null" << getTexture(id) << std::endl;
-			removeTexture(id);
-			Game::Instance()->addGarbage(id);
+			if(getTexture(id) != nullptr)
+			{
+				removeTexture(id);
+				Game::Instance()->addGarbage(id);
+				
+			}
 			//std::cout << "is it working?\n";
 			//std::cout <<"Should be null"<< getTexture(id)<<std::endl;
 		}

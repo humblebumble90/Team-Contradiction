@@ -150,10 +150,13 @@ void LevelScene::update()
 		Game::Instance()->changeSceneState(END_SCENE);
 	}
 
+#pragma region Garbage collection for animated explosions
 	if(garbage.size() > 10 || time % 1000 == 0)
 	{
+		//std::cout << "Gabage collection is implemented\n";
 		removeGarbage();
 	}
+#pragma endregion
 }
 
 void LevelScene::draw()
@@ -260,7 +263,7 @@ PlayerShip* LevelScene::getPlayerShip()
 
 void LevelScene::addGarbage(std::string id)
 {
-	std::cout << "Garbage is added: " << id << std::endl;
+	//std::cout << "Garbage is added: " << id << std::endl;
 	garbage.push_back(id);
 }
 
@@ -430,21 +433,24 @@ void LevelScene::initialize()
 
 void LevelScene::removeGarbage()
 {
-	for(auto item : garbage)
+	if(!garbage.empty())
 	{
-		for(int i = 0; i < m_pExplosions.size();i++)
+		for (auto item : garbage)
 		{
-			if(item == m_pExplosions[i]->getID())
+			for (int i = 0; i < m_pExplosions.size(); i++)
 			{
-				std::cout << "Removing garbage: " << m_pExplosions[i] << std::endl;
-				m_pExplosions.erase(m_pExplosions.begin() + i);
-				break;
+				if (item == m_pExplosions[i]->getID())
+				{
+					//std::cout << "Removing garbage: " << m_pExplosions[i] << std::endl;
+					m_pExplosions.erase(m_pExplosions.begin() + i);
+					break;
+				}
 			}
 		}
+		//std::cout << "All garbage is cleared\n";
+		garbage.clear();
+		garbage.shrink_to_fit();
 	}
-	//std::cout << "All garbage is cleared\n";
-	garbage.clear();
-	garbage.shrink_to_fit();
 }
 
 
