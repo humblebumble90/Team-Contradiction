@@ -1,4 +1,5 @@
 #include "Level2.h"
+#include "ChaosAI.h"
 
 int second = 60;
 int wave = 4 * second;
@@ -19,10 +20,7 @@ Level2::Level2()
 	level = 2;
 	loadAllTextures();
 	loadAllSounds();
-	level = 1;
-	loadAllTextures();
-	loadAllSounds();
-
+	
 	//main enemy
 	cannoneerSpawnTimer =
 	{
@@ -59,7 +57,6 @@ Level2::Level2()
 	{
 
 	};
-
 	ramSpawnLocation =
 	{
 
@@ -69,7 +66,6 @@ Level2::Level2()
 	{
 
 	};
-
 	diagonSpawnLocation =
 	{
 
@@ -78,7 +74,6 @@ Level2::Level2()
 	blastSpawnTimer =
 	{
 	};
-
 	blastSpawnLocation =
 	{
 	};
@@ -88,7 +83,6 @@ Level2::Level2()
 	{
 		
 	};
-
 	islandSpawnLocation =
 	{
 		
@@ -123,7 +117,7 @@ void Level2::clean()
 
 void Level2::handleEvents()
 {
-	
+	spawnEnemy(new ChaosAI(guardianPosition));
 }
 
 void Level2::start()
@@ -148,6 +142,8 @@ void Level2::loadAllTextures()
 	loadTexture("../Assets/textures/Cannoneer.png", "Cannoneer");
 	loadTexture("../Assets/textures/Rain.png", "Rain");
 	loadTexture("../Assets/textures/RainHit.png", "RainHit");
+	loadTexture("../Assets/textures/Chaos.png", "Chaos");
+	loadTexture("../Assets/textures/ChaosHit.png", "ChaosHit");
 	loadTexture("../Assets/textures/island.png", "Island");
 }
 
