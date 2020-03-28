@@ -104,7 +104,7 @@ void Level2::clean()
 
 void Level2::handleEvents()
 {
-	if (time == 1 * wave)
+	if (time == 1 * wave && enemies.size() == 0)
 	{
 		spawnEnemy(new ChaosAI(guardianPosition));
 	}
