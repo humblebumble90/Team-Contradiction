@@ -269,7 +269,20 @@ Level1::Level1()
 		33 * wave + 120,
 		33 * wave + 150,
 		33 * wave + 180,
-		33 * wave + 210
+		33 * wave + 210,
+		//36
+		36 * wave + 60,
+		36 * wave + 61,
+		36 * wave + 120,
+		36 * wave + 121,
+		36 * wave + 180,
+		36 * wave + 181,
+		36 * wave + 240,
+		36 * wave + 241,
+		36 * wave + 300,
+		36 * wave + 301,
+		36 * wave + 360,
+		36 * wave + 361,
 	};
 
 	ramSpawnLocation =
@@ -337,6 +350,19 @@ Level1::Level1()
 		centerBottom,
 		bottom,
 		centerBottom,
+		bottom,
+		//26
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
 		bottom,
 	};
 
@@ -459,7 +485,10 @@ Level1::Level1()
 		18 * wave + 1,
 		//28
 		28 * wave,
-		18 * wave + 1,
+		28 * wave + 1,
+		//38
+		38 * wave,
+		38 * wave + 1,
 	};
 
 	islandSpawnLocation =
@@ -471,6 +500,9 @@ Level1::Level1()
 		topIslandPosition,
 		bottomIslandPosition,
 		//28
+		topIslandPosition,
+		bottomIslandPosition,
+		//38
 		topIslandPosition,
 		bottomIslandPosition
 	};
