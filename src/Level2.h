@@ -1,14 +1,14 @@
 #pragma once
-#ifndef  __LEVEL1__
-#define  __LEVEL1__
+#ifndef  __LEVEL2__
+#define  __LEVEL2__
 #include "LevelScene.h"
 
-class Level1 : public LevelScene
+class Level2 : public LevelScene
 {
 public:
 
-	Level1();
-	~Level1();
+	Level2();
+	~Level2();
 
 	void clean() override;
 	void handleEvents() override;
@@ -32,3 +32,4 @@ private:
 	glm::vec2 bottomIslandPosition = glm::vec2(Config::SCREEN_WIDTH + 370, 50);
 };
 #endif /* defined __LEVEL1__ */
+

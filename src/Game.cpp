@@ -196,6 +196,16 @@ void Game::spawnPlayerWeapon(PlayerWeapon* pw)
 	((LevelScene*)m_currentScene)->spawnPlayerWeapon(pw);
 }
 
+void Game::spawnExplosion(glm::vec2 position)
+{
+	((LevelScene*)m_currentScene)->SpawnExplosion(position);
+}
+
+void Game::addGarbage(std::string id)
+{
+	((LevelScene*)m_currentScene)->addGarbage(id);
+}
+
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw colour

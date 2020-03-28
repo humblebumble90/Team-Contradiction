@@ -35,13 +35,13 @@ void LevelScene::checkShieldCollision()
 				|| item->getPosition().x < -5.0f)
 			{
 				player->setShieldAvailable(true);
-				item->setCollided(true);
+				//item->setCollided(true);
 				m_pshields[i]->clean();
 				m_pshields.erase(m_pshields.begin() + i);
 				m_pshields.shrink_to_fit();
 				break;
 			}
-			if (!item->getCollided())
+			if (TheTextureManager::Instance()->getTexture(item->getID()) != nullptr)
 			{
 				item->update();
 			}
@@ -150,6 +150,13 @@ void LevelScene::update()
 		Game::Instance()->changeSceneState(END_SCENE);
 	}
 
+#pragma region Garbage collection for animated explosions
+	if(garbage.size() > 10 || time % 1000 == 0)
+	{
+		//std::cout << "Gabage collection is implemented\n";
+		removeGarbage();
+	}
+#pragma endregion
 }
 
 void LevelScene::draw()
@@ -199,7 +206,7 @@ void LevelScene::draw()
 	{
 		for(auto item : m_pshields)
 		{
-			if(!item->getCollided())
+			if(TheTextureManager::Instance()->getTexture(item->getID()) != nullptr)
 			{
 				item->draw();
 			}
@@ -209,10 +216,7 @@ void LevelScene::draw()
 	{
 		for (auto item : m_pExplosions)
 		{
-			if(!item->getAnimated())
-			{
-				item->draw();
-			}
+			item->draw();
 		}
 	}
 }
@@ -221,7 +225,7 @@ void LevelScene::DestroyEnemy(Enemy* enemy)
 {
 	for (int i = 0; i < enemies.size(); ++i) {
 		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
-			SpawnExplosion(enemies[i]->GetParent()->getPosition());
+			//SpawnExplosion(enemies[i]->GetParent()->getPosition());
 			enemies.erase(enemies.begin()+i);
 			break;
 		}
@@ -249,12 +253,18 @@ void LevelScene::SpawnExplosion(glm::vec2 position)
 	addChild(exp);
 	exp->setPosition(position);
 	m_pExplosions.push_back(exp);
-	DestroyExplosion();
+	//DestroyExplosion();
 }
 
 PlayerShip* LevelScene::getPlayerShip()
 {
 	return player;
+}
+
+void LevelScene::addGarbage(std::string id)
+{
+	//std::cout << "Garbage is added: " << id << std::endl;
+	garbage.push_back(id);
 }
 
 void LevelScene::spawnShield(AI* enemy)
@@ -375,22 +385,6 @@ void LevelScene::Damage(ShipComponent sc[2])
 	//}
 }
 
-void LevelScene::DestroyExplosion()
-{
-	for (int i = 0; i < m_pExplosions.size(); i++)
-	{
-		if (TheTextureManager::Instance()->getTexture(m_pExplosions[i]->getID()) == nullptr)
-		{
-			m_pExplosions[i]->setAnimated(true);
-			//std::cout << "Memory address before: " << m_pExplosions[i] << std::endl;
-			m_pExplosions.erase(m_pExplosions.begin()+i);
-			//std::cout<< "Memory address result: " << m_pExplosions[i] << std::endl;
-			m_pExplosions.shrink_to_fit();
-			break;
-		}
-	}
-}
-
 void LevelScene::GameOver()
 {
 }
@@ -434,6 +428,28 @@ void LevelScene::initialize()
 		
 		
 		return;
+	}
+}
+
+void LevelScene::removeGarbage()
+{
+	if(!garbage.empty())
+	{
+		for (auto item : garbage)
+		{
+			for (int i = 0; i < m_pExplosions.size(); i++)
+			{
+				if (item == m_pExplosions[i]->getID())
+				{
+					//std::cout << "Removing garbage: " << m_pExplosions[i] << std::endl;
+					m_pExplosions.erase(m_pExplosions.begin() + i);
+					break;
+				}
+			}
+		}
+		//std::cout << "All garbage is cleared\n";
+		garbage.clear();
+		garbage.shrink_to_fit();
 	}
 }
 

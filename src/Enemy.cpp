@@ -44,10 +44,12 @@ void Enemy::Damage(int i)
 	}
 	if (doDamage && hitTimer <= 0) {
 		health -= i;
+		//TheGame::Instance()->destroyExplosion();
 		if (health <= 0)
 		{
 			//std::cout << "Enemy dead: " << this->getName() << std::endl;
 			TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
+			TheGame::Instance()->spawnExplosion(getPosition());
 			TheGame::Instance()->destroyEnemy(this);
 		}
 		else {

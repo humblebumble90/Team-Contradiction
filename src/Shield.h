@@ -11,8 +11,8 @@ public:
 	void move();
 	void update() override;
 	void clean() override;
-	bool getCollided();
-	void setCollided(bool newState);
+	//bool getCollided();
+	//void setCollided(bool newState);
 	std::string getID();
 private:
 	bool collided;
