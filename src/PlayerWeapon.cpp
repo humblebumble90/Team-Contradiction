@@ -20,7 +20,7 @@ void PlayerWeapon::start()
 
 void PlayerWeapon::draw()
 {
-	TheTextureManager::Instance()->draw(name, getPosition().x - (frame->getGridSize() * frame->GridWidth() / 2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2),
+	TheTextureManager::Instance()->draw(name, getPosition().x, getPosition().y,
 		TheGame::Instance()->getRenderer(), 0, 255, true);
 }
 
