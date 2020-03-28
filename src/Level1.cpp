@@ -50,7 +50,25 @@ Level1::Level1()
 		13 * wave,
 		13 * wave + 1,
 		13 * wave + 2,
-		13 * wave + 3
+		13 * wave + 3,
+		//30
+		30 * wave,
+		30 * wave + 1,
+		30 * wave + 2,
+		//31
+		31 * wave,
+		31 * wave + 1,
+		31 * wave + 2,
+		//32
+		32 * wave,
+		32 * wave + 1,
+		32 * wave + 2,
+		//35
+		35 * wave,
+		35 * wave + 1,
+		35 * wave + 2,
+		35 * wave + 3,
+		35 * wave + 4
 	};
 	cannoneerSpawnLocation =
 	{
@@ -77,7 +95,25 @@ Level1::Level1()
 		top,
 		centerTop,
 		middle,
-		bottom
+		bottom,
+		//30
+		top,
+		middle,
+		bottom,
+		//31
+		top,
+		middle,
+		bottom,
+		//32
+		top,
+		middle,
+		bottom,
+		//35
+		top,
+		centerTop,
+		middle,
+		centerBottom,
+		bottom,
 	};
 
 	zigzagSpawnTimer =
@@ -101,6 +137,20 @@ Level1::Level1()
 		23 * wave,
 		23 * wave + 1,
 		23 * wave + 2,
+		//30
+		30 * wave + 4,
+		30 * wave + 5,
+		//31
+		31 * wave + 4,
+		30 * wave + 5,
+		//33
+		33 * wave,
+		33 * wave + 1,
+		33 * wave + 2,
+		//34
+		34 * wave,
+		34 * wave + 1,
+		34 * wave + 2,
 	};
 	zigzagSpawnLocation =
 	{
@@ -122,7 +172,21 @@ Level1::Level1()
 		//23
 		middle,
 		centerBottom,
-		bottom
+		bottom,
+		//30
+		middle,
+		bottom,
+		//31
+		middle,
+		bottom,
+		//33
+		middle,
+		centerBottom,
+		bottom,
+		//34
+		middle,
+		centerBottom,
+		bottom,
 	};
 
 
@@ -133,7 +197,11 @@ Level1::Level1()
 		//14
 		14 * wave,
 		//24
-		24 * wave
+		24 * wave,
+		//33
+		33 * wave,
+		//35
+		35 * wave
 	};
 
 	guardianSpawnLocation =
@@ -143,6 +211,10 @@ Level1::Level1()
 		//14
 		guardianPosition,
 		//24
+		guardianPosition,
+		//33
+		guardianPosition,
+		//35
 		guardianPosition
 	};
 
@@ -158,6 +230,19 @@ Level1::Level1()
 		13 * wave + 30,
 		13 * wave + 31,
 		13 * wave + 32,
+		//16
+		16 * wave + 60,
+		16 * wave + 61,
+		16 * wave + 120,
+		16 * wave + 121,
+		16 * wave + 180,
+		16 * wave + 181,
+		16 * wave + 240,
+		16 * wave + 241,
+		16 * wave + 300,
+		16 * wave + 301,
+		16 * wave + 360,
+		16 * wave + 361,
 		//21
 		21 * wave + 30,
 		21 * wave + 40,
@@ -167,7 +252,36 @@ Level1::Level1()
 		22 * wave + 70,
 		22 * wave + 80,
 		22 * wave + 90,
-		22 * wave + 100
+		22 * wave + 100,
+		//26
+		26 * wave + 60,
+		26 * wave + 61,
+		26 * wave + 120,
+		26 * wave + 121,
+		26 * wave + 180,
+		26 * wave + 181,
+		26 * wave + 240,
+		26 * wave + 241,
+		26 * wave + 300,
+		26 * wave + 301,
+		26 * wave + 360,
+		26 * wave + 361,
+		//31
+		31 * wave + 30,
+		31 * wave + 60,
+		31 * wave + 90,
+		31 * wave + 120,
+		31 * wave + 150,
+		31 * wave + 180,
+		31 * wave + 210,
+		//33
+		33 * wave + 30,
+		33 * wave + 60,
+		33 * wave + 90,
+		33 * wave + 120,
+		33 * wave + 150,
+		33 * wave + 180,
+		33 * wave + 210
 	};
 
 	ramSpawnLocation =
@@ -180,16 +294,62 @@ Level1::Level1()
 		top,
 		middle,
 		bottom,
+		//16
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
 		//21
 		top,
 		centerTop,
 		centerBottom,
 		bottom,
-
+		//22
 		top,
 		centerTop,
 		centerBottom,
-		bottom
+		bottom,
+		//26
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		top,
+		bottom,
+		//31
+		top,
+		centerTop,
+		top,
+		centerTop,
+		middle,
+		centerBottom,
+		bottom,
+		centerBottom,
+		bottom,
+		//33
+		top,
+		centerTop,
+		top,
+		centerTop,
+		middle,
+		centerBottom,
+		bottom,
+		centerBottom,
+		bottom,
 	};
 
 	diagonSpawnTimer =
@@ -211,7 +371,23 @@ Level1::Level1()
 		24 * wave + 30,
 		24 * wave + 50,
 		24 * wave + 70,
-		24 * wave + 90
+		24 * wave + 90,
+		//31
+		31 * wave + 70,
+		31 * wave + 100,
+		31 * wave + 130,
+		//32
+		32 * wave + 70,
+		32 * wave + 100,
+		32 * wave + 130,
+		//33
+		33 * wave + 70,
+		33 * wave + 100,
+		33 * wave + 130,
+		//34
+		34 * wave + 70,
+		34 * wave + 100,
+		34 * wave + 130,
 	};
 
 	diagonSpawnLocation =
@@ -233,7 +409,23 @@ Level1::Level1()
 		top,
 		top,
 		top,
-		top
+		top,
+		//31
+		top,
+		top,
+		top,
+		//32
+		bottom,
+		bottom,
+		bottom,
+		//33
+		top,
+		top,
+		top,
+		//34
+		bottom,
+		bottom,
+		bottom,
 	};
 
 	blastSpawnTimer =
@@ -243,7 +435,13 @@ Level1::Level1()
 		5 * wave + 31,
 		//13
 		13 * wave + 30,
-		13 * wave + 32,
+		13 * wave + 31,
+		//32
+		32 * wave + 30,
+		32 * wave + 31,
+		//34
+		34 * wave + 30,
+		34 * wave + 31,
 	};
 
 	blastSpawnLocation =
@@ -252,6 +450,12 @@ Level1::Level1()
 		centerTop,
 		centerBottom,
 		//13
+		centerTop,
+		centerBottom,
+		//32
+		centerTop,
+		centerBottom,
+		//32
 		centerTop,
 		centerBottom
 	};
@@ -264,7 +468,10 @@ Level1::Level1()
 		8 * wave +1,
 		//18
 		18 * wave,
-		18 * wave + 1
+		18 * wave + 1,
+		//28
+		28 * wave,
+		18 * wave + 1,
 	};
 
 	islandSpawnLocation =
@@ -273,6 +480,9 @@ Level1::Level1()
 		topIslandPosition,
 		bottomIslandPosition,
 		//18
+		topIslandPosition,
+		bottomIslandPosition,
+		//28
 		topIslandPosition,
 		bottomIslandPosition
 	};
@@ -306,7 +516,7 @@ void Level1::clean()
 
 void Level1::handleEvents()
 {
-	if (time == 26 * wave)
+	if (time == 40 * wave)
 	{
 		spawnEnemy(new RainAI(guardianPosition));
 	}
