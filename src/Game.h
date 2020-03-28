@@ -78,6 +78,9 @@ public:
 	glm::vec2 getPlayerPosition();
 	void spawnEnemy(AI* enemyAI);
 	void spawnPlayerWeapon(PlayerWeapon* pw);
+	void spawnExplosion(glm::vec2 position);
+
+	void addGarbage(std::string id);
 
 private:
 	Game();

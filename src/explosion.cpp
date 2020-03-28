@@ -1,13 +1,11 @@
 #include "explosion.h"
 #include "Game.h"
 
-Explosion::Explosion(std::string id):m_currentFrame(0),m_currentRow(0),animated(false),ID()
+Explosion::Explosion(std::string id):m_currentFrame(0),m_currentRow(0),animated(false)
 {
 	ID = id;
 	TheTextureManager::Instance()->load("../Assets/textures/explosion.png",
 		ID, TheGame::Instance()->getRenderer());
-
-	// framesize is 512 x 256
 
 	auto size = TheTextureManager::Instance()->getTextureSize(ID);
 	setWidth(size.x);
@@ -16,7 +14,6 @@ Explosion::Explosion(std::string id):m_currentFrame(0),m_currentRow(0),animated(
 	setPosition(glm::vec2(400.0f, 300.0f));
 	setIsColliding(false);
 	setType(EXPLOSION);
-	setState(IDLE);
 }
 Explosion::~Explosion()
 {
@@ -41,16 +38,6 @@ void Explosion::update()
 void Explosion::clean()
 {
 
-}
-
-void Explosion::setAnimated(bool newState)
-{
-	animated = newState;
-}
-
-bool Explosion::getAnimated()
-{
-	return animated;
 }
 
 std::string Explosion::getID()
