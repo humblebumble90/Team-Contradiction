@@ -19,16 +19,22 @@ void StartScene::draw()
 	m_pStart_Scene_Bg->draw();
 	m_pStartLabel->draw();
 	m_pStartButton->draw();
+	m_pLevel2Button->draw();
 	m_pLevel3Button->draw();
 }
 
 void StartScene::update()
 {
 	m_pStartButton->setMousePosition(m_mousePosition);
+	m_pLevel2Button->setMousePosition(m_mousePosition);
 	m_pLevel3Button->setMousePosition(m_mousePosition);
 	if(m_pStartButton->ButtonClick())
 	{
 		TheGame::Instance()->changeSceneState(LEVEL1_SCENE);
+	}
+	if (m_pLevel2Button->ButtonClick())
+	{
+		TheGame::Instance()->changeSceneState(LEVEL2_SCENE);
 	}
 	if(m_pLevel3Button->ButtonClick())
 	{
@@ -65,6 +71,7 @@ void StartScene::handleEvents()
 			{
 			case SDL_BUTTON_LEFT:
 				m_pStartButton->setMouseButtonClicked(true);
+				m_pLevel2Button->setMouseButtonClicked(true);
 				m_pLevel3Button->setMouseButtonClicked(true);
 				break;
 			}
@@ -75,7 +82,8 @@ void StartScene::handleEvents()
 			{
 			case SDL_BUTTON_LEFT:
 				m_pStartButton->setMouseButtonClicked(false);
-				m_pLevel3Button->setMouseButtonClicked(true);
+				m_pLevel2Button->setMouseButtonClicked(false);
+				m_pLevel3Button->setMouseButtonClicked(false);
 				break;
 			}
 			break;
@@ -120,6 +128,9 @@ void StartScene::start()
 	addChild(m_pStartButton);
 	playSound("Menu", 999);
 
+	m_pLevel2Button = new Level2Button();
+	addChild(m_pLevel2Button);
+	
 	m_pLevel3Button = new Level3Button();
 	addChild(m_pLevel3Button);
 
@@ -137,6 +148,7 @@ void StartScene::loadAllTextures()
 	std::cout << "Loading Textures" << std::endl;
 	loadTexture("../Assets/textures/StartSceneBg.png", "Start_Scene_Bg");
 	loadTexture("../Assets/textures/Level1.png", "Level1Button");
+	loadTexture("../Assets/textures/Level2.png", "Level2Button");
 	loadTexture("../Assets/textures/Level3.png", "Level3Button");
 	std::cout << "Finish loading textures" << std::endl;
 }

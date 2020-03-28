@@ -7,6 +7,7 @@
 #include "Start_Scene_Bg.h"
 #include "StartButton.h"
 #include "Level3Button.h"
+#include "Level2Button.h"
 
 class StartScene : public Scene
 {
@@ -29,6 +30,7 @@ private:
 	Label* m_pStartLabel;
 	Start_Scene_Bg* m_pStart_Scene_Bg;
 	StartButton* m_pStartButton;
+	Level2Button* m_pLevel2Button;
 	Level3Button* m_pLevel3Button;
 
 	

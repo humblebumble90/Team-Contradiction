@@ -78,6 +78,7 @@ Level2::Level2()
 
 
 	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
+	//player = thePlayer
 	m_pMap = new Map();
 	m_pMap2 = new Map();
 	m_pMap->setPosition(glm::vec2(0, 0));
@@ -103,7 +104,10 @@ void Level2::clean()
 
 void Level2::handleEvents()
 {
-	spawnEnemy(new ChaosAI(guardianPosition));
+	if (time == 1 * wave)
+	{
+		spawnEnemy(new ChaosAI(guardianPosition));
+	}
 }
 
 void Level2::start()
