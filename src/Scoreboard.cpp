@@ -48,7 +48,7 @@ void Scoreboard::addEntry(std::string name, int score)
 	//PlayerEntry* exPlayer4 = new PlayerEntry("E", 1800);
 	//PlayerEntry* exPlayer5 = new PlayerEntry("F", 1900);
 	//PlayerEntry* exPlayer6 = new PlayerEntry("G", 2000);
-	//PlayerEntry* exPlayer7 = new PlayerEntry("H", 2100);
+	//PlayerEntry* exPlayer7 = new PlayerEntry("H", 2200);
 	//PlayerEntry* exPlayer8 = new PlayerEntry("I", 2200);
 	//playerEntry.push_back(exPlayer1);
 	//playerEntry.push_back(exPlayer2);
