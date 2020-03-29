@@ -158,10 +158,7 @@ void EndScene::handleEvents()
 
 void EndScene::start()
 {
-	if(!entryLabels.empty())
-	{
-		generateEntrylabels();
-	}
+	generateEntrylabels();
 	if(Scoreboard::Instance()->getScore() >= Scoreboard::Instance()->getHighScore())
 	{
 		displayEntry();
