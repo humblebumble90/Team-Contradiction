@@ -2,7 +2,7 @@
 #include "Map.h"
 #include "Config.h"
 #include "RainAI.h"
-
+#include "Game.h"
 
 
 Level1::Level1()
@@ -520,6 +520,7 @@ Level1::Level1()
 	playSound("Level1", 999);
 	//m_pLivesLabel = new Label("Lives: ", "Consolas",
 	//	24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);
+	std::cout << "guild num: " << Game::Instance()->getGuild() << std::endl;
 }
 
 Level1::~Level1()
@@ -549,7 +550,14 @@ void Level1::start()
 void Level1::loadAllTextures()
 {
 	//load the texture with loadTexture() with params path and id respectively
-	loadTexture("../Assets/textures/player.png", "Player");
+	if(Game::Instance()->getGuild() == 1)
+	{
+		loadTexture("../Assets/textures/player1.png", "Player");
+	}
+	else
+	{
+		loadTexture("../Assets/textures/player2.png", "Player");
+	}
 	loadTexture("../Assets/textures/background.png", "map");
 	loadTexture("../Assets/textures/ship3.png", "ship3");
 	loadTexture("../Assets/textures/Ram.png", "Ram");
