@@ -30,6 +30,9 @@ private:
 	Label* m_namingLabel1;
 	Label* m_namingLabel2;
 	Label* m_namingLabel3;
+	Label* m_instructionLabel1;
+	Label* instructionLabel2;
+	Label* highscoreListLabel;
 	
 	Game_Over_Bg* m_game_over_bg_;
 	Entry_Bg* m_pEntry;
