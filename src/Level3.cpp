@@ -159,6 +159,7 @@ void Level3::loadAllTextures()
 	{
 		loadTexture("../Assets/textures/player2.png", "Player");
 	}
+	loadTexture("../assets/textures/shield_aurora.png", "shield_aurora");
 	//background
 	loadTexture("../Assets/textures/background.png", "map");
 	//enemy weapons
