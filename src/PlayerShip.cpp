@@ -6,10 +6,11 @@
 #include "LevelScene.h"
 #include "BasicBody.h"
 #include "MissileLauncher.h"
-#include "Blank.h"
 #include <functional>
 #include <glm/detail/type_vec2.hpp>
 #include "Scoreboard.h"
+#include "FlameThrower.h"
+#include "Cannon.h"
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false),killCounter(0),shieldAvailable(false)
@@ -220,6 +221,18 @@ float PlayerShip::getPlayerSpeed()
 void PlayerShip::setPlayerSpeed(float num)
 {
 	m_maxSpeed = num;
+}
+
+void PlayerShip::changeWeapon(Weapon weapon)
+{
+	std::string currentWeaponName = frame->GetWeapon(0).getName();
+	frame->replaceWeapon(weapon, currentWeaponName, this);
+	
+	std::cout << "changed weapon" << std::endl;
+	for (ShipComponent element : frame->GetBuild())
+	{
+		std::cout << element.getName() << "()" << std::endl;
+	}
 }
 
 void PlayerShip::update()

@@ -12,7 +12,6 @@ public:
 	~Flamethrower();
 	FlameThrowerWeapon* flamethrower;
 	void Fire();
-
 private:
 	
 

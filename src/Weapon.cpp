@@ -26,4 +26,5 @@ void Weapon::Fire()
 	{
 		((Flamethrower*)this)->Fire();
 	}
+	std::cout << "Fired " << name << " Weapon" << std::endl;
 }

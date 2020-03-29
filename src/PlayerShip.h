@@ -9,7 +9,7 @@
 #include "Move.h"
 #include <SDL_hints.h>
 #include <glm/detail/type_vec2.hpp>
-
+#include "PlayerWeapon.h"
 class PlayerShip : public DisplayObject {
 public:
 	friend class LevelScene;
@@ -42,6 +42,7 @@ public:
 	//getter and setter of player lives
 	int getPlayerLives();
 	void setPlayerLives(int num);
+	
 	//getter and setter of player score
 	int getScore();
 	void addScore(int num);
@@ -49,29 +50,38 @@ public:
 	float getPlayerSpeed();
 	void setPlayerSpeed(float num);
 
+	//changes the player weapon
+	void changeWeapon(Weapon weapon);
+	
+	//ui stuff
 	void setKillCounter(int num);
+	void initializeKillCounter();
 
+	//power up stuff
 	bool getShieldAvailable();
 	void setShieldAvailable(bool newState);
-
-	void initializeKillCounter();
+	
 private:
 	Uint8 m_alpha;
 	float m_maxSpeed;
 	bool m_isMoving;
 	
+	//player's power ups
 	bool shieldAvailable;
 	bool inv;
 	int endInvincibleTime;
 	
+	//player stats
 	int playerHealth;
 	int playerLives;
 	int playerScore;
 	int playerHighScore;
 	std::string name;
 	const static int defaultAlpha = 255;
+	//player's stats
 	void invincible();
 	void checkBound();
+	
 	//KillCounter
 	int killCounter;
 	int getKillCounter();

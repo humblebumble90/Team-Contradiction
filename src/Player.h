@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "TextureManager.h"
 #include "Move.h"
+#include "PlayerWeapon.h"
 
 class Player : public GameObject {
 public:
@@ -17,6 +18,7 @@ public:
 	void move(Move newMove);
 	void setIsMoving(bool newMove);
 private:
+	std::vector<PlayerWeapon> weapons;
 	bool m_isMoving;
 	float m_maxSpeed;
 	void  m_checkBounds();

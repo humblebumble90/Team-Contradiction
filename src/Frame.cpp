@@ -65,3 +65,16 @@ std::vector<ShipComponent> Frame::GetBuild()
 {
 	return build;
 }
+
+void Frame::replaceWeapon(ShipComponent replace, std::string original, DisplayObject* Parent)
+{
+	for (int i = 0; i < build.size(); ++i)
+	{
+		if(build[i].getName() == original)
+		{
+			build[i] = replace;
+			build[i].setParent(this);
+		}
+	}
+	std::cout << "finished replacing weapons" << std::endl;
+}

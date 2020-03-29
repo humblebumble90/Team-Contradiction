@@ -16,6 +16,7 @@ public:
 	Weapon GetWeapon(int i);
 	int getGridSize(), GridWidth(), GridHeight();
 	std::vector<ShipComponent> GetBuild();
+	void replaceWeapon(ShipComponent reaplce, std::string original, DisplayObject* parent);
 private:
 	int gridSize, gridWidth, gridHeight;
 	std::vector<ShipComponent> build;

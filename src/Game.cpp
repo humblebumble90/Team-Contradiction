@@ -271,6 +271,10 @@ void Game::handleEvents()
 		{
 			getPlayerShip()->move(DOWN);
 		}
+		if (keystates[SDL_SCANCODE_P])
+		{
+			getPlayerShip()->changeWeapon(Flamethrower());
+		}
 		if (keystates[SDL_SCANCODE_Z] || SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 			if (getPlayerShip()->getPlayerLives() >= 0)
 			{
@@ -282,25 +286,6 @@ void Game::handleEvents()
 						getPlayerShip()->GetFrame()->GetWeapon(z).Fire();
 						firingCooldown[z] = firingCooldownReset[z];
 					}
-				}
-			}
-
-			else if (!keystates[SDL_SCANCODE_Z])
-			{
-			  if (getPlayerShip()->getPlayerLives() >= 0)
-				{
-					for(Weapon x : getPlayerShip()->GetFrame()->GetWeapons())
-					{
-						if (x.getName() == "Flamethrower")
-						{
-							if (((Flamethrower&)x).flamethrower!= nullptr)
-							{
-								destroyWeapon(((Flamethrower&)x).flamethrower);
-						}
-
-				         }
-					}
-					
 				}
 			}
 		if (keystates[SDL_SCANCODE_X])
