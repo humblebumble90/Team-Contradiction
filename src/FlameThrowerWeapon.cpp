@@ -11,23 +11,32 @@ FlameThrowerWeapon::FlameThrowerWeapon(glm::vec2 position)
 	setWidth(size.x);
 	setHeight(size.y);
 	setPosition(position);
-
-	std::vector<ShipComponent> build = {
+	
+	std::vector<ShipComponent> build = 
+	{
 		IndesBody(true),IndesBody(true),IndesBody(true),IndesBody(true)
 	};
 	frame = new Frame(25, build, 4, 1);
 	frame->Initialize(this);
-	m_pflamethrower = new Flamethrower();
+	flamethrower = new Flamethrower();
+
 }
 
 FlameThrowerWeapon::~FlameThrowerWeapon() = default;
 
 void FlameThrowerWeapon::update()
 {
-
-	//PlayerWeapon::update();
-
-	this->setPosition(glm::vec2(m_pflamethrower->getPosition().x + 1.0f, m_pflamethrower->getPosition().y));
-	
+	while (this != nullptr)
+	{
+		if (getParent()->getName() == "Player")
+		{	
+			this->setPosition(glm::vec2(flamethrower->getPosition().x + 1.0f, flamethrower->getPosition().y));
+		}
+		else
+		{
+			this->setPosition(glm::vec2(flamethrower->getPosition().x - 1.0f, flamethrower->getPosition().y));
+		}
+	}
+    
 }
 
