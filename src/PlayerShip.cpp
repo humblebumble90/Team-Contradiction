@@ -63,21 +63,12 @@ PlayerShip::~PlayerShip()
 
 void PlayerShip::Damage(int i)
 {
-	if (playerHealth >= 1 && playerLives >= 0 && !inv)
+	if(playerLives >= 0 && playerHealth == 1 && !inv)
 	{
-		std::cout << "Player damaged!\n";
-		std::cout << "PlayerHealth: " << playerHealth << std::endl;
-		if(shieldAvailable && playerLives == 0)
+		if(shieldAvailable && getPlayerLives() == 0)
 		{
 			invincible();
-			std::cout << "Used shield!\n";
 			shieldAvailable = false;
-		}
-		playerLives -= 1;
-		std::cout << "Player life decreases for 1!" << std::endl;
-		//playerHealth += 1;
-		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
-			invincible();
 		}
 		else
 		{
@@ -90,6 +81,7 @@ void PlayerShip::Damage(int i)
 			std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
 			invincible();
 		}
+	}
 }
 bool PlayerShip::getInvincibility()
 {
@@ -162,6 +154,7 @@ void PlayerShip::draw()
 {
 	TheTextureManager::Instance()->draw
 	("Player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(),0,m_alpha, true);
+	
 }
 
 void PlayerShip::move(Move newMove)

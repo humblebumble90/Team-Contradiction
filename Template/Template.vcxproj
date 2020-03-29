@@ -222,6 +222,7 @@
     <ClCompile Include="..\src\Scene.cpp" />
     <ClCompile Include="..\src\Scoreboard.cpp" />
     <ClCompile Include="..\src\Shield.cpp" />
+    <ClCompile Include="..\src\Shield_Aurora.cpp" />
     <ClCompile Include="..\src\ShipComponent.cpp" />
     <ClCompile Include="..\src\SoundManager.cpp" />
     <ClCompile Include="..\src\StartButton.cpp" />
@@ -307,6 +308,7 @@
     <ClInclude Include="..\src\Scene.h" />
     <ClInclude Include="..\src\Scoreboard.h" />
     <ClInclude Include="..\src\Shield.h" />
+    <ClInclude Include="..\src\Shield_Aurora.h" />
     <ClInclude Include="..\src\ShipComponent.h" />
     <ClInclude Include="..\src\SoundManager.h" />
     <ClInclude Include="..\src\StartButton.h" />

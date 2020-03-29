@@ -12,6 +12,7 @@
 #include "Shield.h"
 #include "Power_Up.h"
 #include "explosion.h"
+#include "Shield_Aurora.h"
 
 class LevelScene : public Scene
 {
@@ -50,6 +51,7 @@ protected:
 
 	Map* m_pMap;
 	Map* m_pMap2;
+	Shield_Aurora* mpShield_aurora;
 	#pragma endregion
 	#pragma region Spawn Timers
 	int time = 0, ramIteration = 0, zigzagIteration = 0, cannoneerIteration = 0, guardianIteration = 0, diagonIteration = 0, blastIteration = 0, islandIteration = 0;

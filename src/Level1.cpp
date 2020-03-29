@@ -558,6 +558,7 @@ void Level1::loadAllTextures()
 	{
 		loadTexture("../Assets/textures/player2.png", "Player");
 	}
+	loadTexture("../assets/textures/shield_aurora.png", "shield_aurora");
 	loadTexture("../Assets/textures/background.png", "map");
 	loadTexture("../Assets/textures/ship3.png", "ship3");
 	loadTexture("../Assets/textures/Ram.png", "Ram");
