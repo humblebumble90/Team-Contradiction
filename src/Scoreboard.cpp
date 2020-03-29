@@ -3,8 +3,17 @@
 #include <fstream> //learning how to do reading and writing files so ignore this
 #include <iostream>
 #include <string>
+#include <vector>
+#include "PlayerShip.h"
+#include "PlayerEntry.h"
 
 Scoreboard* Scoreboard::instance = nullptr;
+
+std::vector<PlayerEntry*> Scoreboard::getPlayerEntry()
+{
+	return playerEntry;
+}
+
 Scoreboard::Scoreboard()
 {
 	highScore = Config::HIGH_SCORE;
@@ -20,9 +29,19 @@ void Scoreboard::resetValues()
 {
 	lives = Config::LIVES;
 	score = Config::SCORE;
+
 }
 
-
+void Scoreboard::addEntry(std::string name, int score)
+{
+	PlayerEntry* player = new PlayerEntry(name, score);
+	playerEntry.push_back(player);
+	//for (auto element : playerEntry)
+	//{
+	//	std::cout << "Name: " + element->getName() << std::endl;
+	//	std::cout << "Score: " + std::to_string(element->getScore()) << std::endl;
+	//}
+}
 int Scoreboard::getLives()
 {
 	return lives;

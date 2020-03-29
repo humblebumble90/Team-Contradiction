@@ -56,6 +56,11 @@ void Label::setText(std::string newText)
 	setPosition(getPosition());
 }
 
+std::string Label::getText()
+{
+	return m_text;
+}
+
 void Label::setColour(SDL_Color newColour)
 {
 	FontManager::Instance()->load(m_fontPath, m_fontID, m_fontSize, m_fontStyle);

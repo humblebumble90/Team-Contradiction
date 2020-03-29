@@ -166,6 +166,7 @@
     <ClCompile Include="..\src\DiagonAI.cpp" />
     <ClCompile Include="..\src\EnemyCannonballAI.cpp" />
     <ClCompile Include="..\src\EnemyFlamethrowerAI.cpp" />
+    <ClCompile Include="..\src\Entry_Bg.cpp" />
     <ClCompile Include="..\src\explosion.cpp" />
     <ClCompile Include="..\src\Flamethrower.cpp" />
     <ClCompile Include="..\src\FlameThrowerWeapon.cpp" />
@@ -181,6 +182,7 @@
     <ClCompile Include="..\src\Map.cpp" />
     <ClCompile Include="..\src\MissileLauncher.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
+    <ClCompile Include="..\src\PlayerEntry.cpp" />
     <ClCompile Include="..\src\PlayerShip.cpp" />
     <ClCompile Include="..\include\IMGUI\imgui.cpp" />
     <ClCompile Include="..\include\IMGUI\imgui_demo.cpp" />
@@ -245,6 +247,7 @@
     <ClInclude Include="..\src\DiagonAI.h" />
     <ClInclude Include="..\src\EnemyCannonballAI.h" />
     <ClInclude Include="..\src\EnemyFlamethrowerAI.h" />
+    <ClInclude Include="..\src\Entry_Bg.h" />
     <ClInclude Include="..\src\explosion.h" />
     <ClInclude Include="..\src\Flamethrower.h" />
     <ClInclude Include="..\src\FlameThrowerWeapon.h" />
@@ -262,6 +265,7 @@
     <ClInclude Include="..\src\MissileLauncher.h" />
     <ClInclude Include="..\src\Move.h" />
     <ClInclude Include="..\src\Player.h" />
+    <ClInclude Include="..\src\PlayerEntry.h" />
     <ClInclude Include="..\src\PlayerShip.h" />
     <ClInclude Include="..\include\IMGUI\imconfig.h" />
     <ClInclude Include="..\include\IMGUI\imgui.h" />
