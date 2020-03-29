@@ -26,12 +26,18 @@ void EndScene::draw()
 	if(m_pEntry != nullptr &&
 		m_namingLabel1 != nullptr &&
 		m_namingLabel2 != nullptr &&
-		m_namingLabel3 != nullptr)
+		m_namingLabel3 != nullptr &&
+		m_instructionLabel1 != nullptr&&
+		instructionLabel2 != nullptr &&
+		highscoreListLabel != nullptr)
 	{
 		m_pEntry->draw();
 		m_namingLabel1->draw();
 		m_namingLabel2->draw();
 		m_namingLabel3->draw();
+		m_instructionLabel1->draw();
+		instructionLabel2->draw();
+		highscoreListLabel->draw();
 	}
 
 	if(!entryLabels.empty())
@@ -152,6 +158,10 @@ void EndScene::handleEvents()
 
 void EndScene::start()
 {
+	if(!entryLabels.empty())
+	{
+		generateEntrylabels();
+	}
 	if(Scoreboard::Instance()->getScore() >= Scoreboard::Instance()->getHighScore())
 	{
 		displayEntry();
@@ -196,11 +206,28 @@ void EndScene::displayEntry()
 		glm::vec2(Config::SCREEN_WIDTH * 0.575f, Config::SCREEN_HEIGHT * 0.5f));
 	m_namingLabel3->setParent(this);
 	addChild(m_namingLabel3);
+	m_instructionLabel1 = new Label(
+		"Push up/down arrow key to choose character for name", "Consolas",
+		20, red,
+		glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.65f));
+	m_instructionLabel1->setParent(this);
+	addChild(m_instructionLabel1);
+	instructionLabel2 = new Label(
+		"Push space bar to decide a character for name", "Consolas",
+		20, red,
+		glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.75f));
+	instructionLabel2->setParent(this);
+	addChild(instructionLabel2);
 
 	m_pEntry = new Entry_Bg();
 	m_pEntry->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.5f));
 	m_pEntry->setParent(this);
 	addChild(m_pEntry);
+	
+	highscoreListLabel = new Label("HighscoreList", "Consolas", 20, black,
+		glm::vec2(Config::SCREEN_WIDTH * 0.9f, Config::SCREEN_HEIGHT * 0.3f));
+	highscoreListLabel->setParent(this);
+	addChild(highscoreListLabel);
 
 }
 
@@ -217,6 +244,7 @@ void EndScene::generateEntry()
 
 void EndScene::generateEntrylabels()
 {
+
 	if (!Scoreboard::Instance()->getPlayerEntry().empty())
 	{
 		for (int i = 0; i < Scoreboard::Instance()->getPlayerEntry().size(); i++)
@@ -225,14 +253,14 @@ void EndScene::generateEntrylabels()
 			{
 				Label* playerNameLabel = new Label(Scoreboard::Instance()->getPlayerEntry()[i]->getName(),
 					"Consolas", 40, black,
-					glm::vec2(Config::SCREEN_WIDTH * 0.75f, Config::SCREEN_HEIGHT * 0.5f));
+					glm::vec2(Config::SCREEN_WIDTH * 0.85f, Config::SCREEN_HEIGHT * 0.4f),false,true);
 				playerNameLabel->setParent(this);
 				addChild(playerNameLabel);
 				entryLabels.push_back(playerNameLabel);
 				Label* playerScoreLabel
 					= new Label(std::to_string(Scoreboard::Instance()->getPlayerEntry()[i]->getScore()),
 						"Consolas", 40, black,
-						glm::vec2(Config::SCREEN_WIDTH * 0.85f, Config::SCREEN_HEIGHT * 0.5f));
+						glm::vec2(Config::SCREEN_WIDTH * 0.95f, Config::SCREEN_HEIGHT * 0.4f),false, true);
 				playerScoreLabel->setParent(this);
 				addChild(playerScoreLabel);
 				entryLabels.push_back(playerScoreLabel);
@@ -241,14 +269,14 @@ void EndScene::generateEntrylabels()
 			{
 				Label* playerNameLabel = new Label(Scoreboard::Instance()->getPlayerEntry()[i]->getName(),
 					"Consolas", 40, black,
-					glm::vec2(Config::SCREEN_WIDTH * 0.75f, Config::SCREEN_HEIGHT * (0.5f + i*0.05f)));
+					glm::vec2(Config::SCREEN_WIDTH * 0.85f, Config::SCREEN_HEIGHT * (0.4f + i*0.05f)),false, true);
 				playerNameLabel->setParent(this);
 				addChild(playerNameLabel);
 				entryLabels.push_back(playerNameLabel);
 				Label* playerScoreLabel
 					= new Label(std::to_string(Scoreboard::Instance()->getPlayerEntry()[i]->getScore()),
 						"Consolas", 40, black,
-						glm::vec2(Config::SCREEN_WIDTH * 0.85f, Config::SCREEN_HEIGHT * (0.5f + i * 0.05f)));
+						glm::vec2(Config::SCREEN_WIDTH * 0.95f, Config::SCREEN_HEIGHT * (0.4f + i * 0.05f)),false, true);
 				playerScoreLabel->setParent(this);
 				addChild(playerScoreLabel);
 				entryLabels.push_back(playerScoreLabel);
