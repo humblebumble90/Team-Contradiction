@@ -1,5 +1,6 @@
 #include "Level2.h"
 #include "ChaosAI.h"
+#include "Game.h"
 
 Level2::Level2()
 {
@@ -117,7 +118,14 @@ void Level2::start()
 void Level2::loadAllTextures()
 {
 	//load the texture with loadTexture() with params path and id respectively
-	loadTexture("../Assets/textures/player.png", "Player");
+	if (Game::Instance()->getGuild() == 1)
+	{
+		loadTexture("../Assets/textures/player1.png", "Player");
+	}
+	else
+	{
+		loadTexture("../Assets/textures/player2.png", "Player");
+	}
 	loadTexture("../Assets/textures/background.png", "map");
 	loadTexture("../Assets/textures/ship3.png", "ship3");
 	loadTexture("../Assets/textures/Ram.png", "Ram");

@@ -82,6 +82,10 @@ public:
 
 	void addGarbage(std::string id);
 
+	int guild = 0;
+	void setGuild(int num);
+	int getGuild();
+
 private:
 	Game();
 	~Game();
