@@ -12,10 +12,8 @@ public:
 	~Flamethrower();
 	FlameThrowerWeapon* flamethrower;
 	void Fire();
+	glm::vec2 Position();
 
-private:
-	
-
-	
+		
 };
 #endif

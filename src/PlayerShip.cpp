@@ -15,6 +15,7 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false),killCounter(0),shieldAvailable(false)
 {
 	changeTexture("Player");
+	//changeTexture("Player");
 	setPosition(targetTransform);
 	setIsColliding(false);
 	setType(GameObjectType::PLAYER);
@@ -42,15 +43,17 @@ PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 	frame->Initialize(this);
 	playerLives = lives;
 	playerHealth = health;
-	std::cout << "PlayerHealth: " << playerHealth << std::endl;
-	std::cout << "Player Lives: " << playerLives << std::endl;
-	std::cout << "PlayerShip is instantiated!" << std::endl;
-	std::cout <<"Player:s memory address: "<< this << std::endl;
-	std::cout << "Frame's memory address: " << frame << std::endl;
-	std::cout << "frame's parent(Player): " << frame->getParent() << std::endl;
-	std::cout << "The first element's name: " << frame->GetBuild().begin()->getName() << std::endl;
-	std::cout << "The element's parent(Player's frame): " << frame->GetBuild().begin()->getParent() << std::endl;
-	std::cout << "The first element's parent's parent(should be player): "<< frame->GetBuild().begin()->getParent()->getParent() << std::endl;
+	//SDL_SetTextureColorMod(TextureManager::Instance()->getTexture("Player"), 255, 255, 255);
+	//SDL_SetTextureColorMod(TextureManager::Instance()->getTexture("Player"), 255, 51, 100);
+	//std::cout << "PlayerHealth: " << playerHealth << std::endl;
+	//std::cout << "Player Lives: " << playerLives << std::endl;
+	//std::cout << "PlayerShip is instantiated!" << std::endl;
+	//std::cout <<"Player:s memory address: "<< this << std::endl;
+	//std::cout << "Frame's memory address: " << frame << std::endl;
+	//std::cout << "frame's parent(Player): " << frame->getParent() << std::endl;
+	//std::cout << "The first element's name: " << frame->GetBuild().begin()->getName() << std::endl;
+	//std::cout << "The element's parent(Player's frame): " << frame->GetBuild().begin()->getParent() << std::endl;
+	//std::cout << "The first element's parent's parent(should be player): "<< frame->GetBuild().begin()->getParent()->getParent() << std::endl;
 }
 
 PlayerShip::~PlayerShip()
@@ -60,21 +63,12 @@ PlayerShip::~PlayerShip()
 
 void PlayerShip::Damage(int i)
 {
-	if (playerHealth >= 1 && playerLives >= 0 && !inv)
+	if(playerLives >= 0 && playerHealth == 1 && !inv)
 	{
-		std::cout << "Player damaged!\n";
-		std::cout << "PlayerHealth: " << playerHealth << std::endl;
-		if(shieldAvailable && playerLives == 0)
+		if(shieldAvailable && getPlayerLives() == 0)
 		{
 			invincible();
-			std::cout << "Used shield!\n";
 			shieldAvailable = false;
-		}
-		playerLives -= 1;
-		std::cout << "Player life decreases for 1!" << std::endl;
-		//playerHealth += 1;
-		std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
-			invincible();
 		}
 		else
 		{
@@ -87,6 +81,7 @@ void PlayerShip::Damage(int i)
 			std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
 			invincible();
 		}
+	}
 }
 bool PlayerShip::getInvincibility()
 {
@@ -159,6 +154,7 @@ void PlayerShip::draw()
 {
 	TheTextureManager::Instance()->draw
 	("Player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(),0,m_alpha, true);
+	
 }
 
 void PlayerShip::move(Move newMove)
