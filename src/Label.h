@@ -20,6 +20,7 @@ public:
 	virtual void clean() override;
 
 	void setText(std::string newText);
+	std::string getText();
 	void setColour(SDL_Color newColour);
 	void setSize(int newSize);
 

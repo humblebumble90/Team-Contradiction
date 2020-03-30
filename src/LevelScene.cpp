@@ -66,6 +66,10 @@ void LevelScene::update()
 	{
 		m_pMap2->update();
 	}
+	if(player->getShieldAvailable() && player->getPlayerLives() == 0)
+	{
+		mpShield_aurora->update();
+	}
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
 	}
@@ -211,6 +215,11 @@ void LevelScene::draw()
 				item->draw();
 			}
 		}
+	}
+
+	if(player->getShieldAvailable() && player->getPlayerLives() == 0)
+	{
+		mpShield_aurora->draw();
 	}
 	if (!m_pExplosions.empty())
 	{
@@ -423,11 +432,8 @@ void LevelScene::initialize()
 			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.25f, 10.0f), TTF_STYLE_NORMAL,true);
 		m_pHighScoreLabel = new Label("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()), "Consolas",
 			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, 10.0f), TTF_STYLE_NORMAL, true);
-
-		
-		
-		
-		return;
+		mpShield_aurora = new Shield_Aurora();
+		addChild(mpShield_aurora);
 	}
 }
 

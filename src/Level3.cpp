@@ -11,6 +11,7 @@
 /*Boss 3 - Triple Barge (Flamethrower)*/#include "FireBargeAI.h"
 /*Boss 4 - Cannonlord*/					#include "CannonlordAI.h"
 /*Boss 5 - Deathcage (last boss)*/		#include "DeathcageAI.h"
+#include "Game.h"
 
 Level3::Level3(PlayerShip* thePlayer)
 {
@@ -150,7 +151,15 @@ void Level3::loadAllTextures()
 	//ram
 	loadTexture("../Assets/textures/Ram.png", "Ram");
 	//player
-	loadTexture("../Assets/textures/player.png", "Player");
+	if (Game::Instance()->getGuild() == 1)
+	{
+		loadTexture("../Assets/textures/player1.png", "Player");
+	}
+	else
+	{
+		loadTexture("../Assets/textures/player2.png", "Player");
+	}
+	loadTexture("../assets/textures/shield_aurora.png", "shield_aurora");
 	//background
 	loadTexture("../Assets/textures/background.png", "map");
 	//enemy weapons

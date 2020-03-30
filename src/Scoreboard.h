@@ -1,6 +1,9 @@
 #pragma once
 #ifndef __SCOREBOARD__
 #define __SCOREBOARD__
+#include <string>
+#include "PlayerEntry.h"
+#include <vector>
 
 class Scoreboard
 {
@@ -22,6 +25,9 @@ public:
 	int getHighScore();
 	void setHighScore(int num);
 	void resetValues();
+	void addEntry(std::string name, int score);
+	std::vector<PlayerEntry*> playerEntry;
+	std::vector<PlayerEntry*> getPlayerEntry();
 	
 private:
 	Scoreboard();

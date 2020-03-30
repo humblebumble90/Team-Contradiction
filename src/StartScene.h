@@ -8,6 +8,8 @@
 #include "StartButton.h"
 #include "Level3Button.h"
 #include "Level2Button.h"
+#include "Guild1_Button.h"
+#include "Guild2_Button.h"
 
 class StartScene : public Scene
 {
@@ -28,10 +30,13 @@ private:
 
 	//game objects
 	Label* m_pStartLabel;
+	Label* m_pGuildLabel;
 	Start_Scene_Bg* m_pStart_Scene_Bg;
 	StartButton* m_pStartButton;
 	Level2Button* m_pLevel2Button;
 	Level3Button* m_pLevel3Button;
+	Guild1_Button* m_pGuild1_Button;
+	Guild2_Button* m_pGuild2_Button;
 
 	
 	//methods

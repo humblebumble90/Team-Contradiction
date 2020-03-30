@@ -213,6 +213,17 @@ void Game::addGarbage(std::string id)
 	((LevelScene*)m_currentScene)->addGarbage(id);
 }
 
+void Game::setGuild(int num)
+{
+	guild = num;
+	std::cout << "Guild num: "<< num << std::endl;
+}
+
+int Game::getGuild()
+{
+	return guild;
+}
+
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw colour
