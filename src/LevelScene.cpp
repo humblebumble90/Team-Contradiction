@@ -173,10 +173,6 @@ void LevelScene::draw()
 	{
 		m_pMap2->draw();
 	}
-	if (m_pControl_Img != nullptr)
-	{
-		m_pControl_Img->draw();
-	}
 	if (player->getPlayerLives() >= 0)
 	{
 		player->draw();
@@ -227,6 +223,10 @@ void LevelScene::draw()
 		{
 			item->draw();
 		}
+	}
+	if (m_pControl_Img != nullptr)
+	{
+		m_pControl_Img->draw();
 	}
 }
 
