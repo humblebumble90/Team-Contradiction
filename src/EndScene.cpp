@@ -83,24 +83,27 @@ void EndScene::handleEvents()
 				TheGame::Instance()->changeSceneState(SceneState::START_SCENE);
 				break;
 			case SDLK_SPACE:
-				if(!naming1Done)
+				if(Scoreboard::Instance()->getScore() >= Scoreboard::Instance()->getHighScore())
 				{
-					naming1Done = true;
-					//std::cout << naming1Done;
-					break;
-				}
-				if(naming1Done && !naming2Done)
-				{
-					naming2Done = true;
-					//std::cout << naming2Done;
-					break;
-				}
-				if(naming1Done && naming2Done && !naming3Done)
-				{
-					naming3Done = true;
-					generateEntry();
-					generateEntrylabels();
-					break;
+					if (!naming1Done)
+					{
+						naming1Done = true;
+						//std::cout << naming1Done;
+						break;
+					}
+					if (naming1Done && !naming2Done)
+					{
+						naming2Done = true;
+						//std::cout << naming2Done;
+						break;
+					}
+					if (naming1Done && naming2Done && !naming3Done)
+					{
+						naming3Done = true;
+						generateEntry();
+						generateEntrylabels();
+						break;
+					}
 				}
 			case SDLK_UP:
 				if (entryNum < 35)
@@ -244,40 +247,22 @@ void EndScene::generateEntrylabels()
 
 	if (!Scoreboard::Instance()->getPlayerEntry().empty())
 	{
+		entryLabels.clear();
 		for (int i = 0; i < Scoreboard::Instance()->getPlayerEntry().size(); i++)
 		{
-			if(i < 1)
-			{
 				Label* playerNameLabel = new Label(Scoreboard::Instance()->getPlayerEntry()[i]->getName(),
 					"Consolas", 40, black,
-					glm::vec2(Config::SCREEN_WIDTH * 0.85f, Config::SCREEN_HEIGHT * 0.4f),false,true);
+					glm::vec2(Config::SCREEN_WIDTH * 0.85f, Config::SCREEN_HEIGHT * (0.4f + i * 0.05f)),false,true);
 				playerNameLabel->setParent(this);
 				addChild(playerNameLabel);
 				entryLabels.push_back(playerNameLabel);
 				Label* playerScoreLabel
 					= new Label(std::to_string(Scoreboard::Instance()->getPlayerEntry()[i]->getScore()),
 						"Consolas", 40, black,
-						glm::vec2(Config::SCREEN_WIDTH * 0.95f, Config::SCREEN_HEIGHT * 0.4f),false, true);
+						glm::vec2(Config::SCREEN_WIDTH * 0.95f, Config::SCREEN_HEIGHT * (0.4f + i*0.05f)),false, true);
 				playerScoreLabel->setParent(this);
 				addChild(playerScoreLabel);
 				entryLabels.push_back(playerScoreLabel);
-			}
-			else
-			{
-				Label* playerNameLabel = new Label(Scoreboard::Instance()->getPlayerEntry()[i]->getName(),
-					"Consolas", 40, black,
-					glm::vec2(Config::SCREEN_WIDTH * 0.85f, Config::SCREEN_HEIGHT * (0.4f + i*0.05f)),false, true);
-				playerNameLabel->setParent(this);
-				addChild(playerNameLabel);
-				entryLabels.push_back(playerNameLabel);
-				Label* playerScoreLabel
-					= new Label(std::to_string(Scoreboard::Instance()->getPlayerEntry()[i]->getScore()),
-						"Consolas", 40, black,
-						glm::vec2(Config::SCREEN_WIDTH * 0.95f, Config::SCREEN_HEIGHT * (0.4f + i * 0.05f)),false, true);
-				playerScoreLabel->setParent(this);
-				addChild(playerScoreLabel);
-				entryLabels.push_back(playerScoreLabel);
-			}
 		}
 	}
 }
