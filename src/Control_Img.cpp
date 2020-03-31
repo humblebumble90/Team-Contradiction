@@ -11,7 +11,7 @@ Control_Img::Control_Img(std::string imagePath, std::string name, GameObjectType
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize(m_name);
 	setWidth(size.x);
 	setHeight(size.y);
-	setPosition(position);
+	setPosition(glm::vec2(Config::SCREEN_WIDTH / 2, Config::SCREEN_HEIGHT - (size.y / 2)));
 	setType(type);
 	std::cout << "control image instantiated!\n";
 }
