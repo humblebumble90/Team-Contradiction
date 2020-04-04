@@ -288,6 +288,9 @@
     <ClCompile Include="..\src\Shield_Aurora.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ExplosionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -540,6 +543,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Shield_Aurora.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ExplosionManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

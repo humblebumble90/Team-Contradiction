@@ -5,17 +5,18 @@
 class Explosion : public DisplayObject
 {
 public:
-	Explosion(std::string id);
+	Explosion();
 	~Explosion();
 
 	void draw() override;
 	void update() override;
 	void clean() override;
-	std::string getID();
+	void activate();
+	void deActivate();
+	bool Explosion::getIsActive();
 private:
-	std::string ID;
 	int m_currentFrame;
 	int m_currentRow;
-	bool animated;
+	bool m_bisActive;
 };
 #endif/*Defined (__EXPLOSION__)*/

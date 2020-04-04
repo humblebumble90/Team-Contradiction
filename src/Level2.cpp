@@ -572,6 +572,7 @@ void Level2::loadAllTextures()
 	loadTexture("../Assets/textures/Chaos.png", "Chaos");
 	loadTexture("../Assets/textures/ChaosHit.png", "ChaosHit");
 	loadTexture("../Assets/textures/island.png", "Island");
+	loadTexture("../Assets/textures/explosion.png", "explosion");
 }
 
 void Level2::loadAllSounds()
