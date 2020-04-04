@@ -80,7 +80,6 @@ public:
 	void spawnPlayerWeapon(PlayerWeapon* pw);
 	void spawnExplosion(glm::vec2 position);
 
-	void addGarbage(std::string id);
 
 	int guild = 0;
 	void setGuild(int num);

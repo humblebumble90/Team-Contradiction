@@ -30,7 +30,6 @@ public:
 	void spawnPlayerWeapon(PlayerWeapon* playerWeapon);
 	PlayerShip* getPlayerShip();
 
-	void addGarbage(std::string id);
 protected:
 	bool scrolling = true, spawnedEnemy=false;
 	#pragma region Game Objects
@@ -47,7 +46,6 @@ protected:
 	std::vector<Shield*> m_pshields;
 	std::vector<Power_Up*> power_ups;
 	glm::vec2 shieldSpawnPos;
-	std::vector<Explosion*> m_pExplosions;
 
 	Map* m_pMap;
 	Map* m_pMap2;
@@ -67,10 +65,8 @@ private:
 	void collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw);
 	void collisionCheck(bool boss, AI* enemy);
 	void initialize();
-	void removeGarbage();
 	int idNum = 0;
 	std::string shieldID;
 	std::string expID;
-	std::vector<std::string> garbage;
 };
 #endif

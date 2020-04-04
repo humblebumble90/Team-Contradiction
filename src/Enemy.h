@@ -18,6 +18,7 @@ public:
 	void update() override;
 	void clean() override;
 	int getHealth();
+	int getHitTimer();
 #pragma endregion
 private:
 	Frame* frame;

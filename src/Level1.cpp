@@ -574,6 +574,7 @@ void Level1::loadAllTextures()
 	loadTexture("../Assets/textures/Rain.png", "Rain");
 	loadTexture("../Assets/textures/RainHit.png", "RainHit");
 	loadTexture("../Assets/textures/island.png", "Island");
+	loadTexture("../Assets/textures/explosion.png", "explosion");
 }
 
 void Level1::loadAllSounds()
