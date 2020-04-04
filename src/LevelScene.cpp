@@ -167,10 +167,6 @@ void LevelScene::draw()
 	{
 		m_pMap2->draw();
 	}
-	if (m_pControl_Img != nullptr)
-	{
-		m_pControl_Img->draw();
-	}
 	if (player->getPlayerLives() >= 0)
 	{
 		player->draw();
@@ -216,6 +212,17 @@ void LevelScene::draw()
 		mpShield_aurora->draw();
 	}
 	ExplosionManager::Instance()->draw();
+	if (!m_pExplosions.empty())
+	{
+		for (auto item : m_pExplosions)
+		{
+			item->draw();
+		}
+	}
+	if (m_pControl_Img != nullptr)
+	{
+		m_pControl_Img->draw();
+	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
