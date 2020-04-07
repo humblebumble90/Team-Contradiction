@@ -162,7 +162,7 @@ void EndScene::handleEvents()
 void EndScene::start()
 {
 	generateEntrylabels();
-	if(Scoreboard::Instance()->getScore() >= Scoreboard::Instance()->getHighScore())
+	if(Scoreboard::Instance()->getScore() == Scoreboard::Instance()->getHighScore())
 	{
 		displayEntry();
 	}
