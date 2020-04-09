@@ -208,10 +208,6 @@ void Game::spawnExplosion(glm::vec2 position)
 	((LevelScene*)m_currentScene)->SpawnExplosion(position);
 }
 
-void Game::addGarbage(std::string id)
-{
-	((LevelScene*)m_currentScene)->addGarbage(id);
-}
 
 void Game::setGuild(int num)
 {
