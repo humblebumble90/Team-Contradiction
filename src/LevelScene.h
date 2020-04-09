@@ -12,6 +12,7 @@
 #include "Shield.h"
 #include "Power_Up.h"
 #include "explosion.h"
+#include "Shield_Aurora.h"
 
 class LevelScene : public Scene
 {
@@ -29,7 +30,6 @@ public:
 	void spawnPlayerWeapon(PlayerWeapon* playerWeapon);
 	PlayerShip* getPlayerShip();
 
-	void addGarbage(std::string id);
 protected:
 	bool scrolling = true, spawnedEnemy=false;
 	#pragma region Game Objects
@@ -46,10 +46,10 @@ protected:
 	std::vector<Shield*> m_pshields;
 	std::vector<Power_Up*> power_ups;
 	glm::vec2 shieldSpawnPos;
-	std::vector<Explosion*> m_pExplosions;
 
 	Map* m_pMap;
 	Map* m_pMap2;
+	Shield_Aurora* mpShield_aurora;
 	#pragma endregion
 	#pragma region Spawn Timers
 	int time = 0, ramIteration = 0, zigzagIteration = 0, cannoneerIteration = 0, guardianIteration = 0, diagonIteration = 0, blastIteration = 0, islandIteration = 0;
@@ -65,10 +65,8 @@ private:
 	void collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw);
 	void collisionCheck(bool boss, AI* enemy);
 	void initialize();
-	void removeGarbage();
 	int idNum = 0;
 	std::string shieldID;
 	std::string expID;
-	std::vector<std::string> garbage;
 };
 #endif

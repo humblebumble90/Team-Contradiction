@@ -39,7 +39,7 @@ void Enemy::Damage(int i)
 			doDamage = false;
 		}
 	}
-	else if (((ChaosAI*)aI)->getFire()) {
+	else if (((ChaosAI*)aI)->getFire() && aI->GetParent()->name == "Chaos") {
 		doDamage = false;
 	}
 	if (doDamage && hitTimer <= 0) {
@@ -112,4 +112,9 @@ void Enemy::clean()
 int Enemy::getHealth()
 {
 	return health;
+}
+
+int Enemy::getHitTimer()
+{
+	return hitTimer;
 }

@@ -13,6 +13,7 @@
 #include "Game.h"
 #include "FlyOntoScreenAI.h"
 #include "Scoreboard.h"
+#include "ExplosionManager.h"
 
 LevelScene::LevelScene()
 {
@@ -65,6 +66,10 @@ void LevelScene::update()
 	if (m_pMap2 != nullptr)
 	{
 		m_pMap2->update();
+	}
+	if(player->getShieldAvailable() && player->getPlayerLives() == 0)
+	{
+		mpShield_aurora->update();
 	}
 	for (int z = 0; z < enemies.size(); ++z) {
 		enemies[z]->GetParent()->update();
@@ -150,13 +155,6 @@ void LevelScene::update()
 		Game::Instance()->changeSceneState(END_SCENE);
 	}
 
-#pragma region Garbage collection for animated explosions
-	if(garbage.size() > 10 || time % 1000 == 0)
-	{
-		//std::cout << "Gabage collection is implemented\n";
-		removeGarbage();
-	}
-#pragma endregion
 }
 
 void LevelScene::draw()
@@ -168,10 +166,6 @@ void LevelScene::draw()
 	if (m_pMap2 != nullptr)
 	{
 		m_pMap2->draw();
-	}
-	if (m_pControl_Img != nullptr)
-	{
-		m_pControl_Img->draw();
 	}
 	if (player->getPlayerLives() >= 0)
 	{
@@ -212,12 +206,22 @@ void LevelScene::draw()
 			}
 		}
 	}
+
+	if(player->getShieldAvailable() && player->getPlayerLives() == 0)
+	{
+		mpShield_aurora->draw();
+	}
+	ExplosionManager::Instance()->draw();
 	if (!m_pExplosions.empty())
 	{
 		for (auto item : m_pExplosions)
 		{
 			item->draw();
 		}
+	}
+	if (m_pControl_Img != nullptr)
+	{
+		m_pControl_Img->draw();
 	}
 }
 
@@ -246,25 +250,25 @@ void LevelScene::SpawnExplosion(glm::vec2 position)
 	player->setKillCounter(1);
 	m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
 	m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
-	idNum++;
-	//std::cout << "Exp Num: "<< idNum << std::endl;
-	expID = "exp " + std::to_string(idNum);
-	Explosion* exp = new Explosion(expID);
-	addChild(exp);
-	exp->setPosition(position);
-	m_pExplosions.push_back(exp);
+	//idNum++;
+	////std::cout << "Exp Num: "<< idNum << std::endl;
+	//expID = "exp " + std::to_string(idNum);
+	//Explosion* exp = new Explosion(expID);
+	//addChild(exp);
+	//exp->setPosition(position);
+	//m_pExplosions.push_back(exp);
 	//DestroyExplosion();
+	auto explosion = ExplosionManager::Instance()->getExplosion();
+
+	explosion->setPosition(position);
+	explosion->activate();
+	//std::cout << "Explosion position X: " << explosion->getPosition().x << "\n Explosion position Y: "
+	//	<< explosion->getPosition().y << "\n activated: " << explosion->getIsActive() << std::endl;
 }
 
 PlayerShip* LevelScene::getPlayerShip()
 {
 	return player;
-}
-
-void LevelScene::addGarbage(std::string id)
-{
-	//std::cout << "Garbage is added: " << id << std::endl;
-	garbage.push_back(id);
 }
 
 void LevelScene::spawnShield(AI* enemy)
@@ -285,7 +289,9 @@ void LevelScene::spawnShield(AI* enemy)
 void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 {
 	//Collision check for Enemies versus Player Weapon
-	if (boss) {
+	if (boss &&
+ CollisionManager::squaredRadiusCheck(pw,enemy->GetParent()) &&
+		enemy->GetParent()->getHitTimer() <= 0) {
 		for (ShipComponent es : enemy->GetParent()->GetFrame()->GetBuild()) {
 			if (es.getName() == "BasicBody") {
 				for (ShipComponent ps : pw->getFrame()->GetBuild()) {
@@ -301,7 +307,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw)
 		}
 	}
 	else {
-		if (CollisionManager::AABBCheck(enemy->GetParent(), pw) && enemy->GetParent()->getType() != ENEMY_WEAPON)
+		if (CollisionManager::squaredRadiusCheck(enemy->GetParent(), pw) && enemy->GetParent()->getType() != ENEMY_WEAPON)
 		{
 			enemy->GetParent()->Damage(1);
 			//std::cout << "Enemy name: " <<enemy->GetParent()->getName()<<
@@ -342,7 +348,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 		}
 	}
 	else {
-		if (CollisionManager::AABBCheck(enemy->GetParent(), player))
+		if (CollisionManager::squaredRadiusCheck(enemy->GetParent(), player))
 		{
 			if(!player->getInvincibility())
 			{
@@ -423,33 +429,8 @@ void LevelScene::initialize()
 			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.25f, 10.0f), TTF_STYLE_NORMAL,true);
 		m_pHighScoreLabel = new Label("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()), "Consolas",
 			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, 10.0f), TTF_STYLE_NORMAL, true);
-
-		
-		
-		
-		return;
-	}
-}
-
-void LevelScene::removeGarbage()
-{
-	if(!garbage.empty())
-	{
-		for (auto item : garbage)
-		{
-			for (int i = 0; i < m_pExplosions.size(); i++)
-			{
-				if (item == m_pExplosions[i]->getID())
-				{
-					//std::cout << "Removing garbage: " << m_pExplosions[i] << std::endl;
-					m_pExplosions.erase(m_pExplosions.begin() + i);
-					break;
-				}
-			}
-		}
-		//std::cout << "All garbage is cleared\n";
-		garbage.clear();
-		garbage.shrink_to_fit();
+		mpShield_aurora = new Shield_Aurora();
+		addChild(mpShield_aurora);
 	}
 }
 

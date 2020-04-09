@@ -10,6 +10,7 @@
 #include "Level3.h"
 #include "Weapon.h"
 #include "FlameThrower.h"
+#include "Level2.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -156,6 +157,12 @@ void Game::changeSceneState(SceneState newState)
 			m_currentScene = new Level1();
 			std::cout << "play scene activated" << std::endl;
 			break;
+		case SceneState::LEVEL2_SCENE:
+			//PlayerShip* player = getPlayerShip();
+			//m_currentScene = new Level2(player);
+			m_currentScene = new Level2();
+			std::cout << "level 2 activated" << std::endl;
+			break;
 		case SceneState::LEVEL3_SCENE:
 			PlayerShip* player = getPlayerShip();
 			m_currentScene = new Level3(player);
@@ -201,9 +208,16 @@ void Game::spawnExplosion(glm::vec2 position)
 	((LevelScene*)m_currentScene)->SpawnExplosion(position);
 }
 
-void Game::addGarbage(std::string id)
+
+void Game::setGuild(int num)
 {
-	((LevelScene*)m_currentScene)->addGarbage(id);
+	guild = num;
+	std::cout << "Guild num: "<< num << std::endl;
+}
+
+int Game::getGuild()
+{
+	return guild;
 }
 
 void Game::render()
@@ -369,6 +383,10 @@ void Game::handleEvents()
 	if (keystates[SDL_SCANCODE_KP_1])
 	{
 		Game::Instance()->changeSceneState(LEVEL1_SCENE);
+	}
+	if (keystates[SDL_SCANCODE_KP_2])
+	{
+		Game::Instance()->changeSceneState(LEVEL2_SCENE);
 	}
 	if (keystates[SDL_SCANCODE_KP_3])
 	{

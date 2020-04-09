@@ -18,7 +18,6 @@ Shield::Shield(std::string id) :collided(false), ID("")
 
 Shield::~Shield()
 {
-	std::cout <<"Shiled memory address:"<< this<<std::endl;
 	delete this;;
 }
 

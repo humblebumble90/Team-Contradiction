@@ -10,9 +10,10 @@ public:
 	friend class Flamethrower;
 	FlameThrowerWeapon(glm::vec2 position);
 	~FlameThrowerWeapon();
+	Flamethrower* flamethrower;
 	void update() override;
-private:
-	Flamethrower* m_pflamethrower;
+	
+	
 };
 
 #endif // defined (__FLAME_THROWER_WEAPON__) //
