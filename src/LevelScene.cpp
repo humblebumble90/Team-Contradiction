@@ -212,13 +212,13 @@ void LevelScene::draw()
 		mpShield_aurora->draw();
 	}
 	ExplosionManager::Instance()->draw();
-	if (!m_pExplosions.empty())
+	/*if (!m_pExplosions.empty())
 	{
 		for (auto item : m_pExplosions)
 		{
 			item->draw();
 		}
-	}
+	}*/
 	if (m_pControl_Img != nullptr)
 	{
 		m_pControl_Img->draw();

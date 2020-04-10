@@ -96,6 +96,9 @@
     <ClCompile Include="..\src\StartScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\PlayScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\EndScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -249,48 +252,6 @@
     <ClCompile Include="..\src\Power_Up.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Scoreboard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\VictoryScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ChaosAI.cpp">
-      <Filter>Source Files\AIs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\IslandAI.cpp">
-      <Filter>Source Files\AIs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\EnemyFlamethrowerAI.cpp">
-      <Filter>Source Files\AIs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\explosion.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Level2.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Level2Button.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Guild1_Button.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Guild2_Button.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\PlayerEntry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Entry_Bg.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Shield_Aurora.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ExplosionManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -345,6 +306,9 @@
       <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\StartScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PlayScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\src\EndScene.h">
@@ -504,48 +468,6 @@
       <Filter>Source Files\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Power_Up.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Scoreboard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\VictoryScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ChaosAI.h">
-      <Filter>Header Files\AIs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\IslandAI.h">
-      <Filter>Header Files\AIs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\EnemyFlamethrowerAI.h">
-      <Filter>Header Files\AIs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\explosion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Level2.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Level2Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Guild1_Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Guild2_Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\PlayerEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Entry_Bg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Shield_Aurora.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ExplosionManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
