@@ -5,6 +5,7 @@
 #include "PlayerLockAI.h"
 #include "CannonlordAI.h"
 #include "ChaosAI.h"
+#include "Level3.h"
 
 Enemy::Enemy(){/*DANGER! Do not use!*/ }
 
@@ -34,7 +35,7 @@ Enemy::~Enemy()
 void Enemy::Damage(int i)
 {
 	bool doDamage = true;
-	if (((FlyOntoScreenAI*)aI)->isBoss){
+	if (((FlyOntoScreenAI*)aI)->isBoss && name != "Blast" && name !="Diagon" && name != "Cannoneer" && name != "Ram" && name != "Zigzag" && name != "Guardian"){
 		if (!((FlyOntoScreenAI*)aI)->isAtTarget()) {
 			doDamage = false;
 		}
@@ -49,7 +50,16 @@ void Enemy::Damage(int i)
 		{
 			//std::cout << "Enemy dead: " << this->getName() << std::endl;
 			TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
+			if (name == "Deathcage") {
+				//TheGame::Instance()->changeSceneState(SceneState::END_SCENE);
+			}
 			TheGame::Instance()->spawnExplosion(getPosition());
+			if (((FlyOntoScreenAI*)aI)->isBoss) {
+				try {
+					((Level3*)TheGame::Instance()->getScene())->CheatCode();
+				}
+				catch (_exception){}
+			}
 			TheGame::Instance()->destroyEnemy(this);
 		}
 		else {

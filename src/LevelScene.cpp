@@ -176,10 +176,6 @@ void LevelScene::draw()
 	{
 		m_pMap2->draw();
 	}
-	if (m_pControl_Img != nullptr)
-	{
-		m_pControl_Img->draw();
-	}
 	if (initialized)
 	{
 		m_pLivesLabel->draw();
@@ -214,7 +210,15 @@ void LevelScene::draw()
 		mpShield_aurora->draw();
 	}
 	ExplosionManager::Instance()->draw();
+<<<<<<< Updated upstream
 	if (player->getPlayerDead() && player->getContinueChance() > 0)
+=======
+	if (m_pControl_Img != nullptr)
+	{
+		m_pControl_Img->draw();
+	}
+	/*if (!m_pExplosions.empty())
+>>>>>>> Stashed changes
 	{
 		m_pContinueLabel1->draw();
 		m_pContinueLabel2->draw();

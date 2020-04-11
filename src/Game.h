@@ -86,6 +86,8 @@ public:
 	void setGuild(int num);
 	int getGuild();
 
+	Scene* getScene();
+
 private:
 	Game();
 	~Game();

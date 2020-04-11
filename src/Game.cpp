@@ -220,6 +220,11 @@ int Game::getGuild()
 	return guild;
 }
 
+Scene* Game::getScene()
+{
+	return m_currentScene;
+}
+
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw colour
@@ -450,10 +455,6 @@ void Game::handleEvents()
 			default:
 				break;
 				// The below code throws a Debug Assertion Failed Error
-			case SDLK_f:
-				((Level3*)m_currentScene)->CheatCode(); //WARNING: For testing Level 3 only! Remove this when testing ends!
-				//getPlayerShip()->GetFrame().GetWeapon(0).Fire();
-				break;
 			/*case SDLK_z:
 				if (getPlayerShip()->getPlayerLives() >= 0)
 				{
