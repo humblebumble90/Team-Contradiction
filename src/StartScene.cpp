@@ -69,12 +69,12 @@ void StartScene::update()
 	}
 	if(m_pGuild1_Button->ButtonClick())
 	{
-		m_pGuildLabel->setText("Guild: Guild1");
+		m_pGuildLabel->setText("Guild: The Agnium Circle");
 		TheGame::Instance()->setGuild(1);
 	}
 	if (m_pGuild2_Button->ButtonClick())
 	{
-		m_pGuildLabel->setText("Guild: Guild2");
+		m_pGuildLabel->setText("Guild: The Prospectors");
 		TheGame::Instance()->setGuild(2);
 	}
 }

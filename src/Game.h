@@ -59,6 +59,7 @@ public:
 	void clean();
 
 	PlayerShip* getPlayerShip();
+	void updateLabels();
 
 	// a function to access the private running variable
 	bool running() { return m_bRunning; }

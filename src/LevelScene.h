@@ -29,17 +29,19 @@ public:
 	void spawnEnemy(AI* enemyAI);
 	void spawnPlayerWeapon(PlayerWeapon* playerWeapon);
 	PlayerShip* getPlayerShip();
+	void updateLabels();
 
 protected:
 	bool scrolling = true, spawnedEnemy=false;
 	#pragma region Game Objects
 	std::vector<AI*> enemies;
 	PlayerShip* player;
-	SDL_Color yellow = { 255, 255, 0, 255 };
 	//Label* m_pSpeedLabel;
 	Label* m_pLivesLabel;
 	Label* m_pScoreLabel;
 	Label* m_pHighScoreLabel;
+	Label* m_pContinueLabel;
+	Label* m_pNumOfContinueLabel;
 
 	Control_Img* m_pControl_Img = new Control_Img();
 	std::vector<PlayerWeapon*> playerWeapons;
@@ -67,6 +69,6 @@ private:
 	void initialize();
 	int idNum = 0;
 	std::string shieldID;
-	std::string expID;
+	bool initialized;
 };
 #endif
