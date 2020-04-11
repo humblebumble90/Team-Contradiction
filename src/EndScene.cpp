@@ -89,17 +89,20 @@ void EndScene::handleEvents()
 					{
 						naming1Done = true;
 						//std::cout << naming1Done;
+						entryNum = 0;
 						break;
 					}
 					if (naming1Done && !naming2Done)
 					{
 						naming2Done = true;
 						//std::cout << naming2Done;
+						entryNum = 0;
 						break;
 					}
 					if (naming1Done && naming2Done && !naming3Done)
 					{
 						naming3Done = true;
+						entryNum = 0;
 						generateEntry();
 						generateEntrylabels();
 						break;
