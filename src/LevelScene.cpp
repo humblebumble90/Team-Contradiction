@@ -218,6 +218,13 @@ void LevelScene::draw()
 		mpShield_aurora->draw();
 	}
 	ExplosionManager::Instance()->draw();
+	/*if (!m_pExplosions.empty())
+	{
+		for (auto item : m_pExplosions)
+		{
+			item->draw();
+		}
+	}*/
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
