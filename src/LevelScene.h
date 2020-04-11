@@ -40,7 +40,8 @@ protected:
 	Label* m_pLivesLabel;
 	Label* m_pScoreLabel;
 	Label* m_pHighScoreLabel;
-	Label* m_pContinueLabel;
+	Label* m_pContinueLabel1;
+	Label* m_pContinueLabel2;
 	Label* m_pNumOfContinueLabel;
 
 	Control_Img* m_pControl_Img = new Control_Img();

@@ -186,10 +186,6 @@ void LevelScene::draw()
 		m_pScoreLabel->draw();
 		m_pHighScoreLabel->draw();
 		m_pNumOfContinueLabel->draw();
-		if (player->getPlayerDead() && player->getContinueChance() > 0)
-		{
-			m_pContinueLabel->draw();
-		}
 	}
 	if (player->getPlayerLives() >= 0)
 	{
@@ -218,13 +214,11 @@ void LevelScene::draw()
 		mpShield_aurora->draw();
 	}
 	ExplosionManager::Instance()->draw();
-	/*if (!m_pExplosions.empty())
+	if (player->getPlayerDead() && player->getContinueChance() > 0)
 	{
-		for (auto item : m_pExplosions)
-		{
-			item->draw();
-		}
-	}*/
+		m_pContinueLabel1->draw();
+		m_pContinueLabel2->draw();
+	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
@@ -438,9 +432,12 @@ void LevelScene::initialize()
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.90f, 10.0f), TTF_STYLE_NORMAL, true);
 	/*m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "Consolas",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);*/
-	m_pContinueLabel = new Label("Push space bar to continue",
-		"Consolas", 40, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.5f),
+	m_pContinueLabel1 = new Label("Push space bar to continue",
+		"Consolas", 40, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.50f),
 		TTF_STYLE_NORMAL,true);
+	m_pContinueLabel2 = new Label("Or push R to restart the game",
+		"Consolas", 40, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.60f),
+		TTF_STYLE_NORMAL, true);
 	mpShield_aurora = new Shield_Aurora();
 	addChild(mpShield_aurora);
 	initialized = true;

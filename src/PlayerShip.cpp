@@ -14,7 +14,7 @@
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),
 inv(false),killCounter(0),shieldAvailable(false),continiue(0),continueStack(0),
-dead(false), continueScore(6000)
+dead(false), continueScore(1000)
 {
 	changeTexture("Player");
 	//changeTexture("Player");
