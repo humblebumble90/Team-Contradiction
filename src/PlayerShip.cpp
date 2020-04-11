@@ -12,7 +12,9 @@
 #include "Scoreboard.h"
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
-:m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),inv(false),killCounter(0),shieldAvailable(false)
+:m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),
+inv(false),killCounter(0),shieldAvailable(false),continiue(0),continueStack(0),
+dead(false), continueScore(6000)
 {
 	changeTexture("Player");
 	//changeTexture("Player");
@@ -72,13 +74,13 @@ void PlayerShip::Damage(int i)
 		}
 		else
 		{
-			std::cout << "Player damaged!\n";
+			//std::cout << "Player damaged!\n";
 			playerHealth -= 1;
-			std::cout << "PlayerHealth: " << playerHealth << std::endl;
+			//std::cout << "PlayerHealth: " << playerHealth << std::endl;
 			playerLives -= 1;
-			std::cout << "Player life decreases for 1!" << std::endl;
+			//std::cout << "Player life decreases for 1!" << std::endl;
 			playerHealth += 1;
-			std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
+			//std::cout << "Player life restored by a decreased life: " << playerHealth << std::endl;
 			invincible();
 		}
 	}
@@ -128,7 +130,7 @@ int PlayerShip::getKillCounter()
 void PlayerShip::setKillCounter(int num)
 {
 		killCounter += num;
-		std::cout << killCounter << std::endl;
+		//std::cout << killCounter << std::endl;
 }
 
 bool PlayerShip::getShieldAvailable()
@@ -144,6 +146,26 @@ void PlayerShip::setShieldAvailable(bool newState)
 void PlayerShip::initializeKillCounter()
 {
 	killCounter = 0;
+}
+
+int PlayerShip::getContinueChance()
+{
+	return continiue;
+}
+
+void PlayerShip::setContinueChance(int num)
+{
+	continiue += num;
+}
+
+bool PlayerShip::getPlayerDead()
+{
+	return dead;
+}
+
+void PlayerShip::setPlayerDead(bool newState)
+{
+	dead = newState;
 }
 
 Frame* PlayerShip::GetFrame()
@@ -193,6 +215,11 @@ int PlayerShip::getPlayerLives()
 
 void PlayerShip::setPlayerLives(int num)
 {
+	playerLives = num;
+}
+
+void PlayerShip::adjustPlayerLives(int num)
+{
 	playerLives += num;
 	Scoreboard::Instance()->setLives(playerLives);
 }
@@ -206,6 +233,14 @@ void PlayerShip::addScore(int num)
 {
 	playerScore += num;
 	Scoreboard::Instance()->setScore(playerScore);
+	if(playerScore >= continueScore + (continueScore *continueStack))
+	{
+		continiue += 1;
+		continueStack += 1;
+		std::cout << "continue increased\n";
+		std::cout <<"Continue: " << continiue << std::endl;
+		TheGame::Instance()->updateLabels();
+	}
 }
 
 float PlayerShip::getPlayerSpeed()
@@ -239,7 +274,7 @@ void PlayerShip::update()
 	//when the invincibility has finished run this
 	if (inv == true && endInvincibleTime <= SDL_GetTicks())
 	{
-		std::cout << "invincible finished!\n";
+		//std::cout << "invincible finished!\n";
 		inv = false;
 		m_alpha = defaultAlpha;
 	}

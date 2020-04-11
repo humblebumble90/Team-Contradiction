@@ -30,6 +30,7 @@ public:
 
 	//Invincibility
 	bool getInvincibility();
+	void invincible();
 
 	//Moving
 	void move(Move newMove);
@@ -42,6 +43,7 @@ public:
 	//getter and setter of player lives
 	int getPlayerLives();
 	void setPlayerLives(int num);
+	void adjustPlayerLives(int num);
 	//getter and setter of player score
 	int getScore();
 	void addScore(int num);
@@ -55,26 +57,35 @@ public:
 	void setShieldAvailable(bool newState);
 
 	void initializeKillCounter();
+
+	int getContinueChance();
+	void setContinueChance(int num);
+	bool getPlayerDead();
+	void setPlayerDead(bool newState);
 private:
 	Uint8 m_alpha;
 	float m_maxSpeed;
 	bool m_isMoving;
-	
+	//Invincibility
 	bool shieldAvailable;
 	bool inv;
 	int endInvincibleTime;
-	
+	//Player stats
 	int playerHealth;
 	int playerLives;
 	int playerScore;
 	int playerHighScore;
 	std::string name;
 	const static int defaultAlpha = 255;
-	void invincible();
 	void checkBound();
 	//KillCounter
 	int killCounter;
 	int getKillCounter();
+	//Continue feature
+	int continiue;
+	int continueStack;
+	int continueScore;
+	bool dead;
 };
 
 

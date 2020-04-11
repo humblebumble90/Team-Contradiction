@@ -261,6 +261,11 @@ PlayerShip * Game::getPlayerShip()
 	return ((LevelScene*)m_currentScene)->getPlayerShip();
 }
 
+void Game::updateLabels()
+{
+	((LevelScene*)m_currentScene)->updateLabels();
+}
+
 void Game::handleEvents()
 {
 	m_currentScene->handleEvents();
@@ -298,6 +303,18 @@ void Game::handleEvents()
 					}
 				}
 			}
+		if(getPlayerShip()->getPlayerDead())
+		{
+			if(keystates[SDL_SCANCODE_SPACE])
+			{
+				getPlayerShip()->invincible();
+				getPlayerShip()->setPlayerLives(5);
+				updateLabels();
+				getPlayerShip()->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.5f));
+				getPlayerShip()->setContinueChance(-1);
+				getPlayerShip()->setPlayerDead(false);
+			}
+		}
 
 			else if (!keystates[SDL_SCANCODE_Z])
 			{

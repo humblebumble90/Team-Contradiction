@@ -27,7 +27,7 @@ void Explosion::draw()
 			m_currentFrame, TheGame::Instance()->getRenderer(),
 			4, 4, 1.0f,
 			TheGame::Instance()->getRenderer(), 180, 255, true);
-			std::cout << m_currentRow << std::endl;
+			//std::cout << m_currentRow << std::endl;
 	}
 	else
 	{

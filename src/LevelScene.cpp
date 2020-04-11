@@ -52,109 +52,118 @@ void LevelScene::checkShieldCollision()
 
 void LevelScene::update()
 {
-	++time;
-	spawnedEnemy = false;
-	initialize();
-	if (player->getPlayerLives() >= 0)
+	if(!player->getPlayerDead())
 	{
-		player->update();
-	}
-	if (m_pMap != nullptr)
-	{
-		m_pMap->update();
-	}
-	if (m_pMap2 != nullptr)
-	{
-		m_pMap2->update();
-	}
-	if(player->getShieldAvailable() && player->getPlayerLives() == 0)
-	{
-		mpShield_aurora->update();
-	}
-	for (int z = 0; z < enemies.size(); ++z) {
-		enemies[z]->GetParent()->update();
-	}
-	for (PlayerWeapon* pw : playerWeapons)
+		++time;
+		spawnedEnemy = false;
+		if(!initialized)
+		{
+			initialize();
+		}
+		if (player->getPlayerLives() >= 0)
+		{
+			player->update();
+		}
+		if (m_pMap != nullptr)
+		{
+			m_pMap->update();
+		}
+		if (m_pMap2 != nullptr)
+		{
+			m_pMap2->update();
+		}
+		if (player->getShieldAvailable() && player->getPlayerLives() == 0)
+		{
+			mpShield_aurora->update();
+		}
+		for (int z = 0; z < enemies.size(); ++z) {
+			enemies[z]->GetParent()->update();
+		}
+		for (PlayerWeapon* pw : playerWeapons)
 		{
 			pw->update();
 		}
-	#pragma region Collisions
-	//if the enemies are spawned or if the player is not invincible
-	if (!playerWeapons.empty() || !player->getInvincibility()) {
-		for (AI* enemy : enemies) {
-			if (!playerWeapons.empty()) {
-				for (PlayerWeapon* pw : playerWeapons) {
-					collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy, pw);
+#pragma region Collisions
+		//if the enemies are spawned or if the player is not invincible
+		if (!playerWeapons.empty() || !player->getInvincibility()) {
+			for (AI* enemy : enemies) {
+				if (!playerWeapons.empty()) {
+					for (PlayerWeapon* pw : playerWeapons) {
+						collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy, pw);
+					}
+				}
+				if (!player->getInvincibility()) {
+					collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy);
 				}
 			}
-			if (!player->getInvincibility()) {
-				collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy);
+		}
+		if (!m_pshields.empty())
+		{
+			checkShieldCollision();
+		}
+#pragma endregion
+
+#pragma region Spawn Enemies
+		if (ramIteration < ramSpawnTimer.size()) {
+			if (time == ramSpawnTimer[ramIteration])
+			{
+				spawnEnemy(new RamAI(ramSpawnLocation[ramIteration]));
+				++ramIteration;
+			}
+		}
+		if (zigzagIteration < zigzagSpawnTimer.size()) {
+			if (time == zigzagSpawnTimer[zigzagIteration])
+			{
+				spawnEnemy(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
+				++zigzagIteration;
+			}
+		}
+		if (cannoneerIteration < cannoneerSpawnTimer.size()) {
+			if (time == cannoneerSpawnTimer[cannoneerIteration])
+			{
+				spawnEnemy(new CannoneerAI(cannoneerSpawnLocation[cannoneerIteration]));
+				++cannoneerIteration;
+			}
+		}
+		if (guardianIteration < guardianSpawnTimer.size()) {
+			if (time == guardianSpawnTimer[guardianIteration])
+			{
+				spawnEnemy(new GuardianAI(guardianSpawnLocation[guardianIteration]));
+				++guardianIteration;
+			}
+		}
+		if (diagonIteration < diagonSpawnTimer.size()) {
+			if (time == diagonSpawnTimer[diagonIteration])
+			{
+				spawnEnemy(new DiagonAI(diagonSpawnLocation[diagonIteration]));
+				++diagonIteration;
+			}
+		}
+		if (blastIteration < blastSpawnTimer.size()) {
+			if (time == blastSpawnTimer[blastIteration])
+			{
+				spawnEnemy(new BlastAI(blastSpawnLocation[blastIteration]));
+				++blastIteration;
+			}
+		}
+		if (islandIteration < islandSpawnTimer.size()) {
+			if (time == islandSpawnTimer[islandIteration])
+			{
+				spawnEnemy(new IslandAI(islandSpawnLocation[islandIteration]));
+				++islandIteration;
+			}
+		}
+#pragma endregion
+
+		if (player->getPlayerLives() < 0)
+		{
+			player->setPlayerDead(true);
+			if (player->getContinueChance() < 1)
+			{
+				TheGame::Instance()->changeSceneState(END_SCENE);
 			}
 		}
 	}
-	if(!m_pshields.empty())
-	{
-		checkShieldCollision();
-	}
-	#pragma endregion
-	
-	#pragma region Spawn Enemies
-	if (ramIteration < ramSpawnTimer.size()) {
-		if (time == ramSpawnTimer[ramIteration])
-		{
-			spawnEnemy(new RamAI(ramSpawnLocation[ramIteration]));
-			++ramIteration;
-		}
-	}
-	if (zigzagIteration < zigzagSpawnTimer.size()) {
-		if (time == zigzagSpawnTimer[zigzagIteration])
-		{
-			spawnEnemy(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
-			++zigzagIteration;
-		}
-	}
-	if (cannoneerIteration < cannoneerSpawnTimer.size()) {
-		if (time == cannoneerSpawnTimer[cannoneerIteration])
-		{
-			spawnEnemy(new CannoneerAI(cannoneerSpawnLocation[cannoneerIteration]));
-			++cannoneerIteration;
-		}
-	}
-	if (guardianIteration < guardianSpawnTimer.size()) {
-		if (time == guardianSpawnTimer[guardianIteration])
-		{
-			spawnEnemy(new GuardianAI(guardianSpawnLocation[guardianIteration]));
-			++guardianIteration;
-		}
-	}
-	if (diagonIteration < diagonSpawnTimer.size()) {
-		if (time == diagonSpawnTimer[diagonIteration])
-		{
-			spawnEnemy(new DiagonAI(diagonSpawnLocation[diagonIteration]));
-			++diagonIteration;
-		}
-	}
-	if (blastIteration < blastSpawnTimer.size()) {
-		if (time == blastSpawnTimer[blastIteration])
-		{
-			spawnEnemy(new BlastAI(blastSpawnLocation[blastIteration]));
-			++blastIteration;
-		}
-	}
-	if (islandIteration < islandSpawnTimer.size()) {
-		if (time == islandSpawnTimer[islandIteration])
-		{
-			spawnEnemy(new IslandAI(islandSpawnLocation[islandIteration]));
-			++islandIteration;
-		}
-	}
-	#pragma endregion
-
-	if(player->getPlayerLives() < 0)
-	{
-		Game::Instance()->changeSceneState(END_SCENE);
-	}
-
 }
 
 void LevelScene::draw()
@@ -167,35 +176,32 @@ void LevelScene::draw()
 	{
 		m_pMap2->draw();
 	}
+	if (m_pControl_Img != nullptr)
+	{
+		m_pControl_Img->draw();
+	}
+	if (initialized)
+	{
+		m_pLivesLabel->draw();
+		m_pScoreLabel->draw();
+		m_pHighScoreLabel->draw();
+		m_pNumOfContinueLabel->draw();
+		if (player->getPlayerDead() && player->getContinueChance() > 0)
+		{
+			m_pContinueLabel->draw();
+		}
+	}
 	if (player->getPlayerLives() >= 0)
 	{
 		player->draw();
 	}
-	//if (m_pSpeedLabel != nullptr) {
-	//	m_pSpeedLabel->draw();
-	//}
-	if (m_pLivesLabel != nullptr) {
-		m_pLivesLabel->draw();
-	}
-	if(m_pScoreLabel != nullptr)
-	{
-		m_pScoreLabel->draw();
-	}
-	if(m_pHighScoreLabel != nullptr)
-	{
-		m_pHighScoreLabel->draw();
-	}
-
+	
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}
 	for (AI* a : enemies) {
 		a->GetParent()->draw();
 	}
-	//if(m_pshield != nullptr)
-	//{
-	//	m_pshield->draw();
-	//}
 	if(!m_pshields.empty())
 	{
 		for(auto item : m_pshields)
@@ -219,10 +225,6 @@ void LevelScene::draw()
 			item->draw();
 		}
 	}*/
-	if (m_pControl_Img != nullptr)
-	{
-		m_pControl_Img->draw();
-	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
@@ -248,8 +250,7 @@ void LevelScene::DestroyWeapon(PlayerWeapon* weapon)
 void LevelScene::SpawnExplosion(glm::vec2 position)
 {
 	player->setKillCounter(1);
-	m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
-	m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
+	updateLabels();
 	//idNum++;
 	////std::cout << "Exp Num: "<< idNum << std::endl;
 	//expID = "exp " + std::to_string(idNum);
@@ -271,11 +272,19 @@ PlayerShip* LevelScene::getPlayerShip()
 	return player;
 }
 
+void LevelScene::updateLabels()
+{
+	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+	m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
+	m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
+	m_pNumOfContinueLabel->setText("Continue: " + std::to_string(player->getContinueChance()));
+}
+
 void LevelScene::spawnShield(AI* enemy)
 {
 	player->initializeKillCounter();
 	shieldID = "Shield" + std::to_string(idNum);
-	std::cout << "Shield ID: "<< shieldID << std::endl;
+	//std::cout << "Shield ID: "<< shieldID << std::endl;
 	Shield* shield = new Shield(shieldID);
 	shieldSpawnPos = enemy->GetParent()->getPosition();
 	shield->setPosition(shieldSpawnPos);
@@ -339,8 +348,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 						{
 							ShipComponent temp[2] = { ps, es };
 							Damage(temp);
-							m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
-
+							updateLabels();
 						}
 					}
 				}
@@ -354,7 +362,7 @@ void LevelScene::collisionCheck(bool boss, AI* enemy)
 			{
 				player->Damage(1);
 				SpawnExplosion(player->getPosition());
-				m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
+				updateLabels();
 			}
 		}
 	}
@@ -417,21 +425,25 @@ void LevelScene::spawnPlayerWeapon(PlayerWeapon* playerWeapon)
 
 void LevelScene::initialize()
 {
-	if (player != nullptr && m_pLivesLabel == nullptr)
-	{
-		std::cout << "Initialized.\n";
-		SDL_Color yellow = { 255, 255, 0, 255 };
-		m_pLivesLabel = new Label("Lives: " + std::to_string(Scoreboard::Instance()->getLives()), "Consolas",
-			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.75f, 10.0f), TTF_STYLE_NORMAL, true);
-		/*m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "Consolas",
-			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);*/
-		m_pScoreLabel = new Label("Score: " + std::to_string(Scoreboard::Instance()->getScore()), "Consolas",
-			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.25f, 10.0f), TTF_STYLE_NORMAL,true);
-		m_pHighScoreLabel = new Label("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()), "Consolas",
-			24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, 10.0f), TTF_STYLE_NORMAL, true);
-		mpShield_aurora = new Shield_Aurora();
-		addChild(mpShield_aurora);
-	}
+	//std::cout << "Initialized.\n";
+	SDL_Color yellow = { 255, 255, 0, 255 };
+	//Labels
+	m_pScoreLabel = new Label("Score: " + std::to_string(Scoreboard::Instance()->getScore()), "Consolas",
+		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.15f, 10.0f), TTF_STYLE_NORMAL, true);
+	m_pHighScoreLabel = new Label("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()), "Consolas",
+		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.40f, 10.0f), TTF_STYLE_NORMAL, true);
+	m_pLivesLabel = new Label("Lives: " + std::to_string(Scoreboard::Instance()->getLives()), "Consolas",
+		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, true);
+	m_pNumOfContinueLabel = new Label("Continue: " + std::to_string(player->getContinueChance()), "Consolas",
+		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.90f, 10.0f), TTF_STYLE_NORMAL, true);
+	/*m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "Consolas",
+		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);*/
+	m_pContinueLabel = new Label("Push space bar to continue",
+		"Consolas", 40, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.5f),
+		TTF_STYLE_NORMAL,true);
+	mpShield_aurora = new Shield_Aurora();
+	addChild(mpShield_aurora);
+	initialized = true;
 }
 
 
