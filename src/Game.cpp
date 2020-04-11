@@ -303,16 +303,20 @@ void Game::handleEvents()
 					}
 				}
 			}
-		if(getPlayerShip()->getPlayerDead())
+		if(getPlayerShip()->getPlayerDead() && getPlayerShip()->getContinueChance() > 0)
 		{
 			if(keystates[SDL_SCANCODE_SPACE])
 			{
 				getPlayerShip()->invincible();
 				getPlayerShip()->setPlayerLives(5);
-				updateLabels();
 				getPlayerShip()->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.5f));
 				getPlayerShip()->setContinueChance(-1);
+				updateLabels();
 				getPlayerShip()->setPlayerDead(false);
+			}
+			if(keystates[SDL_SCANCODE_R])
+			{
+				changeSceneState(START_SCENE);
 			}
 		}
 
