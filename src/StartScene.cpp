@@ -17,6 +17,7 @@ StartScene::~StartScene()
 void StartScene::draw()
 {
 	m_pStart_Scene_Bg->draw();
+	m_pTxtBx->draw();
 	m_pStartLabel->draw();
 	m_pGuildLabel->draw();
 	m_pGuildBlurbLabel1->draw();
@@ -194,6 +195,10 @@ void StartScene::start()
 		false, false);
 	m_pGuildBlurbLabel3->setParent(this);
 	addChild(m_pGuildBlurbLabel3);
+	m_pTxtBx = new TxtBx();
+	m_pTxtBx->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5f,Config::SCREEN_HEIGHT*0.70f));
+	m_pTxtBx->setParent(this);
+	addChild(m_pTxtBx);
 	
 
 	
@@ -230,5 +235,6 @@ void StartScene::loadAllTextures()
 	loadTexture("../Assets/textures/Level3.png", "Level3Button");
 	loadTexture("../Assets/textures/guild1_Button.png", "guild1_Button");
 	loadTexture("../Assets/textures/guild2_Button.png", "guild2_Button");
+	loadTexture("../Assets/textures/txtBx.png", "txtBx");
 	std::cout << "Finish loading textures" << std::endl;
 }

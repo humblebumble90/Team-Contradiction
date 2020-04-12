@@ -291,6 +291,9 @@
     <ClCompile Include="..\src\ExplosionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\TxtBx.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -547,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="..\src\ExplosionManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\TxtBx.h">
+      <Filter>Source Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

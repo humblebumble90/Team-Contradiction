@@ -3,6 +3,7 @@
 #define __GAME_OBJECT_TYPE__
 enum GameObjectType {
 	NONE = -1,
+	TXT_BX,
 	GUILD1_BUTTON,
 	GUILD2_BUTTON,
 	ENEMY_WEAPON,

@@ -10,6 +10,7 @@
 #include "Level2Button.h"
 #include "Guild1_Button.h"
 #include "Guild2_Button.h"
+#include "TxtBx.h"
 
 class StartScene : public Scene
 {
@@ -35,6 +36,7 @@ private:
 	Label* m_pGuildBlurbLabel2;
 	Label* m_pGuildBlurbLabel3;
 	Start_Scene_Bg* m_pStart_Scene_Bg;
+	TxtBx* m_pTxtBx;
 	StartButton* m_pStartButton;
 	Level2Button* m_pLevel2Button;
 	Level3Button* m_pLevel3Button;
