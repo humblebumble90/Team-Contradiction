@@ -19,6 +19,9 @@ void StartScene::draw()
 	m_pStart_Scene_Bg->draw();
 	m_pStartLabel->draw();
 	m_pGuildLabel->draw();
+	m_pGuildBlurbLabel1->draw();
+	m_pGuildBlurbLabel2->draw();
+	m_pGuildBlurbLabel3->draw();
 	m_pStartButton->draw();
 	m_pLevel2Button->draw();
 	m_pLevel3Button->draw();
@@ -70,12 +73,19 @@ void StartScene::update()
 	if(m_pGuild1_Button->ButtonClick())
 	{
 		m_pGuildLabel->setText("Guild: The Agnium Circle");
+		m_pGuildBlurbLabel1->setText("The Agnium Circle was founded by members of society who felt Agnium-");
+		m_pGuildBlurbLabel2->setText("needed to be widely distributed in order to achieve full industrialization.");
+		m_pGuildBlurbLabel3->setText("They believe in having Agnium readily available and accessible to everyone.");
 		TheGame::Instance()->setGuild(1);
 	}
 	if (m_pGuild2_Button->ButtonClick())
 	{
 		m_pGuildLabel->setText("Guild: The Prospectors");
+		m_pGuildBlurbLabel1->setText("The Prospectors are grouped for maximizing exploit of Agnium");
+		m_pGuildBlurbLabel2->setText("The ideal of the guild is acheving what they yearn through Agnium");
+		m_pGuildBlurbLabel3->setText("They firmly follow the law of the jungle in owning the material");
 		TheGame::Instance()->setGuild(2);
+		
 	}
 }
 
@@ -160,16 +170,32 @@ void StartScene::start()
 	loadAllSounds();
 	m_pStart_Scene_Bg = new Start_Scene_Bg();
 	addChild(m_pStart_Scene_Bg);
-	
 	SDL_Color black = { 0, 0, 0, 255 };
-	m_pStartLabel = new Label("Guild of Agnis", "Dock51",
-		80, black, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.2f));
+	m_pStartLabel = new Label("Guild of Agnis", "Old London",
+		80, black, glm::vec2(Config::SCREEN_WIDTH * 0.50f, Config::SCREEN_HEIGHT * 0.20f));
 	addChild(m_pStartLabel);
 
-	m_pGuildLabel = new Label("Guild: ", "Dock51",
-		40, black, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.6f),
-		false,false);
+	m_pGuildLabel = new Label("Guild: ", "Old London",
+		40, black, glm::vec2(Config::SCREEN_WIDTH * 0.50f, Config::SCREEN_HEIGHT * 0.575f),
+		false,true);
 	addChild(m_pGuildLabel);
+	m_pGuildBlurbLabel1 = new Label("", "arial",
+		20, black, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.625f),
+		false, false);
+	m_pGuildBlurbLabel1->setParent(this);
+	addChild(m_pGuildBlurbLabel1);
+	m_pGuildBlurbLabel2 = new Label("", "arial",
+		20, black, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.675f),
+		false, false);
+	m_pGuildBlurbLabel2->setParent(this);
+	addChild(m_pGuildBlurbLabel2);
+	m_pGuildBlurbLabel3 = new Label("", "arial",
+		20, black, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.725f),
+		false, false);
+	m_pGuildBlurbLabel3->setParent(this);
+	addChild(m_pGuildBlurbLabel3);
+	
+
 	
 	m_pStartButton = new StartButton();
 	addChild(m_pStartButton);

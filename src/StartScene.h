@@ -31,6 +31,9 @@ private:
 	//game objects
 	Label* m_pStartLabel;
 	Label* m_pGuildLabel;
+	Label* m_pGuildBlurbLabel1;
+	Label* m_pGuildBlurbLabel2;
+	Label* m_pGuildBlurbLabel3;
 	Start_Scene_Bg* m_pStart_Scene_Bg;
 	StartButton* m_pStartButton;
 	Level2Button* m_pLevel2Button;
