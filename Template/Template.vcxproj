@@ -231,6 +231,7 @@
     <ClCompile Include="..\src\Start_Scene_Bg.cpp" />
     <ClCompile Include="..\src\Target.cpp" />
     <ClCompile Include="..\src\TextureManager.cpp" />
+    <ClCompile Include="..\src\TxtBx.cpp" />
     <ClCompile Include="..\src\Util.cpp" />
     <ClCompile Include="..\src\Vector2.cpp" />
     <ClCompile Include="..\src\VictoryScene.cpp" />
@@ -318,6 +319,7 @@
     <ClInclude Include="..\src\Start_Scene_Bg.h" />
     <ClInclude Include="..\src\Target.h" />
     <ClInclude Include="..\src\TextureManager.h" />
+    <ClInclude Include="..\src\TxtBx.h" />
     <ClInclude Include="..\src\Util.h" />
     <ClInclude Include="..\src\Vector2.h" />
     <ClInclude Include="..\src\VictoryScene.h" />
