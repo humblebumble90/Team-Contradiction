@@ -210,25 +210,16 @@ void LevelScene::draw()
 		mpShield_aurora->draw();
 	}
 	ExplosionManager::Instance()->draw();
-<<<<<<< Updated upstream
-	if (player->getPlayerDead() && player->getContinueChance() > 0)
-=======
 	if (m_pControl_Img != nullptr)
 	{
 		m_pControl_Img->draw();
-	}
-	/*if (!m_pExplosions.empty())
->>>>>>> Stashed changes
-	{
-		m_pContinueLabel1->draw();
-		m_pContinueLabel2->draw();
 	}
 }
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
 {
 	for (int i = 0; i < enemies.size(); ++i) {
-		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
+		if (enemies[i]->GetParent()->getPosition() == enemy->getPosition() && enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
 			//SpawnExplosion(enemies[i]->GetParent()->getPosition());
 			enemies.erase(enemies.begin()+i);
 			break;
