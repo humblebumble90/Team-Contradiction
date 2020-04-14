@@ -49,20 +49,15 @@ void Enemy::Damage(int i)
 		if (health <= 0)
 		{
 			//std::cout << "Enemy dead: " << this->getName() << std::endl;
-			TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
-			if (name == "Rain") {
-				TheGame::Instance()->changeSceneState(SceneState::LEVEL2_SCENE);
-				return;
+			if ((name == "Rain" || name == "Chaos" || name == "Deathcage") && !((LevelScene*)TheGame::Instance()->getScene())->bossDown) {
+				((LevelScene*)TheGame::Instance()->getScene())->bossDown = true;
+				TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
+				TheGame::Instance()->spawnExplosion(getPosition());
 			}
-			else if (name == "Chaos") {
-				TheGame::Instance()->changeSceneState(SceneState::LEVEL3_SCENE);
-				return;
+			else if (name != "Rain" && name != "Chaos" && name != "Deathcage"){
+				TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
+				TheGame::Instance()->spawnExplosion(getPosition());
 			}
-			else if (name == "Deathcage") {
-				TheGame::Instance()->changeSceneState(SceneState::END_SCENE);
-				return;
-			}
-			TheGame::Instance()->spawnExplosion(getPosition());
 			if (((FlyOntoScreenAI*)aI)->isBoss && name != "Blast" && name != "Diagon" && name != "Cannoneer" && name != "Ram" && name != "Zigzag" && name != "Guardian" && !name.find("Barge")) {
 				try {
 					((Level3*)TheGame::Instance()->getScene())->CheatCode();

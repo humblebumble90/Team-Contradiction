@@ -7,6 +7,7 @@
 
 Level1::Level1()
 {
+	nextScene = LEVEL2_SCENE;
 	level = 1;
 	loadAllTextures();
 	loadAllSounds();

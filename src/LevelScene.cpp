@@ -52,115 +52,120 @@ void LevelScene::checkShieldCollision()
 
 void LevelScene::update()
 {
-	if(!player->getPlayerDead())
-	{
-		++time;
-		spawnedEnemy = false;
-		if(!initialized)
+	if (bossDown) {
+		TheGame::Instance()->changeSceneState(nextScene);
+	}
+	else {
+		if (!player->getPlayerDead())
 		{
-			initialize();
-		}
-		if (player->getPlayerLives() >= 0)
-		{
-			player->update();
-		}
-		if (m_pMap != nullptr)
-		{
-			m_pMap->update();
-		}
-		if (m_pMap2 != nullptr)
-		{
-			m_pMap2->update();
-		}
-		if (player->getShieldAvailable() && player->getPlayerLives() == 0)
-		{
-			mpShield_aurora->update();
-		}
-		for (int z = 0; z < enemies.size(); ++z) {
-			enemies[z]->GetParent()->update();
-		}
-		for (PlayerWeapon* pw : playerWeapons)
-		{
-			pw->update();
-		}
+			++time;
+			spawnedEnemy = false;
+			if (!initialized)
+			{
+				initialize();
+			}
+			if (player->getPlayerLives() >= 0)
+			{
+				player->update();
+			}
+			if (m_pMap != nullptr)
+			{
+				m_pMap->update();
+			}
+			if (m_pMap2 != nullptr)
+			{
+				m_pMap2->update();
+			}
+			if (player->getShieldAvailable() && player->getPlayerLives() == 0)
+			{
+				mpShield_aurora->update();
+			}
+			for (int z = 0; z < enemies.size(); ++z) {
+				enemies[z]->GetParent()->update();
+			}
+			for (PlayerWeapon* pw : playerWeapons)
+			{
+				pw->update();
+			}
 #pragma region Collisions
-		//if the enemies are spawned or if the player is not invincible
-		if (!playerWeapons.empty() || !player->getInvincibility()) {
-			for (AI* enemy : enemies) {
-				if (!playerWeapons.empty()) {
-					for (PlayerWeapon* pw : playerWeapons) {
-						collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy, pw);
+			//if the enemies are spawned or if the player is not invincible
+			if (!playerWeapons.empty() || !player->getInvincibility()) {
+				for (AI* enemy : enemies) {
+					if (!playerWeapons.empty()) {
+						for (PlayerWeapon* pw : playerWeapons) {
+							collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy, pw);
+						}
+					}
+					if (!player->getInvincibility()) {
+						collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy);
 					}
 				}
-				if (!player->getInvincibility()) {
-					collisionCheck(((FlyOntoScreenAI*)enemy)->isBoss, enemy);
-				}
 			}
-		}
-		if (!m_pshields.empty())
-		{
-			checkShieldCollision();
-		}
+			if (!m_pshields.empty())
+			{
+				checkShieldCollision();
+			}
 #pragma endregion
 
 #pragma region Spawn Enemies
-		if (ramIteration < ramSpawnTimer.size()) {
-			if (time == ramSpawnTimer[ramIteration])
-			{
-				spawnEnemy(new RamAI(ramSpawnLocation[ramIteration]));
-				++ramIteration;
+			if (ramIteration < ramSpawnTimer.size()) {
+				if (time == ramSpawnTimer[ramIteration])
+				{
+					spawnEnemy(new RamAI(ramSpawnLocation[ramIteration]));
+					++ramIteration;
+				}
 			}
-		}
-		if (zigzagIteration < zigzagSpawnTimer.size()) {
-			if (time == zigzagSpawnTimer[zigzagIteration])
-			{
-				spawnEnemy(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
-				++zigzagIteration;
+			if (zigzagIteration < zigzagSpawnTimer.size()) {
+				if (time == zigzagSpawnTimer[zigzagIteration])
+				{
+					spawnEnemy(new ZigzagAI(zigzagSpawnLocation[zigzagIteration]));
+					++zigzagIteration;
+				}
 			}
-		}
-		if (cannoneerIteration < cannoneerSpawnTimer.size()) {
-			if (time == cannoneerSpawnTimer[cannoneerIteration])
-			{
-				spawnEnemy(new CannoneerAI(cannoneerSpawnLocation[cannoneerIteration]));
-				++cannoneerIteration;
+			if (cannoneerIteration < cannoneerSpawnTimer.size()) {
+				if (time == cannoneerSpawnTimer[cannoneerIteration])
+				{
+					spawnEnemy(new CannoneerAI(cannoneerSpawnLocation[cannoneerIteration]));
+					++cannoneerIteration;
+				}
 			}
-		}
-		if (guardianIteration < guardianSpawnTimer.size()) {
-			if (time == guardianSpawnTimer[guardianIteration])
-			{
-				spawnEnemy(new GuardianAI(guardianSpawnLocation[guardianIteration]));
-				++guardianIteration;
+			if (guardianIteration < guardianSpawnTimer.size()) {
+				if (time == guardianSpawnTimer[guardianIteration])
+				{
+					spawnEnemy(new GuardianAI(guardianSpawnLocation[guardianIteration]));
+					++guardianIteration;
+				}
 			}
-		}
-		if (diagonIteration < diagonSpawnTimer.size()) {
-			if (time == diagonSpawnTimer[diagonIteration])
-			{
-				spawnEnemy(new DiagonAI(diagonSpawnLocation[diagonIteration]));
-				++diagonIteration;
+			if (diagonIteration < diagonSpawnTimer.size()) {
+				if (time == diagonSpawnTimer[diagonIteration])
+				{
+					spawnEnemy(new DiagonAI(diagonSpawnLocation[diagonIteration]));
+					++diagonIteration;
+				}
 			}
-		}
-		if (blastIteration < blastSpawnTimer.size()) {
-			if (time == blastSpawnTimer[blastIteration])
-			{
-				spawnEnemy(new BlastAI(blastSpawnLocation[blastIteration]));
-				++blastIteration;
+			if (blastIteration < blastSpawnTimer.size()) {
+				if (time == blastSpawnTimer[blastIteration])
+				{
+					spawnEnemy(new BlastAI(blastSpawnLocation[blastIteration]));
+					++blastIteration;
+				}
 			}
-		}
-		if (islandIteration < islandSpawnTimer.size()) {
-			if (time == islandSpawnTimer[islandIteration])
-			{
-				spawnEnemy(new IslandAI(islandSpawnLocation[islandIteration]));
-				++islandIteration;
+			if (islandIteration < islandSpawnTimer.size()) {
+				if (time == islandSpawnTimer[islandIteration])
+				{
+					spawnEnemy(new IslandAI(islandSpawnLocation[islandIteration]));
+					++islandIteration;
+				}
 			}
-		}
 #pragma endregion
 
-		if (player->getPlayerLives() < 0)
-		{
-			player->setPlayerDead(true);
-			if (TheGame::Instance()->Continue() < 1)
+			if (player->getPlayerLives() < 0)
 			{
-				TheGame::Instance()->changeSceneState(END_SCENE);
+				player->setPlayerDead(true);
+				if (TheGame::Instance()->Continue() < 1)
+				{
+					TheGame::Instance()->changeSceneState(END_SCENE);
+				}
 			}
 		}
 	}

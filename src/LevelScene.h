@@ -31,6 +31,8 @@ public:
 	PlayerShip* getPlayerShip();
 	void updateLabels();
 
+	bool bossDown = false;
+
 protected:
 	bool scrolling = true, spawnedEnemy=false;
 	#pragma region Game Objects
@@ -61,6 +63,7 @@ protected:
 	#pragma endregion
 
 	int level;
+	SceneState nextScene;
 private:
 	void Damage(ShipComponent sc[2]);
 	void checkShieldCollision();

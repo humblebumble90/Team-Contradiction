@@ -31,6 +31,7 @@ Level3::Level3(PlayerShip* thePlayer)
 	//m_pLivesLabel = new Label("Lives: ", "Consolas",
 	//	24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);
 	playSound("RamRush", 0);
+	nextScene = END_SCENE;
 }
 
 Level3::~Level3()
