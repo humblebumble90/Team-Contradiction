@@ -1,6 +1,7 @@
 #include "Level2.h"
 #include "ChaosAI.h"
 #include "Game.h"
+#include "Scoreboard.h"
 
 Level2::Level2()
 {
@@ -506,7 +507,7 @@ Level2::Level2()
 
 
 
-	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
+	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT * 0.5f));
 	//player = thePlayer
 	m_pMap = new Map();
 	m_pMap2 = new Map();

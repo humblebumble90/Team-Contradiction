@@ -12,13 +12,14 @@
 /*Boss 4 - Cannonlord*/					#include "CannonlordAI.h"
 /*Boss 5 - Deathcage (last boss)*/		#include "DeathcageAI.h"
 #include "Game.h"
+#include "Scoreboard.h"
 
 Level3::Level3(PlayerShip* thePlayer)
 {
 	level = 3;
 	loadAllTextures();
 	loadAllSounds();
-	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
+	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT * 0.5f));
 	//player = thePlayer;
 	m_pMap = new Map();
 	m_pMap2 = new Map();

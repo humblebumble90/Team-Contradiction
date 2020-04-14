@@ -223,11 +223,25 @@ void LevelScene::draw()
 
 void LevelScene::DestroyEnemy(Enemy* enemy)
 {
-	for (int i = 0; i < enemies.size(); ++i) {
-		if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
-			//SpawnExplosion(enemies[i]->GetParent()->getPosition());
-			enemies.erase(enemies.begin()+i);
-			break;
+	if(((FlyOntoScreenAI*)enemy)->isBoss)
+	{
+		for (int i = 0; i < enemies.size(); ++i) {
+			if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
+				//SpawnExplosion(enemies[i]->GetParent()->getPosition());
+				enemies.erase(enemies.begin() + i);
+				break;
+			}
+		}
+		player->setBossKillCounter(1);
+	}
+	else
+	{
+		for (int i = 0; i < enemies.size(); ++i) {
+			if (/*enemies[i]->GetParent().getPosition() == enemy->getPosition() && */enemies[i]->GetParent()->GetFrame()->getParent() == enemy) {
+				//SpawnExplosion(enemies[i]->GetParent()->getPosition());
+				enemies.erase(enemies.begin() + i);
+				break;
+			}
 		}
 	}
 }

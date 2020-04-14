@@ -220,6 +220,11 @@ int Game::getGuild()
 	return guild;
 }
 
+Scene* Game::getCurrentSceneState()
+{
+	return m_currentScene;
+}
+
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw colour

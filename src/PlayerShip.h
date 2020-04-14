@@ -52,6 +52,7 @@ public:
 	void setPlayerSpeed(float num);
 
 	void setKillCounter(int num);
+	void setBossKillCounter(int num);
 
 	bool getShieldAvailable();
 	void setShieldAvailable(bool newState);
@@ -81,6 +82,8 @@ private:
 	//KillCounter
 	int killCounter;
 	int getKillCounter();
+	int bossKillCounter;
+	int getBossKillCounter();
 	//Continue feature
 	int continiue;
 	int continueStack;

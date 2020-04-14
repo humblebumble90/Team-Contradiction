@@ -85,6 +85,7 @@ public:
 	int guild = 0;
 	void setGuild(int num);
 	int getGuild();
+	Scene* getCurrentSceneState();
 
 private:
 	Game();

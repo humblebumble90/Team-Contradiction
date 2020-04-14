@@ -8,6 +8,7 @@
 #include "PlayerEntry.h"
 #include <algorithm>
 #include "cpplinq.hpp"
+#include "Game.h"
 
 Scoreboard* Scoreboard::instance = nullptr;
 
@@ -35,6 +36,7 @@ void Scoreboard::resetValues()
 {
 	lives = Config::LIVES;
 	score = Config::SCORE;
+	TheGame::Instance()->getPlayerShip()->setContinueChance(0);
 
 }
 
