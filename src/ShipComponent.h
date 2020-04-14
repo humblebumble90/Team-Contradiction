@@ -13,10 +13,10 @@ public:
 	Frame* getParent();
 	void setParent(Frame* frame);
 	std::string getName();
+	glm::vec2 getID();
 protected:
 	Frame* parent;
 	std::string name;
-	glm::vec2 getID();
 private:
 	glm::vec2 iD = { -1,-1 };
 };

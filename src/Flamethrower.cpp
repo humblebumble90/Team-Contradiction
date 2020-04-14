@@ -27,7 +27,7 @@ void Flamethrower::Fire()
 
 	else
 	{
-		TheGame::Instance()->spawnEnemy(new EnemyFlamethrowerAI(getPosition()));
+		TheGame::Instance()->spawnEnemy(new EnemyFlamethrowerAI(this));
 	}
 }
 

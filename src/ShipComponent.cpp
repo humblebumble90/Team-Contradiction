@@ -1,6 +1,7 @@
 #include "ShipComponent.h"
 #include "CannonlordAI.h"
 #include "ChaosAI.h"
+#include "EnemyFlamethrowerAI.h"
 ShipComponent::ShipComponent() = default;
 
 ShipComponent::~ShipComponent()
@@ -14,34 +15,23 @@ glm::vec2 ShipComponent::getPosition()
 		  offsetY = (iD.y - (parent->GridHeight() - 1) / 2) * parent->getGridSize();
 	float posX = parentPosition.x + offsetX,
 		  posY = parentPosition.y + offsetY;
-	if (parent->getParent()->getName() == "Cannonlord" || parent->getParent()->getName() == "Chaos") {
-		float angle = parent->getParent()->getName() == "Cannonlord" ?
-			((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180:
-				 ((ChaosAI*)((Enemy*)parent->getParent())->getAI())->getRotation() * M_PI / 180;
+	if (parent->getParent()->getName() == "Cannonlord" || parent->getParent()->getName() == "Chaos" || parent->getParent()->getName() == "EnemyFlamethrower") {
+		float angle;
+		if (parent->getParent()->getName() == "Cannonlord") {
+			angle = ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()* M_PI / 180;
+		}
+		else if (parent->getParent()->getName() == "Chaos") {
+			angle = ((ChaosAI*)((Enemy*)parent->getParent())->getAI())->getRotation()* M_PI / 180;
+		}
+		else if (parent->getParent()->getName() == "EnemyFlamethrower") {
+			angle = ((EnemyFlamethrowerAI*)((Enemy*)parent->getParent())->getAI())->getRotation()* M_PI / 180;
+		}
 		return glm::vec2(
 			cos(angle) * offsetX - sin(angle) * offsetY + parentPosition.x,
 			sin(angle) * offsetX + cos(angle) * offsetY + parentPosition.y
 		);
 	}
 	return glm::vec2(posX, posY);
-#pragma region Position (Cannonlord)
-		//glm::vec2(
-			//posX + 2 * cos(posX - parentPosition.x) * (posX - parentPosition.x) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()),
-			//posY + /*2 * cos(posY - parentPosition.y) * (posY - parentPosition.y) **/ sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation())
-			
-			//posX + cos(posX-parentPosition.x)*(2 * (posX-parentPosition.x)* sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation())),
-			//posY + sin(posY - parentPosition.y) * (2 * (posY - parentPosition.y) * sin(0.5 * ((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()))
-
-		//)
-		/*
-		Things I'll need for rotation:
-
-		- The point i'm rotationg around			parentPosition
-		- The point i'm at							posX & posY
-		- The distance between me and the center	posX - parentPosition.x & posY - parentPosition.y (may need to abs)
-		- The amount i'm rotating by				((CannonlordAI*)((Enemy*)parent->getParent())->getAI())->getRotation()
-		*/
-	#pragma endregion
 }
 
 void ShipComponent::setID(glm::vec2 id)
