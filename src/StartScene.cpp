@@ -190,17 +190,17 @@ void StartScene::start()
 		40, black, glm::vec2(Config::SCREEN_WIDTH * 0.50f, Config::SCREEN_HEIGHT * 0.575f),
 		false,true);
 	addChild(m_pGuildLabel);
-	m_pGuildBlurbLabel1 = new Label("", "arial",
+	m_pGuildBlurbLabel1 = new Label("", "TimesNewRoman",
 		20, black, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.625f),
 		false, false);
 	m_pGuildBlurbLabel1->setParent(this);
 	addChild(m_pGuildBlurbLabel1);
-	m_pGuildBlurbLabel2 = new Label("", "arial",
+	m_pGuildBlurbLabel2 = new Label("", "TimesNewRoman",
 		20, black, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.675f),
 		false, false);
 	m_pGuildBlurbLabel2->setParent(this);
 	addChild(m_pGuildBlurbLabel2);
-	m_pGuildBlurbLabel3 = new Label("", "arial",
+	m_pGuildBlurbLabel3 = new Label("", "TimesNewRoman",
 		20, black, glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.725f),
 		false, false);
 	m_pGuildBlurbLabel3->setParent(this);
