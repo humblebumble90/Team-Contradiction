@@ -257,6 +257,7 @@ void LevelScene::DestroyWeapon(PlayerWeapon* weapon)
 
 void LevelScene::SpawnExplosion(glm::vec2 position)
 {
+	playSound("Explosion", 0);
 	player->setKillCounter(1);
 	updateLabels();
 	//idNum++;

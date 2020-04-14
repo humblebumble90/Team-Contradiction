@@ -540,6 +540,7 @@ void Level1::handleEvents()
 	if (time == 40 * wave)
 	{
 		spawnEnemy(new RainAI(guardianPosition));
+		playSound("Boss", 999);
 	}
 }
 
@@ -580,4 +581,5 @@ void Level1::loadAllTextures()
 void Level1::loadAllSounds()
 {
 	loadSound("../Assets/audio/level1.ogg", "Level1", SOUND_MUSIC);
+	loadSound("../Assets/audio/Explosion.ogg", "Explosion", SOUND_SFX);
 }

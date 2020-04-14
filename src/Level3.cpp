@@ -200,10 +200,10 @@ void Level3::loadAllSounds()
 {
 	//sound
 	std::cout << "Loading sounds" << std::endl;
-	loadSound("../Assets/audio/RamRushTemporary.ogg", "RamRush", SOUND_MUSIC);
-	//loadSound("../Assets/audio/BossTemporary.ogg", "BossRush1", SOUND_MUSIC);
-	loadSound("../Assets/audio/BossRush1Temporary.ogg", "BossRush1", SOUND_MUSIC);
-	loadSound("../Assets/audio/BossRush2Temporary.ogg", "BossRush2", SOUND_MUSIC);
-	loadSound("../Assets/audio/FinalBossTemporary.ogg", "FinalBoss", SOUND_MUSIC);
+	loadSound("../Assets/audio/RamRush.ogg", "RamRush", SOUND_MUSIC);
+	loadSound("../Assets/audio/BossRush1.ogg", "BossRush1", SOUND_MUSIC);
+	loadSound("../Assets/audio/BossRush2.ogg", "BossRush2", SOUND_MUSIC);
+	loadSound("../Assets/audio/Boss.ogg", "FinalBoss", SOUND_MUSIC);
+	loadSound("../Assets/audio/Explosion.ogg", "Explosion", SOUND_SFX);
 	std::cout << "Finish loading sounds" << std::endl;
 }
