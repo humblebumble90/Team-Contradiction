@@ -9,6 +9,7 @@
 #include "Move.h"
 #include <SDL_hints.h>
 #include <glm/detail/type_vec2.hpp>
+#include "PlayerWeaponTypes.h"
 
 class PlayerShip : public DisplayObject {
 public:
@@ -39,7 +40,7 @@ public:
 	void setIsMoving(bool newState);
 	
 	Frame* frame;
-
+	
 	//getter and setter of player lives
 	int getPlayerLives();
 	void setPlayerLives(int num);
@@ -58,6 +59,8 @@ public:
 	void setShieldAvailable(bool newState);
 
 	void initializeKillCounter();
+
+	void changeWeapon(PlayerWeaponType weapon);
 
 	bool getPlayerDead();
 	void setPlayerDead(bool newState);
@@ -82,7 +85,6 @@ private:
 	int getKillCounter();
 	int bossKillCounter;
 	int getBossKillCounter();
-
 	bool dead;
 };
 

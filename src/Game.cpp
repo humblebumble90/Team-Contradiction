@@ -452,6 +452,10 @@ void Game::handleEvents()
 		{
 			getPlayerShip()->setPlayerSpeed(8.5f);
 		}
+		if (keystates[SDL_SCANCODE_L])
+		{
+			getPlayerShip()->changeWeapon(CANNON);
+		}
 	}
 	if (keystates[SDL_SCANCODE_KP_0])
 	{

@@ -252,9 +252,6 @@
     <ClCompile Include="..\src\Scoreboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\VictoryScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\ChaosAI.cpp">
       <Filter>Source Files\AIs</Filter>
     </ClCompile>
@@ -293,6 +290,9 @@
     </ClCompile>
     <ClCompile Include="..\src\TxtBx.cpp">
       <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\VictoryScene.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -512,9 +512,6 @@
     <ClInclude Include="..\src\Scoreboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\VictoryScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\ChaosAI.h">
       <Filter>Header Files\AIs</Filter>
     </ClInclude>
@@ -553,6 +550,12 @@
     </ClInclude>
     <ClInclude Include="..\src\TxtBx.h">
       <Filter>Source Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\VictoryScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PlayerWeaponTypes.h">
+      <Filter>Enum</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

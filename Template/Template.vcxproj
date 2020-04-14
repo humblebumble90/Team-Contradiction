@@ -305,6 +305,7 @@
     <ClInclude Include="..\src\IndesBody.h" />
     <ClInclude Include="..\src\Label.h" />
     <ClInclude Include="..\src\PlayerWeapon.h" />
+    <ClInclude Include="..\src\PlayerWeaponTypes.h" />
     <ClInclude Include="..\src\Power_Up.h" />
     <ClInclude Include="..\src\RainAI.h" />
     <ClInclude Include="..\src\RamAI.h" />
