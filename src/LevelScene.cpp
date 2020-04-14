@@ -434,23 +434,23 @@ void LevelScene::spawnPlayerWeapon(PlayerWeapon* playerWeapon)
 void LevelScene::initialize()
 {
 	//std::cout << "Initialized.\n";
-	SDL_Color yellow = { 255, 255, 0, 255 };
+	SDL_Color yellow = { 255, 255, 255, 255 };
 	//Labels
-	m_pScoreLabel = new Label("Score: " + std::to_string(Scoreboard::Instance()->getScore()), "Consolas",
+	m_pScoreLabel = new Label("Score: " + std::to_string(Scoreboard::Instance()->getScore()), "TimesNewRoman",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.15f, 10.0f), TTF_STYLE_NORMAL, true);
-	m_pHighScoreLabel = new Label("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()), "Consolas",
+	m_pHighScoreLabel = new Label("High Score: " + std::to_string(Scoreboard::Instance()->getHighScore()), "TimesNewRoman",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.40f, 10.0f), TTF_STYLE_NORMAL, true);
-	m_pLivesLabel = new Label("Lives: " + std::to_string(Scoreboard::Instance()->getLives()), "Consolas",
+	m_pLivesLabel = new Label("Lives: " + std::to_string(Scoreboard::Instance()->getLives()), "TimesNewRoman",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, true);
-	m_pNumOfContinueLabel = new Label("Continue: " + std::to_string(player->getContinueChance()), "Consolas",
+	m_pNumOfContinueLabel = new Label("Continue: " + std::to_string(player->getContinueChance()), "TimesNewRoman",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.90f, 10.0f), TTF_STYLE_NORMAL, true);
-	/*m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "Consolas",
+	/*m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "TimesNewRoman",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);*/
 	m_pContinueLabel1 = new Label("Push space bar to continue",
-		"Consolas", 40, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.50f),
+		"TimesNewRoman", 40, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.50f),
 		TTF_STYLE_NORMAL,true);
 	m_pContinueLabel2 = new Label("Or push R to restart the game",
-		"Consolas", 40, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.60f),
+		"TimesNewRoman", 40, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.60f),
 		TTF_STYLE_NORMAL, true);
 	mpShield_aurora = new Shield_Aurora();
 	addChild(mpShield_aurora);
