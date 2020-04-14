@@ -171,8 +171,8 @@ void EndScene::start()
 	}
 	
 	loadAllSounds();
-	SDL_Color red = { 255, 0, 0, 255 };
-	m_Label = new Label("Push R key to restart the game.", "Dock51", 40, red, 
+	SDL_Color red = { 0, 0, 0, 255 };
+	m_Label = new Label("Push R key to restart the game.", "TimesNewRoman", 40, red, 
 		glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.9f));
 	m_Label->setParent(this);
 	addChild(m_Label);
@@ -195,29 +195,29 @@ void EndScene::displayEntry()
 {
 	loadTexture("../Assets/textures/entry.png", "entry");
 	
-	SDL_Color red = { 255, 0, 0, 255 };
+	SDL_Color red = { 0, 0, 0, 255 };
 	
-	m_namingLabel1 = new Label("A", "Consolas", 40, red,
+	m_namingLabel1 = new Label("A", "TimesNewRoman", 40, red,
 		glm::vec2(Config::SCREEN_WIDTH * 0.425f, Config::SCREEN_HEIGHT * 0.5f));
 	m_namingLabel1->setParent(this);
 	addChild(m_namingLabel1);
-	m_namingLabel2 = new Label("A", "Consolas", 40, red,
+	m_namingLabel2 = new Label("A", "TimesNewRoman", 40, red,
 		glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.5f));
 	m_namingLabel2->setParent(this);
 	addChild(m_namingLabel2);
-	m_namingLabel3 = new Label("A", "Consolas", 40, red,
+	m_namingLabel3 = new Label("A", "TimesNewRoman", 40, red,
 		glm::vec2(Config::SCREEN_WIDTH * 0.575f, Config::SCREEN_HEIGHT * 0.5f));
 	m_namingLabel3->setParent(this);
 	addChild(m_namingLabel3);
 	m_instructionLabel1 = new Label(
-		"Push up/down arrow key to choose character for name", "Consolas",
-		20, red,
+		"Push up/down arrow key to choose character for name", "TimesNewRoman",
+		22, red,
 		glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.65f));
 	m_instructionLabel1->setParent(this);
 	addChild(m_instructionLabel1);
 	instructionLabel2 = new Label(
-		"Push space bar to decide a character for name", "Consolas",
-		20, red,
+		"Push space bar to decide a character for name", "TimesNewRoman",
+		22, red,
 		glm::vec2(Config::SCREEN_WIDTH * 0.5f, Config::SCREEN_HEIGHT * 0.75f));
 	instructionLabel2->setParent(this);
 	addChild(instructionLabel2);
@@ -227,7 +227,7 @@ void EndScene::displayEntry()
 	m_pEntry->setParent(this);
 	addChild(m_pEntry);
 	
-	highscoreListLabel = new Label("HighscoreList", "Consolas", 20, black,
+	highscoreListLabel = new Label("Highscore List", "TimesNewRoman", 22, black,
 		glm::vec2(Config::SCREEN_WIDTH * 0.9f, Config::SCREEN_HEIGHT * 0.3f));
 	highscoreListLabel->setParent(this);
 	addChild(highscoreListLabel);
@@ -254,14 +254,14 @@ void EndScene::generateEntrylabels()
 		for (int i = 0; i < Scoreboard::Instance()->getPlayerEntry().size(); i++)
 		{
 				Label* playerNameLabel = new Label(Scoreboard::Instance()->getPlayerEntry()[i]->getName(),
-					"Consolas", 40, black,
+					"TimesNewRoman", 40, black,
 					glm::vec2(Config::SCREEN_WIDTH * 0.85f, Config::SCREEN_HEIGHT * (0.4f + i * 0.05f)),false,true);
 				playerNameLabel->setParent(this);
 				addChild(playerNameLabel);
 				entryLabels.push_back(playerNameLabel);
 				Label* playerScoreLabel
 					= new Label(std::to_string(Scoreboard::Instance()->getPlayerEntry()[i]->getScore()),
-						"Consolas", 40, black,
+						"TimesNewRoman", 40, black,
 						glm::vec2(Config::SCREEN_WIDTH * 0.95f, Config::SCREEN_HEIGHT * (0.4f + i*0.05f)),false, true);
 				playerScoreLabel->setParent(this);
 				addChild(playerScoreLabel);

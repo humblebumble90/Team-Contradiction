@@ -65,3 +65,14 @@ std::vector<ShipComponent> Frame::GetBuild()
 {
 	return build;
 }
+
+void Frame::replaceBuild(std::vector<ShipComponent> newBuild)
+{
+	build = newBuild;
+	for (int z = 0; z < gridWidth; ++z) {
+		for (int y = z; y < build.size(); y += gridWidth) {
+			build[y].setID(glm::vec2(z, (y - z) / gridWidth));
+			build[y].setParent(this);
+		}
+	}
+}

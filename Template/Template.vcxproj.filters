@@ -554,5 +554,8 @@
     <ClInclude Include="..\src\VictoryScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\PlayerWeaponTypes.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

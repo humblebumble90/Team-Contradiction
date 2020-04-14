@@ -10,11 +10,13 @@
 #include <functional>
 #include <glm/detail/type_vec2.hpp>
 #include "Scoreboard.h"
+#include "Cannon.h"
+#include "FlameThrower.h"
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),
-inv(false),killCounter(0),shieldAvailable(false),continiue(0),continueStack(0),
-dead(false), continueScore(6000), bossKillCounter(0)
+inv(false),killCounter(0),shieldAvailable(false),
+dead(false), bossKillCounter(0)
 {
 	changeTexture("Player");
 	//changeTexture("Player");
@@ -158,14 +160,48 @@ void PlayerShip::initializeKillCounter()
 	killCounter = 0;
 }
 
-int PlayerShip::getContinueChance()
+void PlayerShip::changeWeapon(PlayerWeaponType weapon)
 {
-	return continiue;
-}
+	//gets the build 
+	auto tempBuild = GetFrame()->GetBuild();
+	// gets the current name for the weapon
+	std::string weaponName = GetFrame()->GetWeapon(0).getName();
+	//just to make sure that you arent replacing the weapon that is already in the build
+	std::string changeToWeapon;
 
-void PlayerShip::setContinueChance(int num)
-{
-	continiue += num;
+	switch (weapon)
+	{
+	case CANNON:
+		changeToWeapon = Cannon().getName();
+		break;
+	case MISSILE_LAUNCHER:
+		changeToWeapon = MissileLauncher().getName();
+		break;
+	case FLAMETHROWER:
+		changeToWeapon = Flamethrower().getName();
+		break;
+	}
+	
+	for (int i = 0; i < tempBuild.size() /*&& weaponName != changeToWeapon*/; ++i)
+	{
+		if(tempBuild[i].getName() == weaponName)
+		{
+			switch (weapon)
+			{
+			case CANNON:
+				tempBuild[i] = Cannon();
+				break;
+			case MISSILE_LAUNCHER:
+				tempBuild[i] = MissileLauncher();
+				break;
+			case FLAMETHROWER:
+				tempBuild[i] = Flamethrower();
+				break;
+			}
+		}
+		std::cout << "was " + weaponName << "now is " + tempBuild[i].getName() << std::endl;
+	}
+	frame->replaceBuild(tempBuild);
 }
 
 bool PlayerShip::getPlayerDead()
@@ -182,12 +218,15 @@ Frame* PlayerShip::GetFrame()
 {
 	return frame;
 }
+
 void PlayerShip::draw()
 {
 	TheTextureManager::Instance()->draw
 	("Player", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(),0,m_alpha, true);
 	
 }
+
+
 
 void PlayerShip::move(Move newMove)
 {
@@ -243,12 +282,12 @@ void PlayerShip::addScore(int num)
 {
 	playerScore += num;
 	Scoreboard::Instance()->setScore(playerScore);
-	while(playerScore >= continueScore + (continueScore *continueStack))
+	while(playerScore >= TheGame::Instance()->ContinueScore() + (TheGame::Instance()->ContinueScore() * TheGame::Instance()->ContinueStack()))
 	{
-		continiue += 1;
-		continueStack += 1;
+		TheGame::Instance()->increaseContinue(1);
+		TheGame::Instance()->increaseStack(1);
 		std::cout << "continue increased\n";
-		std::cout <<"Continue: " << continiue << std::endl;
+		std::cout <<"Continue: " << TheGame::Instance()->Continue() << std::endl;
 		TheGame::Instance()->updateLabels();
 	}
 }
