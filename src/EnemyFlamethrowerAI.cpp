@@ -23,7 +23,20 @@ EnemyFlamethrowerAI::EnemyFlamethrowerAI(Flamethrower* ft)
 	}
 	std::vector<ShipComponent> build = { IndesBody(true), IndesBody(true), IndesBody(true), IndesBody(true) };
 	parent = new Enemy(new Frame(25, build, 4, 1),1,this, ft->getPosition() + transform,"EnemyFlamethrower");
-	
+	if (((Enemy*)ft->getParent()->getParent())->getName() == "Deathcage") {
+		if (ft->getID().y == 1) {
+			setRotation(270);
+		}
+		if (ft->getID().y == 1) {
+			setRotation(270);
+		}
+		else if (ft->getID().y == 16) {
+			setRotation(90);
+		}
+		else {
+			setRotation(0);
+		}
+	}
 }
 
 EnemyFlamethrowerAI::~EnemyFlamethrowerAI() = default;
@@ -36,5 +49,24 @@ void EnemyFlamethrowerAI::PrimaryFunction()
 int EnemyFlamethrowerAI::getRotation()
 {
 	return rotation;
+}
+
+void EnemyFlamethrowerAI::setRotation(int i)
+{
+	rotation = i;
+	switch (i) {
+	case 0:
+		transform = { -50, 0 };
+		break;
+	case 90:
+		transform = { 0, -50 };
+		break;
+	case 180:
+		transform = { 50, 0 };
+		break;
+	case 270:
+		transform = { 0, 50 };
+		break;
+	}
 }
 

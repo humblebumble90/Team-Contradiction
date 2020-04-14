@@ -67,6 +67,11 @@ void LevelScene::checkWeaponCollision()
 
 void LevelScene::update()
 {
+	if (Scoreboard::Instance()->getScore() == 0 && Scoreboard::Instance()->getHighScore() > 0) {
+		Scoreboard::Instance()->setScore(Scoreboard::Instance()->getHighScore());
+		player->playerScore = Scoreboard::Instance()->getHighScore();
+		player->playerHighScore = Scoreboard::Instance()->getHighScore();
+	}
 	if (bossDown) {
 		TheGame::Instance()->changeSceneState(nextScene);
 	}

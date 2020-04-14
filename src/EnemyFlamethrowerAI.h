@@ -10,6 +10,7 @@ public:
 	~EnemyFlamethrowerAI();
 	void PrimaryFunction() override;
 	int getRotation();
+	void setRotation(int i);
 private:
 	AI* attachedWeapon;
 	int id;

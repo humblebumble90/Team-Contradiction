@@ -19,6 +19,7 @@ public:
 private:
 	int second = 60;
 	int wave = 4 * second;
+	bool spawnedBoss = false;
 
 	glm::vec2 bottom = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT - 25);
 	glm::vec2 middle = glm::vec2(Config::SCREEN_WIDTH + 25, Config::SCREEN_HEIGHT / 2 + 25);

@@ -624,10 +624,11 @@ void Level2::clean()
 
 void Level2::handleEvents()
 {
-	if (time == 40 * wave)
+	if (time == 40 * wave && !spawnedBoss)
 	{
 		spawnEnemy(new ChaosAI(guardianPosition));
 		playSound("Boss", 999);
+		spawnedBoss = true;
 	}
 }
 
