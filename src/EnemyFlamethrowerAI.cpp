@@ -4,7 +4,8 @@
 EnemyFlamethrowerAI::EnemyFlamethrowerAI(Flamethrower* ft)
 {
 	attachedWeapon = ((Enemy*)ft->getParent()->getParent())->getAI();
-	id = ft->getID().y + (ft->getID().x * ft->getParent()->GridHeight());
+	id = ft->getID().x + (ft->getID().y * ft->getParent()->GridWidth());
+	std::cout << id << std::endl;
 	if (ft->getID().x == 0) {
 		transform = glm::vec2(-50, 0);
 	}
