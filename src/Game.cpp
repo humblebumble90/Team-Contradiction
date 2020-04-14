@@ -224,6 +224,10 @@ Scene* Game::getCurrentSceneState()
 {
 	return m_currentScene;
 }
+Scene* Game::getScene()
+{
+	return m_currentScene;
+}
 
 void Game::render()
 {
