@@ -17,6 +17,8 @@ Level2::Level2()
 		wave,
 		wave + 1,
 		wave + 2,
+		wave + 3,
+		wave + 4,
 		//10
 		10 * wave,
 		10 * wave + 1,
@@ -37,6 +39,18 @@ Level2::Level2()
 		13 * wave + 1,
 		13 * wave + 2,
 		13 * wave + 3,
+		//21
+		21 * wave + 3,
+		21 * wave + 4,
+		21 * wave + 5,
+		21 * wave + 6,
+		21 * wave + 7,
+		//23
+		23 * wave + 3,
+		23 * wave + 4,
+		23 * wave + 5,
+		23 * wave + 6,
+		23 * wave + 7,
 		//30
 		30 * wave,
 		30 * wave + 1,
@@ -60,7 +74,9 @@ Level2::Level2()
 	{
 		//1
 		top,
+		centerTop,
 		middle,
+		centerBottom,
 		bottom,
 		//10
 		top,
@@ -81,6 +97,18 @@ Level2::Level2()
 		top,
 		centerTop,
 		middle,
+		bottom,
+		//21
+		top,
+		centerTop,
+		middle,
+		centerBottom,
+		bottom,
+		//23
+		top,
+		centerTop,
+		middle,
+		centerBottom,
 		bottom,
 		//30
 		top,
@@ -107,6 +135,14 @@ Level2::Level2()
 		//2
 		2 * wave,
 		2 * wave + 1,
+		2 * wave + 2,
+		2 * wave + 3,
+		//11
+		11 * wave + 4,
+		11 * wave + 5,
+		//13
+		13 * wave + 4,
+		13 * wave + 5,
 		//20
 		20 * wave,
 		20 * wave + 1,
@@ -141,6 +177,14 @@ Level2::Level2()
 	zigzagSpawnLocation =
 	{
 		//2
+		centerTop,
+		middle,
+		centerBottom,
+		bottom,
+		//11
+		middle,
+		bottom,
+		//13
 		middle,
 		bottom,
 		//20
@@ -180,27 +224,48 @@ Level2::Level2()
 	{
 		//5
 		5 * wave,
+		5 * wave + 60,
+		5 * wave + 120,
+		
 		//14
 		14 * wave,
+		14 * wave + 60,
+		14 * wave + 120,
 		//24
 		24 * wave,
+		24 * wave + 60,
+		24 * wave + 120,
 		//33
 		33 * wave,
+		33 * wave + 60,
+		33 * wave + 120,
 		//35
-		35 * wave
+		35 * wave,
+		35 * wave + 60,
+		35 * wave + 120,
 	};
 
 	guardianSpawnLocation =
 	{
 		//5
 		guardianPosition,
+		guardianPosition,
+		guardianPosition,
 		//14
+		guardianPosition,
+		guardianPosition,
 		guardianPosition,
 		//24
 		guardianPosition,
+		guardianPosition,
+		guardianPosition,
 		//33
 		guardianPosition,
+		guardianPosition,
+		guardianPosition,
 		//35
+		guardianPosition,
+		guardianPosition,
 		guardianPosition
 	};
 
@@ -379,26 +444,38 @@ Level2::Level2()
 		23 * wave + 50,
 		23 * wave + 70,
 		23 * wave + 90,
+		23 * wave + 110,
+		23 * wave + 130,
+		23 * wave + 150,
+		23 * wave + 170,
 		//24
 		24 * wave + 30,
 		24 * wave + 50,
 		24 * wave + 70,
 		24 * wave + 90,
+		24 * wave + 110,
+		24 * wave + 130,
+		24 * wave + 150,
+		24 * wave + 170,
 		//31
 		31 * wave + 70,
 		31 * wave + 100,
 		31 * wave + 130,
+		31 * wave + 160,
 		//32
 		32 * wave + 70,
 		32 * wave + 100,
+		32 * wave + 130,
 		32 * wave + 130,
 		//33
 		33 * wave + 70,
 		33 * wave + 100,
 		33 * wave + 130,
+		33 * wave + 130,
 		//34
 		34 * wave + 70,
 		34 * wave + 100,
+		34 * wave + 130,
 		34 * wave + 130,
 	};
 
@@ -417,7 +494,15 @@ Level2::Level2()
 		bottom,
 		bottom,
 		bottom,
+		bottom,
+		bottom,
+		bottom,
+		bottom,
 		//24
+		top,
+		top,
+		top,
+		top,
 		top,
 		top,
 		top,
@@ -426,18 +511,22 @@ Level2::Level2()
 		top,
 		top,
 		top,
+		top,
 		//32
 		bottom,
+		top,
 		bottom,
-		bottom,
+		top,
 		//33
-		top,
-		top,
-		top,
+		bottom,
+		bottom,
+		bottom,
+		bottom,
 		//34
 		bottom,
+		top,
 		bottom,
-		bottom,
+		top,
 	};
 
 	blastSpawnTimer =
@@ -572,7 +661,7 @@ void Level2::loadAllTextures()
 	loadTexture("../Assets/textures/RainHit.png", "RainHit");
 	loadTexture("../Assets/textures/Chaos.png", "Chaos");
 	loadTexture("../Assets/textures/ChaosHit.png", "ChaosHit");
-	loadTexture("../Assets/textures/island.png", "Island");
+	loadTexture("../Assets/textures/floating_island3.png", "Island");
 	loadTexture("../Assets/textures/explosion.png", "explosion");
 }
 

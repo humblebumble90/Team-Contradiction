@@ -176,18 +176,7 @@ void LevelScene::draw()
 	{
 		m_pMap2->draw();
 	}
-	if (initialized)
-	{
-		m_pLivesLabel->draw();
-		m_pScoreLabel->draw();
-		m_pHighScoreLabel->draw();
-		m_pNumOfContinueLabel->draw();
-	}
-	if (player->getPlayerLives() >= 0)
-	{
-		player->draw();
-	}
-	
+
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}
@@ -210,6 +199,19 @@ void LevelScene::draw()
 		mpShield_aurora->draw();
 	}
 	ExplosionManager::Instance()->draw();
+
+	if (initialized)
+	{
+		m_pLivesLabel->draw();
+		m_pScoreLabel->draw();
+		m_pHighScoreLabel->draw();
+		m_pNumOfContinueLabel->draw();
+	}
+	if (player->getPlayerLives() >= 0)
+	{
+		player->draw();
+	}
+
 	if (m_pControl_Img != nullptr)
 	{
 		m_pControl_Img->draw();
