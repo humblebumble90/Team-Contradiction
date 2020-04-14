@@ -42,7 +42,7 @@ void Shield::update()
 
 void Shield::clean()
 {
-	TextureManager::Instance()->removeTexture(ID);
+	
 }
 
 //bool Shield::getCollided()

@@ -2,7 +2,7 @@
 #include "TextureManager.h"
 #include "Game.h"
 
-Power_Up::Power_Up() :collided(false)
+Power_Up::Power_Up(PlayerWeaponType weaponType) :collided(false), weapon(weaponType)
 {
 	TheTextureManager::Instance()->load("../Assets/textures/Agnium.png",
 		"Agnium", TheGame::Instance()->getRenderer());
@@ -51,4 +51,9 @@ void Power_Up::setCollided(bool newState)
 {
 	collided = newState;
 	delete this;
+}
+
+PlayerWeaponType Power_Up::getWeaponType()
+{
+	return weapon;
 }

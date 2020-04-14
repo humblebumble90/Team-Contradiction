@@ -50,6 +50,21 @@ void LevelScene::checkShieldCollision()
 	}
 }
 
+void LevelScene::checkWeaponCollision()
+{
+	for (int i = 0; i < m_pWeapons.size(); ++i)
+	{
+		if (CollisionManager::squaredRadiusCheck(player, m_pWeapons[i]))
+		{
+			PlayerWeaponType weaponType = m_pWeapons[i]->getWeaponType();
+			player->changeWeapon(weaponType);
+			m_pWeapons[i]->clean();
+			m_pWeapons.erase(m_pWeapons.begin() + i);
+			m_pWeapons.shrink_to_fit();
+		}
+	}
+}
+
 void LevelScene::update()
 {
 	if (bossDown) {
@@ -104,6 +119,10 @@ void LevelScene::update()
 			if (!m_pshields.empty())
 			{
 				checkShieldCollision();
+			}
+			for (int i = 0; i < m_pWeapons.size(); ++i)
+			{
+				m_pWeapons[i]->update();
 			}
 #pragma endregion
 
@@ -182,6 +201,11 @@ void LevelScene::draw()
 		m_pMap2->draw();
 	}
 
+	for (int i = 0; i < m_pWeapons.size(); ++i)
+	{
+		m_pWeapons[i]->draw();
+	}
+	
 	for (PlayerWeapon* pw : playerWeapons) {
 		pw->draw();
 	}
@@ -198,6 +222,7 @@ void LevelScene::draw()
 			}
 		}
 	}
+	checkWeaponCollision();
 
 	if(player->getShieldAvailable() && player->getPlayerLives() == 0)
 	{
@@ -462,7 +487,13 @@ void LevelScene::initialize()
 		TTF_STYLE_NORMAL, true);
 	mpShield_aurora = new Shield_Aurora();
 	addChild(mpShield_aurora);
+	m_pWeapons.push_back(new Power_Up(MISSILE_LAUNCHER));
+	m_pWeapons.push_back(new Power_Up(CANNON));
+	m_pWeapons[1]->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5, Config::SCREEN_HEIGHT * 0.4));
+	m_pWeapons[0]->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5, Config::SCREEN_HEIGHT * 0.7));
 	initialized = true;
 }
+
+
 
 

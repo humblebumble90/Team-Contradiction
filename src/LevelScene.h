@@ -71,6 +71,8 @@ private:
 	void collisionCheck(bool boss, AI* enemy, PlayerWeapon* pw);
 	void collisionCheck(bool boss, AI* enemy);
 	void initialize();
+	void checkWeaponCollision();
+	std::vector<Power_Up*> m_pWeapons;
 	int idNum = 0;
 	std::string shieldID;
 	bool initialized;
