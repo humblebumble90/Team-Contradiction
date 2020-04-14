@@ -24,7 +24,6 @@ std::vector<PlayerEntry*> Scoreboard::getPlayerEntry()
 Scoreboard::Scoreboard()
 {
 	highScore = Config::HIGH_SCORE;
-	resetValues();
 }
 
 Scoreboard::~Scoreboard()

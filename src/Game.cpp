@@ -457,7 +457,7 @@ void Game::handleEvents()
 			getPlayerShip()->changeWeapon(CANNON);
 		}
 	}
-	/*if (keystates[SDL_SCANCODE_KP_0])
+	if (keystates[SDL_SCANCODE_KP_0])
 	{
 		Game::Instance()->changeSceneState(START_SCENE);
 	}
@@ -476,7 +476,7 @@ void Game::handleEvents()
 	if (keystates[SDL_SCANCODE_KP_5])
 	{
 		Game::Instance()->changeSceneState(END_SCENE);
-	}*/
+	}
 #pragma endregion
 	SDL_Event event;
 		while(SDL_PollEvent(&event))
