@@ -510,7 +510,7 @@ Level1::Level1()
 
 
 	
-	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT / 2));
+	player = new PlayerShip(1, 5, glm::vec2(100, Config::SCREEN_HEIGHT * 0.5f));
 	m_pMap = new Map();
 	m_pMap2 = new Map();
 	m_pMap->setPosition(glm::vec2(0, 0));

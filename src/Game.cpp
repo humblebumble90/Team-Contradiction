@@ -220,7 +220,7 @@ int Game::getGuild()
 	return guild;
 }
 
-Scene* Game::getScene()
+Scene* Game::getCurrentSceneState()
 {
 	return m_currentScene;
 }

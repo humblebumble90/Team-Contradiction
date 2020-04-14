@@ -4,6 +4,7 @@
 #include "GLM/gtx/string_cast.hpp"
 #include <algorithm>
 #include <iomanip>
+#include "Scoreboard.h"
 
 StartScene::StartScene()
 {
@@ -96,6 +97,14 @@ void StartScene::clean()
 	delete m_pStartButton;
 	delete m_pStartLabel;
 	delete m_pGuildLabel;
+	delete m_pGuildBlurbLabel1;
+	delete m_pGuildBlurbLabel2;
+	delete m_pGuildBlurbLabel3;
+	//delete m_pStartButton;
+	//delete m_pLevel2Button;
+	//delete m_pLevel3Button;
+	//delete m_pGuild1_Button;
+	//delete m_pGuild2_Button;
 	removeAllChildren();
 }
 
@@ -200,8 +209,6 @@ void StartScene::start()
 	m_pTxtBx->setParent(this);
 	addChild(m_pTxtBx);
 	
-
-	
 	m_pStartButton = new StartButton();
 	addChild(m_pStartButton);
 	playSound("Menu", 999);
@@ -216,7 +223,6 @@ void StartScene::start()
 	addChild(m_pGuild1_Button);
 	m_pGuild2_Button = new Guild2_Button();
 	addChild(m_pGuild2_Button);
-
 }
 
 void StartScene::loadAllSounds()
