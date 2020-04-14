@@ -13,8 +13,25 @@ Cannon::~Cannon()
 
 void Cannon::Fire()
 {
-
-	if (getParent()->getParent()->getName() == "Player")
+	if (getParent()->getParent()->getName() == "Player") {
+		glm::vec2 s;
+		int i = getID().y;
+		switch (i) {
+		case 0:
+			s = glm::vec2(4, -4);
+			break;
+		case 1:
+			s = glm::vec2(8, 0);
+			break;
+		case 2:
+			s = glm::vec2(4, 4);
+			break;
+		}
+		Cannonball* cb = new Cannonball(getPosition(), s);
+		cb->start();
+		TheGame::Instance()->spawnPlayerWeapon(cb);
+	}
+	/*if (getParent()->getParent()->getName() == "Player")
 	{
 		glm::vec2 velocity;
 		int y = getID().y;
@@ -37,7 +54,7 @@ void Cannon::Fire()
 			break;
 		}
 		TheGame::Instance()->spawnPlayerWeapon(new Cannonball(getPosition(), velocity));
-	}
+	}*/
 
 	else if (getParent()->getParent()->getName() != "Cannonlord")
 	{
