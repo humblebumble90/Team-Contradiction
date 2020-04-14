@@ -243,7 +243,7 @@ void PlayerShip::addScore(int num)
 {
 	playerScore += num;
 	Scoreboard::Instance()->setScore(playerScore);
-	if(playerScore >= continueScore + (continueScore *continueStack))
+	while(playerScore >= continueScore + (continueScore *continueStack))
 	{
 		continiue += 1;
 		continueStack += 1;

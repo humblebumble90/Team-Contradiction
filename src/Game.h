@@ -87,6 +87,8 @@ public:
 	int getGuild();
 	Scene* getCurrentSceneState();
 
+	Scene* getScene();
+
 private:
 	Game();
 	~Game();

@@ -176,10 +176,6 @@ void LevelScene::draw()
 	{
 		m_pMap2->draw();
 	}
-	if (m_pControl_Img != nullptr)
-	{
-		m_pControl_Img->draw();
-	}
 	if (initialized)
 	{
 		m_pLivesLabel->draw();
@@ -214,6 +210,10 @@ void LevelScene::draw()
 		mpShield_aurora->draw();
 	}
 	ExplosionManager::Instance()->draw();
+	if (m_pControl_Img != nullptr)
+	{
+		m_pControl_Img->draw();
+	}
 	if (player->getPlayerDead() && player->getContinueChance() > 0)
 	{
 		m_pContinueLabel1->draw();
