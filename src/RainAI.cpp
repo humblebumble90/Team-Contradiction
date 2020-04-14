@@ -20,10 +20,10 @@ RainAI::RainAI(glm::vec2 transform)
 	};
 #pragma endregion
 	parent = new Enemy(new Frame(40, //Enemy is 280px by 280px
-		build, 7, 7), 25, //Will tweak if 50 health proves to be too much or too little
+		build, 7, 7), 40, //Will tweak if 50 health proves to be too much or too little
 		this, transform, "Rain");
 	target = glm::vec2(Config::SCREEN_WIDTH - parent->GetFrame()->getGridSize() * parent->GetFrame()->GridWidth() / 2, Config::SCREEN_HEIGHT / 2);
-	score = 2500;
+	score = 4000;
 	getNewTarget();
 }
 

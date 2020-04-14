@@ -582,5 +582,6 @@ void Level1::loadAllTextures()
 void Level1::loadAllSounds()
 {
 	loadSound("../Assets/audio/level1.ogg", "Level1", SOUND_MUSIC);
+	loadSound("../Assets/audio/Boss.ogg", "Boss", SOUND_MUSIC);
 	loadSound("../Assets/audio/Explosion.ogg", "Explosion", SOUND_SFX);
 }
