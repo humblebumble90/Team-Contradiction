@@ -67,6 +67,11 @@ void Scene::loadSound(std::string path, std::string id, sound_type type)
 
 void Scene::playSound(std::string id, int loop)
 {
-	TheSoundManager::Instance()->playMusic(id, loop);
+	if (id == "Explosion") {
+		TheSoundManager::Instance()->playSound(id, loop);
+	}
+	else {
+		TheSoundManager::Instance()->playMusic(id, loop);
+	}
 	std::cout << "Attempted to play sound with id: " << id << std::endl;
 }

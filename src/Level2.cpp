@@ -626,6 +626,7 @@ void Level2::handleEvents()
 	if (time == 40 * wave)
 	{
 		spawnEnemy(new ChaosAI(guardianPosition));
+		playSound("Boss", 999);
 	}
 }
 
@@ -667,5 +668,7 @@ void Level2::loadAllTextures()
 
 void Level2::loadAllSounds()
 {
-	loadSound("../Assets/audio/level1.ogg", "Level1", SOUND_MUSIC);
+	loadSound("../Assets/audio/level2.ogg", "Level1", SOUND_MUSIC);
+	loadSound("../Assets/audio/Explosion.ogg", "Explosion", SOUND_SFX);
+	loadSound("../Assets/audio/Boss.ogg", "Boss", SOUND_MUSIC);
 }

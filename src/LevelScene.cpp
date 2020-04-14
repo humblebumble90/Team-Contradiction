@@ -158,7 +158,7 @@ void LevelScene::update()
 		if (player->getPlayerLives() < 0)
 		{
 			player->setPlayerDead(true);
-			if (player->getContinueChance() < 1)
+			if (TheGame::Instance()->Continue() < 1)
 			{
 				TheGame::Instance()->changeSceneState(END_SCENE);
 			}
@@ -216,7 +216,7 @@ void LevelScene::draw()
 	{
 		m_pControl_Img->draw();
 	}
-	if (player->getPlayerDead() && player->getContinueChance() > 0)
+	if (player->getPlayerDead() && TheGame::Instance()->Continue() > 0)
 	{
 		m_pContinueLabel1->draw();
 		m_pContinueLabel2->draw();
@@ -259,6 +259,7 @@ void LevelScene::DestroyWeapon(PlayerWeapon* weapon)
 
 void LevelScene::SpawnExplosion(glm::vec2 position)
 {
+	playSound("Explosion", 0);
 	player->setKillCounter(1);
 	updateLabels();
 	//idNum++;
@@ -287,7 +288,7 @@ void LevelScene::updateLabels()
 	m_pLivesLabel->setText("Lives: " + std::to_string(player->getPlayerLives()));
 	m_pScoreLabel->setText("Score: " + std::to_string(Scoreboard::Instance()->getScore()));
 	m_pHighScoreLabel->setText("HighScore: " + std::to_string(Scoreboard::Instance()->getHighScore()));
-	m_pNumOfContinueLabel->setText("Continue: " + std::to_string(player->getContinueChance()));
+	m_pNumOfContinueLabel->setText("Continue: " + std::to_string(TheGame::Instance()->Continue()));
 }
 
 void LevelScene::spawnShield(AI* enemy)
@@ -444,7 +445,7 @@ void LevelScene::initialize()
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.40f, 10.0f), TTF_STYLE_NORMAL, true);
 	m_pLivesLabel = new Label("Lives: " + std::to_string(Scoreboard::Instance()->getLives()), "TimesNewRoman",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, true);
-	m_pNumOfContinueLabel = new Label("Continue: " + std::to_string(player->getContinueChance()), "TimesNewRoman",
+	m_pNumOfContinueLabel = new Label("Continue: " + std::to_string(TheGame::Instance()->Continue()), "TimesNewRoman",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.90f, 10.0f), TTF_STYLE_NORMAL, true);
 	/*m_pSpeedLabel = new Label("Speed: " + std::to_string(player->getPlayerSpeed()), "TimesNewRoman",
 		24, yellow, glm::vec2(Config::SCREEN_WIDTH * 0.65f, 10.0f), TTF_STYLE_NORMAL, false);*/

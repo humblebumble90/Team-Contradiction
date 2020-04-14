@@ -176,6 +176,7 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
+	TheGame::Instance()->resetContinues();
 	loadAllTextures();
 	loadAllSounds();
 	m_pStart_Scene_Bg = new Start_Scene_Bg();

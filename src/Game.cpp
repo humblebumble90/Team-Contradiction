@@ -229,6 +229,38 @@ Scene* Game::getScene()
 	return m_currentScene;
 }
 
+int Game::Continue()
+{
+	return continiue;
+}
+
+int Game::ContinueScore()
+{
+	return continueScore;
+}
+
+int Game::ContinueStack()
+{
+	return continueStack;
+}
+
+void Game::resetContinues()
+{
+	continiue = 0;
+	continueStack = 0;
+	continueScore = 6000;
+}
+
+void Game::increaseContinue(int i)
+{
+	continiue += i;
+}
+
+void Game::increaseStack(int i)
+{
+	continueStack += i;
+}
+
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw colour
@@ -312,14 +344,14 @@ void Game::handleEvents()
 					}
 				}
 			}
-		if(getPlayerShip()->getPlayerDead() && getPlayerShip()->getContinueChance() > 0)
+		if(getPlayerShip()->getPlayerDead() && continiue > 0)
 		{
 			if(keystates[SDL_SCANCODE_SPACE])
 			{
 				getPlayerShip()->invincible();
 				getPlayerShip()->setPlayerLives(5);
 				getPlayerShip()->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.25f, Config::SCREEN_HEIGHT * 0.5f));
-				getPlayerShip()->setContinueChance(-1);
+				continiue -= 1;
 				updateLabels();
 				getPlayerShip()->setPlayerDead(false);
 			}

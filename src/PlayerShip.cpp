@@ -13,8 +13,8 @@
 
 PlayerShip::PlayerShip(int health, int lives, glm::vec2 targetTransform)
 :m_isMoving(false), m_maxSpeed(5.0f), m_alpha(255),name("Player"),
-inv(false),killCounter(0),shieldAvailable(false),continiue(0),continueStack(0),
-dead(false), continueScore(6000), bossKillCounter(0)
+inv(false),killCounter(0),shieldAvailable(false),
+dead(false), bossKillCounter(0)
 {
 	changeTexture("Player");
 	//changeTexture("Player");
@@ -158,16 +158,6 @@ void PlayerShip::initializeKillCounter()
 	killCounter = 0;
 }
 
-int PlayerShip::getContinueChance()
-{
-	return continiue;
-}
-
-void PlayerShip::setContinueChance(int num)
-{
-	continiue += num;
-}
-
 bool PlayerShip::getPlayerDead()
 {
 	return dead;
@@ -243,12 +233,12 @@ void PlayerShip::addScore(int num)
 {
 	playerScore += num;
 	Scoreboard::Instance()->setScore(playerScore);
-	while(playerScore >= continueScore + (continueScore *continueStack))
+	while(playerScore >= TheGame::Instance()->ContinueScore() + (TheGame::Instance()->ContinueScore() * TheGame::Instance()->ContinueStack()))
 	{
-		continiue += 1;
-		continueStack += 1;
+		TheGame::Instance()->increaseContinue(1);
+		TheGame::Instance()->increaseStack(1);
 		std::cout << "continue increased\n";
-		std::cout <<"Continue: " << continiue << std::endl;
+		std::cout <<"Continue: " << TheGame::Instance()->Continue() << std::endl;
 		TheGame::Instance()->updateLabels();
 	}
 }

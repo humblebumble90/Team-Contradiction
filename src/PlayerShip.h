@@ -59,8 +59,6 @@ public:
 
 	void initializeKillCounter();
 
-	int getContinueChance();
-	void setContinueChance(int num);
 	bool getPlayerDead();
 	void setPlayerDead(bool newState);
 private:
@@ -84,10 +82,7 @@ private:
 	int getKillCounter();
 	int bossKillCounter;
 	int getBossKillCounter();
-	//Continue feature
-	int continiue;
-	int continueStack;
-	int continueScore;
+
 	bool dead;
 };
 
