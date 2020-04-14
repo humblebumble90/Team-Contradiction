@@ -11,7 +11,8 @@ public:
 	void PrimaryFunction() override;
 	int getRotation();
 private:
-	Flamethrower* attachedWeapon;
+	AI* attachedWeapon;
+	int id;
 	int rotation = 0;
 	glm::vec2 transform;
 };
