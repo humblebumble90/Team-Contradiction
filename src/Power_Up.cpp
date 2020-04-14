@@ -11,7 +11,7 @@ Power_Up::Power_Up(PlayerWeaponType weaponType) :collided(false), weapon(weaponT
 	setWidth(size.x);
 	setHeight(size.y);
 	setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.75f, Config::SCREEN_HEIGHT * 0.5f));
-	setVelocity(glm::vec2(0.0f, 0.0f));
+	setVelocity(glm::vec2(-5.0f, 0.0f));
 	setIsColliding(false);
 	setType(GameObjectType::POWER_UP);
 }

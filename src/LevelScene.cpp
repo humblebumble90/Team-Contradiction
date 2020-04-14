@@ -489,8 +489,8 @@ void LevelScene::initialize()
 	addChild(mpShield_aurora);
 	m_pWeapons.push_back(new Power_Up(MISSILE_LAUNCHER));
 	m_pWeapons.push_back(new Power_Up(CANNON));
-	m_pWeapons[1]->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5, Config::SCREEN_HEIGHT * 0.4));
-	m_pWeapons[0]->setPosition(glm::vec2(Config::SCREEN_WIDTH * 0.5, Config::SCREEN_HEIGHT * 0.7));
+	m_pWeapons[1]->setPosition(glm::vec2(Config::SCREEN_WIDTH + 50, Config::SCREEN_HEIGHT * 0.3));
+	m_pWeapons[0]->setPosition(glm::vec2(Config::SCREEN_WIDTH + 50, Config::SCREEN_HEIGHT * 0.7));
 	initialized = true;
 }
 
