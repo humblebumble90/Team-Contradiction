@@ -50,8 +50,17 @@ void Enemy::Damage(int i)
 		{
 			//std::cout << "Enemy dead: " << this->getName() << std::endl;
 			TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
-			if (name == "Deathcage") {
-				//TheGame::Instance()->changeSceneState(SceneState::END_SCENE);
+			if (name == "Rain") {
+				TheGame::Instance()->changeSceneState(SceneState::LEVEL2_SCENE);
+				return;
+			}
+			else if (name == "Chaos") {
+				TheGame::Instance()->changeSceneState(SceneState::LEVEL3_SCENE);
+				return;
+			}
+			else if (name == "Deathcage") {
+				TheGame::Instance()->changeSceneState(SceneState::END_SCENE);
+				return;
 			}
 			TheGame::Instance()->spawnExplosion(getPosition());
 			if (((FlyOntoScreenAI*)aI)->isBoss) {
