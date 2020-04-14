@@ -63,7 +63,7 @@ void Enemy::Damage(int i)
 				return;
 			}
 			TheGame::Instance()->spawnExplosion(getPosition());
-			if (((FlyOntoScreenAI*)aI)->isBoss) {
+			if (((FlyOntoScreenAI*)aI)->isBoss && name != "Blast" && name != "Diagon" && name != "Cannoneer" && name != "Ram" && name != "Zigzag" && name != "Guardian" && !name.find("Barge")) {
 				try {
 					((Level3*)TheGame::Instance()->getScene())->CheatCode();
 				}
