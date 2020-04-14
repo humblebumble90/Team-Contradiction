@@ -11,7 +11,7 @@ Cannonball::Cannonball(glm::vec2 position, glm::vec2 velocity)
 	setHeight(size.y);
 	setPosition(position);
 	setVelocity(velocity);
-
+	speed = velocity;
 	std::vector<ShipComponent> build = { IndesBody(true) };
 	frame = new Frame(25, build, 1, 1);
 	frame->Initialize(this);
