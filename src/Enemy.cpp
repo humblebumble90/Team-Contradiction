@@ -5,6 +5,7 @@
 #include "PlayerLockAI.h"
 #include "CannonlordAI.h"
 #include "ChaosAI.h"
+#include "EnemyFlamethrowerAI.h"
 #include "Level3.h"
 
 Enemy::Enemy(){/*DANGER! Do not use!*/ }
@@ -58,7 +59,7 @@ void Enemy::Damage(int i)
 				TheGame::Instance()->getPlayerShip()->addScore(aI->getScore());
 				TheGame::Instance()->spawnExplosion(getPosition());
 			}
-			if (((FlyOntoScreenAI*)aI)->isBoss && name != "Blast" && name != "Diagon" && name != "Cannoneer" && name != "Ram" && name != "Zigzag" && name != "Guardian" && !name.find("Barge")) {
+			if (((FlyOntoScreenAI*)aI)->isBoss && name != "Blast" && name != "Diagon" && name != "Cannoneer" && name != "Ram" && name != "Zigzag" && name != "Guardian") {
 				try {
 					((Level3*)TheGame::Instance()->getScene())->CheatCode();
 				}
@@ -98,8 +99,17 @@ void Enemy::Move()
 void Enemy::draw()
 {
 	std::string s = hitTimer > 0 ? name + "Hit" : name;
-	if (name == "Cannonlord" || name == "Chaos") {
-		double d = name == "Cannonlord" ? ((CannonlordAI*)aI)->getRotation() : ((ChaosAI*)aI)->getRotation();
+	if (name == "Cannonlord" || name == "Chaos" || name == "EnemyFlamethrower") {
+		double d;
+		if (name == "Cannonlord") {
+			d = ((CannonlordAI*)aI)->getRotation();
+		}
+		else if (name == "Chaos") {
+			d = ((ChaosAI*)aI)->getRotation();
+		}
+		else if (name == "EnemyFlamethrower") {
+			d = ((EnemyFlamethrowerAI*)aI)->getRotation();
+		}
 		TheTextureManager::Instance()->draw(s, getPosition().x - (frame->getGridSize() * frame->GridWidth() / 2), getPosition().y - (frame->getGridSize() * frame->GridHeight() / 2), frame->getGridSize() * frame->GridWidth(), frame->getGridSize() * frame->GridHeight(),
 			TheGame::Instance()->getRenderer(), d, 255, SDL_FLIP_NONE);
 	}
