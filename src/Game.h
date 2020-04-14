@@ -89,6 +89,10 @@ public:
 
 	Scene* getScene();
 
+	//Continue feature
+	int Continue(), ContinueStack(), ContinueScore();
+	void resetContinues(), increaseContinue(int i), increaseStack(int i);
+
 private:
 	Game();
 	~Game();
@@ -113,6 +117,9 @@ private:
 
 	int firingCooldown[3] = { 0,0,0 };
 	int firingCooldownReset[3] = { 20,20,20 };
+
+	//Continue feature
+	int continiue = 0, continueStack = 0, continueScore = 6000;
 };
 
 typedef Game TheGame;

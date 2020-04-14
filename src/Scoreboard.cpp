@@ -36,7 +36,7 @@ void Scoreboard::resetValues()
 {
 	lives = Config::LIVES;
 	score = Config::SCORE;
-	TheGame::Instance()->getPlayerShip()->setContinueChance(0);
+	TheGame::Instance()->resetContinues();
 
 }
 
